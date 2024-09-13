@@ -1,6 +1,7 @@
 {
-  "main": "expo/AppEntry.js",
   "scripts": {
+    "i18n:compile": "lingui compile --typescript",
+    "i18n:extract": "lingui extract",
     "lint": "run-s lint:expo lint:eslint",
     "lint:eslint": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:eslint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
@@ -11,10 +12,13 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  "main": "expo/AppEntry.js",
   "name": "do-it-myself",
   "version": "1.0.0",
   "dependencies": {
+    "@lingui/react": "^4.11.4",
     "expo": "~51.0.28",
+    "expo-localization": "^15.0.3",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-native": "0.74.5"
@@ -22,6 +26,8 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@commitlint/config-conventional": "^19.5.0",
+    "@lingui/cli": "^4.11.4",
+    "@lingui/macro": "^4.11.4",
     "@madeja-studio/cepillo": "^0.1.11",
     "@madeja-studio/telar": "^0.2.28",
     "@react-native/eslint-config": "^0.75.3",
