@@ -2,12 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type RootNavigationParamList = {
-  placeholder: undefined;
+  projects: undefined;
 };
 
 type RootNavigationScreenProps = NativeStackScreenProps<
   RootNavigationParamList,
-  "placeholder"
+  "projects"
 >["navigation"];
 
 export const useRootNavigation = useNavigation<RootNavigationScreenProps>;

@@ -11,11 +11,11 @@ interface Props extends PropsWithChildren {}
 const AllProviders = ({ children }: Props) => {
   return (
     <TelarContextProvider>
-      <NavigationContainer>
-        <PreloadScreen>
+      <PreloadScreen>
+        <NavigationContainer>
           <I18nProvider i18n={i18n}>{children}</I18nProvider>
-        </PreloadScreen>
-      </NavigationContainer>
+        </NavigationContainer>
+      </PreloadScreen>
     </TelarContextProvider>
   );
 };

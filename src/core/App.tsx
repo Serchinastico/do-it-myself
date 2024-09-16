@@ -1,27 +1,16 @@
-import AllProviders from "@app/core/providers/AllProviders";
-import { Text, View } from "react-native";
-
+// eslint-disable-next-line import/order
 import { bootstrap } from "./bootstrap";
+
+// eslint-disable-next-line perfectionist/sort-imports
+import RootNavigation from "@app/core/navigation/RootNavigation";
+import AllProviders from "@app/core/providers/AllProviders";
 
 bootstrap();
 
 export default function App() {
   return (
     <AllProviders>
-      <View>
-        <Text
-          style={{
-            alignItems: "center",
-            display: "flex",
-            flex: 1,
-            fontSize: 20,
-            fontWeight: "black",
-            justifyContent: "center",
-          }}
-        >
-          Welcome
-        </Text>
-      </View>
+      <RootNavigation />
     </AllProviders>
   );
 }
