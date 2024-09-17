@@ -1,3 +1,4 @@
+import { color } from "@app/core/theme/color";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { TelarContextProvider } from "@madeja-studio/telar";
@@ -10,7 +11,11 @@ interface Props extends PropsWithChildren {}
 
 const AllProviders = ({ children }: Props) => {
   return (
-    <TelarContextProvider>
+    <TelarContextProvider
+      theme={{
+        core: { color: { primary: color.primary, secondary: color.secondary } },
+      }}
+    >
       <PreloadScreen>
         <NavigationContainer>
           <I18nProvider i18n={i18n}>{children}</I18nProvider>

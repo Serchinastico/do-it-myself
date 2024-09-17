@@ -1,4 +1,4 @@
-import twrnc from "twrnc";
+import twrnc from "@app/core/theme/tailwind";
 
 /**
  * Registers a global `tw` variable to create Tailwind styles

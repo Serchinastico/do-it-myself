@@ -1,7 +1,6 @@
 import * as SplashScreen from "expo-splash-screen";
 import { PropsWithChildren, useCallback, useState } from "react";
 import { View } from "react-native";
-import tw from "twrnc";
 import useAsyncEffect from "use-async-effect";
 
 interface Props extends PropsWithChildren {}
