@@ -5,8 +5,14 @@ module.exports = {
   plugins: [
     plugin(({ addUtilities }) => {
       addUtilities({
+        ".body": "text-body font-normal",
+        ".button": "text-button font-semibold",
+        ".caption": "text-caption font-light",
         ".center": "items-center justify-center",
         ".fill": "top-0 right-0 bottom-0 left-0",
+        ".h1": "text-h1 font-black",
+        ".h2": "text-h2 font-bold",
+        ".h3": "text-h3 font-bold",
         ".min-h-press": "min-h-[44px]",
         ".min-size-press": "min-h-[44px] min-w-[44px]",
         ".min-w-press": "min-w-[44px]",
