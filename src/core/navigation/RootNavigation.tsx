@@ -1,4 +1,7 @@
-import { ProjectsScreen } from "@app/features/projects";
+import {
+  CreateProjectScreen,
+  ProjectsScreen,
+} from "@app/features/projects/screens";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { RootNavigationParamList } from "./routes";
@@ -9,6 +12,11 @@ const RootNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen component={ProjectsScreen} name="projects" />
+      <Stack.Screen
+        component={CreateProjectScreen}
+        name="createProject"
+        options={{ presentation: "modal" }}
+      />
     </Stack.Navigator>
   );
 };

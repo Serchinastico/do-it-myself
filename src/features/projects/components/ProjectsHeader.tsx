@@ -1,15 +1,15 @@
-import { Header as GenericHeader } from "@app/core/components/Header";
+import { Header } from "@app/core/components/Header";
 import { t } from "@lingui/macro";
 import { Button } from "@madeja-studio/telar";
 
-export const Header = () => {
+export const ProjectsHeader = () => {
   return (
-    <GenericHeader title={t`Projects`}>
+    <Header title={t`Projects`}>
       <Button.Icon
         color="secondary"
         icon={{ family: "Feather", name: "user" }}
         variant="text"
       />
-    </GenericHeader>
+    </Header>
   );
 };
