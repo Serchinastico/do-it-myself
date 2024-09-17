@@ -1,12 +1,11 @@
 import { color } from "@app/core/theme/color";
 import { t } from "@lingui/macro";
-import { Column, Row, VectorIcon } from "@madeja-studio/telar";
-import { ComponentProps } from "react";
+import { Column, IconReference, Row, VectorIcon } from "@madeja-studio/telar";
 import { Switch, SwitchProps, Text } from "react-native";
 
 interface ToolSectionProps {
   description: string;
-  icon: ComponentProps<typeof VectorIcon>["icon"];
+  icon: IconReference;
   name: string;
   onValueChange: SwitchProps["onValueChange"];
   value: boolean;
