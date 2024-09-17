@@ -1,4 +1,5 @@
 import { Input } from "@app/core/components/Input";
+import { RootScreenProps } from "@app/core/navigation/routes";
 import {
   PROJECT_COLORS,
   PROJECT_TAGS,
@@ -6,17 +7,19 @@ import {
 } from "@app/domain/project";
 import { ProjectTag } from "@app/domain/project/tags";
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
-import { CreateProjectHeader } from "@app/features/projects/components/CreateProjectHeader";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
 import { t } from "@lingui/macro";
 import { oneOf } from "@madeja-studio/cepillo";
 import { Button, Column } from "@madeja-studio/telar";
+import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useState } from "react";
 import { ScrollView, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export const CreateProjectScreen = () => {
+export const CreateProjectScreen = ({
+  navigation,
+}: RootScreenProps<"createProject">) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [colorId, setColorId] = useState<ProjectColorId>(
@@ -34,7 +37,7 @@ export const CreateProjectScreen = () => {
     <>
       <StatusBar barStyle="dark-content" />
 
-      <CreateProjectHeader />
+      <ProjectHeader.CreateProject onClose={() => navigation.goBack()} />
 
       <ScrollView style={tw`px-4`}>
         <Column>
@@ -56,7 +59,10 @@ export const CreateProjectScreen = () => {
 
           <ColorPicker onColorChange={setColorId} selectedColorId={colorId} />
 
-          <TagsPicker tags={tags} />
+          <TagsPicker
+            onPress={() => navigation.navigate("addTags")}
+            tags={tags}
+          />
 
           <ToolsPicker
             onWantsAttachmentsChange={setWantsAttachments}

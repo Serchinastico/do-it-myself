@@ -18,4 +18,5 @@ export const PROJECT_TAGS = {
 } as const;
 
 export type ProjectTags = typeof PROJECT_TAGS;
-export type ProjectTag = ProjectTags[keyof ProjectTags][number];
+export type ProjectTagSection = ProjectTags[keyof ProjectTags];
+export type ProjectTag = ProjectTagSection[number];

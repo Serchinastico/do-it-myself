@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type RootNavigationParamList = {
+  addTags: undefined;
   createProject: undefined;
   projects: undefined;
 };
