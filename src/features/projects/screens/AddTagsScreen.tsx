@@ -1,9 +1,10 @@
+import { Button } from "@app/core/components/Button";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { PROJECT_TAGS } from "@app/domain/project";
 import { ProjectTag } from "@app/domain/project/tags";
 import { Tag } from "@app/features/projects/components/Tag";
 import { t } from "@lingui/macro";
-import { Button, Column, Row } from "@madeja-studio/telar";
+import { Column, Row } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useState } from "react";
 import { ScrollView, StatusBar, Text } from "react-native";
@@ -50,9 +51,8 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
             <TagSection key={name} name={name} tags={tags} />
           ))}
           <Button
-            hasHapticFeedback
             onPress={() => navigation.goBack()}
-            style={[tw`center mt-6`, { marginBottom: bottom }]}
+            style={[tw`mt-6`, { marginBottom: bottom }]}
             text={t`Accept`}
           />
         </Column>

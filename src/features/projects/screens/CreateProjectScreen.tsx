@@ -1,3 +1,4 @@
+import { Button } from "@app/core/components/Button";
 import { Input } from "@app/core/components/Input";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import {
@@ -11,7 +12,7 @@ import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
 import { t } from "@lingui/macro";
 import { oneOf } from "@madeja-studio/cepillo";
-import { Button, Column } from "@madeja-studio/telar";
+import { Column } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useState } from "react";
 import { ScrollView, StatusBar } from "react-native";
@@ -74,7 +75,6 @@ export const CreateProjectScreen = ({
           />
 
           <Button
-            hasHapticFeedback
             icon={{ family: "Feather", name: "plus" }}
             style={[tw`center mt-6`, { marginBottom: bottom }]}
             text={t`Create project`}

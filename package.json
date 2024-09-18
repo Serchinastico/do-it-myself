@@ -18,7 +18,7 @@
   "dependencies": {
     "@lingui/react": "^4.11.4",
     "@madeja-studio/cepillo": "^0.1.11",
-    "@madeja-studio/telar": "^0.2.32",
+    "@madeja-studio/telar": "^0.2.33",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "expo": "~51.0.28",

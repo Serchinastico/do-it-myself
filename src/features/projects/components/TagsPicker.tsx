@@ -1,7 +1,8 @@
+import { Button } from "@app/core/components/Button";
 import { ProjectTag } from "@app/domain/project";
 import { Tag } from "@app/features/projects/components/Tag";
 import { t } from "@lingui/macro";
-import { Button, Column, OnPress, Row } from "@madeja-studio/telar";
+import { Column, OnPress, Row } from "@madeja-studio/telar";
 import { Text } from "react-native";
 
 interface Props {
