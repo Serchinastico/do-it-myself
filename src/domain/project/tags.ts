@@ -20,3 +20,12 @@ export const PROJECT_TAGS = {
 export type ProjectTags = typeof PROJECT_TAGS;
 export type ProjectTagSection = ProjectTags[keyof ProjectTags];
 export type ProjectTag = ProjectTagSection[number];
+export type ProjectTagId = ProjectTag["id"];
+
+export const getTagsByIds = (ids: ProjectTagId[]): ProjectTag[] => {
+  return ids.flatMap((id) =>
+    Object.values(PROJECT_TAGS)
+      .flat()
+      .filter((tag) => tag.id === id)
+  );
+};

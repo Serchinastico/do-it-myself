@@ -1,22 +1,25 @@
 import { Button } from "@app/core/components/Button";
-import { ProjectTag } from "@app/domain/project";
+import { ProjectTagId, getTagsByIds } from "@app/domain/project";
 import { Tag } from "@app/features/projects/components/Tag";
 import { t } from "@lingui/macro";
 import { Column, OnPress, Row } from "@madeja-studio/telar";
+import { useMemo } from "react";
 import { Text } from "react-native";
 
 interface Props {
   onPress: OnPress;
-  tags: readonly ProjectTag[];
+  tagIds: ProjectTagId[];
 }
 
-export const TagsPicker = ({ onPress, tags }: Props) => {
+export const TagsPicker = ({ onPress, tagIds }: Props) => {
+  const tags = useMemo(() => getTagsByIds(tagIds), [tagIds]);
+
   return (
     <Column>
       <Text style={tw`h3 mt-4`}>{t`Tags`}</Text>
       <Row style={tw`flex-wrap mt-2 ml-4 gap-x-2 gap-y-1`}>
         {tags.map((tag) => (
-          <Tag isSelected key={tag.id} tag={tag} />
+          <Tag isSelected key={tag.id} onPress={onPress} tag={tag} />
         ))}
       </Row>
       <Button

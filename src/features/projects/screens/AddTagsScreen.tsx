@@ -1,28 +1,42 @@
 import { Button } from "@app/core/components/Button";
 import { RootScreenProps } from "@app/core/navigation/routes";
-import { PROJECT_TAGS } from "@app/domain/project";
+import { atoms } from "@app/core/storage/state";
+import { PROJECT_TAGS, ProjectTagId } from "@app/domain/project";
 import { ProjectTag } from "@app/domain/project/tags";
 import { Tag } from "@app/features/projects/components/Tag";
 import { t } from "@lingui/macro";
+import { toggleItem } from "@madeja-studio/cepillo";
 import { Column, Row } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
-import { useState } from "react";
+import { useAtom } from "jotai";
 import { ScrollView, StatusBar, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
   name: string;
+  onTagPress: (id: ProjectTagId) => Promise<void> | void;
+  selectedTagIds: ProjectTagId[];
   tags: readonly ProjectTag[];
 }
 
-export const TagSection = ({ name, tags }: Props) => {
+export const TagSection = ({
+  name,
+  onTagPress,
+  selectedTagIds,
+  tags,
+}: Props) => {
   return (
     <Column>
       <Text style={tw`h3 mt-6`}>{name}</Text>
 
       <Row style={tw`flex-wrap mt-4 gap-x-2 gap-y-1`}>
         {tags.map((tag) => (
-          <Tag isSelected={false} key={tag.id} tag={tag} />
+          <Tag
+            isSelected={selectedTagIds.includes(tag.id)}
+            key={tag.id}
+            onPress={() => onTagPress(tag.id)}
+            tag={tag}
+          />
         ))}
       </Row>
     </Column>
@@ -30,9 +44,7 @@ export const TagSection = ({ name, tags }: Props) => {
 };
 
 export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
-  const [selectedTags, setSelectedTags] = useState<readonly ProjectTag[]>(
-    PROJECT_TAGS.category
-  );
+  const [selectedTagIds, setSelectedTagIds] = useAtom(atoms.selectedTagIds);
 
   const { bottom } = useSafeAreaInsets();
 
@@ -48,7 +60,15 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
             style={tw`body`}
           >{t`Tags allow you to easily search for projects by their characteristics.`}</Text>
           {Object.entries(PROJECT_TAGS).map(([name, tags]) => (
-            <TagSection key={name} name={name} tags={tags} />
+            <TagSection
+              key={name}
+              name={name}
+              onTagPress={(id) =>
+                setSelectedTagIds(async (tags) => toggleItem(await tags, id))
+              }
+              selectedTagIds={selectedTagIds}
+              tags={tags}
+            />
           ))}
           <Button
             onPress={() => navigation.goBack()}
