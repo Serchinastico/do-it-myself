@@ -21,6 +21,10 @@ module.exports = {
     }),
   ],
   theme: {
+    borderRadius: {
+      card: "32px",
+      full: "999px",
+    },
     colors: { ...color },
     fontSize: {
       body: "16px",

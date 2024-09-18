@@ -12,3 +12,6 @@ export const PROJECT_COLORS = [
 
 export type ProjectColor = (typeof PROJECT_COLORS)[number];
 export type ProjectColorId = ProjectColor["id"];
+
+export const getProjectColorById = (colorId: ProjectColorId): ProjectColor =>
+  PROJECT_COLORS.find((color) => color.id === colorId)!;

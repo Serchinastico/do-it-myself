@@ -13,7 +13,13 @@ const AllProviders = ({ children }: Props) => {
   return (
     <TelarContextProvider
       theme={{
-        core: { color: { primary: color.primary, secondary: color.secondary } },
+        core: {
+          color: {
+            primary: color.primary,
+            secondary: color.secondary,
+            tertiary: color.white,
+          },
+        },
       }}
     >
       <PreloadScreen>

@@ -4,14 +4,14 @@ import { ComponentProps } from "react";
 
 type Props = ComponentProps<typeof TelarButton>;
 
-export const Button = ({ style, ...props }: Props) => {
+export const Button = ({ rowStyle, style, textStyle, ...props }: Props) => {
   return (
     <TelarButton
       hasHapticFeedback
-      rowStyle={tw`flex-row-reverse rounded-full py-3`}
+      rowStyle={[tw`flex-row-reverse rounded-full py-3`, rowStyle]}
       style={[tw`center`, style]}
       text={t`Create new project`}
-      textStyle={tw`normal-case mx-2 button`}
+      textStyle={[tw`normal-case mx-2 button`, textStyle]}
       {...props}
     />
   );

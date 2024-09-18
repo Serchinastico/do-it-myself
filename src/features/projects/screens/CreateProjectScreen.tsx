@@ -10,7 +10,7 @@ import { t } from "@lingui/macro";
 import { oneOf } from "@madeja-studio/cepillo";
 import { Column } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
-import { useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useState } from "react";
 import { ScrollView, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -24,6 +24,7 @@ export const CreateProjectScreen = ({
     oneOf(PROJECT_COLORS).id
   );
   const selectedTagIds = useAtomValue(atoms.selectedTagIds);
+  const setProjects = useSetAtom(atoms.projects);
   const [wantsManual, setWantsManual] = useState(true);
   const [wantsWorklog, setWantsWorklog] = useState(true);
   const [wantsAttachments, setWantsAttachments] = useState(true);
@@ -71,7 +72,21 @@ export const CreateProjectScreen = ({
 
           <Button
             icon={{ family: "Feather", name: "plus" }}
-            onPress={() => navigation.goBack()}
+            onPress={async () => {
+              await setProjects(async (projects) => [
+                ...(await projects),
+                {
+                  attachments: wantsAttachments ? {} : undefined,
+                  colorId,
+                  description,
+                  manual: wantsManual ? {} : undefined,
+                  name,
+                  tagIds: selectedTagIds,
+                  worklog: wantsWorklog ? {} : undefined,
+                },
+              ]);
+              navigation.goBack();
+            }}
             style={[tw`center mt-6`, { marginBottom: bottom }]}
             text={t`Create project`}
           />
