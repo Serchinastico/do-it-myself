@@ -5,8 +5,9 @@ import { ProjectDetails } from "@app/features/projects/components/ProjectDetails
 import { t } from "@lingui/macro";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useAtom } from "jotai";
+import { unwrap } from "jotai/utils";
 import { useCallback } from "react";
-import { StatusBar } from "react-native";
+import { ActivityIndicator, StatusBar } from "react-native";
 
 export const EditProjectScreen = ({
   navigation,
@@ -15,7 +16,7 @@ export const EditProjectScreen = ({
   const { projectId } = route.params;
 
   const [project, setProject] = useAtom(
-    derivedAtoms.projectAtomFamily(projectId)
+    unwrap(derivedAtoms.projectAtomFamily(projectId))
   );
 
   const onProjectSave = useCallback(
@@ -24,6 +25,15 @@ export const EditProjectScreen = ({
     },
     [setProject]
   );
+
+  if (!project) {
+    /**
+     * This is not necessary because the times to fetch stuff from async storage
+     * are minimal. However, this hints Typescript that we have a defined
+     * project in the below components.
+     */
+    return <ActivityIndicator />;
+  }
 
   return (
     <>
