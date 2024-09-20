@@ -1,7 +1,7 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { PROJECT_COLORS } from "@app/domain/project";
-import { Project } from "@app/domain/project/project";
+import { EditedProject } from "@app/domain/project/project";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
 import { t } from "@lingui/macro";
 import { oneOf, randomId } from "@madeja-studio/cepillo";
@@ -16,11 +16,13 @@ export const CreateProjectScreen = ({
   const setProjects = useSetAtom(atoms.projects);
 
   const onProjectSave = useCallback(
-    async (project: Omit<Project, "id">) => {
+    async (project: EditedProject) => {
       await setProjects(async (projects) => [
         ...(await projects),
         { ...project, id: randomId() },
       ]);
+
+      navigation.goBack();
     },
     [setProjects]
   );

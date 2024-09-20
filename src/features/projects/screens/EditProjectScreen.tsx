@@ -1,13 +1,15 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
-import { Project } from "@app/domain/project/project";
+import { EditedProject } from "@app/domain/project/project";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
+import { ToolRemovalConfirmationDialog } from "@app/features/projects/components/dialogs/ToolRemovalConfirmationDialog";
 import { t } from "@lingui/macro";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useAtom } from "jotai";
 import { unwrap } from "jotai/utils";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { ActivityIndicator, StatusBar } from "react-native";
+import invariant from "tiny-invariant";
 
 export const EditProjectScreen = ({
   navigation,
@@ -18,12 +20,30 @@ export const EditProjectScreen = ({
   const [project, setProject] = useAtom(
     unwrap(derivedAtoms.projectAtomFamily(projectId))
   );
+  const [editedProject, setEditedProject] = useState<
+    EditedProject | undefined
+  >();
+  const [isConfirmationDialogVisible, setIsConfirmationDialogVisible] =
+    useState(false);
 
   const onProjectSave = useCallback(
-    async (project: Omit<Project, "id">) => {
-      setProject(project);
+    async (editedProject: EditedProject) => {
+      invariant(project);
+
+      const isRemovingManual = project.manual && !editedProject.manual;
+      const isRemovingWorklog = project.worklog && !editedProject.worklog;
+      const isRemovingAttachments =
+        project.attachments && !editedProject.attachments;
+
+      if (isRemovingManual || isRemovingWorklog || isRemovingAttachments) {
+        setIsConfirmationDialogVisible(true);
+        setEditedProject(editedProject);
+      } else {
+        setProject(editedProject);
+        navigation.goBack();
+      }
     },
-    [setProject]
+    [project, setProject]
   );
 
   if (!project) {
@@ -50,6 +70,17 @@ export const EditProjectScreen = ({
         initialWantsWorklog={project.worklog !== undefined}
         onProjectSave={onProjectSave}
         saveButtonText={t`Save project`}
+      />
+
+      <ToolRemovalConfirmationDialog
+        isVisible={isConfirmationDialogVisible}
+        onAccept={() => {
+          invariant(editedProject);
+
+          setProject(editedProject);
+          navigation.goBack();
+        }}
+        onClose={() => setIsConfirmationDialogVisible(false)}
       />
     </>
   );

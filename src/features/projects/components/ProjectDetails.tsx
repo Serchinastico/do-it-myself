@@ -3,7 +3,7 @@ import { Input } from "@app/core/components/Input";
 import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { ProjectColorId } from "@app/domain/project";
-import { Project } from "@app/domain/project/project";
+import { EditedProject } from "@app/domain/project/project";
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
@@ -21,7 +21,7 @@ interface Props {
   initialWantsAttachments: boolean;
   initialWantsManual: boolean;
   initialWantsWorklog: boolean;
-  onProjectSave: (project: Omit<Project, "id">) => Promise<void> | void;
+  onProjectSave: (project: EditedProject) => Promise<void> | void;
   saveButtonIcon?: IconReference;
   saveButtonText: string;
 }
@@ -96,8 +96,6 @@ export const ProjectDetails = ({
               tagIds: selectedTagIds,
               worklog: wantsWorklog ? {} : undefined,
             });
-
-            navigation.goBack();
           }}
           style={[tw`center mt-6`, { marginBottom: bottom }]}
           text={saveButtonText}

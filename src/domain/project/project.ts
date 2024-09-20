@@ -11,3 +11,5 @@ export interface Project {
   tagIds: ProjectTagId[];
   worklog?: object;
 }
+
+export type EditedProject = Omit<Project, "id">;
