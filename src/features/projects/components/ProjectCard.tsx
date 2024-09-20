@@ -3,7 +3,7 @@ import { color } from "@app/core/theme/color";
 import { getProjectColorById, getTagsByIds } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";
-import { Row } from "@madeja-studio/telar";
+import { Button, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text, View } from "react-native";
 
@@ -16,13 +16,22 @@ export const ProjectCard = ({ project }: Props) => {
   const tags = getTagsByIds(project.tagIds);
 
   return (
-    <View
+    <Button.Container
+      hasHapticFeedback
       style={[
         tw`rounded-card px-5 py-4 mb-2`,
         { backgroundColor: projectColor.hex },
       ]}
     >
-      <Text style={tw`h2`}>{project.name}</Text>
+      <Row style={tw`justify-between`}>
+        <Text style={tw`h2`}>{project.name}</Text>
+        <Button.Container
+          hasHapticFeedback
+          style={tw`bg-white rounded-full size-press center`}
+        >
+          <VectorIcon icon={{ family: "Feather", name: "edit" }} size={24} />
+        </Button.Container>
+      </Row>
       <Text style={tw`body mt-4`}>{project.description}</Text>
 
       <Row style={tw`gap-1 flex-wrap mt-4`}>
@@ -64,6 +73,6 @@ export const ProjectCard = ({ project }: Props) => {
           />
         )}
       </Row>
-    </View>
+    </Button.Container>
   );
 };

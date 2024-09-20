@@ -8,10 +8,9 @@ interface Props {
 }
 
 export const ProjectsList = ({ projects }: Props) => {
-  return projects.length === 0 ? (
-    <EmptyProjects />
-  ) : (
+  return (
     <FlatList
+      ListEmptyComponent={<EmptyProjects />}
       data={projects}
       renderItem={({ item }) => <ProjectCard project={item} />}
       style={tw`px-4`}
