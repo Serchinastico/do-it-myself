@@ -5,6 +5,7 @@ export interface Project {
   attachments?: object;
   colorId: ProjectColorId;
   description?: string;
+  id: string;
   manual?: object;
   name: string;
   tagIds: ProjectTagId[];

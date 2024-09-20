@@ -1,6 +1,7 @@
 import {
   AddTagsScreen,
   CreateProjectScreen,
+  EditProjectScreen,
   ProjectsScreen,
 } from "@app/features/projects/screens";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -16,6 +17,11 @@ const RootNavigation = () => {
       <Stack.Screen
         component={CreateProjectScreen}
         name="createProject"
+        options={{ presentation: "modal" }}
+      />
+      <Stack.Screen
+        component={EditProjectScreen}
+        name="editProject"
         options={{ presentation: "modal" }}
       />
       <Stack.Screen

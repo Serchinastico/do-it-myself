@@ -1,40 +1,48 @@
 import { Button } from "@app/core/components/Button";
 import { Input } from "@app/core/components/Input";
 import { RootScreenProps } from "@app/core/navigation/routes";
-import { atoms } from "@app/core/storage/state";
-import { PROJECT_COLORS, ProjectColorId } from "@app/domain/project";
+import { atoms, derivedAtoms } from "@app/core/storage/state";
+import { ProjectColorId } from "@app/domain/project";
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
 import { t } from "@lingui/macro";
-import { oneOf, randomId } from "@madeja-studio/cepillo";
 import { Column } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { useState } from "react";
 import { ScrollView, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export const CreateProjectScreen = ({
+export const EditProjectScreen = ({
   navigation,
-}: RootScreenProps<"createProject">) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [colorId, setColorId] = useState<ProjectColorId>(
-    oneOf(PROJECT_COLORS).id
+  route,
+}: RootScreenProps<"editProject">) => {
+  const { projectId } = route.params;
+
+  const [project, setProject] = useAtom(
+    derivedAtoms.projectAtomFamily(projectId)
   );
+
+  const [name, setName] = useState(project.name);
+  const [description, setDescription] = useState(project.description);
+  const [colorId, setColorId] = useState<ProjectColorId>(project.colorId);
+
   const selectedTagIds = useAtomValue(atoms.selectedTagIds);
-  const setProjects = useSetAtom(atoms.projects);
-  const [wantsManual, setWantsManual] = useState(true);
-  const [wantsWorklog, setWantsWorklog] = useState(true);
-  const [wantsAttachments, setWantsAttachments] = useState(true);
+  const [wantsManual, setWantsManual] = useState(project.manual !== undefined);
+  const [wantsWorklog, setWantsWorklog] = useState(
+    project.worklog !== undefined
+  );
+  const [wantsAttachments, setWantsAttachments] = useState(
+    project.attachments !== undefined
+  );
   const { bottom } = useSafeAreaInsets();
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
 
-      <ProjectHeader.CreateProject onClose={() => navigation.goBack()} />
+      <ProjectHeader.EditProject onClose={() => navigation.goBack()} />
 
       <ScrollView style={tw`px-4`}>
         <Column>
@@ -72,20 +80,18 @@ export const CreateProjectScreen = ({
 
           <Button
             icon={{ family: "Feather", name: "plus" }}
-            onPress={async () => {
-              await setProjects(async (projects) => [
-                ...(await projects),
-                {
-                  attachments: wantsAttachments ? {} : undefined,
-                  colorId,
-                  description,
-                  id: randomId(),
-                  manual: wantsManual ? {} : undefined,
-                  name,
-                  tagIds: selectedTagIds,
-                  worklog: wantsWorklog ? {} : undefined,
-                },
-              ]);
+            onPress={() => {
+              // TODO Warn user if they are about to delete something
+
+              setProject({
+                attachments: wantsAttachments ? {} : undefined,
+                colorId,
+                description,
+                manual: wantsManual ? {} : undefined,
+                name,
+                tagIds: selectedTagIds,
+                worklog: wantsWorklog ? {} : undefined,
+              });
               navigation.goBack();
             }}
             style={[tw`center mt-6`, { marginBottom: bottom }]}

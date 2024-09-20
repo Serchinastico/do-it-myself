@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 export type RootNavigationParamList = {
   addTags: undefined;
   createProject: undefined;
+  editProject: { projectId: string };
   projects: undefined;
 };
 

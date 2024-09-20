@@ -8,10 +8,11 @@ import chroma from "chroma-js";
 import { Text, View } from "react-native";
 
 interface Props {
+  onEditProjectPress: (project: Project) => Promise<void> | void;
   project: Project;
 }
 
-export const ProjectCard = ({ project }: Props) => {
+export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
   const projectColor = getProjectColorById(project.colorId);
   const tags = getTagsByIds(project.tagIds);
 
@@ -24,9 +25,10 @@ export const ProjectCard = ({ project }: Props) => {
       ]}
     >
       <Row style={tw`justify-between`}>
-        <Text style={tw`h2`}>{project.name}</Text>
+        <Text style={tw`h2 flex-1 mr-4`}>{project.name}</Text>
         <Button.Container
           hasHapticFeedback
+          onPress={() => onEditProjectPress(project)}
           style={tw`bg-white rounded-full size-press center`}
         >
           <VectorIcon icon={{ family: "Feather", name: "edit" }} size={24} />

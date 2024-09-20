@@ -18,7 +18,13 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
 
       <ProjectHeader.Projects />
 
-      <ProjectsList projects={projects} />
+      <ProjectsList
+        onEditProjectPress={async (project) => {
+          await setSelectedTagIds(project.tagIds);
+          navigation.navigate("editProject", { projectId: project.id });
+        }}
+        projects={projects}
+      />
 
       <Button
         icon={{ family: "Feather", name: "plus" }}

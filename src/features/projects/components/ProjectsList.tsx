@@ -4,15 +4,18 @@ import { ProjectCard } from "@app/features/projects/components/ProjectCard";
 import { FlatList } from "react-native";
 
 interface Props {
+  onEditProjectPress: (project: Project) => Promise<void> | void;
   projects: Project[];
 }
 
-export const ProjectsList = ({ projects }: Props) => {
+export const ProjectsList = ({ onEditProjectPress, projects }: Props) => {
   return (
     <FlatList
       ListEmptyComponent={<EmptyProjects />}
       data={projects}
-      renderItem={({ item }) => <ProjectCard project={item} />}
+      renderItem={({ item }) => (
+        <ProjectCard onEditProjectPress={onEditProjectPress} project={item} />
+      )}
       style={tw`px-4`}
     />
   );
