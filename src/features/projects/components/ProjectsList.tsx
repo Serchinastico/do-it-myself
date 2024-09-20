@@ -12,6 +12,7 @@ export const ProjectsList = ({ onEditProjectPress, projects }: Props) => {
   return (
     <FlatList
       ListEmptyComponent={<EmptyProjects />}
+      contentContainerStyle={tw`flex-1`}
       data={projects}
       renderItem={({ item }) => (
         <ProjectCard onEditProjectPress={onEditProjectPress} project={item} />

@@ -1,10 +1,13 @@
+import Illustration from "@assets/img/illustration.svg";
 import { t } from "@lingui/macro";
 import { Column } from "@madeja-studio/telar";
 import { Text } from "react-native";
 
 export const EmptyProjects = () => {
   return (
-    <Column style={tw`flex-1 center px-10 gap-2`}>
+    <Column style={tw`flex-1 center gap-2`}>
+      <Illustration height="30%" />
+
       <Text style={tw`h2`}>{t`No projects yet`}</Text>
       <Text
         style={tw`body text-center`}
