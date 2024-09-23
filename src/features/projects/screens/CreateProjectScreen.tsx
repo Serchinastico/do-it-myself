@@ -8,7 +8,7 @@ import { oneOf, randomId } from "@madeja-studio/cepillo";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useSetAtom } from "jotai";
 import { useCallback } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 
 export const CreateProjectScreen = ({
   navigation,
@@ -28,12 +28,13 @@ export const CreateProjectScreen = ({
   );
 
   return (
-    <>
+    <View style={tw`bg-white android:mt-4 flex-1`}>
       <StatusBar barStyle="dark-content" />
 
       <ProjectHeader.CreateProject onClose={() => navigation.goBack()} />
 
       <ProjectDetails
+        autoFocus
         initialColorId={oneOf(PROJECT_COLORS).id}
         initialWantsAttachments
         initialWantsManual
@@ -42,6 +43,6 @@ export const CreateProjectScreen = ({
         saveButtonIcon={{ family: "Feather", name: "plus" }}
         saveButtonText={t`Create project`}
       />
-    </>
+    </View>
   );
 };

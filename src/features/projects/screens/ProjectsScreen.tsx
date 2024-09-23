@@ -1,20 +1,21 @@
 import { Button } from "@app/core/components/Button";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
+import { color } from "@app/core/theme/color";
 import { ProjectsList } from "@app/features/projects/components/ProjectsList";
 import { t } from "@lingui/macro";
 import { SafeAreaView } from "@madeja-studio/telar";
+import { StatusBar } from "expo-status-bar";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useAtomValue, useSetAtom } from "jotai";
-import { StatusBar } from "react-native";
 
 export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
   const setSelectedTagIds = useSetAtom(atoms.selectedTagIds);
   const projects = useAtomValue(atoms.projects);
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
+    <SafeAreaView style={tw`bg-white`}>
+      <StatusBar backgroundColor={color.white} style="dark" />
 
       <ProjectHeader.Projects />
 
@@ -32,6 +33,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
           setSelectedTagIds([]);
           navigation.navigate("createProject");
         }}
+        style={tw`mb-4`}
         text={t`Create new project`}
       />
     </SafeAreaView>

@@ -9,6 +9,7 @@ module.exports = {
         ".button": "text-button font-semibold",
         ".caption": "text-caption font-light",
         ".center": "items-center justify-center",
+        ".error": "text-error text-button font-semibold",
         ".fill": "top-0 right-0 bottom-0 left-0",
         ".h1": "text-h1 font-black",
         ".h2": "text-h2 font-bold",

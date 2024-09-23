@@ -9,7 +9,7 @@ import { toggleItem } from "@madeja-studio/cepillo";
 import { Column, Row } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useAtom } from "jotai";
-import { ScrollView, StatusBar, Text } from "react-native";
+import { ScrollView, StatusBar, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -49,7 +49,7 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
   const { bottom } = useSafeAreaInsets();
 
   return (
-    <>
+    <View style={tw`bg-white android:mt-4 flex-1`}>
       <StatusBar barStyle="dark-content" />
 
       <ProjectHeader.AddTags onClose={() => navigation.goBack()} />
@@ -77,6 +77,6 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
           />
         </Column>
       </ScrollView>
-    </>
+    </View>
   );
 };

@@ -1,7 +1,8 @@
 import { color } from "@app/core/theme/color";
 import { t } from "@lingui/macro";
 import { Column, IconReference, Row, VectorIcon } from "@madeja-studio/telar";
-import { Switch, SwitchProps, Text } from "react-native";
+import chroma from "chroma-js";
+import { Platform, Switch, SwitchProps, Text } from "react-native";
 
 interface ToolSectionProps {
   description: string;
@@ -18,8 +19,10 @@ const ToolSection = ({
   onValueChange,
   value,
 }: ToolSectionProps) => {
+  const isAndroid = Platform.OS === "android";
+
   return (
-    <Row style={tw`mt-6`}>
+    <Row style={tw`mt-6 items-start`}>
       <Column style={tw`flex-1`}>
         <Row style={tw`items-center`}>
           <VectorIcon icon={icon} size={24} />
@@ -31,21 +34,39 @@ const ToolSection = ({
 
       <Switch
         onValueChange={onValueChange}
-        trackColor={{ false: color.secondary, true: color.primary }}
+        style={tw`android:mt--4 ml-4`}
+        thumbColor={isAndroid ? color.primary : color.white}
+        trackColor={{
+          false: isAndroid
+            ? chroma(color.black).alpha(0.1).hex()
+            : color.secondary,
+          true: isAndroid
+            ? chroma(color.primary).alpha(0.4).hex()
+            : color.primary,
+        }}
         value={value}
       />
     </Row>
   );
 };
 
-interface Props {
+type Props = {
   onWantsAttachmentsChange: SwitchProps["onValueChange"];
   onWantsManualChange: SwitchProps["onValueChange"];
   onWantsWorklogChange: SwitchProps["onValueChange"];
   wantsAttachments: boolean;
   wantsManual: boolean;
   wantsWorklog: boolean;
-}
+} & ErrorProps;
+
+type ErrorProps =
+  | {
+      errorMessage: string;
+      hasError: true;
+    }
+  | {
+      hasError?: false;
+    };
 
 export const ToolsPicker = ({
   onWantsAttachmentsChange,
@@ -54,6 +75,7 @@ export const ToolsPicker = ({
   wantsAttachments,
   wantsManual,
   wantsWorklog,
+  ...props
 }: Props) => {
   return (
     <Column>
@@ -63,6 +85,10 @@ export const ToolsPicker = ({
         <Text
           style={tw`body`}
         >{t`Tools allow you to adapt your project to your needs. Remember that you can add and remove tools whenever you want.`}</Text>
+
+        {props.hasError && (
+          <Text style={tw`error mt-2`}>{props.errorMessage}</Text>
+        )}
 
         <ToolSection
           description={t`Write the detailed steps for your project. Include a list of requirements, use variables to adapt your project, and export a manual that you can print and keep near your finished project.`}

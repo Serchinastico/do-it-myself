@@ -10,11 +10,12 @@ import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
 import { t } from "@lingui/macro";
 import { Column, IconReference } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai/index";
-import { useState } from "react";
-import { ScrollView } from "react-native";
+import { useCallback, useRef, useState } from "react";
+import { ScrollView, TextInput } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
+  autoFocus: boolean;
   initialColorId: ProjectColorId;
   initialDescription?: string;
   initialName?: string;
@@ -27,6 +28,7 @@ interface Props {
 }
 
 export const ProjectDetails = ({
+  autoFocus,
   initialColorId,
   initialDescription,
   initialName,
@@ -47,15 +49,82 @@ export const ProjectDetails = ({
     initialWantsAttachments
   );
 
+  const [hasNameError, setHasNameError] = useState(false);
+  const [hasToolsError, setHasToolsError] = useState(false);
+
   const navigation = useRootNavigation();
   const { bottom } = useSafeAreaInsets();
 
+  const nameRef = useRef<TextInput>(null);
+  const descriptionRef = useRef<TextInput>(null);
+
+  const setWantsTool = useCallback(
+    (tool: "attachments" | "manual" | "worklog", value: boolean) => {
+      switch (tool) {
+        case "attachments":
+          setWantsAttachments(value);
+          setHasToolsError(!wantsManual && !wantsWorklog && !value);
+          break;
+        case "manual":
+          setWantsManual(value);
+          setHasToolsError(!value && !wantsWorklog && !wantsAttachments);
+          break;
+        case "worklog":
+          setWantsWorklog(value);
+          setHasToolsError(!wantsManual && !value && !wantsAttachments);
+          break;
+      }
+    },
+    [wantsAttachments, wantsManual, wantsWorklog]
+  );
+
+  const onPressSave = useCallback(async () => {
+    if (name.trim() === "") {
+      setHasNameError(true);
+      nameRef.current?.focus();
+      return;
+    }
+
+    if (!wantsManual && !wantsWorklog && !wantsAttachments) {
+      setHasToolsError(true);
+      return;
+    }
+
+    await onProjectSave({
+      attachments: wantsAttachments ? {} : undefined,
+      colorId,
+      description,
+      manual: wantsManual ? {} : undefined,
+      name,
+      tagIds: selectedTagIds,
+      worklog: wantsWorklog ? {} : undefined,
+    });
+  }, [
+    name,
+    wantsAttachments,
+    colorId,
+    description,
+    wantsManual,
+    selectedTagIds,
+    wantsWorklog,
+    onProjectSave,
+  ]);
+
   return (
     <ScrollView style={tw`px-4`}>
-      <Column>
+      <Column style={tw`pb-4`}>
         <Input
-          onChangeText={setName}
+          autoFocus={autoFocus}
+          errorMessage={t`Name is required`}
+          hasError={hasNameError}
+          onChangeText={(text) => {
+            setHasNameError(false);
+            setName(text);
+          }}
+          onSubmitEditing={() => descriptionRef.current?.focus()}
           placeholder={t`e.g. Hang mirror`}
+          ref={nameRef}
+          returnKeyType="next"
           title={t`Name`}
           value={name}
         />
@@ -63,6 +132,8 @@ export const ProjectDetails = ({
         <Input
           onChangeText={setDescription}
           placeholder={t`e.g. Hand the new mirror in the bathroom`}
+          ref={descriptionRef}
+          returnKeyType="done"
           style={tw`mt-4`}
           title={t`Description`}
           value={description}
@@ -76,9 +147,13 @@ export const ProjectDetails = ({
         />
 
         <ToolsPicker
-          onWantsAttachmentsChange={setWantsAttachments}
-          onWantsManualChange={setWantsManual}
-          onWantsWorklogChange={setWantsWorklog}
+          errorMessage={t`At least one tool must be selected`}
+          hasError={hasToolsError}
+          onWantsAttachmentsChange={(value) =>
+            setWantsTool("attachments", value)
+          }
+          onWantsManualChange={(value) => setWantsTool("manual", value)}
+          onWantsWorklogChange={(value) => setWantsTool("worklog", value)}
           wantsAttachments={wantsAttachments}
           wantsManual={wantsManual}
           wantsWorklog={wantsWorklog}
@@ -86,17 +161,7 @@ export const ProjectDetails = ({
 
         <Button
           icon={saveButtonIcon}
-          onPress={async () => {
-            await onProjectSave({
-              attachments: wantsAttachments ? {} : undefined,
-              colorId,
-              description,
-              manual: wantsManual ? {} : undefined,
-              name,
-              tagIds: selectedTagIds,
-              worklog: wantsWorklog ? {} : undefined,
-            });
-          }}
+          onPress={onPressSave}
           style={[tw`center mt-6`, { marginBottom: bottom }]}
           text={saveButtonText}
         />

@@ -8,7 +8,7 @@ import { ProjectHeader } from "features/projects/components/ProjectHeader";
 import { useAtom } from "jotai";
 import { unwrap } from "jotai/utils";
 import { useCallback, useState } from "react";
-import { ActivityIndicator, StatusBar } from "react-native";
+import { ActivityIndicator, StatusBar, View } from "react-native";
 import invariant from "tiny-invariant";
 
 export const EditProjectScreen = ({
@@ -56,12 +56,13 @@ export const EditProjectScreen = ({
   }
 
   return (
-    <>
+    <View style={tw`bg-white android:mt-4`}>
       <StatusBar barStyle="dark-content" />
 
       <ProjectHeader.EditProject onClose={() => navigation.goBack()} />
 
       <ProjectDetails
+        autoFocus={false}
         initialColorId={project.colorId}
         initialDescription={project.description}
         initialName={project.name}
@@ -82,6 +83,6 @@ export const EditProjectScreen = ({
         }}
         onClose={() => setIsConfirmationDialogVisible(false)}
       />
-    </>
+    </View>
   );
 };
