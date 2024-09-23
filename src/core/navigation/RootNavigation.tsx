@@ -4,6 +4,7 @@ import {
   EditProjectScreen,
   ProjectsScreen,
 } from "@app/features/projects/screens";
+import { ManualScreen } from "@app/features/tools/ManualScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { RootNavigationParamList } from "./routes";
@@ -29,6 +30,7 @@ const RootNavigation = () => {
         name="addTags"
         options={{ presentation: "modal" }}
       />
+      <Stack.Screen component={ManualScreen} name="manual" />
     </Stack.Navigator>
   );
 };

@@ -2,8 +2,7 @@ import { Button } from "@app/core/components/Button";
 import { Input } from "@app/core/components/Input";
 import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
-import { ProjectColorId } from "@app/domain/project";
-import { EditedProject } from "@app/domain/project/project";
+import { EditedProject, ProjectColorId, ToolType } from "@app/domain/project";
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
@@ -59,7 +58,7 @@ export const ProjectDetails = ({
   const descriptionRef = useRef<TextInput>(null);
 
   const setWantsTool = useCallback(
-    (tool: "attachments" | "manual" | "worklog", value: boolean) => {
+    (tool: ToolType, value: boolean) => {
       switch (tool) {
         case "attachments":
           setWantsAttachments(value);

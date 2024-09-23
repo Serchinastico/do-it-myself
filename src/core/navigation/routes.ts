@@ -5,6 +5,7 @@ export type RootNavigationParamList = {
   addTags: undefined;
   createProject: undefined;
   editProject: { projectId: string };
+  manual: { projectId: string };
   projects: undefined;
 };
 

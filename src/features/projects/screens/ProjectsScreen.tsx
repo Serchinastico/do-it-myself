@@ -6,7 +6,7 @@ import { ProjectsList } from "@app/features/projects/components/ProjectsList";
 import { t } from "@lingui/macro";
 import { SafeAreaView } from "@madeja-studio/telar";
 import { StatusBar } from "expo-status-bar";
-import { ProjectHeader } from "features/projects/components/ProjectHeader";
+import { ProjectHeader } from "features/projects/components/headers";
 import { useAtomValue, useSetAtom } from "jotai";
 
 export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
@@ -23,6 +23,17 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
         onEditProjectPress={async (project) => {
           await setSelectedTagIds(project.tagIds);
           navigation.navigate("editProject", { projectId: project.id });
+        }}
+        onToolPress={(tool, project) => {
+          switch (tool) {
+            case "attachments":
+              break;
+            case "manual":
+              navigation.navigate("manual", { projectId: project.id });
+              break;
+            case "worklog":
+              break;
+          }
         }}
         projects={projects}
       />

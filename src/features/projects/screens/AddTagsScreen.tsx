@@ -7,7 +7,7 @@ import { Tag } from "@app/features/projects/components/Tag";
 import { t } from "@lingui/macro";
 import { toggleItem } from "@madeja-studio/cepillo";
 import { Column, Row } from "@madeja-studio/telar";
-import { ProjectHeader } from "features/projects/components/ProjectHeader";
+import { ProjectHeader } from "features/projects/components/headers";
 import { useAtom } from "jotai";
 import { ScrollView, StatusBar, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

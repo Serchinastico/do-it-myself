@@ -1,6 +1,10 @@
 import { ToolButton } from "@app/core/components/ToolButton";
 import { color } from "@app/core/theme/color";
-import { getProjectColorById, getTagsByIds } from "@app/domain/project";
+import {
+  ToolType,
+  getProjectColorById,
+  getTagsByIds,
+} from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";
 import { Button, Column, Row, VectorIcon } from "@madeja-studio/telar";
@@ -9,10 +13,15 @@ import { Text, View } from "react-native";
 
 interface Props {
   onEditProjectPress: (project: Project) => Promise<void> | void;
+  onToolPress: (tool: ToolType, project: Project) => Promise<void> | void;
   project: Project;
 }
 
-export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
+export const ProjectCard = ({
+  onEditProjectPress,
+  onToolPress,
+  project,
+}: Props) => {
   const projectColor = getProjectColorById(project.colorId);
   const tags = getTagsByIds(project.tagIds);
 
@@ -31,6 +40,7 @@ export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
             <Text style={tw`body mt-2`}>{project.description}</Text>
           )}
         </Column>
+
         <Button.Container
           hasHapticFeedback
           onPress={() => onEditProjectPress(project)}
@@ -58,6 +68,7 @@ export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
         {project.manual && (
           <ToolButton
             icon={{ family: "Feather", name: "book-open" }}
+            onPress={() => onToolPress("manual", project)}
             style={tw`w-[49%]`}
             text={t`Manual`}
           />
@@ -66,6 +77,7 @@ export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
         {project.worklog && (
           <ToolButton
             icon={{ family: "Feather", name: "bookmark" }}
+            onPress={() => onToolPress("worklog", project)}
             style={tw`w-[49%]`}
             text={t`Worklog`}
           />
@@ -74,6 +86,7 @@ export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
         {project.attachments && (
           <ToolButton
             icon={{ family: "Feather", name: "paperclip" }}
+            onPress={() => onToolPress("attachments", project)}
             style={tw`w-[49%]`}
             text={t`Attachments`}
           />

@@ -4,7 +4,7 @@ import { EditedProject } from "@app/domain/project/project";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
 import { ToolRemovalConfirmationDialog } from "@app/features/projects/components/dialogs/ToolRemovalConfirmationDialog";
 import { t } from "@lingui/macro";
-import { ProjectHeader } from "features/projects/components/ProjectHeader";
+import { ProjectHeader } from "features/projects/components/headers";
 import { useAtom } from "jotai";
 import { unwrap } from "jotai/utils";
 import { useCallback, useState } from "react";
