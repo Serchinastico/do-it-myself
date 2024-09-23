@@ -3,7 +3,7 @@ import { color } from "@app/core/theme/color";
 import { getProjectColorById, getTagsByIds } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";
-import { Button, Row, VectorIcon } from "@madeja-studio/telar";
+import { Button, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text, View } from "react-native";
 
@@ -25,7 +25,12 @@ export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
       ]}
     >
       <Row style={tw`justify-between`}>
-        <Text style={tw`h2 flex-1 mr-4`}>{project.name}</Text>
+        <Column style={tw`flex-1 mr-3`}>
+          <Text style={tw`h2`}>{project.name}</Text>
+          {project.description && (
+            <Text style={tw`body mt-2`}>{project.description}</Text>
+          )}
+        </Column>
         <Button.Container
           hasHapticFeedback
           onPress={() => onEditProjectPress(project)}
@@ -34,7 +39,6 @@ export const ProjectCard = ({ onEditProjectPress, project }: Props) => {
           <VectorIcon icon={{ family: "Feather", name: "edit" }} size={24} />
         </Button.Container>
       </Row>
-      <Text style={tw`body mt-4`}>{project.description}</Text>
 
       <Row style={tw`gap-1 flex-wrap mt-4`}>
         {tags.map((tag) => (

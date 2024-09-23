@@ -17,7 +17,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@lingui/react": "^4.11.4",
-    "@madeja-studio/cepillo": "^0.1.13",
+    "@madeja-studio/cepillo": "^0.1.14",
     "@madeja-studio/telar": "^0.2.33",
     "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-navigation/native": "^6.1.18",
