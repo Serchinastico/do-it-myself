@@ -11,6 +11,9 @@
     },
     "strict": true
   },
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "exclude": [
+    "src/editor-web"
+  ]
 }
 
