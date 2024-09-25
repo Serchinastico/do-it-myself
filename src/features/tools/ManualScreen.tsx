@@ -14,59 +14,6 @@ import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { ToolHeader } from "./components/headers";
 
-/**
- * I'm including here an extract of editor.getJSON()
- *
- * {
- *   "type": "doc",
- *   "content": [
- *     {
- *       "type": "heading",
- *       "attrs": {
- *         "level": 1
- *       },
- *       "content": [
- *         {
- *           "type": "text",
- *           "text": "# Start editing!"
- *         }
- *       ]
- *     },
- *     {
- *       "type": "paragraph",
- *       "content": [
- *         {
- *           "type": "text",
- *           "text": "Kdkdks"
- *         }
- *       ]
- *     },
- *     {
- *       "type": "paragraph",
- *       "content": [
- *         {
- *           "type": "text",
- *           "text": "Kdkdks Huey’"
- *         },
- *         {
- *           "type": "text",
- *           "marks": [
- *             {
- *               "type": "bold"
- *             }
- *           ],
- *           "text": "s dbdhsj"
- *         },
- *         {
- *           "type": "text",
- *           "text": " jdjdj"
- *         }
- *       ]
- *     }
- *   ]
- * }
- */
-
 export const ManualScreen = ({ navigation }: RootScreenProps<"manual">) => {
   const editor = useEditorBridge({
     autofocus: true,
@@ -74,9 +21,17 @@ export const ManualScreen = ({ navigation }: RootScreenProps<"manual">) => {
     bridgeExtensions: [...TenTapStartKit, ImmutableSectionBridge],
     customSource: editorHtml,
     dynamicHeight: true,
-    // avoidIosKeyboard: true,
     initialContent:
       "<h1>Start editing!</h1><p>iashdiu ahdisua hudsai</p><immutable-section>Variables</immutable-section><p>aisuhd uasg duysa g</p>",
+    theme: {
+      toolbar: {
+        icon: { height: 20, tintColor: color.secondary, width: 20 },
+        toolbarBody: {
+          backgroundColor: color.white,
+          height: 48,
+        },
+      },
+    },
   });
 
   return (
@@ -98,7 +53,77 @@ export const ManualScreen = ({ navigation }: RootScreenProps<"manual">) => {
           width: "100%",
         }}
       >
-        <Toolbar editor={editor} />
+        <Toolbar
+          editor={editor}
+          items={[
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/header.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/list.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/equation.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/bold.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/italic.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/underline.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/link.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/image.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/mic.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/undo.png"),
+              onPress: () => () => {},
+            },
+            {
+              active: () => false,
+              disabled: () => false,
+              image: () => require("@assets/icons/redo.png"),
+              onPress: () => () => {},
+            },
+          ]}
+        />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
