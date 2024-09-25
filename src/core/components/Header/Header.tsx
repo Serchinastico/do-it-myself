@@ -1,8 +1,12 @@
 import { Button, Column, Row, VectorIcon } from "@madeja-studio/telar";
+import { animated } from "@react-spring/native";
 import { PropsWithChildren } from "react";
 import { Text, ViewProps } from "react-native";
 
+import { useHeaderAnimation } from "./useHeaderAnimation";
+
 type Props = {
+  subtitle?: string;
   title: string;
 } & BackProps &
   PropsWithChildren<ViewProps>;
@@ -14,7 +18,11 @@ type BackProps =
     }
   | { hasBackButton?: false };
 
-export const Header = ({ children, title, ...props }: Props) => {
+export const Header = ({ children, subtitle, title, ...props }: Props) => {
+  const { animatedStyle, subtitle: subtitleText } = useHeaderAnimation({
+    subtitle,
+  });
+
   return (
     <Column {...props}>
       <Row
@@ -35,7 +43,14 @@ export const Header = ({ children, title, ...props }: Props) => {
             </Button.Container>
           )}
 
-          <Text style={tw`h1`}>{title}</Text>
+          <Row style={tw`items-baseline`}>
+            <Text style={tw`h1`}>{title}</Text>
+            <animated.Text
+              style={[tw`button text-primary ml-2 italic`, animatedStyle]}
+            >
+              {subtitleText}
+            </animated.Text>
+          </Row>
         </Row>
 
         <Row>{children}</Row>

@@ -10,17 +10,21 @@ import { ImmutableSectionBridge } from "@app/editor-web/ImmutableSectionBridge";
 import { editorHtml } from "@app/editor-web/build/editorHtml";
 import { SafeAreaView } from "@madeja-studio/telar";
 import { StatusBar } from "expo-status-bar";
+import { useEffect, useState } from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { ToolHeader } from "./components/headers";
 
 export const ManualScreen = ({ navigation }: RootScreenProps<"manual">) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const editor = useEditorBridge({
-    autofocus: true,
+    autofocus: false,
     avoidIosKeyboard: true,
     bridgeExtensions: [...TenTapStartKit, ImmutableSectionBridge],
     customSource: editorHtml,
     dynamicHeight: true,
+    editable: isEditing,
     initialContent:
       "<h1>Start editing!</h1><p>iashdiu ahdisua hudsai</p><immutable-section>Variables</immutable-section><p>aisuhd uasg duysa g</p>",
     theme: {
@@ -34,17 +38,29 @@ export const ManualScreen = ({ navigation }: RootScreenProps<"manual">) => {
     },
   });
 
+  useEffect(() => {
+    if (isEditing) {
+      editor.focus("end");
+    }
+  }, [isEditing]);
+
   return (
     <SafeAreaView style={tw`bg-white`}>
       <StatusBar backgroundColor={color.white} style="dark" />
 
       <ToolHeader.Manual
+        isEditing={isEditing}
         onBackPress={() => navigation.goBack()}
-        onEditPress={() => {}}
+        onEditPress={() => setIsEditing((isEditing) => !isEditing)}
         onExportPress={() => {}}
       />
 
-      <RichText containerStyle={tw`px-4`} editor={editor} scrollEnabled />
+      <RichText
+        containerStyle={tw`px-4`}
+        editor={editor}
+        focusable={isEditing}
+        scrollEnabled
+      />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{
