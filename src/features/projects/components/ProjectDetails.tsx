@@ -93,7 +93,7 @@ export const ProjectDetails = ({
       attachments: wantsAttachments ? {} : undefined,
       colorId,
       description,
-      manual: wantsManual ? {} : undefined,
+      manual: wantsManual ? { html: "" } : undefined,
       name,
       tagIds: selectedTagIds,
       worklog: wantsWorklog ? {} : undefined,

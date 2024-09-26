@@ -6,7 +6,7 @@ export interface Project {
   colorId: ProjectColorId;
   description?: string;
   id: string;
-  manual?: object;
+  manual?: { html: string };
   name: string;
   tagIds: ProjectTagId[];
   worklog?: object;

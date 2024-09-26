@@ -5,6 +5,17 @@ export interface TitleOptions {
   backgroundColor: string;
 }
 
+declare module "@tiptap/core" {
+  interface Commands<ReturnType> {
+    title: {
+      /**
+       * Toggle a title
+       */
+      toggleTitle: () => ReturnType;
+    };
+  }
+}
+
 export const Title = Node.create<TitleOptions>({
   addAttributes() {
     return {
@@ -14,9 +25,17 @@ export const Title = Node.create<TitleOptions>({
       },
     };
   },
+  addCommands() {
+    return {
+      toggleTitle:
+        () =>
+        ({ commands }) => {
+          return commands.toggleNode(this.name, "paragraph");
+        },
+    };
+  },
   addNodeView() {
     const options = this.options;
-    const editor = this.editor;
 
     return ({ node }) => {
       const dom = document.createElement("div");
@@ -24,6 +43,7 @@ export const Title = Node.create<TitleOptions>({
       dom.style.position = "relative";
       dom.style.display = "inline-block";
       dom.style.marginLeft = "6px";
+      dom.style.whiteSpace = "nowrap";
 
       const title = document.createElement("h1");
       title.classList.add("title");
@@ -67,6 +87,7 @@ export const Title = Node.create<TitleOptions>({
   parseHTML() {
     return [{ tag: "title" }];
   },
+
   renderHTML({ HTMLAttributes }) {
     return [
       "title",

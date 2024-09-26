@@ -2,8 +2,13 @@ import { BridgeExtension } from "@10play/tentap-editor";
 
 import { Title } from "./title";
 
-type TitleEditorState = object;
-type TitleEditorInstance = object;
+type TitleEditorState = {
+  canToggleTitle: boolean;
+  isTitleActive: boolean;
+};
+type TitleEditorInstance = {
+  toggleTitle: () => void;
+};
 
 declare module "@10play/tentap-editor" {
   interface BridgeState extends TitleEditorState {}
@@ -11,13 +16,40 @@ declare module "@10play/tentap-editor" {
   interface EditorBridge extends TitleEditorInstance {}
 }
 
+export enum TitleEditorActionType {
+  ToggleTitle = "toggle-title",
+}
+
+type TitleMessage = {
+  payload?: undefined;
+  type: TitleEditorActionType.ToggleTitle;
+};
+
 export const TitleBridge = new BridgeExtension<
   TitleEditorState,
   TitleEditorInstance,
-  unknown
+  TitleMessage
 >({
+  extendEditorInstance: (sendBridgeMessage) => {
+    return {
+      toggleTitle: () =>
+        sendBridgeMessage({
+          type: TitleEditorActionType.ToggleTitle,
+        }),
+    };
+  },
   extendEditorState: (editor) => {
-    return {};
+    return {
+      canToggleTitle: editor.can().toggleTitle(),
+      isTitleActive: editor.isActive("title"),
+    };
+  },
+  onBridgeMessage: (editor, message) => {
+    if (message.type === TitleEditorActionType.ToggleTitle) {
+      editor.chain().focus().toggleTitle().run();
+    }
+
+    return false;
   },
   tiptapExtension: Title.configure(),
 });
