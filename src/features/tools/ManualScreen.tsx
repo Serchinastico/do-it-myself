@@ -1,32 +1,46 @@
 import {
   RichText,
-  TenTapStartKit,
   Toolbar,
   useEditorBridge,
+  useEditorContent,
 } from "@10play/tentap-editor";
+import { TenTapStartKit } from "@10play/tentap-editor/src/bridges/StarterKit";
 import { RootScreenProps } from "@app/core/navigation/routes";
+import { derivedAtoms } from "@app/core/storage/state";
 import { color } from "@app/core/theme/color";
-import { ImmutableSectionBridge } from "@app/editor-web/ImmutableSectionBridge";
+import { getProjectColorById } from "@app/domain/project";
 import { editorHtml } from "@app/editor-web/build/editorHtml";
+import { TitleBridge } from "@app/editor-web/extensions/TitleBridge";
 import { SafeAreaView } from "@madeja-studio/telar";
 import { StatusBar } from "expo-status-bar";
+import { useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { ToolHeader } from "./components/headers";
 
-export const ManualScreen = ({ navigation }: RootScreenProps<"manual">) => {
+export const ManualScreen = ({
+  navigation,
+  route,
+}: RootScreenProps<"manual">) => {
   const [isEditing, setIsEditing] = useState(false);
+  const { projectId } = route.params;
+  const project = useAtomValue(derivedAtoms.projectAtomFamily(projectId));
 
   const editor = useEditorBridge({
     autofocus: false,
     avoidIosKeyboard: true,
-    bridgeExtensions: [...TenTapStartKit, ImmutableSectionBridge],
+    bridgeExtensions: [
+      ...TenTapStartKit,
+      TitleBridge.configureExtension({
+        backgroundColor: getProjectColorById(project.colorId).hex,
+      }),
+    ],
     customSource: editorHtml,
     dynamicHeight: true,
     editable: isEditing,
     initialContent:
-      "<h1>Start editing!</h1><p>iashdiu ahdisua hudsai</p><immutable-section>Variables</immutable-section><p>aisuhd uasg duysa g</p>",
+      "<title>Start editing!</title><p>aiushd uasi gduas dgua dis adiasud aiusdh ausidh uais dhaisu dhaisu</p>",
     theme: {
       toolbar: {
         icon: { height: 20, tintColor: color.secondary, width: 20 },
@@ -37,6 +51,9 @@ export const ManualScreen = ({ navigation }: RootScreenProps<"manual">) => {
       },
     },
   });
+  const html = useEditorContent(editor, { type: "html" });
+
+  console.log(html);
 
   useEffect(() => {
     if (isEditing) {
