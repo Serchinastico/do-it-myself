@@ -1,6 +1,5 @@
 import { useEditorBridge, useEditorContent } from "@10play/tentap-editor";
 import { TenTapStartKit } from "@10play/tentap-editor/src/bridges/StarterKit";
-import { color } from "@app/core/theme/color";
 import { Project, getProjectColorById, getToolHtml } from "@app/domain/project";
 import { editorHtml } from "@app/editor-web/build/editorHtml";
 import { TitleBridge } from "@app/editor-web/extensions/TitleBridge";
@@ -15,7 +14,9 @@ export const useEditor = ({ isEditing, project }: Props) => {
     autofocus: false,
     avoidIosKeyboard: true,
     bridgeExtensions: [
+      // @ts-ignore
       ...TenTapStartKit,
+      // @ts-ignore
       TitleBridge.configureExtension({
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
@@ -24,25 +25,6 @@ export const useEditor = ({ isEditing, project }: Props) => {
     dynamicHeight: true,
     editable: isEditing,
     initialContent: getToolHtml({ project, toolType: "manual" })!,
-    theme: {
-      toolbar: {
-        icon: { height: 20, tintColor: color.secondary, width: 20 },
-        iconActive: { tintColor: color.white },
-        iconWrapper: {
-          alignItems: "center",
-          height: 32,
-          justifyContent: "center",
-          width: 32,
-        },
-        iconWrapperActive: {
-          backgroundColor: color.primary,
-        },
-        toolbarBody: {
-          backgroundColor: color.white,
-          height: 48,
-        },
-      },
-    },
   });
   const html = useEditorContent(editor, { type: "html" });
 

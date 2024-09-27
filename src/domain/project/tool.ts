@@ -1,16 +1,19 @@
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";
+import invariant from "tiny-invariant";
 
 export type ToolType = "attachments" | "manual" | "worklog";
 
-const FALLBACK_MANUAL_HTML = `
+export const INITIAL_MANUAL: Project["manual"] = {
+  html: `
 <title>${t`Variables`}</title>
 <p></p>
 <title>${t`Tools and materials`}</title>
 <p></p>
 <title>${t`Steps`}</title>
 <p></p>
-`;
+`,
+};
 
 export const getToolHtml = ({
   project,
@@ -21,9 +24,8 @@ export const getToolHtml = ({
 }) => {
   switch (toolType) {
     case "manual":
-      return project.manual?.html?.length === 0
-        ? FALLBACK_MANUAL_HTML
-        : project.manual?.html;
+      invariant(project.manual);
+      return project.manual.html;
     default:
       return "";
   }

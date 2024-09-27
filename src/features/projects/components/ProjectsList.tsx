@@ -18,7 +18,7 @@ export const ProjectsList = ({
   return (
     <FlatList
       ListEmptyComponent={<EmptyProjects />}
-      contentContainerStyle={tw`flex-1`}
+      contentContainerStyle={tw`pb-28`}
       data={projects}
       renderItem={({ item }) => (
         <ProjectCard

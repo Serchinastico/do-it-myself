@@ -34,6 +34,33 @@ export const Title = Node.create<TitleOptions>({
         },
     };
   },
+  addKeyboardShortcuts() {
+    return {
+      Enter: ({ dispatch, editor, tr }) => {
+        const { selection } = tr;
+        const { $from } = selection;
+
+        // Check if we're within a Title node
+        if ($from.parent.type.name === this.name) {
+          const endPos = $from.end();
+
+          if (dispatch) {
+            // Insert a new paragraph after the Title node
+            tr.insert(endPos, this.schema.nodes.paragraph.create());
+
+            // Move the cursor to the newly created paragraph
+            tr.setSelection(TextSelection.near(tr.doc.resolve(endPos + 2)));
+            editor.view.focus();
+            dispatch(tr);
+          }
+
+          return true;
+        }
+
+        return false;
+      },
+    };
+  },
   addNodeView() {
     const options = this.options;
 
@@ -42,8 +69,11 @@ export const Title = Node.create<TitleOptions>({
       dom.classList.add("container");
       dom.style.position = "relative";
       dom.style.display = "inline-block";
+      dom.style.margin = "0px";
       dom.style.marginLeft = "6px";
+      dom.style.padding = "0px";
       dom.style.whiteSpace = "nowrap";
+      dom.contentEditable = "false";
 
       const title = document.createElement("h1");
       title.classList.add("title");
@@ -80,14 +110,21 @@ export const Title = Node.create<TitleOptions>({
       backgroundColor: "#F90",
     };
   },
-  content: "inline",
+  atom: false,
+  content: "inline*",
   defining: true,
   group: "block",
   name: "title",
   parseHTML() {
-    return [{ tag: "title" }];
+    return [
+      {
+        getAttrs: (dom: any) => ({
+          backgroundColor: dom.style.backgroundColor,
+        }),
+        tag: "title",
+      },
+    ];
   },
-
   renderHTML({ HTMLAttributes }) {
     return [
       "title",

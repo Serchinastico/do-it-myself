@@ -4,17 +4,19 @@ import { atoms } from "@app/core/storage/state";
 import { color } from "@app/core/theme/color";
 import { ProjectsList } from "@app/features/projects/components/ProjectsList";
 import { t } from "@lingui/macro";
-import { SafeAreaView } from "@madeja-studio/telar";
+import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { StatusBar } from "expo-status-bar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useAtomValue, useSetAtom } from "jotai";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
   const setSelectedTagIds = useSetAtom(atoms.selectedTagIds);
   const projects = useAtomValue(atoms.projects);
+  const { bottom } = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={tw`bg-white`}>
+    <SafeAreaView edges={SafeAreaViewEdges.NoBottom} style={tw`bg-white`}>
       <StatusBar backgroundColor={color.white} style="dark" />
 
       <ProjectHeader.Projects />
@@ -44,7 +46,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
           setSelectedTagIds([]);
           navigation.navigate("createProject");
         }}
-        style={tw`mb-4`}
+        style={[tw`absolute mb-4 left-0, right-0`, { bottom }]}
         text={t`Create new project`}
       />
     </SafeAreaView>

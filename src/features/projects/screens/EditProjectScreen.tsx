@@ -56,7 +56,7 @@ export const EditProjectScreen = ({
   }
 
   return (
-    <View style={tw`bg-white android:mt-4`}>
+    <View style={tw`bg-white android:mt-4 flex-1`}>
       <StatusBar barStyle="dark-content" />
 
       <ProjectHeader.EditProject onClose={() => navigation.goBack()} />

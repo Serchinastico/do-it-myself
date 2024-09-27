@@ -2,7 +2,12 @@ import { Button } from "@app/core/components/Button";
 import { Input } from "@app/core/components/Input";
 import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
-import { EditedProject, ProjectColorId, ToolType } from "@app/domain/project";
+import {
+  EditedProject,
+  INITIAL_MANUAL,
+  ProjectColorId,
+  ToolType,
+} from "@app/domain/project";
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
@@ -93,7 +98,7 @@ export const ProjectDetails = ({
       attachments: wantsAttachments ? {} : undefined,
       colorId,
       description,
-      manual: wantsManual ? { html: "" } : undefined,
+      manual: wantsManual ? INITIAL_MANUAL : undefined,
       name,
       tagIds: selectedTagIds,
       worklog: wantsWorklog ? {} : undefined,
