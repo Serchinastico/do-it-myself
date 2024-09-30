@@ -34,33 +34,6 @@ export const Title = Node.create<TitleOptions>({
         },
     };
   },
-  addKeyboardShortcuts() {
-    return {
-      Enter: ({ dispatch, editor, tr }) => {
-        const { selection } = tr;
-        const { $from } = selection;
-
-        // Check if we're within a Title node
-        if ($from.parent.type.name === this.name) {
-          const endPos = $from.end();
-
-          if (dispatch) {
-            // Insert a new paragraph after the Title node
-            tr.insert(endPos, this.schema.nodes.paragraph.create());
-
-            // Move the cursor to the newly created paragraph
-            tr.setSelection(TextSelection.near(tr.doc.resolve(endPos + 2)));
-            editor.view.focus();
-            dispatch(tr);
-          }
-
-          return true;
-        }
-
-        return false;
-      },
-    };
-  },
   addNodeView() {
     const options = this.options;
 

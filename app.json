@@ -6,6 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "locales": {
+      "en": "./src/locales/en/metadata.json",
+      "es": "./src/locales/en/metadata.json"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

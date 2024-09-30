@@ -1,14 +1,30 @@
 import { BridgeState, EditorBridge } from "@10play/tentap-editor";
+import { ImageSourcePropType } from "react-native";
 
 export type ToolCallbackArgs = {
   editor: EditorBridge;
   editorState: BridgeState;
 };
 
-export interface EditorTool {
+export type EditorTool = {
   id: string;
-  image: () => any;
+  image: () => ImageSourcePropType;
   isActive: (args: ToolCallbackArgs) => boolean;
   isDisabled: (args: ToolCallbackArgs) => boolean;
-  onPress: (args: ToolCallbackArgs) => void;
+} & MenuProps;
+
+type MenuProps =
+  | {
+      hasMenu: true;
+      menuOptions: readonly MenuOption[];
+    }
+  | {
+      hasMenu?: false;
+      onPress: (args: ToolCallbackArgs) => void;
+    };
+
+export interface MenuOption {
+  key: string;
+  onPress: (args: ToolCallbackArgs) => Promise<void> | void;
+  text: string;
 }

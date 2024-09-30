@@ -3,7 +3,8 @@ import { color } from "@app/core/theme/color";
 import { TOOLBAR_TOOLS } from "@app/features/tools/components/editor/tools";
 import { Button, Center, useKeyboard } from "@madeja-studio/telar";
 import chroma from "chroma-js";
-import { FlatList, Image } from "react-native";
+import { FlatList, Image, KeyboardAvoidingView, Platform } from "react-native";
+import * as DropdownMenu from "zeego/dropdown-menu";
 
 interface Props {
   editor: EditorBridge;
@@ -14,38 +15,71 @@ export const Toolbar = ({ editor }: Props) => {
   const { isKeyboardUp } = useKeyboard();
 
   return (
-    <FlatList
-      contentContainerStyle={[
-        tw`center border-t`,
-        { borderColor: chroma(color.black).alpha(0.1).hex() },
-      ]}
-      data={TOOLBAR_TOOLS}
-      horizontal
-      renderItem={({ item }) => (
-        <Button.Container
-          hasHapticFeedback
-          isDisabled={item.isDisabled({ editor, editorState })}
-          onPress={() => item.onPress({ editor, editorState })}
-        >
-          <Center
-            style={tw.style(`h-[32px] w-[32px] mx-2 rounded-1`, {
-              "bg-primary": item.isActive({ editor, editorState }),
-            })}
-          >
-            <Image
-              resizeMode="contain"
-              source={item.image()}
-              style={tw.style(`h-[20px] w-[20px]`, {
-                tintColor: item.isActive({ editor, editorState })
-                  ? color.white
-                  : color.secondary,
-              })}
-            />
-          </Center>
-        </Button.Container>
-      )}
-      showsHorizontalScrollIndicator={false}
-      style={tw.style({ hidden: !isKeyboardUp }, `min-h-press`)}
-    />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{
+        bottom: 0,
+        position: "absolute",
+        width: "100%",
+      }}
+    >
+      <FlatList
+        contentContainerStyle={[
+          tw`center border-t bg-white`,
+          { borderColor: chroma(color.black).alpha(0.1).hex() },
+        ]}
+        data={TOOLBAR_TOOLS}
+        horizontal
+        renderItem={({ item }) => (
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
+              <Button.Container
+                hasHapticFeedback
+                isDisabled={item.isDisabled({ editor, editorState })}
+                onPress={() => {
+                  if (item.hasMenu) return;
+
+                  item.onPress({ editor, editorState });
+                }}
+              >
+                <Center
+                  style={tw.style(`h-[32px] w-[32px] mx-2 rounded-1`, {
+                    "bg-primary": item.isActive({ editor, editorState }),
+                  })}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={item.image()}
+                    style={tw.style(`h-[20px] w-[20px]`, {
+                      tintColor: item.isActive({ editor, editorState })
+                        ? color.white
+                        : color.secondary,
+                    })}
+                  />
+                </Center>
+              </Button.Container>
+            </DropdownMenu.Trigger>
+
+            {item.hasMenu ? (
+              // @ts-ignore
+              <DropdownMenu.Content>
+                {item.menuOptions.map(({ key, onPress, text }) => (
+                  <DropdownMenu.Item
+                    key={key}
+                    onSelect={async () => {
+                      await onPress({ editor, editorState });
+                    }}
+                  >
+                    <DropdownMenu.ItemTitle>{text}</DropdownMenu.ItemTitle>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            ) : null}
+          </DropdownMenu.Root>
+        )}
+        showsHorizontalScrollIndicator={false}
+        style={tw.style({ hidden: !isKeyboardUp }, `min-h-press`)}
+      />
+    </KeyboardAvoidingView>
   );
 };

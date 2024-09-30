@@ -1,8 +1,11 @@
-import { useEditorBridge, useEditorContent } from "@10play/tentap-editor";
-import { TenTapStartKit } from "@10play/tentap-editor/src/bridges/StarterKit";
+import {
+  TenTapStartKit,
+  useEditorBridge,
+  useEditorContent,
+} from "@10play/tentap-editor";
 import { Project, getProjectColorById, getToolHtml } from "@app/domain/project";
 import { editorHtml } from "@app/editor-web/build/editorHtml";
-import { TitleBridge } from "@app/editor-web/extensions/TitleBridge";
+import { LocalImageBridge, TitleBridge } from "@app/editor-web/extensions";
 
 interface Props {
   isEditing: boolean;
@@ -20,6 +23,8 @@ export const useEditor = ({ isEditing, project }: Props) => {
       TitleBridge.configureExtension({
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
+      // @ts-ignore
+      LocalImageBridge,
     ],
     customSource: editorHtml,
     dynamicHeight: true,

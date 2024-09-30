@@ -7,7 +7,6 @@ import { SafeAreaView } from "@madeja-studio/telar";
 import { StatusBar } from "expo-status-bar";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { Toolbar } from "./components/editor/Toolbar";
 import { ToolHeader } from "./components/headers";
@@ -22,12 +21,13 @@ export const ManualScreen = ({
     derivedAtoms.projectAtomFamily(projectId)
   );
   const { editor, html } = useEditor({ isEditing, project });
+  console.log(html?.replaceAll(/<img src="[^"]+"/g, "<img"));
 
   useEffect(() => {
     if (isEditing) {
       editor.focus("end");
     }
-  }, [isEditing]);
+  }, [editor, isEditing]);
 
   useEffect(() => {
     if (!html) return;
@@ -53,16 +53,7 @@ export const ManualScreen = ({
         scrollEnabled
       />
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{
-          bottom: 0,
-          position: "absolute",
-          width: "100%",
-        }}
-      >
-        <Toolbar editor={editor} />
-      </KeyboardAvoidingView>
+      <Toolbar editor={editor} />
     </SafeAreaView>
   );
 };

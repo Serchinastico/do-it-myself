@@ -6,11 +6,11 @@ import Text from "@tiptap/extension-text";
 import { EditorContent } from "@tiptap/react";
 import React from "react";
 
-import { TitleBridge } from "./extensions/TitleBridge";
+import { LocalImageBridge, TitleBridge } from "./extensions";
 
 export const AdvancedEditor = () => {
   const editor = useTenTap({
-    bridges: [...TenTapStartKit, TitleBridge],
+    bridges: [...TenTapStartKit, TitleBridge, LocalImageBridge],
     tiptapOptions: {
       extensions: [Document, Paragraph, Text],
     },
