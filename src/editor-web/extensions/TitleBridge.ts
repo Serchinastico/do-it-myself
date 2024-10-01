@@ -34,8 +34,8 @@ export const TitleBridge = new BridgeExtension<
     return {
       toggleTitle: (props: ToggleTitleProps) =>
         sendBridgeMessage({
+          payload: props,
           type: TitleEditorActionType.ToggleTitle,
-          payload: props
         }),
     };
   },

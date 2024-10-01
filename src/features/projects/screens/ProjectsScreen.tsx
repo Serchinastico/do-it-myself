@@ -46,7 +46,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
           setSelectedTagIds([]);
           navigation.navigate("createProject");
         }}
-        style={[tw`absolute mb-4 left-0, right-0`, { bottom }]}
+        style={[tw`absolute mb-4 left-0, right-0 shadow-lg`, { bottom }]}
         text={t`Create new project`}
       />
     </SafeAreaView>

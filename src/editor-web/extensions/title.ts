@@ -29,9 +29,11 @@ export const Title = Node.create<TitleOptions>({
 
   addCommands() {
     return {
-      toggleTitle: (attrs: ToggleTitleProps) => ({ commands }) => {
-        return commands.toggleNode(this.name, "paragraph", attrs);
-      },
+      toggleTitle:
+        (attrs: ToggleTitleProps) =>
+        ({ commands }) => {
+          return commands.toggleNode(this.name, "paragraph", attrs);
+        },
     };
   },
 
@@ -51,10 +53,10 @@ export const Title = Node.create<TitleOptions>({
   parseHTML() {
     return [
       {
-        tag: ".title",
         getAttrs: (dom) => ({
           backgroundColor: dom.querySelector(".skew")?.style.backgroundColor,
         }),
+        tag: ".title",
       },
     ];
   },
@@ -62,9 +64,16 @@ export const Title = Node.create<TitleOptions>({
   renderHTML({ HTMLAttributes }) {
     const backgroundColor: string = HTMLAttributes.backgroundColor;
 
-    return ["div", mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, { "class": "title" }),
-      ["div", { "class": "skew", style: `background-color: ${backgroundColor};` }],
-      ["h1", { "class": "content" }, 0],
+    return [
+      "div",
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+        class: "title",
+      }),
+      [
+        "div",
+        { class: "skew", style: `background-color: ${backgroundColor};` },
+      ],
+      ["h1", { class: "content" }, 0],
     ];
   },
 });
