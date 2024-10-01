@@ -11,13 +11,14 @@ import {
   requestCameraPermissionsAsync,
   requestMediaLibraryPermissionsAsync,
 } from "expo-image-picker";
+import { MediaTypeOptions } from "expo-image-picker/src/ImagePicker.types";
 
 interface InternalImagePickerSuccess {
-  asset: ImagePickerAsset;
+  assets: ImagePickerAsset[];
 }
 
 interface ImagePickerSuccess {
-  uri: string;
+  uris: string[];
 }
 
 interface ImagePickerError {
@@ -57,25 +58,31 @@ const IMAGES_DIRECTORY = "Image";
  * Asynchronously stores an image asset locally in the application's file system.
  * This ensures the image can be used even after app re-installs.
  *
- * @param asset The image asset to be stored. Must contain at least a URI.
+ * @param assets The image assets to be stored. Each asset must contain at least a URI.
  * @returns A promise that resolves to the relative path of the stored image file,
  * or undefined if the asset is not provided.
  */
-const storeImageLocally = async (asset: ImagePickerAsset) => {
-  const originalUri = asset.uri;
-  const fileName = asset.fileName ?? `${randomId()}.jpg`;
-  const relativePath = `${IMAGES_DIRECTORY}/${fileName}`;
-  const absolutePath = `${FileSystem.documentDirectory}${relativePath}`;
+const storeImagesLocally = async (assets: ImagePickerAsset[]) => {
+  const relativePaths: string[] = [];
 
-  await FileSystem.makeDirectoryAsync(
-    `${FileSystem.documentDirectory}${IMAGES_DIRECTORY}`,
-    { intermediates: true }
-  );
+  for (const asset of assets) {
+    const originalUri = asset.uri;
+    const fileName = asset.fileName ?? `${randomId()}.jpg`;
+    const relativePath = `${IMAGES_DIRECTORY}/${fileName}`;
+    const absolutePath = `${FileSystem.documentDirectory}${relativePath}`;
 
-  await FileSystem.copyAsync({ from: originalUri, to: absolutePath });
+    await FileSystem.makeDirectoryAsync(
+      `${FileSystem.documentDirectory}${IMAGES_DIRECTORY}`,
+      { intermediates: true }
+    );
 
-  // Return the relative path to preserve the image between app updates
-  return relativePath;
+    await FileSystem.copyAsync({ from: originalUri, to: absolutePath });
+
+    // Return the relative path to preserve the image between app updates
+    relativePaths.push(relativePath);
+  }
+
+  return relativePaths;
 };
 
 /**
@@ -107,7 +114,7 @@ const getImageFromCamera = async (
       return USER_CANCELED_ERROR;
     }
 
-    return { asset: result.assets[0], tag: "success" };
+    return { assets: result.assets, tag: "success" };
   } catch {
     return CAMERA_UNAVAILABLE_ERROR;
   }
@@ -145,7 +152,7 @@ const getImageFromMediaLibrary = async (
       return USER_CANCELED_ERROR;
     }
 
-    return { asset: result.assets[0], tag: "success" };
+    return { assets: result.assets, tag: "success" };
   } catch {
     return CAMERA_UNAVAILABLE_ERROR;
   }
@@ -162,9 +169,13 @@ const getImageFromMediaLibrary = async (
  * action is successful, the result includes the image asset and a success tag.
  * @throws Will throw an error if the image retrieval fails for any reason.
  */
-export const getImageFrom = async (
+export const getImagesFrom = async (
   source: ImageSource,
-  options: ImagePickerOptions = { quality: 0.2 }
+  options: ImagePickerOptions = {
+    allowsMultipleSelection: true,
+    mediaTypes: MediaTypeOptions.Images,
+    quality: 0.2,
+  }
 ): Promise<ImagePickerResult> => {
   let result: InternalImagePickerResult;
   switch (source) {
@@ -176,12 +187,12 @@ export const getImageFrom = async (
       break;
   }
 
-  if (result.tag === "success") {
-    const uri = await storeImageLocally(result.asset);
-    return { tag: "success", uri };
+  if (result.tag === "error") {
+    return result;
   }
 
-  return result;
+  const uris = await storeImagesLocally(result.assets);
+  return { tag: "success", uris };
 };
 
 export type ImageSource = "camera" | "media_library";

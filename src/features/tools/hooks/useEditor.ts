@@ -32,6 +32,7 @@ export const useEditor = ({ isEditing, project }: Props) => {
     initialContent: getToolHtml({ project, toolType: "manual" })!,
   });
   const html = useEditorContent(editor, { type: "html" });
+  const json = useEditorContent(editor, { type: "json" });
 
-  return { editor, html };
+  return { editor, html, json };
 };

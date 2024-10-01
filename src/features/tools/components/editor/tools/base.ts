@@ -1,9 +1,11 @@
 import { BridgeState, EditorBridge } from "@10play/tentap-editor";
+import { Project } from "@app/domain/project";
 import { ImageSourcePropType } from "react-native";
 
 export type ToolCallbackArgs = {
   editor: EditorBridge;
   editorState: BridgeState;
+  project: Project;
 };
 
 export type EditorTool = {

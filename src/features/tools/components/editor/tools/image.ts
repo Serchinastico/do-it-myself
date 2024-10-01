@@ -1,4 +1,4 @@
-import { ImageSource, getImageFrom } from "@app/core/utils/imagePicker";
+import { ImageSource, getImagesFrom } from "@app/core/utils/imagePicker";
 import { t } from "@lingui/macro";
 import * as FileSystem from "expo-file-system";
 
@@ -8,19 +8,17 @@ const addImageToEditor = async ({
   editor,
   source,
 }: { source: ImageSource } & ToolCallbackArgs) => {
-  const result = await getImageFrom(source);
+  const result = await getImagesFrom(source);
 
   if (result.tag === "error") {
     throw new Error(result.message);
   }
 
-  const uri = `${FileSystem.documentDirectory}${result.uri}`;
+  const images = result.uris.map((uri) => ({
+    uri: `${FileSystem.documentDirectory}${uri}`,
+  }));
 
-  const base64 = await FileSystem.readAsStringAsync(uri, {
-    encoding: FileSystem.EncodingType.Base64,
-  });
-
-  editor.setLocalImage({ base64, uri });
+  editor.setLocalImages({ images });
 };
 
 export const ImageTool: EditorTool = {

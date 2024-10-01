@@ -1,5 +1,6 @@
 import { EditorBridge, useBridgeState } from "@10play/tentap-editor";
 import { color } from "@app/core/theme/color";
+import { Project } from "@app/domain/project";
 import { TOOLBAR_TOOLS } from "@app/features/tools/components/editor/tools";
 import { Button, Center, useKeyboard } from "@madeja-studio/telar";
 import chroma from "chroma-js";
@@ -8,9 +9,10 @@ import * as DropdownMenu from "zeego/dropdown-menu";
 
 interface Props {
   editor: EditorBridge;
+  project: Project;
 }
 
-export const Toolbar = ({ editor }: Props) => {
+export const Toolbar = ({ editor, project }: Props) => {
   const editorState = useBridgeState(editor);
   const { isKeyboardUp } = useKeyboard();
 
@@ -35,23 +37,27 @@ export const Toolbar = ({ editor }: Props) => {
             <DropdownMenu.Trigger>
               <Button.Container
                 hasHapticFeedback
-                isDisabled={item.isDisabled({ editor, editorState })}
+                isDisabled={item.isDisabled({ editor, editorState, project })}
                 onPress={() => {
                   if (item.hasMenu) return;
 
-                  item.onPress({ editor, editorState });
+                  item.onPress({ editor, editorState, project });
                 }}
               >
                 <Center
                   style={tw.style(`h-[32px] w-[32px] mx-2 rounded-1`, {
-                    "bg-primary": item.isActive({ editor, editorState }),
+                    "bg-primary": item.isActive({
+                      editor,
+                      editorState,
+                      project,
+                    }),
                   })}
                 >
                   <Image
                     resizeMode="contain"
                     source={item.image()}
                     style={tw.style(`h-[20px] w-[20px]`, {
-                      tintColor: item.isActive({ editor, editorState })
+                      tintColor: item.isActive({ editor, editorState, project })
                         ? color.white
                         : color.secondary,
                     })}
@@ -67,7 +73,7 @@ export const Toolbar = ({ editor }: Props) => {
                   <DropdownMenu.Item
                     key={key}
                     onSelect={async () => {
-                      await onPress({ editor, editorState });
+                      await onPress({ editor, editorState, project });
                     }}
                   >
                     <DropdownMenu.ItemTitle>{text}</DropdownMenu.ItemTitle>
