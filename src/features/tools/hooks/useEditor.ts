@@ -10,10 +10,11 @@ import * as FileSystem from "expo-file-system";
 
 interface Props {
   isEditing: boolean;
+  onImageClick: (fileName: string) => Promise<void> | void;
   project: Project;
 }
 
-export const useEditor = ({ isEditing, project }: Props) => {
+export const useEditor = ({ isEditing, onImageClick, project }: Props) => {
   const editor = useEditorBridge({
     autofocus: false,
     avoidIosKeyboard: true,
@@ -25,7 +26,7 @@ export const useEditor = ({ isEditing, project }: Props) => {
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
       // @ts-ignore
-      LocalImageBridge.configureExtension({
+      LocalImageBridge(onImageClick).configureExtension({
         imagesRootPath: `${FileSystem.documentDirectory}`,
       }),
     ],

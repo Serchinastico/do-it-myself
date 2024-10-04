@@ -7,12 +7,22 @@ import { EditorContent } from "@tiptap/react";
 import React from "react";
 
 import { LocalImageBridge, TitleBridge } from "./extensions";
+import { localImageClickHandler } from "./extensions/localImageClickHandler";
+
+declare global {
+  interface Window {
+    ReactNativeWebView: { postMessage: (message: string) => void };
+  }
+}
 
 export const AdvancedEditor = () => {
   const editor = useTenTap({
-    bridges: [...TenTapStartKit, TitleBridge, LocalImageBridge],
+    bridges: [...TenTapStartKit, TitleBridge, LocalImageBridge()],
     tiptapOptions: {
       extensions: [Document, Paragraph, Text],
+      editorProps: {
+        handleClick: localImageClickHandler,
+      },
     },
   });
   return <EditorContent editor={editor} />;

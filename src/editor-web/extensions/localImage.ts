@@ -1,8 +1,9 @@
 import { Node } from "@tiptap/core";
+import { clickHandler } from "./clickHandler";
 
 export interface LocalImageOptions {
-  imagesRootPath: string;
   HTMLAttributes: Record<string, any>;
+  imagesRootPath: string;
 }
 
 declare module "@tiptap/core" {
@@ -16,8 +17,9 @@ declare module "@tiptap/core" {
   }
 }
 
-type LocalImage = { fileName: string; };
+type LocalImage = { fileName: string };
 export type SetLocalImagesProps = { images: LocalImage[] };
+export type OnImageClickProps = { fileName: string };
 
 export const LocalImage = Node.create<LocalImageOptions>({
   addAttributes() {
@@ -35,7 +37,7 @@ export const LocalImage = Node.create<LocalImageOptions>({
   },
 
   addOptions() {
-    return { imagesRootPath: "", HTMLAttributes: {} };
+    return { HTMLAttributes: {}, imagesRootPath: "" };
   },
 
   atom: true,
@@ -62,19 +64,22 @@ export const LocalImage = Node.create<LocalImageOptions>({
     const { imagesRootPath } = this.options;
 
     const images: LocalImage[] = HTMLAttributes.images;
-    const imagesHtml = images.map(({ fileName }) => ["img", {
-      src: `${imagesRootPath}${fileName}`,
-      /**
-       * We keep a reference to the raw fileName (without the leading path) to
-       * make the component work when re-installing the app. The problem stems
-       * from the app changing ID (and the full path having a reference to
-       * such ID).
-       * This means a URI like "file:///var/mobile/Containers/Data/Application/FD7F6FD4-1421-4189-92BA-77D814BCA86F/Documents/Image/IMG_8413.png"
-       * will stop working on app reinstall so we just keep "Image/IMG_8413.png" and rebuild the URI with the current
-       * FileSystem.documentDirectory information.
-       */
-      "data-file-name": fileName,
-    }]);
+    const imagesHtml = images.map(({ fileName }) => [
+      "img",
+      {
+        /**
+         * We keep a reference to the raw fileName (without the leading path) to
+         * make the component work when re-installing the app. The problem stems
+         * from the app changing ID (and the full path having a reference to
+         * such ID).
+         * This means a URI like "file:///var/mobile/Containers/Data/Application/FD7F6FD4-1421-4189-92BA-77D814BCA86F/Documents/Image/IMG_8413.png"
+         * will stop working on app reinstall so we just keep "Image/IMG_8413.png" and rebuild the URI with the current
+         * FileSystem.documentDirectory information.
+         */
+        "data-file-name": fileName,
+        src: `${imagesRootPath}${fileName}`,
+      },
+    ]);
 
     if (images.length === 1 || images.length === 2) {
       return ["div", { class: "image-masonry row" }, ...imagesHtml];

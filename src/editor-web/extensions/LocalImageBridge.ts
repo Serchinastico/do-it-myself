@@ -1,6 +1,6 @@
 import { BridgeExtension } from "@10play/tentap-editor";
 
-import { LocalImage, SetLocalImagesProps } from "./localImage";
+import { LocalImage, OnImageClickProps, SetLocalImagesProps } from "./localImage";
 
 type LocalImageEditorState = object;
 type LocalImageEditorInstance = {
@@ -8,21 +8,27 @@ type LocalImageEditorInstance = {
 };
 
 declare module "@10play/tentap-editor" {
-  interface BridgeState extends LocalImageEditorState {}
+  interface BridgeState extends LocalImageEditorState {
+  }
 
-  interface EditorBridge extends LocalImageEditorInstance {}
+  interface EditorBridge extends LocalImageEditorInstance {
+  }
 }
 
 export enum LocalImageEditorActionType {
   SetImages = "set-local-images",
+  Click = "local-images-click",
 }
 
-type LocalImageMessage = {
+export type LocalImageMessage = {
   payload: SetLocalImagesProps;
   type: LocalImageEditorActionType.SetImages;
+} | {
+  payload: OnImageClickProps;
+  type: LocalImageEditorActionType.Click
 };
 
-export const LocalImageBridge = new BridgeExtension<
+export const LocalImageBridge = (onImageClick?: (fileName: string) => void | Promise<void>) => new BridgeExtension<
   LocalImageEditorState,
   LocalImageEditorInstance,
   LocalImageMessage
@@ -36,12 +42,18 @@ export const LocalImageBridge = new BridgeExtension<
         }),
     };
   },
-  extendEditorState: (editor) => {
-    return {};
-  },
   onBridgeMessage: (editor, message) => {
     if (message.type === LocalImageEditorActionType.SetImages) {
       editor.chain().focus().setLocalImages(message.payload).run();
+      return true;
+    }
+
+    return false;
+  },
+  onEditorMessage: (message, editorBridge) => {
+    if (message.type === LocalImageEditorActionType.Click) {
+      onImageClick && onImageClick(message.payload.fileName);
+      return true;
     }
 
     return false;

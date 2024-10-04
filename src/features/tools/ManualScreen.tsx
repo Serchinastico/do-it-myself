@@ -28,10 +28,15 @@ export const ManualScreen = ({
   const [project, setProject] = useAtom(
     derivedAtoms.projectAtomFamily(projectId)
   );
-  const { editor, html, json } = useEditor({ isEditing, project });
+  const onImageClick = useCallback((fileName: string) => {
+    console.log(fileName);
+  }, []);
 
-  console.log(html);
-  console.log(JSON.stringify(json, null, 2));
+  const { editor, html, json } = useEditor({
+    isEditing,
+    onImageClick,
+    project,
+  });
 
   const saveHtmlFileToDisk = useCallback(async (html: string) => {
     await FileSystem.writeAsStringAsync(HTML_PATH, html);
