@@ -6,6 +6,7 @@ import {
 import { Project, getProjectColorById, getToolHtml } from "@app/domain/project";
 import { editorHtml } from "@app/editor-web/build/editorHtml";
 import { LocalImageBridge, TitleBridge } from "@app/editor-web/extensions";
+import * as FileSystem from "expo-file-system";
 
 interface Props {
   isEditing: boolean;
@@ -24,7 +25,9 @@ export const useEditor = ({ isEditing, project }: Props) => {
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
       // @ts-ignore
-      LocalImageBridge,
+      LocalImageBridge.configureExtension({
+        imagesRootPath: `${FileSystem.documentDirectory}`,
+      }),
     ],
     customSource: editorHtml,
     dynamicHeight: true,

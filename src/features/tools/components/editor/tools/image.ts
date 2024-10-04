@@ -15,6 +15,7 @@ const addImageToEditor = async ({
   }
 
   const images = result.uris.map((uri) => ({
+    fileName: uri,
     uri: `${FileSystem.documentDirectory}${uri}`,
   }));
 

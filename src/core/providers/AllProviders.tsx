@@ -1,3 +1,4 @@
+import { DebugFileSystemProvider } from "@app/core/providers/DebugFileSystemProvider";
 import { color } from "@app/core/theme/color";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
@@ -11,23 +12,25 @@ interface Props extends PropsWithChildren {}
 
 const AllProviders = ({ children }: Props) => {
   return (
-    <TelarContextProvider
-      theme={{
-        core: {
-          color: {
-            primary: color.primary,
-            secondary: color.secondary,
-            tertiary: color.white,
+    <DebugFileSystemProvider>
+      <TelarContextProvider
+        theme={{
+          core: {
+            color: {
+              primary: color.primary,
+              secondary: color.secondary,
+              tertiary: color.white,
+            },
           },
-        },
-      }}
-    >
-      <PreloadScreen>
-        <NavigationContainer>
-          <I18nProvider i18n={i18n}>{children}</I18nProvider>
-        </NavigationContainer>
-      </PreloadScreen>
-    </TelarContextProvider>
+        }}
+      >
+        <PreloadScreen>
+          <NavigationContainer>
+            <I18nProvider i18n={i18n}>{children}</I18nProvider>
+          </NavigationContainer>
+        </PreloadScreen>
+      </TelarContextProvider>
+    </DebugFileSystemProvider>
   );
 };
 
