@@ -33,7 +33,7 @@ export type LocalImageMessage =
     };
 
 export const LocalImageBridge = (
-  onImageClick?: (fileName: string) => Promise<void> | void
+  onImageClick?: (props: OnImageClickProps) => Promise<void> | void
 ) =>
   new BridgeExtension<
     LocalImageEditorState,
@@ -59,7 +59,7 @@ export const LocalImageBridge = (
     },
     onEditorMessage: (message, editorBridge) => {
       if (message.type === LocalImageEditorActionType.Click) {
-        onImageClick && onImageClick(message.payload.fileName);
+        onImageClick && onImageClick(message.payload);
         return true;
       }
 

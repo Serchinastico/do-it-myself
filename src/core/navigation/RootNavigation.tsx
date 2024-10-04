@@ -32,7 +32,11 @@ const RootNavigation = () => {
         options={{ presentation: "modal" }}
       />
       <Stack.Screen component={ManualScreen} name="manual" />
-      <Stack.Screen component={ImageViewerScreen} name="imageViewer" />
+      <Stack.Screen
+        component={ImageViewerScreen}
+        name="imageViewer"
+        options={{ presentation: "fullScreenModal" }}
+      />
     </Stack.Navigator>
   );
 };

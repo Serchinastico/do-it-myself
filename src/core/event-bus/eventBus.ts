@@ -5,7 +5,7 @@ export const EventMessage = {
 } as const;
 
 export type Events = {
-  [EventMessage.LocalImagePress]: { fileName: string };
+  [EventMessage.LocalImagePress]: { fileName: string; groupId: string };
 };
 
 export type EventName = keyof Events;

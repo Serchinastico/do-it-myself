@@ -9,15 +9,18 @@ export const localImageClickHandler = (
     return false;
   }
 
-  let img = event.target as HTMLElement;
-  const els = [];
+  let parent: HTMLElement = event.target as HTMLElement;
 
-  while (img.nodeName !== "DIV") {
-    els.push(img);
-    img = img.parentNode as HTMLElement;
+  /**
+   * We traverse the hierarchy up until we find the masonry div that holds
+   * the group id for all the images.
+   */
+  while (!parent.dataset["group-id"]) {
+    parent = parent.parentNode as HTMLElement;
   }
 
-  if (!els.find((value) => value.nodeName === "IMG")) {
+  const groupId = parent.dataset["group-id"];
+  if (!groupId) {
     return false;
   }
 
@@ -25,7 +28,10 @@ export const localImageClickHandler = (
 
   const fileName = image.dataset["file-name"];
   window.ReactNativeWebView?.postMessage(
-    JSON.stringify({ payload: { fileName }, type: "local-images-click" })
+    JSON.stringify({
+      payload: { fileName, groupId },
+      type: "local-images-click",
+    })
   );
 
   return true;

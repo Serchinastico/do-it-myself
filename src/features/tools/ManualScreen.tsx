@@ -10,6 +10,7 @@ import * as FileSystem from "expo-file-system";
 import { StatusBar } from "expo-status-bar";
 import { useAtom } from "jotai";
 import { useCallback, useEffect, useState } from "react";
+import invariant from "tiny-invariant";
 
 import { Toolbar } from "./components/editor/Toolbar";
 import { ToolHeader } from "./components/headers";
@@ -31,7 +32,7 @@ export const ManualScreen = ({
     derivedAtoms.projectAtomFamily(projectId)
   );
 
-  const { editor, html } = useEditor({
+  const { editor, html, json } = useEditor({
     isEditing,
     project,
   });
@@ -67,13 +68,29 @@ export const ManualScreen = ({
     saveHtmlFileToDisk(editorHtml).then(() => setHtmlFileStatus("ready"));
   }, [htmlFileStatus]);
 
-  useEventBus(EventMessage.LocalImagePress, ({ fileName }) => {
-    console.log(fileName);
-    navigation.navigate("imageViewer", {
-      imageFileNames: [],
-      initialImageIndex: 0,
-    });
-  });
+  useEventBus(
+    EventMessage.LocalImagePress,
+    ({ fileName, groupId }) => {
+      console.log(fileName, groupId);
+
+      const node = json?.content.find(
+        (node) =>
+          node.type === "local-image" && node.attrs["groupId"] === groupId
+      );
+
+      invariant(node);
+
+      const images = node.attrs["images"] as { fileName: string }[];
+      const imageFileNames = images.map(({ fileName }) => fileName);
+      const initialImageIndex = imageFileNames.indexOf(fileName);
+
+      navigation.navigate("imageViewer", {
+        imageFileNames,
+        initialImageIndex,
+      });
+    },
+    [json]
+  );
 
   return (
     <SafeAreaView style={tw`bg-white`}>

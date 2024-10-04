@@ -1,6 +1,6 @@
 import { ImageSource, getImagesFrom } from "@app/core/utils/imagePicker";
 import { t } from "@lingui/macro";
-import * as FileSystem from "expo-file-system";
+import { randomId } from "@madeja-studio/cepillo";
 
 import { EditorTool, ToolCallbackArgs } from "./base";
 
@@ -16,10 +16,9 @@ const addImageToEditor = async ({
 
   const images = result.uris.map((uri) => ({
     fileName: uri,
-    uri: `${FileSystem.documentDirectory}${uri}`,
   }));
 
-  editor.setLocalImages({ images });
+  editor.setLocalImages({ groupId: randomId(), images });
 };
 
 export const ImageTool: EditorTool = {

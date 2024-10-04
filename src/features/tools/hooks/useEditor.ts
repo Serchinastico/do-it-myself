@@ -14,6 +14,13 @@ interface Props {
   project: Project;
 }
 
+type JsonDocument =
+  | {
+      content: { attrs: Record<string, any>; type: string }[];
+      type: "doc";
+    }
+  | undefined;
+
 export const useEditor = ({ isEditing, project }: Props) => {
   const editor = useEditorBridge({
     autofocus: false,
@@ -23,8 +30,8 @@ export const useEditor = ({ isEditing, project }: Props) => {
       TitleBridge.configureExtension({
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
-      LocalImageBridge((fileName: string) => {
-        eventBus.emit(EventMessage.LocalImagePress, { fileName });
+      LocalImageBridge((props) => {
+        eventBus.emit(EventMessage.LocalImagePress, props);
       }).configureExtension({
         imagesRootPath: `${FileSystem.documentDirectory}`,
       }),
@@ -37,5 +44,5 @@ export const useEditor = ({ isEditing, project }: Props) => {
   const html = useEditorContent(editor, { type: "html" });
   const json = useEditorContent(editor, { type: "json" });
 
-  return { editor, html, json };
+  return { editor, html, json: json as JsonDocument };
 };

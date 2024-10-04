@@ -1,7 +1,5 @@
 import { Node } from "@tiptap/core";
 
-import { clickHandler } from "./clickHandler";
-
 export interface LocalImageOptions {
   HTMLAttributes: Record<string, any>;
   imagesRootPath: string;
@@ -18,21 +16,21 @@ declare module "@tiptap/core" {
   }
 }
 
-type LocalImage = { fileName: string };
-export type SetLocalImagesProps = { images: LocalImage[] };
-export type OnImageClickProps = { fileName: string };
+type Image = { fileName: string };
+export type SetLocalImagesProps = { groupId: string; images: Image[] };
+export type OnImageClickProps = { fileName: string; groupId: string };
 
 export const LocalImage = Node.create<LocalImageOptions>({
   addAttributes() {
-    return { images: { default: [] } };
+    return { groupId: "", images: { default: [] } };
   },
 
   addCommands() {
     return {
       setLocalImages:
-        ({ images }: SetLocalImagesProps) =>
+        (attrs: SetLocalImagesProps) =>
         ({ commands }) => {
-          return commands.insertContent({ attrs: { images }, type: this.name });
+          return commands.insertContent({ attrs, type: this.name });
         },
     };
   },
@@ -50,11 +48,12 @@ export const LocalImage = Node.create<LocalImageOptions>({
     return [
       {
         getAttrs: (dom) => {
+          const groupId = dom.getAttribute("data-group-id");
           const images = Array.from(dom.querySelectorAll("img")).map((img) => ({
             fileName: img.getAttribute("data-file-name"),
           }));
 
-          return { images };
+          return { groupId, images };
         },
         tag: "div.image-masonry",
       },
@@ -64,7 +63,9 @@ export const LocalImage = Node.create<LocalImageOptions>({
   renderHTML({ HTMLAttributes }) {
     const { imagesRootPath } = this.options;
 
-    const images: LocalImage[] = HTMLAttributes.images;
+    const images: Image[] = HTMLAttributes.images;
+    const groupId: string = HTMLAttributes.groupId;
+
     const imagesHtml = images.map(({ fileName }) => [
       "img",
       {
@@ -83,18 +84,26 @@ export const LocalImage = Node.create<LocalImageOptions>({
     ]);
 
     if (images.length === 1 || images.length === 2) {
-      return ["div", { class: "image-masonry row" }, ...imagesHtml];
+      return [
+        "div",
+        { class: "image-masonry row", "data-group-id": groupId },
+        ...imagesHtml,
+      ];
     } else if (images.length === 3 || images.length === 4) {
       const leftImages = imagesHtml.slice(0, 2);
       const rightImages = imagesHtml.slice(2);
       return [
         "div",
-        { class: "image-masonry row" },
+        { class: "image-masonry row", "data-group-id": groupId },
         ["div", { class: "column full" }, ...leftImages],
         ["div", { class: "column full" }, ...rightImages],
       ];
     } else {
-      return ["div", { class: "image-masonry row" }, ...imagesHtml];
+      return [
+        "div",
+        { class: "image-masonry row", "data-group-id": groupId },
+        ...imagesHtml,
+      ];
     }
   },
 });
