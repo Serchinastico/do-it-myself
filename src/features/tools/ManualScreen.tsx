@@ -1,4 +1,6 @@
 import { RichText } from "@10play/tentap-editor";
+import { EventMessage } from "@app/core/event-bus/eventBus";
+import useEventBus from "@app/core/event-bus/useEventBus";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { color } from "@app/core/theme/color";
@@ -28,13 +30,9 @@ export const ManualScreen = ({
   const [project, setProject] = useAtom(
     derivedAtoms.projectAtomFamily(projectId)
   );
-  const onImageClick = useCallback((fileName: string) => {
-    console.log(fileName);
-  }, []);
 
-  const { editor, html, json } = useEditor({
+  const { editor, html } = useEditor({
     isEditing,
-    onImageClick,
     project,
   });
 
@@ -68,6 +66,14 @@ export const ManualScreen = ({
     setHtmlFileStatus("writing");
     saveHtmlFileToDisk(editorHtml).then(() => setHtmlFileStatus("ready"));
   }, [htmlFileStatus]);
+
+  useEventBus(EventMessage.LocalImagePress, ({ fileName }) => {
+    console.log(fileName);
+    navigation.navigate("imageViewer", {
+      imageFileNames: [],
+      initialImageIndex: 0,
+    });
+  });
 
   return (
     <SafeAreaView style={tw`bg-white`}>

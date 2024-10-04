@@ -1,4 +1,5 @@
 import { Node } from "@tiptap/core";
+
 import { clickHandler } from "./clickHandler";
 
 export interface LocalImageOptions {
@@ -30,9 +31,9 @@ export const LocalImage = Node.create<LocalImageOptions>({
     return {
       setLocalImages:
         ({ images }: SetLocalImagesProps) =>
-          ({ commands }) => {
-            return commands.insertContent({ attrs: { images }, type: this.name });
-          },
+        ({ commands }) => {
+          return commands.insertContent({ attrs: { images }, type: this.name });
+        },
     };
   },
 

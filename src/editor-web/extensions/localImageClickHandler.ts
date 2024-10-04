@@ -1,6 +1,10 @@
 import { EditorView } from "@tiptap/pm/view";
 
-export const localImageClickHandler = (view: EditorView, pos: number, event: MouseEvent) => {
+export const localImageClickHandler = (
+  view: EditorView,
+  pos: number,
+  event: MouseEvent
+) => {
   if (event.button !== 0) {
     return false;
   }
@@ -13,14 +17,16 @@ export const localImageClickHandler = (view: EditorView, pos: number, event: Mou
     img = img.parentNode as HTMLElement;
   }
 
-  if (!els.find(value => value.nodeName === "IMG")) {
+  if (!els.find((value) => value.nodeName === "IMG")) {
     return false;
   }
 
-  const image = (event.target as HTMLImageElement);
+  const image = event.target as HTMLImageElement;
 
   const fileName = image.dataset["file-name"];
-  window.ReactNativeWebView?.postMessage(JSON.stringify({ type: "local-images-click", payload: { fileName } }));
+  window.ReactNativeWebView?.postMessage(
+    JSON.stringify({ payload: { fileName }, type: "local-images-click" })
+  );
 
   return true;
 };

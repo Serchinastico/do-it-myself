@@ -19,10 +19,10 @@ export const AdvancedEditor = () => {
   const editor = useTenTap({
     bridges: [...TenTapStartKit, TitleBridge, LocalImageBridge()],
     tiptapOptions: {
-      extensions: [Document, Paragraph, Text],
       editorProps: {
         handleClick: localImageClickHandler,
       },
+      extensions: [Document, Paragraph, Text],
     },
   });
   return <EditorContent editor={editor} />;

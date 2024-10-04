@@ -1,3 +1,4 @@
+import { ImageViewerScreen } from "@app/features/image-viewer/ImageViewerScreen";
 import {
   AddTagsScreen,
   CreateProjectScreen,
@@ -31,6 +32,7 @@ const RootNavigation = () => {
         options={{ presentation: "modal" }}
       />
       <Stack.Screen component={ManualScreen} name="manual" />
+      <Stack.Screen component={ImageViewerScreen} name="imageViewer" />
     </Stack.Navigator>
   );
 };
