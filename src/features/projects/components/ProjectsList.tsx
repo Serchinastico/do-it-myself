@@ -1,8 +1,8 @@
+import { FlashList } from "@app/core/components/FlashList";
 import { ToolType } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { EmptyProjects } from "@app/features/projects/components/EmptyProjects";
 import { ProjectCard } from "@app/features/projects/components/ProjectCard";
-import { FlatList } from "react-native";
 
 interface Props {
   onEditProjectPress: (project: Project) => Promise<void> | void;
@@ -16,11 +16,9 @@ export const ProjectsList = ({
   projects,
 }: Props) => {
   return (
-    <FlatList
+    <FlashList
       ListEmptyComponent={<EmptyProjects />}
-      contentContainerStyle={tw.style(`pb-28`, {
-        "flex-1": projects.length === 0,
-      })}
+      contentContainerStyle={tw`pb-28 px-4`}
       data={projects}
       renderItem={({ item }) => (
         <ProjectCard
