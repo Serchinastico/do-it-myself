@@ -1,9 +1,6 @@
-import { AudioTool } from "./audio";
 import { BoldTool } from "./bold";
-import { FormulaTool } from "./formula";
 import { ImageTool } from "./image";
 import { ItalicTool } from "./italic";
-import { LinkTool } from "./link";
 import { ListTool } from "./list";
 import { RedoTool } from "./redo";
 import { TitleTool } from "./title";
@@ -17,13 +14,10 @@ import { UndoTool } from "./undo";
 export const TOOLBAR_TOOLS = [
   TitleTool,
   ListTool,
-  FormulaTool,
   BoldTool,
   ItalicTool,
   UnderlineTool,
-  LinkTool,
   ImageTool,
-  AudioTool,
   UndoTool,
   RedoTool,
 ];

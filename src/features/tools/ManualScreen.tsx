@@ -71,7 +71,7 @@ export const ManualScreen = ({
   useEventBus(
     EventMessage.LocalImagePress,
     ({ fileName, groupId }) => {
-      console.log(fileName, groupId);
+      if (isEditing) return;
 
       const node = json?.content.find(
         (node) =>
@@ -89,7 +89,7 @@ export const ManualScreen = ({
         initialImageIndex,
       });
     },
-    [json]
+    [json, isEditing]
   );
 
   return (

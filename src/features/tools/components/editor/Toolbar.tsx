@@ -19,11 +19,7 @@ export const Toolbar = ({ editor, project }: Props) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{
-        bottom: 0,
-        position: "absolute",
-        width: "100%",
-      }}
+      style={tw.style(`absolute bottom-0 w-100 bg-white`)}
     >
       <FlatList
         contentContainerStyle={[
@@ -59,7 +55,13 @@ export const Toolbar = ({ editor, project }: Props) => {
                     style={tw.style(`h-[20px] w-[20px]`, {
                       tintColor: item.isActive({ editor, editorState, project })
                         ? color.white
-                        : color.secondary,
+                        : item.isDisabled({
+                              editor,
+                              editorState,
+                              project,
+                            })
+                          ? chroma(color.secondary).alpha(0.3).hex()
+                          : color.secondary,
                     })}
                   />
                 </Center>
