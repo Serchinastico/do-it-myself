@@ -1,8 +1,13 @@
 import { ProjectColorId } from "@app/domain/project/colors";
 import { ProjectTagId } from "@app/domain/project/tags";
+import { Tagged } from "@madeja-studio/cepillo";
+
+type ImageAttachment = Tagged<"image", { uri: string }>;
+
+type Attachment = ImageAttachment;
 
 export interface Project {
-  attachments?: object;
+  attachments?: { items: Attachment[] };
   colorId: ProjectColorId;
   description?: string;
   id: string;

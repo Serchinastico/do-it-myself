@@ -29,6 +29,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
         onToolPress={(tool, project) => {
           switch (tool) {
             case "attachments":
+              navigation.navigate("attachments", { projectId: project.id });
               break;
             case "manual":
               navigation.navigate("manual", { projectId: project.id });

@@ -5,6 +5,7 @@ import {
   EditProjectScreen,
   ProjectsScreen,
 } from "@app/features/projects/screens";
+import { AttachmentsScreen } from "@app/features/tools/AttachmentsScreen";
 import { ManualScreen } from "@app/features/tools/ManualScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -32,6 +33,7 @@ const RootNavigation = () => {
         options={{ presentation: "modal" }}
       />
       <Stack.Screen component={ManualScreen} name="manual" />
+      <Stack.Screen component={AttachmentsScreen} name="attachments" />
       <Stack.Screen
         component={ImageViewerScreen}
         name="imageViewer"
