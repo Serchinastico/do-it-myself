@@ -1,6 +1,6 @@
 import { Button } from "@app/core/components/Button";
 import { t } from "@lingui/macro";
-import { Column } from "@madeja-studio/telar";
+import { Column, SafeAreaView } from "@madeja-studio/telar";
 import Constants from "expo-constants";
 import { Text } from "react-native";
 
@@ -11,8 +11,8 @@ interface Props {
 
 export const ErrorScreen = ({ error, resetError }: Props) => {
   return (
-    <Column style={tw`center justify-between`}>
-      <Column style={tw`center`}>
+    <SafeAreaView style={tw`flex-1 justify-between px-4`}>
+      <Column style={tw`flex-1`}>
         <Text style={tw`h1`}>{t`Something went wrong`}</Text>
         <Text
           style={tw`body mt-2`}
@@ -24,6 +24,6 @@ export const ErrorScreen = ({ error, resetError }: Props) => {
       </Column>
 
       <Button hasHapticFeedback onPress={() => resetError()} text={t`Reset`} />
-    </Column>
+    </SafeAreaView>
   );
 };

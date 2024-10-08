@@ -1,7 +1,9 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { Header } from "@app/features/image-viewer/components/Header";
+import { ZoomableImage } from "@app/features/image-viewer/components/ZoomableImage";
 import * as FileSystem from "expo-file-system";
-import { Image, StatusBar, View } from "react-native";
+import { useState } from "react";
+import { StatusBar, View } from "react-native";
 import PagerView from "react-native-pager-view";
 
 export const ImageViewerScreen = ({
@@ -9,21 +11,30 @@ export const ImageViewerScreen = ({
   route,
 }: RootScreenProps<"imageViewer">) => {
   const { imageFileNames, initialImageIndex } = route.params;
+  const [page, setPage] = useState(0);
 
   return (
     <View style={tw`flex-1 bg-secondary`}>
-      <Header onClose={() => navigation.goBack()} />
-
       <StatusBar barStyle="light-content" />
 
-      <PagerView initialPage={initialImageIndex} overdrag style={tw`flex-1`}>
+      <Header
+        onClose={() => navigation.goBack()}
+        page={{
+          current: page + 1 /* 1-based index */,
+          total: imageFileNames.length,
+        }}
+      />
+
+      <PagerView
+        initialPage={initialImageIndex}
+        onPageSelected={(event) => setPage(event.nativeEvent.position)}
+        overdrag
+        style={tw`flex-1`}
+      >
         {imageFileNames.map((imageFileName) => (
-          <Image
+          <ZoomableImage
             key={imageFileName}
-            source={{
-              uri: `${FileSystem.documentDirectory}${imageFileName}`,
-            }}
-            style={tw`w-100 contain`}
+            uri={`${FileSystem.documentDirectory}${imageFileName}`}
           />
         ))}
       </PagerView>

@@ -35,7 +35,10 @@ const RootNavigation = () => {
       <Stack.Screen
         component={ImageViewerScreen}
         name="imageViewer"
-        options={{ presentation: "fullScreenModal" }}
+        options={{
+          animationDuration: 200,
+          gestureDirection: "vertical",
+        }}
       />
     </Stack.Navigator>
   );
