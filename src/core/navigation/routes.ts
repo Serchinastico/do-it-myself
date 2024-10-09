@@ -9,6 +9,7 @@ export type RootNavigationParamList = {
   imageViewer: { imagePaths: string[]; initialImageIndex: number };
   manual: { projectId: string };
   projects: undefined;
+  worklog: { projectId: string };
 };
 
 type RootNavigationScreenProps = NativeStackScreenProps<

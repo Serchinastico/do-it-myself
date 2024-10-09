@@ -13,6 +13,8 @@ import { View } from "react-native";
 import { AttachmentImage } from "./components/attachments/AttachmentImage";
 import { ToolHeader } from "./components/headers";
 
+const NUM_COLUMNS = 2;
+
 export const AttachmentsScreen = ({
   navigation,
   route,
@@ -67,12 +69,13 @@ export const AttachmentsScreen = ({
           contentContainerStyle={tw`pb-28 px-4`}
           data={attachments}
           estimatedItemSize={200}
-          numColumns={2}
+          numColumns={NUM_COLUMNS}
           renderItem={({ item }) => {
             switch (item.tag) {
               case "image":
                 return (
                   <AttachmentImage
+                    colSpan={NUM_COLUMNS}
                     image={item}
                     onDelete={() => onDeleteAttachment(item)}
                     onPress={() =>

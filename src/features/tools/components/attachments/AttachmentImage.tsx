@@ -6,19 +6,26 @@ import { Dimensions, Image, View } from "react-native";
 import * as ContextMenu from "zeego/context-menu";
 
 interface Props {
+  colSpan: number;
   image: LocalImage;
   onDelete: OnPress;
   onPress: OnPress;
   tint: string;
 }
 
-export const AttachmentImage = ({ image, onDelete, onPress, tint }: Props) => {
+export const AttachmentImage = ({
+  colSpan,
+  image,
+  onDelete,
+  onPress,
+  tint,
+}: Props) => {
   const { width } = Dimensions.get("screen");
-  const imageWidth = (width - 48) / 2;
+  const imageWidth = (width - 48) / colSpan;
   const imageHeight = imageWidth * (image.height / image.width);
 
   return (
-    <ContextMenu.Root style={tw`rounded-card`}>
+    <ContextMenu.Root style={tw`rounded-card my-1`}>
       <ContextMenu.Trigger>
         <Center style={tw`pb-1.5 relative`}>
           <Button.Container
