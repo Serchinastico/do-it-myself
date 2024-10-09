@@ -1,11 +1,11 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
-import { derivedAtoms } from "@app/core/storage/state";
+import { atoms, derivedAtoms } from "@app/core/storage/state";
 import { EditedProject } from "@app/domain/project/project";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
-import { ToolRemovalConfirmationDialog } from "@app/features/projects/components/dialogs/ToolRemovalConfirmationDialog";
+import { Dialog } from "@app/features/projects/components/dialogs";
 import { t } from "@lingui/macro";
 import { ProjectHeader } from "features/projects/components/headers";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { unwrap } from "jotai/utils";
 import { useCallback, useState } from "react";
 import { ActivityIndicator, StatusBar, View } from "react-native";
@@ -17,13 +17,16 @@ export const EditProjectScreen = ({
 }: RootScreenProps<"editProject">) => {
   const { projectId } = route.params;
 
+  const setProjects = useSetAtom(atoms.projects);
   const [project, setProject] = useAtom(
     unwrap(derivedAtoms.projectAtomFamily(projectId))
   );
   const [editedProject, setEditedProject] = useState<
     EditedProject | undefined
   >();
-  const [isConfirmationDialogVisible, setIsConfirmationDialogVisible] =
+  const [isToolRemovalDialogVisible, setIsToolRemovalDialogVisible] =
+    useState(false);
+  const [isProjectDeletionDialogVisible, setIsProjectDeletionDialogVisible] =
     useState(false);
 
   const onProjectSave = useCallback(
@@ -36,7 +39,7 @@ export const EditProjectScreen = ({
         project.attachments && !editedProject.attachments;
 
       if (isRemovingManual || isRemovingWorklog || isRemovingAttachments) {
-        setIsConfirmationDialogVisible(true);
+        setIsToolRemovalDialogVisible(true);
         setEditedProject(editedProject);
       } else {
         setProject(editedProject);
@@ -45,6 +48,15 @@ export const EditProjectScreen = ({
     },
     [project, setProject]
   );
+
+  const onProjectDelete = useCallback(async () => {
+    invariant(project);
+
+    await setProjects(async (projects) =>
+      (await projects).filter((p) => p.id !== project.id)
+    );
+    navigation.goBack();
+  }, [project]);
 
   if (!project) {
     /**
@@ -63,25 +75,33 @@ export const EditProjectScreen = ({
 
       <ProjectDetails
         autoFocus={false}
+        hasDeleteButton
         initialColorId={project.colorId}
         initialDescription={project.description}
         initialName={project.name}
         initialWantsAttachments={project.attachments !== undefined}
         initialWantsManual={project.manual !== undefined}
         initialWantsWorklog={project.worklog !== undefined}
+        onProjectDelete={() => setIsProjectDeletionDialogVisible(true)}
         onProjectSave={onProjectSave}
-        saveButtonText={t`Save project`}
+        saveButtonText={t`Save`}
       />
 
-      <ToolRemovalConfirmationDialog
-        isVisible={isConfirmationDialogVisible}
+      <Dialog.ToolRemoval
+        isVisible={isToolRemovalDialogVisible}
         onAccept={() => {
           invariant(editedProject);
 
           setProject(editedProject);
           navigation.goBack();
         }}
-        onClose={() => setIsConfirmationDialogVisible(false)}
+        onClose={() => setIsToolRemovalDialogVisible(false)}
+      />
+
+      <Dialog.ProjectDeletion
+        isVisible={isProjectDeletionDialogVisible}
+        onAccept={onProjectDelete}
+        onClose={() => setIsProjectDeletionDialogVisible(false)}
       />
     </View>
   );

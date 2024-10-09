@@ -12,13 +12,17 @@ import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
 import { t } from "@lingui/macro";
-import { Column, IconReference } from "@madeja-studio/telar";
+import { Column, IconReference, OnPress, Row } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai/index";
-import { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { ScrollView, TextInput } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-interface Props {
+type DeleteProps =
+  | { hasDeleteButton: true; onProjectDelete: OnPress }
+  | { hasDeleteButton?: false };
+
+type Props = {
   autoFocus: boolean;
   initialColorId: ProjectColorId;
   initialDescription?: string;
@@ -29,7 +33,7 @@ interface Props {
   onProjectSave: (project: EditedProject) => Promise<void> | void;
   saveButtonIcon?: IconReference;
   saveButtonText: string;
-}
+} & DeleteProps;
 
 export const ProjectDetails = ({
   autoFocus,
@@ -42,6 +46,7 @@ export const ProjectDetails = ({
   onProjectSave,
   saveButtonIcon,
   saveButtonText,
+  ...props
 }: Props) => {
   const [name, setName] = useState(initialName ?? "");
   const [description, setDescription] = useState(initialDescription);
@@ -95,7 +100,7 @@ export const ProjectDetails = ({
     }
 
     await onProjectSave({
-      attachments: wantsAttachments ? {} : undefined,
+      attachments: wantsAttachments ? { items: [] } : undefined,
       colorId,
       description,
       manual: wantsManual ? INITIAL_MANUAL : undefined,
@@ -163,12 +168,20 @@ export const ProjectDetails = ({
           wantsWorklog={wantsWorklog}
         />
 
-        <Button
-          icon={saveButtonIcon}
-          onPress={onPressSave}
-          style={[tw`center mt-6`, { marginBottom: bottom }]}
-          text={saveButtonText}
-        />
+        <Row style={[tw`center mt-6 gap-4`, { marginBottom: bottom }]}>
+          <Button
+            icon={saveButtonIcon}
+            onPress={onPressSave}
+            text={saveButtonText}
+          />
+          {props.hasDeleteButton && (
+            <Button
+              onPress={props.onProjectDelete}
+              text={t`Delete`}
+              variant="text"
+            />
+          )}
+        </Row>
       </Column>
     </ScrollView>
   );
