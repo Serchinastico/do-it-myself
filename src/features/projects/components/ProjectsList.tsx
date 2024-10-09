@@ -20,6 +20,8 @@ export const ProjectsList = ({
       ListEmptyComponent={<EmptyProjects />}
       contentContainerStyle={tw`pb-28 px-4`}
       data={projects}
+      estimatedItemSize={195}
+      keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <ProjectCard
           onEditProjectPress={onEditProjectPress}
@@ -27,7 +29,6 @@ export const ProjectsList = ({
           project={item}
         />
       )}
-      style={tw`px-4`}
     />
   );
 };

@@ -81,11 +81,11 @@ export const ManualScreen = ({
       invariant(node);
 
       const images = node.attrs["images"] as { fileName: string }[];
-      const imageFileNames = images.map(({ fileName }) => fileName);
-      const initialImageIndex = imageFileNames.indexOf(fileName);
+      const imagePaths = images.map(({ fileName }) => fileName);
+      const initialImageIndex = imagePaths.indexOf(fileName);
 
       navigation.navigate("imageViewer", {
-        imageFileNames,
+        imagePaths,
         initialImageIndex,
       });
     },

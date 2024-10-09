@@ -11,16 +11,14 @@ interface Props {
 }
 
 export const Header = ({ onClose, page }: Props) => {
-  const { bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   return (
     <Row
-      style={tw.style(
-        `mt-[${bottom}px] center absolute left-0 right-0 top-0 z-10`,
-        {
-          backgroundColor: chroma(color.secondary).alpha(0.7).hex(),
-        }
-      )}
+      style={tw.style(`center absolute inset-x-0 z-10`, {
+        backgroundColor: chroma(color.secondary).alpha(0.7).hex(),
+        top,
+      })}
     >
       <Text style={tw.style(`button text-center ml-12 text-white flex-1`)}>
         {t`${page.current} of ${page.total}`}

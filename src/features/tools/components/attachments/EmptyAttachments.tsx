@@ -1,4 +1,3 @@
-import { Button } from "@app/core/components/Button";
 import Illustration from "@assets/img/illustration.svg";
 import { t } from "@lingui/macro";
 import { Center, Column } from "@madeja-studio/telar";
@@ -20,11 +19,6 @@ export const EmptyAttachments = () => {
           style={tw`button bg-primary text-white mt-4`}
         >{t`Add some media to the project now`}</Text>
       </Column>
-
-      <Button
-        icon={{ family: "Feather", name: "plus" }}
-        text={t`Add attachment`}
-      />
     </Column>
   );
 };

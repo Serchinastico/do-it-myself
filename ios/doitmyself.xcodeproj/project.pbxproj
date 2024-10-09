@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0837773A70BD49F3B26771E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 368EE810AE7C4EEE9CB20900 /* InfoPlist.strings */; };
+		0E4483D88CC64716A4C61E2A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9A489F813F544AF9FB74F68 /* InfoPlist.strings */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2EF1498E7BDD402A82BCA072 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AF67C4610D4CCC8A467BA4 /* noop-file.swift */; };
-		33D172B8EACB47D8BDCE24B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C15D186D765140CAB22AB73E /* InfoPlist.strings */; };
+		30863A8FEB0A4535A714C504 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D7FADC0F3482882F95E6B /* noop-file.swift */; };
+		326FAA173792C44EE7F4EA72 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7C8C86F2503D965340753E7C /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		446BAD2DFF66EB9C42B64599 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3D3097895BD2E4F17149D43E /* PrivacyInfo.xcprivacy */; };
 		96905EF65AED1B983A6B3ABC /* libPods-doitmyself.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-doitmyself.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		EF0E51BD410B4EA89EB446C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF9BAF249F544E1493BC96EE /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,18 +27,18 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = doitmyself/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = doitmyself/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = doitmyself/main.m; sourceTree = "<group>"; };
-		3D3097895BD2E4F17149D43E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = doitmyself/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		368EE810AE7C4EEE9CB20900 /* InfoPlist.strings */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-doitmyself.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-doitmyself.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-doitmyself.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doitmyself.debug.xcconfig"; path = "Target Support Files/Pods-doitmyself/Pods-doitmyself.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-doitmyself.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doitmyself.release.xcconfig"; path = "Target Support Files/Pods-doitmyself/Pods-doitmyself.release.xcconfig"; sourceTree = "<group>"; };
+		7C8C86F2503D965340753E7C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = doitmyself/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = doitmyself/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B1AF67C4610D4CCC8A467BA4 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "doitmyself/noop-file.swift"; sourceTree = "<group>"; };
+		B1270D8584DA40A59A4F17AB /* doitmyself-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "doitmyself-Bridging-Header.h"; path = "doitmyself/doitmyself-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C15D186D765140CAB22AB73E /* InfoPlist.strings */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D9AA9114414242FB8A77CBEF /* doitmyself-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "doitmyself-Bridging-Header.h"; path = "doitmyself/doitmyself-Bridging-Header.h"; sourceTree = "<group>"; };
+		CF7D7FADC0F3482882F95E6B /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "doitmyself/noop-file.swift"; sourceTree = "<group>"; };
+		D9A489F813F544AF9FB74F68 /* InfoPlist.strings */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-doitmyself/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		FF9BAF249F544E1493BC96EE /* InfoPlist.strings */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +63,9 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				B1AF67C4610D4CCC8A467BA4 /* noop-file.swift */,
-				D9AA9114414242FB8A77CBEF /* doitmyself-Bridging-Header.h */,
-				3D3097895BD2E4F17149D43E /* PrivacyInfo.xcprivacy */,
+				CF7D7FADC0F3482882F95E6B /* noop-file.swift */,
+				B1270D8584DA40A59A4F17AB /* doitmyself-Bridging-Header.h */,
+				7C8C86F2503D965340753E7C /* PrivacyInfo.xcprivacy */,
 			);
 			name = doitmyself;
 			sourceTree = "<group>";
@@ -77,15 +77,6 @@
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-doitmyself.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7F4AA195D17C49F69CF1234D /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				FF9BAF249F544E1493BC96EE /* InfoPlist.strings */,
-			);
-			name = en.lproj;
-			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -126,24 +117,33 @@
 			name = doitmyself;
 			sourceTree = "<group>";
 		};
+		97A23422AE644282B7BB9121 /* es.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				368EE810AE7C4EEE9CB20900 /* InfoPlist.strings */,
+			);
+			name = es.lproj;
+			path = "";
+			sourceTree = "<group>";
+		};
+		AD66A603358844179FE8AA39 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				D9A489F813F544AF9FB74F68 /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			path = "";
+			sourceTree = "<group>";
+		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
 				BB2F792C24A3F905000567C9 /* Expo.plist */,
-				7F4AA195D17C49F69CF1234D /* en.lproj */,
-				C1842D6A3EE9466C9F9DA3E9 /* es.lproj */,
+				AD66A603358844179FE8AA39 /* en.lproj */,
+				97A23422AE644282B7BB9121 /* es.lproj */,
 			);
 			name = Supporting;
 			path = doitmyself/Supporting;
-			sourceTree = "<group>";
-		};
-		C1842D6A3EE9466C9F9DA3E9 /* es.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				C15D186D765140CAB22AB73E /* InfoPlist.strings */,
-			);
-			name = es.lproj;
-			path = "";
 			sourceTree = "<group>";
 		};
 		D65327D7A22EEC0BE12398D9 /* Pods */ = {
@@ -171,13 +171,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "doitmyself" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				4384F66B74F0E8037B45E4F5 /* [Expo] Configure project */,
+				D9E3F5A1752AA6E1A1874051 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				FCB9AE50559EC1FF0A37EEF3 /* [CP] Embed Pods Frameworks */,
+				0C8C17D712F0B4D7629F5474 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,9 +229,9 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				EF0E51BD410B4EA89EB446C8 /* InfoPlist.strings in Resources */,
-				33D172B8EACB47D8BDCE24B3 /* InfoPlist.strings in Resources */,
-				446BAD2DFF66EB9C42B64599 /* PrivacyInfo.xcprivacy in Resources */,
+				0E4483D88CC64716A4C61E2A /* InfoPlist.strings in Resources */,
+				0837773A70BD49F3B26771E1 /* InfoPlist.strings in Resources */,
+				326FAA173792C44EE7F4EA72 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,24 +275,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4384F66B74F0E8037B45E4F5 /* [Expo] Configure project */ = {
+		0C8C17D712F0B4D7629F5474 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-doitmyself/Pods-doitmyself-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
 			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-doitmyself/expo-configure-project.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-doitmyself/Pods-doitmyself-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -322,23 +321,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-doitmyself/Pods-doitmyself-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FCB9AE50559EC1FF0A37EEF3 /* [CP] Embed Pods Frameworks */ = {
+		D9E3F5A1752AA6E1A1874051 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-doitmyself/Pods-doitmyself-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-doitmyself/Pods-doitmyself-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-doitmyself/expo-configure-project.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -350,7 +350,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				2EF1498E7BDD402A82BCA072 /* noop-file.swift in Sources */,
+				30863A8FEB0A4535A714C504 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

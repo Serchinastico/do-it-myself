@@ -14,9 +14,7 @@ const addImageToEditor = async ({
     throw new Error(result.message);
   }
 
-  const images = result.uris.map((uri) => ({
-    fileName: uri,
-  }));
+  const images = result.images.map(({ path }) => ({ fileName: path }));
 
   editor.setLocalImages({ groupId: randomId(), images });
 };

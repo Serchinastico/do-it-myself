@@ -10,7 +10,7 @@ export const ImageViewerScreen = ({
   navigation,
   route,
 }: RootScreenProps<"imageViewer">) => {
-  const { imageFileNames, initialImageIndex } = route.params;
+  const { imagePaths, initialImageIndex } = route.params;
   const [page, setPage] = useState(0);
 
   return (
@@ -21,7 +21,7 @@ export const ImageViewerScreen = ({
         onClose={() => navigation.goBack()}
         page={{
           current: page + 1 /* 1-based index */,
-          total: imageFileNames.length,
+          total: imagePaths.length,
         }}
       />
 
@@ -31,7 +31,7 @@ export const ImageViewerScreen = ({
         overdrag
         style={tw`flex-1`}
       >
-        {imageFileNames.map((imageFileName) => (
+        {imagePaths.map((imageFileName) => (
           <ZoomableImage
             key={imageFileName}
             uri={`${FileSystem.documentDirectory}${imageFileName}`}

@@ -1,11 +1,15 @@
-import { FlashList } from "@app/core/components/FlashList";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
+import { ImageSource, getImagesFrom } from "@app/core/utils/imagePicker";
+import { AddAttachmentButton } from "@app/features/tools/components/attachments/AddAttachmentButton";
 import { EmptyAttachments } from "@app/features/tools/components/attachments/EmptyAttachments";
-import { SafeAreaView } from "@madeja-studio/telar";
+import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
+import { MasonryFlashList } from "@shopify/flash-list";
 import { useAtom } from "jotai/index";
-import { Text, View } from "react-native";
+import { useCallback, useMemo } from "react";
+import { View } from "react-native";
 
+import { AttachmentImage } from "./components/attachments/AttachmentImage";
 import { ToolHeader } from "./components/headers";
 
 export const AttachmentsScreen = ({
@@ -16,27 +20,63 @@ export const AttachmentsScreen = ({
   const [project, setProject] = useAtom(
     derivedAtoms.projectAtomFamily(projectId)
   );
-  const attachments = project.attachments?.items ?? [];
+  const attachments = useMemo(
+    () => project.attachments?.items ?? [],
+    [project]
+  );
+
+  const onAddAttachment = useCallback(
+    async (source: ImageSource) => {
+      const result = await getImagesFrom(source);
+
+      if (result.tag === "error") {
+        throw new Error(result.message);
+      }
+
+      const editedItems = [
+        ...attachments,
+        ...result.images.map((image) => ({
+          ...image,
+          tag: "image" as const,
+        })),
+      ];
+      setProject({ ...project, attachments: { items: editedItems } });
+    },
+    [project, attachments]
+  );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
       <ToolHeader.Attachments onClose={() => navigation.goBack()} />
 
       <View style={tw`flex-1`}>
-        <FlashList
+        <MasonryFlashList
           ListEmptyComponent={<EmptyAttachments />}
           ListFooterComponentStyle={tw`flex-1`}
-          contentContainerStyle={tw`pb-28`}
+          contentContainerStyle={tw`pb-28 px-4`}
           data={attachments}
-          estimatedItemSize={200}
+          estimatedItemSize={168}
+          numColumns={2}
           renderItem={({ item }) => {
             switch (item.tag) {
               case "image":
-                return <Text>{item.uri}</Text>;
+                return (
+                  <AttachmentImage
+                    image={item}
+                    onPress={() =>
+                      navigation.navigate("imageViewer", {
+                        imagePaths: [item.path],
+                        initialImageIndex: 0,
+                      })
+                    }
+                  />
+                );
             }
           }}
         />
       </View>
+
+      <AddAttachmentButton onAddAttachment={onAddAttachment} />
     </SafeAreaView>
   );
 };

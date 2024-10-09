@@ -1,3 +1,4 @@
+import { LocalImage } from "@app/domain/project";
 import { t } from "@lingui/macro";
 import { Tagged, randomId } from "@madeja-studio/cepillo";
 import * as FileSystem from "expo-file-system";
@@ -18,7 +19,7 @@ interface InternalImagePickerSuccess {
 }
 
 interface ImagePickerSuccess {
-  uris: string[];
+  images: LocalImage[];
 }
 
 interface ImagePickerError {
@@ -63,7 +64,7 @@ const IMAGES_DIRECTORY = "Image";
  * or undefined if the asset is not provided.
  */
 const storeImagesLocally = async (assets: ImagePickerAsset[]) => {
-  const relativePaths: string[] = [];
+  const images: LocalImage[] = [];
 
   for (const asset of assets) {
     const originalUri = asset.uri;
@@ -79,10 +80,14 @@ const storeImagesLocally = async (assets: ImagePickerAsset[]) => {
     await FileSystem.copyAsync({ from: originalUri, to: absolutePath });
 
     // Return the relative path to preserve the image between app updates
-    relativePaths.push(relativePath);
+    images.push({
+      height: asset.height,
+      path: relativePath,
+      width: asset.width,
+    });
   }
 
-  return relativePaths;
+  return images;
 };
 
 /**
@@ -191,8 +196,8 @@ export const getImagesFrom = async (
     return result;
   }
 
-  const uris = await storeImagesLocally(result.assets);
-  return { tag: "success", uris };
+  const images = await storeImagesLocally(result.assets);
+  return { images, tag: "success" };
 };
 
 export type ImageSource = "camera" | "media_library";
