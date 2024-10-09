@@ -1,7 +1,7 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { ImageSource, getImagesFrom } from "@app/core/utils/imagePicker";
-import { getProjectColorById } from "@app/domain/project";
+import { Attachment, getProjectColorById } from "@app/domain/project";
 import { AddAttachmentButton } from "@app/features/tools/components/attachments/AddAttachmentButton";
 import { EmptyAttachments } from "@app/features/tools/components/attachments/EmptyAttachments";
 import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
@@ -24,6 +24,16 @@ export const AttachmentsScreen = ({
   const attachments = useMemo(
     () => project.attachments?.items ?? [],
     [project]
+  );
+
+  const onDeleteAttachment = useCallback(
+    (attachment: Attachment) => {
+      const updatedAttachments = attachments.filter(
+        (item) => item.id !== attachment.id
+      );
+      setProject({ ...project, attachments: { items: updatedAttachments } });
+    },
+    [project, attachments]
   );
 
   const onAddAttachment = useCallback(
@@ -64,6 +74,7 @@ export const AttachmentsScreen = ({
                 return (
                   <AttachmentImage
                     image={item}
+                    onDelete={() => onDeleteAttachment(item)}
                     onPress={() =>
                       navigation.navigate("imageViewer", {
                         imagePaths: [item.path],

@@ -82,6 +82,7 @@ const storeImagesLocally = async (assets: ImagePickerAsset[]) => {
     // Return the relative path to preserve the image between app updates
     images.push({
       height: asset.height,
+      id: randomId(),
       path: relativePath,
       width: asset.width,
     });
