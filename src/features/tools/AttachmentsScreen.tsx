@@ -1,6 +1,7 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { ImageSource, getImagesFrom } from "@app/core/utils/imagePicker";
+import { getProjectColorById } from "@app/domain/project";
 import { AddAttachmentButton } from "@app/features/tools/components/attachments/AddAttachmentButton";
 import { EmptyAttachments } from "@app/features/tools/components/attachments/EmptyAttachments";
 import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
@@ -55,7 +56,7 @@ export const AttachmentsScreen = ({
           ListFooterComponentStyle={tw`flex-1`}
           contentContainerStyle={tw`pb-28 px-4`}
           data={attachments}
-          estimatedItemSize={168}
+          estimatedItemSize={200}
           numColumns={2}
           renderItem={({ item }) => {
             switch (item.tag) {
@@ -69,6 +70,7 @@ export const AttachmentsScreen = ({
                         initialImageIndex: 0,
                       })
                     }
+                    tint={getProjectColorById(project.colorId).hex}
                   />
                 );
             }
