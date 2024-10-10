@@ -17,7 +17,6 @@ export const CreateProjectScreen = ({
 
   const onProjectSave = useCallback(
     async (project: EditedProject) => {
-      console.log(project);
       await setProjects(async (projects) => [
         ...(await projects),
         { ...project, id: randomId() },

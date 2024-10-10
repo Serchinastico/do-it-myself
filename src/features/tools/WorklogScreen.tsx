@@ -32,7 +32,7 @@ export const WorklogScreen = ({
   useEffect(() => {
     if (!html) return;
 
-    setProject({ worklog: { html } });
+    setProject({ worklog: { contentHtml: html } });
   }, [html]);
 
   return (

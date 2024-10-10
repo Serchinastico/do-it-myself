@@ -16,10 +16,10 @@ export interface Project {
   colorId: ProjectColorId;
   description?: string;
   id: string;
-  manual?: { html: string };
+  manual?: { contentHtml: string };
   name: string;
   tagIds: ProjectTagId[];
-  worklog?: { html: string };
+  worklog?: { contentHtml: string };
 }
 
 export type EditedProject = Omit<Project, "id">;

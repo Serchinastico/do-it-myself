@@ -54,7 +54,8 @@ export const Title = Node.create<TitleOptions>({
     return [
       {
         getAttrs: (dom) => ({
-          backgroundColor: dom.querySelector(".skew")?.style.backgroundColor,
+          backgroundColor:
+            dom.querySelector<HTMLDivElement>(".skew")?.style.backgroundColor,
         }),
         tag: ".title",
       },

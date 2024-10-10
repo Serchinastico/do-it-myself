@@ -47,7 +47,8 @@ export const ManualScreen = ({
   useEffect(() => {
     if (!html) return;
 
-    setProject({ manual: { html } });
+    console.log(html);
+    setProject({ manual: { contentHtml: html } });
   }, [html]);
 
   return (

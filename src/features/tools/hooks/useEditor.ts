@@ -9,7 +9,7 @@ import {
   Project,
   ToolType,
   getProjectColorById,
-  getToolHtml,
+  getToolEditorContent,
 } from "@app/domain/project";
 import { editorHtml as manualEditorHtml } from "@app/editor-web/build-manual/editorHtml";
 import {
@@ -105,16 +105,13 @@ export const useEditor = ({
     customSource: toolType === "manual" ? manualEditorHtml : worklogEditorHtml,
     dynamicHeight: true,
     editable: isEditing,
-    initialContent: getToolHtml({ project, toolType })!,
+    initialContent: getToolEditorContent({ project, toolType })!,
   });
-  const html = useEditorContent(editor, { type: "html" });
-  const json = useEditorContent(editor, { type: "json" });
 
-  useLocalImagePressHandler({
-    isEditing,
-    json: json as JsonDocument,
-    navigation,
-  });
+  const html = useEditorContent(editor, { type: "html" });
+  const json = useEditorContent(editor, { type: "json" }) as JsonDocument;
+
+  useLocalImagePressHandler({ isEditing, json, navigation });
 
   return { editor, html, htmlPath };
 };

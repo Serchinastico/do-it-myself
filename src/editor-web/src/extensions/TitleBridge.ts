@@ -41,7 +41,7 @@ export const TitleBridge = new BridgeExtension<
   },
   extendEditorState: (editor) => {
     return {
-      canToggleTitle: editor.can().toggleTitle(),
+      canToggleTitle: editor.can().toggleTitle({ backgroundColor: "#000" }),
       isTitleActive: editor.isActive("title"),
     };
   },

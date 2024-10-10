@@ -4,9 +4,10 @@ import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import {
   EditedProject,
-  INITIAL_MANUAL,
   ProjectColorId,
   ToolType,
+  getInitialManual,
+  getInitialWorklog,
 } from "@app/domain/project";
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
@@ -103,10 +104,10 @@ export const ProjectDetails = ({
       attachments: wantsAttachments ? { items: [] } : undefined,
       colorId,
       description,
-      manual: wantsManual ? INITIAL_MANUAL : undefined,
+      manual: wantsManual ? getInitialManual(colorId) : undefined,
       name,
       tagIds: selectedTagIds,
-      worklog: wantsWorklog ? {} : undefined,
+      worklog: wantsWorklog ? getInitialWorklog(colorId) : undefined,
     });
   }, [
     name,
@@ -169,11 +170,6 @@ export const ProjectDetails = ({
         />
 
         <Row style={[tw`center mt-6 gap-4`, { marginBottom: bottom }]}>
-          <Button
-            icon={saveButtonIcon}
-            onPress={onPressSave}
-            text={saveButtonText}
-          />
           {props.hasDeleteButton && (
             <Button
               onPress={props.onProjectDelete}
@@ -181,6 +177,12 @@ export const ProjectDetails = ({
               variant="text"
             />
           )}
+
+          <Button
+            icon={saveButtonIcon}
+            onPress={onPressSave}
+            text={saveButtonText}
+          />
         </Row>
       </Column>
     </ScrollView>
