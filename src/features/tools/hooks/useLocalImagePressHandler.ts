@@ -1,7 +1,7 @@
 import { EventMessage } from "@app/core/event-bus/eventBus";
 import useEventBus from "@app/core/event-bus/useEventBus";
 import { RootNavigation } from "@app/core/navigation/routes";
-import { JsonDocument } from "@app/features/tools/hooks/useEditor";
+import { JsonDocument } from "@app/features/tools/hooks/useRichTextEditor";
 import invariant from "tiny-invariant";
 
 interface Props {

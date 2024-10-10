@@ -12,10 +12,7 @@ import {
   getToolEditorContent,
 } from "@app/domain/project";
 import { editorHtml as manualEditorHtml } from "@app/editor-web/build-manual/editorHtml";
-import {
-  editorHtml,
-  editorHtml as worklogEditorHtml,
-} from "@app/editor-web/build-worklog/editorHtml";
+import { editorHtml as worklogEditorHtml } from "@app/editor-web/build-worklog/editorHtml";
 import { LocalImageBridge, TitleBridge } from "editor-web/src/extensions";
 import * as FileSystem from "expo-file-system";
 import { useCallback, useEffect, useState } from "react";
@@ -66,13 +63,16 @@ const getHtmlPath = (toolType: ToolType) =>
  *   toolType: "manual"
  * });
  */
-export const useEditor = ({
+export const useRichTextEditor = ({
   isEditing,
   navigation,
   project,
   toolType,
 }: Props) => {
   const htmlPath = getHtmlPath(toolType);
+  const editorHtml =
+    toolType === "manual" ? manualEditorHtml : worklogEditorHtml;
+
   const [htmlFileStatus, setHtmlFileStatus] =
     useState<HtmlFileStatus>("not-ready");
 
@@ -102,7 +102,7 @@ export const useEditor = ({
         imagesRootPath: `${FileSystem.documentDirectory}`,
       }),
     ],
-    customSource: toolType === "manual" ? manualEditorHtml : worklogEditorHtml,
+    customSource: editorHtml,
     dynamicHeight: true,
     editable: isEditing,
     initialContent: getToolEditorContent({ project, toolType })!,

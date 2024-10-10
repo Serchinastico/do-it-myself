@@ -10,7 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { Toolbar } from "./components/editor/Toolbar";
 import { ToolHeader } from "./components/headers";
-import { useEditor } from "./hooks/useEditor";
+import { useRichTextEditor } from "./hooks/useRichTextEditor";
 
 export const ManualScreen = ({
   navigation,
@@ -23,7 +23,7 @@ export const ManualScreen = ({
     derivedAtoms.projectAtomFamily(projectId)
   );
 
-  const { editor, html, htmlPath } = useEditor({
+  const { editor, html, htmlPath } = useRichTextEditor({
     isEditing,
     navigation,
     project,
