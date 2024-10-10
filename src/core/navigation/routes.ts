@@ -18,6 +18,7 @@ type RootNavigationScreenProps = NativeStackScreenProps<
 >["navigation"];
 
 export const useRootNavigation = useNavigation<RootNavigationScreenProps>;
+export type RootNavigation = ReturnType<typeof useRootNavigation>;
 
 export type RootScreenProps<TRoute extends keyof RootNavigationParamList> =
   ScreenProps<RootNavigationParamList, TRoute>;

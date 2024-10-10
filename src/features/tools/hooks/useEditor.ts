@@ -4,24 +4,31 @@ import {
   useEditorContent,
 } from "@10play/tentap-editor";
 import eventBus, { EventMessage } from "@app/core/event-bus/eventBus";
-import { Project, getProjectColorById, getToolHtml } from "@app/domain/project";
-import { editorHtml } from "@app/editor-web/build/editorHtml";
-import { LocalImageBridge, TitleBridge } from "@app/editor-web/extensions";
+import {
+  Project,
+  ToolType,
+  getProjectColorById,
+  getToolHtml,
+} from "@app/domain/project";
+import { editorHtml as manualEditorHtml } from "@app/editor-web/build-manual/editorHtml";
+import { editorHtml as worklogEditorHtml } from "@app/editor-web/build-worklog/editorHtml";
+import { LocalImageBridge, TitleBridge } from "editor-web/src/extensions";
 import * as FileSystem from "expo-file-system";
 
 interface Props {
   isEditing: boolean;
   project: Project;
+  toolType: ToolType;
 }
 
-type JsonDocument =
+export type JsonDocument =
   | {
       content: { attrs: Record<string, any>; type: string }[];
       type: "doc";
     }
   | undefined;
 
-export const useEditor = ({ isEditing, project }: Props) => {
+export const useEditor = ({ isEditing, project, toolType }: Props) => {
   const editor = useEditorBridge({
     autofocus: false,
     avoidIosKeyboard: true,
@@ -36,10 +43,10 @@ export const useEditor = ({ isEditing, project }: Props) => {
         imagesRootPath: `${FileSystem.documentDirectory}`,
       }),
     ],
-    customSource: editorHtml,
+    customSource: toolType === "manual" ? manualEditorHtml : worklogEditorHtml,
     dynamicHeight: true,
     editable: isEditing,
-    initialContent: getToolHtml({ project, toolType: "manual" })!,
+    initialContent: getToolHtml({ project, toolType })!,
   });
   const html = useEditorContent(editor, { type: "html" });
   const json = useEditorContent(editor, { type: "json" });

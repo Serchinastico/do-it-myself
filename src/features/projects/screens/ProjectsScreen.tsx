@@ -35,6 +35,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
               navigation.navigate("manual", { projectId: project.id });
               break;
             case "worklog":
+              navigation.navigate("worklog", { projectId: project.id });
               break;
           }
         }}

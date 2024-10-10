@@ -19,7 +19,7 @@ export interface Project {
   manual?: { html: string };
   name: string;
   tagIds: ProjectTagId[];
-  worklog?: object;
+  worklog?: { html: string };
 }
 
 export type EditedProject = Omit<Project, "id">;

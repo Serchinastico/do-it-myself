@@ -1,22 +1,20 @@
 import { RichText } from "@10play/tentap-editor";
-import { EventMessage } from "@app/core/event-bus/eventBus";
-import useEventBus from "@app/core/event-bus/useEventBus";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { color } from "@app/core/theme/color";
-import { editorHtml } from "@app/editor-web/build/editorHtml";
+import { editorHtml } from "@app/editor-web/build-manual/editorHtml";
+import { useLocalImagePressHandler } from "@app/features/tools/hooks/useLocalImagePressHandler";
 import { SafeAreaView } from "@madeja-studio/telar";
 import * as FileSystem from "expo-file-system";
 import { StatusBar } from "expo-status-bar";
 import { useAtom } from "jotai";
 import { useCallback, useEffect, useState } from "react";
-import invariant from "tiny-invariant";
 
 import { Toolbar } from "./components/editor/Toolbar";
 import { ToolHeader } from "./components/headers";
 import { useEditor } from "./hooks/useEditor";
 
-const HTML_PATH = `${FileSystem.documentDirectory}index.html`;
+const HTML_PATH = `${FileSystem.documentDirectory}manual-index.html`;
 
 type HtmlFileStatus = "not-ready" | "ready" | "writing";
 
@@ -35,6 +33,7 @@ export const ManualScreen = ({
   const { editor, html, json } = useEditor({
     isEditing,
     project,
+    toolType: "manual",
   });
 
   const saveHtmlFileToDisk = useCallback(async (html: string) => {
@@ -68,29 +67,7 @@ export const ManualScreen = ({
     saveHtmlFileToDisk(editorHtml).then(() => setHtmlFileStatus("ready"));
   }, [htmlFileStatus]);
 
-  useEventBus(
-    EventMessage.LocalImagePress,
-    ({ fileName, groupId }) => {
-      if (isEditing) return;
-
-      const node = json?.content.find(
-        (node) =>
-          node.type === "local-image" && node.attrs["groupId"] === groupId
-      );
-
-      invariant(node);
-
-      const images = node.attrs["images"] as { fileName: string }[];
-      const imagePaths = images.map(({ fileName }) => fileName);
-      const initialImageIndex = imagePaths.indexOf(fileName);
-
-      navigation.navigate("imageViewer", {
-        imagePaths,
-        initialImageIndex,
-      });
-    },
-    [json, isEditing]
-  );
+  useLocalImagePressHandler({ isEditing, json, navigation });
 
   return (
     <SafeAreaView style={tw`bg-white`}>

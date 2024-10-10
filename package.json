@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "editor:dev": "vite --config ./src/editor-web/vite.config.ts",
-    "editor:build": "vite --config ./src/editor-web/vite.config.ts build && yarn editor:post-build",
-    "editor:post-build": "node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build/index.html",
+    "editor:build": "run-s editor:build:manual editor:build:worklog",
+    "editor:build:manual": "TOOL=manual vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-manual/index.html",
+    "editor:build:worklog": "TOOL=worklog vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-worklog/index.html",
     "i18n:compile": "lingui compile --typescript",
     "i18n:extract": "lingui extract",
     "lint": "run-s lint:expo lint:eslint",

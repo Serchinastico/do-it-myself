@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RichTextEditor</title>
+  <title>Do It Myself Editor</title>
 </head>
 <style>
     body {
@@ -24,6 +24,9 @@
     #root div .ProseMirror {
         height: 100%;
         overflow: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
     .ProseMirror:focus {
