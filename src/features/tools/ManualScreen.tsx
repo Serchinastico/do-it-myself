@@ -1,4 +1,5 @@
 import { RichText } from "@10play/tentap-editor";
+import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { color } from "@app/core/theme/color";
@@ -47,7 +48,6 @@ export const ManualScreen = ({
   useEffect(() => {
     if (!html) return;
 
-    console.log(html);
     setProject({ manual: { contentHtml: html } });
   }, [html]);
 
@@ -62,17 +62,19 @@ export const ManualScreen = ({
         onExportPress={() => {}}
       />
 
-      <RichText
-        allowFileAccess
-        allowFileAccessFromFileURLs
-        allowUniversalAccessFromFileURLs
-        allowingReadAccessToURL={`${FileSystem.documentDirectory}`}
-        containerStyle={tw`px-4 pt-4`}
-        editor={editor}
-        focusable={isEditing}
-        originWhitelist={["*"]}
-        source={{ uri: htmlPath }}
-      />
+      <KeyboardAvoidingView>
+        <RichText
+          allowFileAccess
+          allowFileAccessFromFileURLs
+          allowUniversalAccessFromFileURLs
+          allowingReadAccessToURL={`${FileSystem.documentDirectory}`}
+          containerStyle={tw`px-4 pt-4`}
+          editor={editor}
+          focusable={isEditing}
+          originWhitelist={["*"]}
+          source={{ uri: htmlPath }}
+        />
+      </KeyboardAvoidingView>
 
       <Toolbar editor={editor} project={project} />
     </SafeAreaView>

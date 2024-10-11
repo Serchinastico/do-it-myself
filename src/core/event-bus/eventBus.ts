@@ -6,7 +6,7 @@ export const EventMessage = {
 } as const;
 
 export type Events = {
-  [EventMessage.DatePress]: { id: string };
+  [EventMessage.DatePress]: { date: string; id: string };
   [EventMessage.LocalImagePress]: { fileName: string; groupId: string };
 };
 

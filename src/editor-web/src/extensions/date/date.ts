@@ -4,37 +4,79 @@ import { doNotDeletePlugin } from "../plugins/doNotDeletePlugin";
 
 export interface DateOptions {
   HTMLAttributes: Record<string, any>;
-  backgroundColor: string;
 }
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     date: {
-      /**
-       * Toggle a title
-       */
-      toggleDate: (attrs: ToggleDateProps) => ReturnType;
+      createDate: (attrs: CreateDateProps) => ReturnType;
+      setDate: (attrs: SetDateProps) => ReturnType;
     };
   }
 }
 
-export type ToggleDateProps = { backgroundColor: string; id: string };
-export type OnDateClickProps = { id: string };
+export type SetDateProps = {
+  /**
+   * In ISO-8601 format
+   * {@link https://en.wikipedia.org/wiki/ISO_8601}
+   */
+  date: string;
+  id: string;
+  text: string;
+};
+
+export type CreateDateProps = {
+  backgroundColor: string;
+  /**
+   * In ISO-8601 format
+   * {@link https://en.wikipedia.org/wiki/ISO_8601}
+   */
+  date: string;
+  id: string;
+  text: string;
+};
+
+export type OnDateClickProps = { date: string; id: string };
 
 export const Date = Node.create<DateOptions>({
   addAttributes() {
     return {
       backgroundColor: { default: "#F90" },
+      date: { default: "1970-01-01T01:00:00+01:00" },
       id: { default: "" },
+      text: { default: "Never" },
     };
   },
 
   addCommands() {
     return {
-      toggleDate:
-        (attrs: ToggleDateProps) =>
+      createDate:
+        (attrs: CreateDateProps) =>
         ({ commands }) => {
-          return commands.toggleNode(this.name, "paragraph", attrs);
+          return commands.insertContent({ attrs, type: this.name });
+        },
+      setDate:
+        (props: SetDateProps) =>
+        ({ dispatch, state }) => {
+          const { doc, tr } = state;
+
+          doc.descendants((node, pos) => {
+            if (node.type.name === "date" && node.attrs.id === props.id) {
+              // Replace the node attributes
+              tr.setNodeMarkup(pos, undefined, {
+                ...node.attrs,
+                date: props.date,
+                text: props.text,
+              });
+            }
+          });
+
+          if (tr.steps.length) {
+            dispatch?.(tr);
+            return true;
+          }
+
+          return false;
         },
     };
   },
@@ -42,13 +84,12 @@ export const Date = Node.create<DateOptions>({
   addOptions() {
     return {
       HTMLAttributes: {},
-      backgroundColor: "#F9A",
-      id: "",
     };
   },
   addProseMirrorPlugins() {
     return [doNotDeletePlugin("date")];
   },
+
   atom: true,
   content: "inline*",
   defining: true,
@@ -59,23 +100,27 @@ export const Date = Node.create<DateOptions>({
   parseHTML() {
     return [
       {
-        getAttrs: (dom) => ({
-          backgroundColor:
-            dom.querySelector<HTMLDivElement>(".skew")?.style.backgroundColor,
-          id: dom.dataset["id"],
-        }),
+        getAttrs: (dom) => {
+          const skew = dom.querySelector<HTMLDivElement>(".skew");
+          const content = dom.querySelector<HTMLHeadingElement>(".content");
+          return {
+            backgroundColor: skew?.style.backgroundColor,
+            date: content?.dataset["date"],
+            id: dom.dataset["id"],
+            text: content?.textContent,
+          };
+        },
         tag: ".date",
       },
     ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    const backgroundColor: string = HTMLAttributes.backgroundColor;
-    const id: string = HTMLAttributes.id;
+    const { backgroundColor, date, id, text } = HTMLAttributes;
 
     return [
       "div",
-      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+      mergeAttributes({
         class: "date",
         "data-click-event": "date",
         "data-id": id,
@@ -84,7 +129,7 @@ export const Date = Node.create<DateOptions>({
         "div",
         { class: "skew", style: `background-color: ${backgroundColor};` },
       ],
-      ["h1", { class: "content" }, 0],
+      ["h1", { class: "content", "data-date": date }, text],
     ];
   },
 

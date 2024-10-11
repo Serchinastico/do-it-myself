@@ -119,5 +119,5 @@ export const useRichTextEditor = ({
 
   useLocalImagePressHandler({ isEditing, json, navigation });
 
-  return { editor, html, htmlPath };
+  return { editor, html, htmlPath, json };
 };

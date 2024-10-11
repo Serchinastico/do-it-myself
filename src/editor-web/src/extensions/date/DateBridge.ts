@@ -1,13 +1,11 @@
 import { BridgeExtension } from "@10play/tentap-editor";
 
-import { Date, OnDateClickProps, ToggleDateProps } from "./date";
+import { CreateDateProps, Date, OnDateClickProps, SetDateProps } from "./date";
 
-type DateEditorState = {
-  canToggleDate: boolean;
-  isDateActive: boolean;
-};
+type DateEditorState = object;
 type DateEditorInstance = {
-  toggleDate: (props: ToggleDateProps) => void;
+  createDate: (props: CreateDateProps) => void;
+  setDate: (props: SetDateProps) => void;
 };
 
 declare module "@10play/tentap-editor" {
@@ -18,17 +16,22 @@ declare module "@10play/tentap-editor" {
 
 export enum DateEditorActionType {
   Click = "date-click",
-  ToggleDate = "toggle-date",
+  CreateDate = "create-date",
+  SetDate = "set-date",
 }
 
 type DateMessage =
+  | {
+      payload: CreateDateProps;
+      type: DateEditorActionType.CreateDate;
+    }
   | {
       payload: OnDateClickProps;
       type: DateEditorActionType.Click;
     }
   | {
-      payload: ToggleDateProps;
-      type: DateEditorActionType.ToggleDate;
+      payload: SetDateProps;
+      type: DateEditorActionType.SetDate;
     };
 
 export const DateBridge = (
@@ -37,24 +40,25 @@ export const DateBridge = (
   new BridgeExtension<DateEditorState, DateEditorInstance, DateMessage>({
     extendEditorInstance: (sendBridgeMessage) => {
       return {
-        toggleDate: (props: ToggleDateProps) =>
+        createDate: (props: CreateDateProps) =>
           sendBridgeMessage({
             payload: props,
-            type: DateEditorActionType.ToggleDate,
+            type: DateEditorActionType.CreateDate,
+          }),
+        setDate: (props: SetDateProps) =>
+          sendBridgeMessage({
+            payload: props,
+            type: DateEditorActionType.SetDate,
           }),
       };
     },
-    extendEditorState: (editor) => {
-      return {
-        canToggleDate: editor
-          .can()
-          .toggleDate({ backgroundColor: "#000", id: "" }),
-        isDateActive: editor.isActive("date"),
-      };
-    },
     onBridgeMessage: (editor, message) => {
-      if (message.type === DateEditorActionType.ToggleDate) {
-        editor.chain().focus().toggleDate(message.payload).run();
+      if (message.type === DateEditorActionType.CreateDate) {
+        editor.chain().focus().createDate(message.payload).run();
+      }
+
+      if (message.type === DateEditorActionType.SetDate) {
+        editor.chain().focus().setDate(message.payload).run();
       }
 
       return false;
