@@ -6,9 +6,8 @@ import Text from "@tiptap/extension-text";
 import { EditorContent } from "@tiptap/react";
 import React from "react";
 
-import { LocalImageBridge, TitleBridge } from "./extensions";
-import { DateBridge } from "./extensions/date/DateBridge";
-import { localImageClickHandler } from "./extensions/local-image/localImageClickHandler";
+import { DateBridge, LocalImageBridge, TitleBridge } from "./extensions";
+import { clickHandler } from "./extensions/event/clickHandler";
 
 declare global {
   interface Window {
@@ -18,10 +17,10 @@ declare global {
 
 export const AdvancedEditor = () => {
   const editor = useTenTap({
-    bridges: [...TenTapStartKit, DateBridge, TitleBridge, LocalImageBridge()],
+    bridges: [...TenTapStartKit, DateBridge(), TitleBridge, LocalImageBridge()],
     tiptapOptions: {
       editorProps: {
-        handleClick: localImageClickHandler,
+        handleClick: clickHandler,
       },
       extensions: [Document, Paragraph, Text],
     },

@@ -18,14 +18,14 @@ declare module "@tiptap/core" {
   }
 }
 
-export type ToggleDateProps = { backgroundColor: string };
+export type ToggleDateProps = { backgroundColor: string; id: string };
+export type OnDateClickProps = { id: string };
 
 export const Date = Node.create<DateOptions>({
   addAttributes() {
     return {
-      backgroundColor: {
-        default: "#F90",
-      },
+      backgroundColor: { default: "#F90" },
+      id: { default: "" },
     };
   },
 
@@ -43,6 +43,7 @@ export const Date = Node.create<DateOptions>({
     return {
       HTMLAttributes: {},
       backgroundColor: "#F9A",
+      id: "",
     };
   },
   addProseMirrorPlugins() {
@@ -61,6 +62,7 @@ export const Date = Node.create<DateOptions>({
         getAttrs: (dom) => ({
           backgroundColor:
             dom.querySelector<HTMLDivElement>(".skew")?.style.backgroundColor,
+          id: dom.dataset["id"],
         }),
         tag: ".date",
       },
@@ -69,11 +71,14 @@ export const Date = Node.create<DateOptions>({
 
   renderHTML({ HTMLAttributes }) {
     const backgroundColor: string = HTMLAttributes.backgroundColor;
+    const id: string = HTMLAttributes.id;
 
     return [
       "div",
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
         class: "date",
+        "data-click-event": "date",
+        "data-id": id,
       }),
       [
         "div",

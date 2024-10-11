@@ -1,10 +1,12 @@
 import mitt from "mitt";
 
 export const EventMessage = {
+  DatePress: "datePress",
   LocalImagePress: "localImagePress",
 } as const;
 
 export type Events = {
+  [EventMessage.DatePress]: { id: string };
   [EventMessage.LocalImagePress]: { fileName: string; groupId: string };
 };
 

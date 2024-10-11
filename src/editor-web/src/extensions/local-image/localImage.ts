@@ -86,7 +86,11 @@ export const LocalImage = Node.create<LocalImageOptions>({
     if (images.length === 1 || images.length === 2) {
       return [
         "div",
-        { class: "image-masonry row", "data-group-id": groupId },
+        {
+          class: "image-masonry row",
+          "data-click-event": "local-image",
+          "data-group-id": groupId,
+        },
         ...imagesHtml,
       ];
     } else if (images.length === 3 || images.length === 4) {

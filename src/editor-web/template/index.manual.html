@@ -37,7 +37,7 @@
         padding: 8px;
     }
 
-    .title {
+    .title, .date {
         position: relative;
         display: inline-block;
         margin: 8px 0 8px 6px;
@@ -45,7 +45,7 @@
         white-space: nowrap;
     }
 
-    .title .skew {
+    :is(.title, .date) .skew {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -56,7 +56,7 @@
         z-index: -1;
     }
 
-    .title .content {
+    :is(.title, .date) .content {
         padding-left: 12px;
         padding-right: 12px;
         margin-top: 8px;

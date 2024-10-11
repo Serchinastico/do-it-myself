@@ -94,15 +94,17 @@ export const useRichTextEditor = ({
     avoidIosKeyboard: true,
     bridgeExtensions: [
       ...TenTapStartKit,
-      DateBridge.configureExtension({
+      DateBridge((props) =>
+        eventBus.emit(EventMessage.DatePress, props)
+      ).configureExtension({
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
       TitleBridge.configureExtension({
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
-      LocalImageBridge((props) => {
-        eventBus.emit(EventMessage.LocalImagePress, props);
-      }).configureExtension({
+      LocalImageBridge((props) =>
+        eventBus.emit(EventMessage.LocalImagePress, props)
+      ).configureExtension({
         imagesRootPath: `${FileSystem.documentDirectory}`,
       }),
     ],
