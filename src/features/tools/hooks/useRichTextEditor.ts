@@ -13,6 +13,7 @@ import {
 } from "@app/domain/project";
 import { editorHtml as manualEditorHtml } from "@app/editor-web/build-manual/editorHtml";
 import { editorHtml as worklogEditorHtml } from "@app/editor-web/build-worklog/editorHtml";
+import { DateBridge } from "@app/editor-web/src/extensions/date/DateBridge";
 import { LocalImageBridge, TitleBridge } from "editor-web/src/extensions";
 import * as FileSystem from "expo-file-system";
 import { useCallback, useEffect, useState } from "react";
@@ -93,6 +94,9 @@ export const useRichTextEditor = ({
     avoidIosKeyboard: true,
     bridgeExtensions: [
       ...TenTapStartKit,
+      DateBridge.configureExtension({
+        backgroundColor: getProjectColorById(project.colorId).hex,
+      }),
       TitleBridge.configureExtension({
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),

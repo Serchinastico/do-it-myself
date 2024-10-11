@@ -7,7 +7,8 @@ import { EditorContent } from "@tiptap/react";
 import React from "react";
 
 import { LocalImageBridge, TitleBridge } from "./extensions";
-import { localImageClickHandler } from "./extensions/localImageClickHandler";
+import { DateBridge } from "./extensions/date/DateBridge";
+import { localImageClickHandler } from "./extensions/local-image/localImageClickHandler";
 
 declare global {
   interface Window {
@@ -17,7 +18,7 @@ declare global {
 
 export const AdvancedEditor = () => {
   const editor = useTenTap({
-    bridges: [...TenTapStartKit, TitleBridge, LocalImageBridge()],
+    bridges: [...TenTapStartKit, DateBridge, TitleBridge, LocalImageBridge()],
     tiptapOptions: {
       editorProps: {
         handleClick: localImageClickHandler,

@@ -15,6 +15,13 @@ const getTitleHtml = (text: string, colorId: ProjectColorId) => `
 </div>
 `;
 
+const getDateHtml = (text: string, colorId: ProjectColorId) => `
+<div class="date">
+  <div class="skew" style="background-color: ${getProjectColorById(colorId).hex};"></div>
+  <h1 class="content">${text}</h1>
+</div>
+`;
+
 const getParagraphHtml = (text: string = "") => `
 <p>${text}</p>
 `;
@@ -36,7 +43,7 @@ export const getInitialWorklog = (
   colorId: ProjectColorId
 ): Project["worklog"] => ({
   contentHtml: `
-${getTitleHtml(t`Today`, colorId)}
+${getDateHtml(t`Today`, colorId)}
 ${getParagraphHtml()}
 `,
 });

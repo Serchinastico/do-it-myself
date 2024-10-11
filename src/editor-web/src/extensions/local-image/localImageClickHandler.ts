@@ -1,8 +1,8 @@
 import { EditorView } from "@tiptap/pm/view";
 
 export const localImageClickHandler = (
-  view: EditorView,
-  pos: number,
+  _view: EditorView,
+  _pos: number,
   event: MouseEvent
 ) => {
   if (event.button !== 0) {

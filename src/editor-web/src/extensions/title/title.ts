@@ -43,7 +43,6 @@ export const Title = Node.create<TitleOptions>({
       backgroundColor: "#F90",
     };
   },
-
   atom: false,
   content: "inline*",
   defining: true,

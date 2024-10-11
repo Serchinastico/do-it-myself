@@ -11,8 +11,7 @@
     "lint:expo": "expo-doctor",
     "prebuild": "expo prebuild --clean",
     "prepare": "lefthook install",
-    "reverse-android": "adb reverse tcp:3000 tcp:3000",
-    "start": "expo start",
+    "start": "expo start -d",
     "android": "expo run:android -d",
     "ios": "expo run:ios -d"
   },

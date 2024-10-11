@@ -1,2 +1,3 @@
-export * from "./LocalImageBridge";
-export * from "./TitleBridge";
+export * from "./date/DateBridge";
+export * from "./local-image/LocalImageBridge";
+export * from "./title/TitleBridge";
