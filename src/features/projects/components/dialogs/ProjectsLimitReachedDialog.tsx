@@ -6,13 +6,13 @@ import { ComponentProps } from "react";
 import { Text, View } from "react-native";
 
 interface Props extends ComponentProps<typeof Dialog> {
-  onAccept: OnPress;
+  onPurchaseAppPress: OnPress;
 }
 
-export const ToolRemovalConfirmationDialog = ({
+export const ProjectsLimitReachedDialog = ({
   isVisible,
-  onAccept,
   onClose,
+  onPurchaseAppPress,
 }: Props) => {
   return (
     <Dialog isVisible={isVisible} onClose={onClose}>
@@ -21,17 +21,24 @@ export const ToolRemovalConfirmationDialog = ({
           <Illustration />
         </View>
 
-        <Text style={tw`h1 mt-4`}>{t`Remove tool`}</Text>
+        <Text style={tw`h1 mt-4`}>{t`You have run out of projects!`}</Text>
         <Text
           style={tw`body mt-4`}
-        >{t`You are about to remove a tool from your project. If you had any data stored in the tool, you will not be able to recover it.`}</Text>
+        >{t`The free version of Do It Myself only allows 3 projects. Buy the app to have access to unlimited projects and more.`}</Text>
+        <Text
+          style={tw`body mt-4 font-bold`}
+        >{t`No subscriptions, buy the app and it'll be yours, forever.`}</Text>
         <Row style={tw`center gap-4 mt-6`}>
-          <Button onPress={onAccept} text={t`Accept`} />
           <Button
             color="secondary"
             onPress={onClose}
             text={t`Cancel`}
             variant="text"
+          />
+          <Button
+            icon={{ family: "Feather", name: "shopping-bag" }}
+            onPress={onPurchaseAppPress}
+            text={t`Purchase`}
           />
         </Row>
       </Column>

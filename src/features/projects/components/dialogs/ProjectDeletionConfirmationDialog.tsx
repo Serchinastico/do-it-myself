@@ -26,7 +26,12 @@ export const ProjectDeletionConfirmationDialog = ({
           style={tw`body mt-4`}
         >{t`You are about to delete this project. All the data stored in the project will be permanently deleted and you will not be able to recover it.`}</Text>
         <Row style={tw`center gap-4 mt-6`}>
-          <Button onPress={onClose} text={t`Cancel`} variant="text" />
+          <Button
+            color="secondary"
+            onPress={onClose}
+            text={t`Cancel`}
+            variant="text"
+          />
           <Button onPress={onAccept} text={t`Accept`} />
         </Row>
       </Column>
