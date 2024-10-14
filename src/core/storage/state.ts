@@ -1,3 +1,4 @@
+import { ColorScheme } from "@app/core/theme/color-scheme";
 import { ProjectTagId } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { atom } from "jotai";
@@ -6,6 +7,7 @@ import { atomFamily } from "jotai/utils";
 import { atomWithAsyncStorage } from "./async-storage";
 
 export const atoms = {
+  colorScheme: atomWithAsyncStorage<ColorScheme | null>("colorScheme", null),
   projects: atomWithAsyncStorage<Project[]>("projects", []),
   // This atom is created to keep the CreateProjectScreen and AddTagsScreen in sync
   selectedTagIds: atomWithAsyncStorage<ProjectTagId[]>("selectedTagIds", []),

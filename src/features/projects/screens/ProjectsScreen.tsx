@@ -19,7 +19,9 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
     <SafeAreaView edges={SafeAreaViewEdges.NoBottom} style={tw`bg-white`}>
       <StatusBar backgroundColor={color.white} style="dark" />
 
-      <ProjectHeader.Projects />
+      <ProjectHeader.Projects
+        onSettingsPress={() => navigation.navigate("settings")}
+      />
 
       <ProjectsList
         onEditProjectPress={async (project) => {

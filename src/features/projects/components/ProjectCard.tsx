@@ -7,7 +7,7 @@ import {
 } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";
-import { Button, Column, Row, VectorIcon } from "@madeja-studio/telar";
+import { Button, Center, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text, View } from "react-native";
 
@@ -26,8 +26,7 @@ export const ProjectCard = ({
   const tags = getTagsByIds(project.tagIds);
 
   return (
-    <Button.Container
-      hasHapticFeedback
+    <Center
       style={[
         tw`rounded-card px-5 py-4 mb-2`,
         { backgroundColor: projectColor.hex },
@@ -92,6 +91,6 @@ export const ProjectCard = ({
           />
         )}
       </Row>
-    </Button.Container>
+    </Center>
   );
 };

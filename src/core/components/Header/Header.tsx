@@ -33,6 +33,7 @@ export const Header = ({ children, subtitle, title, ...props }: Props) => {
         <Row style={tw`center`}>
           {props.hasBackButton && (
             <Button.Container
+              hasHapticFeedback
               onPress={props.onBackPress}
               style={tw`center android:mt-1 ios:mt-0.5 size-press`}
             >

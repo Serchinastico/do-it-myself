@@ -14,9 +14,9 @@ import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import DatePicker from "react-native-date-picker";
 
-import { Toolbar } from "./components/editor/Toolbar";
-import { ToolHeader } from "./components/headers";
-import { useRichTextEditor } from "./hooks/useRichTextEditor";
+import { Toolbar } from "../components/editor/Toolbar";
+import { ToolHeader } from "../components/headers";
+import { useRichTextEditor } from "../hooks/useRichTextEditor";
 
 export const WorklogScreen = ({
   navigation,

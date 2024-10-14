@@ -10,9 +10,9 @@ import { StatusBar } from "expo-status-bar";
 import { useAtom } from "jotai";
 import { useCallback, useEffect, useState } from "react";
 
-import { Toolbar } from "./components/editor/Toolbar";
-import { ToolHeader } from "./components/headers";
-import { useRichTextEditor } from "./hooks/useRichTextEditor";
+import { Toolbar } from "../components/editor/Toolbar";
+import { ToolHeader } from "../components/headers";
+import { useRichTextEditor } from "../hooks/useRichTextEditor";
 
 export const ManualScreen = ({
   navigation,

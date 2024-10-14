@@ -10,8 +10,8 @@ import { useAtom } from "jotai/index";
 import { useCallback, useMemo } from "react";
 import { View } from "react-native";
 
-import { AttachmentImage } from "./components/attachments/AttachmentImage";
-import { ToolHeader } from "./components/headers";
+import { AttachmentImage } from "../components/attachments/AttachmentImage";
+import { ToolHeader } from "../components/headers";
 
 const NUM_COLUMNS = 2;
 

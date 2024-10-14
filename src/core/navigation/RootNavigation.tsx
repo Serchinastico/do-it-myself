@@ -1,13 +1,14 @@
-import { ImageViewerScreen } from "@app/features/image-viewer/ImageViewerScreen";
+import { ImageViewerScreen } from "@app/features/image-viewer/screens/ImageViewerScreen";
 import {
   AddTagsScreen,
   CreateProjectScreen,
   EditProjectScreen,
   ProjectsScreen,
 } from "@app/features/projects/screens";
-import { AttachmentsScreen } from "@app/features/tools/AttachmentsScreen";
-import { ManualScreen } from "@app/features/tools/ManualScreen";
-import { WorklogScreen } from "@app/features/tools/WorklogScreen";
+import { SettingsScreen } from "@app/features/settings/screens/SettingsScreen";
+import { AttachmentsScreen } from "@app/features/tools/screens/AttachmentsScreen";
+import { ManualScreen } from "@app/features/tools/screens/ManualScreen";
+import { WorklogScreen } from "@app/features/tools/screens/WorklogScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { RootNavigationParamList } from "./routes";
@@ -18,6 +19,7 @@ const RootNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen component={ProjectsScreen} name="projects" />
+      <Stack.Screen component={SettingsScreen} name="settings" />
       <Stack.Screen
         component={CreateProjectScreen}
         name="createProject"

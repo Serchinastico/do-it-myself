@@ -9,6 +9,7 @@ export type RootNavigationParamList = {
   imageViewer: { imagePaths: string[]; initialImageIndex: number };
   manual: { projectId: string };
   projects: undefined;
+  settings: undefined;
   worklog: { projectId: string };
 };
 
