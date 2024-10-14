@@ -1,3 +1,4 @@
+import { ColorSchemeBootstrap } from "@app/core/bootstrap/ColorSchemeBootstrap";
 import { ErrorScreen } from "@app/core/components/Error";
 import { DebugFileSystemProvider } from "@app/core/providers/DebugFileSystemProvider";
 import { color } from "@app/core/theme/color";
@@ -29,11 +30,13 @@ const AllProviders = ({ children }: Props) => {
       >
         <ErrorBoundary FallbackComponent={ErrorScreen}>
           <GestureHandlerRootView>
-            <PreloadScreen>
-              <NavigationContainer>
-                <I18nProvider i18n={i18n}>{children}</I18nProvider>
-              </NavigationContainer>
-            </PreloadScreen>
+            <ColorSchemeBootstrap>
+              <PreloadScreen>
+                <NavigationContainer>
+                  <I18nProvider i18n={i18n}>{children}</I18nProvider>
+                </NavigationContainer>
+              </PreloadScreen>
+            </ColorSchemeBootstrap>
           </GestureHandlerRootView>
         </ErrorBoundary>
       </TelarContextProvider>

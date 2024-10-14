@@ -21,15 +21,20 @@ import { ScrollView, StatusBar, Text } from "react-native";
 import { useAppColorScheme } from "twrnc";
 
 export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
-  const [, , setTwColorScheme] = useAppColorScheme(tw);
+  const [twColorScheme, , setTwColorScheme] = useAppColorScheme(tw);
   const accordionRef = useRef<AccordionRef>(null);
   const [colorScheme, setColorScheme] = useAtom(atoms.colorScheme);
 
-  const onColorSchemePress = useCallback(async (scheme: ColorScheme) => {
-    setColorScheme(scheme);
-    setTwColorScheme(scheme);
-    accordionRef.current?.close();
-  }, []);
+  const resolvedColorScheme = colorScheme ?? twColorScheme;
+
+  const onColorSchemePress = useCallback(
+    async (scheme: ColorScheme) => {
+      setColorScheme(scheme);
+      setTwColorScheme(scheme);
+      accordionRef.current?.close();
+    },
+    [setTwColorScheme]
+  );
 
   return (
     <SafeAreaView>
@@ -40,10 +45,12 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
       <ScrollView>
         <Column style={tw`px-8`}>
           <Accordion
-            childrenHeight={136}
+            childrenHeight={148}
             fieldName={t`Theme`}
             ref={accordionRef}
-            selectedValue={getNameFromColorScheme(colorScheme ?? "light")}
+            selectedValue={getNameFromColorScheme(
+              resolvedColorScheme ?? "light"
+            )}
           >
             <Column style={tw`center`}>
               <TelarButton.Container
