@@ -1,5 +1,6 @@
-const { color } = require("@app/core/theme/color");
-const plugin = require("tailwindcss/plugin");
+import plugin from "tailwindcss/plugin";
+
+const { color } = require("../color");
 
 module.exports = {
   plugins: [

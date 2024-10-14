@@ -1,7 +1,7 @@
 import { EditorBridge, useBridgeState } from "@10play/tentap-editor";
 import { color } from "@app/core/theme/color";
 import { Project } from "@app/domain/project";
-import { TOOLBAR_TOOLS } from "@app/features/tools/components/editor/tools";
+import { EditorTool } from "@app/features/tools/components/editor/tools/base";
 import { Button, Center, useKeyboard } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { FlatList, Image, KeyboardAvoidingView, Platform } from "react-native";
@@ -10,9 +10,10 @@ import * as DropdownMenu from "zeego/dropdown-menu";
 interface Props {
   editor: EditorBridge;
   project: Project;
+  tools: EditorTool[];
 }
 
-export const Toolbar = ({ editor, project }: Props) => {
+export const Toolbar = ({ editor, project, tools }: Props) => {
   const editorState = useBridgeState(editor);
   const { isKeyboardUp } = useKeyboard();
 
@@ -26,7 +27,7 @@ export const Toolbar = ({ editor, project }: Props) => {
           tw`center border-t bg-white`,
           { borderColor: chroma(color.black).alpha(0.1).hex() },
         ]}
-        data={TOOLBAR_TOOLS}
+        data={tools}
         horizontal
         renderItem={({ item }) => (
           <DropdownMenu.Root>

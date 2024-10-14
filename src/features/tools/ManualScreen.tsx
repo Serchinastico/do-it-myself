@@ -3,6 +3,7 @@ import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { color } from "@app/core/theme/color";
+import { MANUAL_TOOLBAR } from "@app/features/tools/components/editor/tools";
 import { SafeAreaView } from "@madeja-studio/telar";
 import * as FileSystem from "expo-file-system";
 import { StatusBar } from "expo-status-bar";
@@ -76,7 +77,7 @@ export const ManualScreen = ({
         />
       </KeyboardAvoidingView>
 
-      <Toolbar editor={editor} project={project} />
+      <Toolbar editor={editor} project={project} tools={MANUAL_TOOLBAR} />
     </SafeAreaView>
   );
 };
