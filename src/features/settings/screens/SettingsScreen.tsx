@@ -6,7 +6,6 @@ import {
   ColorScheme,
   getNameFromColorScheme,
 } from "@app/core/theme/color-scheme";
-import { SettingsHeader } from "@app/features/settings/components/SettingsHeader";
 import Illustration from "@assets/img/illustration.svg";
 import { Trans, t } from "@lingui/macro";
 import {
@@ -19,6 +18,8 @@ import { useAtom } from "jotai";
 import { useCallback, useRef } from "react";
 import { ScrollView, StatusBar, Text } from "react-native";
 import { useAppColorScheme } from "twrnc";
+
+import { Header } from "../components/headers";
 
 export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
   const [twColorScheme, , setTwColorScheme] = useAppColorScheme(tw);
@@ -40,7 +41,7 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
     <SafeAreaView>
       <StatusBar barStyle="dark-content" />
 
-      <SettingsHeader onClose={() => navigation.goBack()} />
+      <Header.Settings onClose={() => navigation.goBack()} />
 
       <ScrollView>
         <Column style={tw`px-8`}>
@@ -93,6 +94,7 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
 
       <Button
         icon={{ family: "Feather", name: "shopping-bag" }}
+        onPress={() => navigation.navigate("purchase")}
         text={t`Purchase`}
       />
     </SafeAreaView>

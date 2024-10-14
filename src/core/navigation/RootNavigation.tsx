@@ -5,7 +5,7 @@ import {
   EditProjectScreen,
   ProjectsScreen,
 } from "@app/features/projects/screens";
-import { SettingsScreen } from "@app/features/settings/screens/SettingsScreen";
+import { PurchaseScreen, SettingsScreen } from "@app/features/settings/screens";
 import { AttachmentsScreen } from "@app/features/tools/screens/AttachmentsScreen";
 import { ManualScreen } from "@app/features/tools/screens/ManualScreen";
 import { WorklogScreen } from "@app/features/tools/screens/WorklogScreen";
@@ -20,6 +20,11 @@ const RootNavigation = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen component={ProjectsScreen} name="projects" />
       <Stack.Screen component={SettingsScreen} name="settings" />
+      <Stack.Screen
+        component={PurchaseScreen}
+        name="purchase"
+        options={{ presentation: "modal" }}
+      />
       <Stack.Screen
         component={CreateProjectScreen}
         name="createProject"
