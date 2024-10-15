@@ -1,15 +1,14 @@
 import { Header } from "@app/core/components/Header";
-import { color } from "@app/core/theme/color";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { t } from "@lingui/macro";
 import { Button, OnPress } from "@madeja-studio/telar";
-import { useAppColorScheme } from "twrnc";
 
 interface Props {
   onSettingsPress: OnPress;
 }
 
 export const ProjectsHeader = ({ onSettingsPress }: Props) => {
-  const [colorScheme] = useAppColorScheme(tw);
+  const colorSwitch = useColorSwitch();
 
   return (
     <Header title={t`Projects`}>
@@ -17,7 +16,7 @@ export const ProjectsHeader = ({ onSettingsPress }: Props) => {
         color="secondary"
         hasHapticFeedback
         icon={{ family: "Feather", name: "user" }}
-        iconTint={colorScheme === "dark" ? color.ash : color.white}
+        iconTint={colorSwitch({ dark: "white", light: "ash" })}
         onPress={onSettingsPress}
         variant="text"
       />

@@ -1,4 +1,4 @@
-import { color } from "@app/core/theme/color";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import {
   Button,
   IconReference,
@@ -6,7 +6,6 @@ import {
   VectorIcon,
 } from "@madeja-studio/telar";
 import { Text, ViewStyle } from "react-native";
-import { useAppColorScheme } from "twrnc";
 
 interface Props {
   icon: IconReference;
@@ -16,7 +15,7 @@ interface Props {
 }
 
 export const ToolButton = ({ icon, onPress, style, text }: Props) => {
-  const [colorScheme] = useAppColorScheme(tw);
+  const colorSwitch = useColorSwitch();
 
   return (
     <Button.Container
@@ -29,7 +28,7 @@ export const ToolButton = ({ icon, onPress, style, text }: Props) => {
       ]}
     >
       <VectorIcon
-        color={colorScheme === "dark" ? color.white : color.ash}
+        color={colorSwitch({ dark: "white", light: "ash" })}
         icon={icon}
         size={24}
       />

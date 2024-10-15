@@ -1,4 +1,5 @@
 import { ToolButton } from "@app/core/components/ToolButton";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color } from "@app/core/theme/color";
 import {
   ToolType,
@@ -10,7 +11,6 @@ import { t } from "@lingui/macro";
 import { Button, Center, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text, View } from "react-native";
-import { useAppColorScheme } from "twrnc";
 
 interface Props {
   onEditProjectPress: (project: Project) => Promise<void> | void;
@@ -23,7 +23,7 @@ export const ProjectCard = ({
   onToolPress,
   project,
 }: Props) => {
-  const [colorScheme] = useAppColorScheme(tw);
+  const colorSwitch = useColorSwitch();
   const projectColor = getProjectColorById(project.colorId);
   const tags = getTagsByIds(project.tagIds);
 
@@ -48,9 +48,11 @@ export const ProjectCard = ({
           style={tw`bg-white dark:bg-ash rounded-full size-press center`}
         >
           <VectorIcon
-            color={colorScheme === "light" ? color.ash : color.white}
+            color={colorSwitch({ dark: "white", light: "ash" })}
             icon={{ family: "Feather", name: "edit" }}
             size={24}
+            /* Visual adjustment */
+            style={tw`ml-0.5`}
           />
         </Button.Container>
       </Row>

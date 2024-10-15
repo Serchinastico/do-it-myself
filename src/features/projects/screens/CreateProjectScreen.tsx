@@ -10,7 +10,6 @@ import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useSetAtom } from "jotai";
 import { useCallback } from "react";
-import { StatusBar } from "react-native";
 
 export const CreateProjectScreen = ({
   navigation,
@@ -31,8 +30,6 @@ export const CreateProjectScreen = ({
 
   return (
     <SafeArea edges={SafeAreaViewEdges.NoTop} style={tw`android:mt-4 flex-1`}>
-      <StatusBar barStyle="dark-content" />
-
       <ProjectHeader.CreateProject onClose={() => navigation.goBack()} />
 
       <ProjectDetails

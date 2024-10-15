@@ -1,8 +1,8 @@
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color } from "@app/core/theme/color";
 import { Column } from "@madeja-studio/telar";
 import { forwardRef } from "react";
 import { Text, TextInput, TextInputProps } from "react-native";
-import { useAppColorScheme } from "twrnc";
 
 type Props = {
   title: string;
@@ -20,7 +20,7 @@ type ErrorProps =
 
 export const Input = forwardRef<TextInput, Props>(
   ({ style, title, ...props }, ref) => {
-    const [colorScheme] = useAppColorScheme(tw);
+    const colorSwitch = useColorSwitch();
 
     return (
       <Column>
@@ -30,9 +30,7 @@ export const Input = forwardRef<TextInput, Props>(
           style={tw.style(`border-b body pt-2 pb-1 my-2 ml-4`, {
             borderColor: props.hasError
               ? color.error
-              : colorScheme === "dark"
-                ? color.white
-                : color.secondary,
+              : colorSwitch({ dark: "white", light: "ash" }),
           })}
           {...props}
         />

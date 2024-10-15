@@ -1,3 +1,4 @@
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { Button, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import { animated } from "@react-spring/native";
 import { PropsWithChildren } from "react";
@@ -22,6 +23,7 @@ export const Header = ({ children, subtitle, title, ...props }: Props) => {
   const { animatedStyle, subtitle: subtitleText } = useHeaderAnimation({
     subtitle,
   });
+  const colorSwitch = useColorSwitch();
 
   return (
     <Column {...props}>
@@ -38,6 +40,7 @@ export const Header = ({ children, subtitle, title, ...props }: Props) => {
               style={tw`center android:mt-1 ios:mt-0.5 size-press`}
             >
               <VectorIcon
+                color={colorSwitch({ dark: "white", light: "ash" })}
                 icon={{ family: "Feather", name: "chevron-left" }}
                 size={36}
               />

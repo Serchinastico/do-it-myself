@@ -1,3 +1,4 @@
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { Button, VectorIcon } from "@madeja-studio/telar";
 import {
   ReactNode,
@@ -30,6 +31,8 @@ export interface AccordionRef {
 export const Accordion = forwardRef<AccordionRef, Props>(
   ({ children, childrenHeight, fieldName, selectedValue }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+    const colorSwitch = useColorSwitch();
+
     const dateTimePickerHeight = useSharedValue(64);
     const dateTimePickerOpacity = useSharedValue(0);
 
@@ -64,7 +67,7 @@ export const Accordion = forwardRef<AccordionRef, Props>(
             <Text style={tw`flex-1 h3`}>{fieldName}</Text>
             <Text style={tw`body`}>{selectedValue}</Text>
             <VectorIcon
-              color="secondary"
+              color={colorSwitch({ dark: "white", light: "ash" })}
               icon={{
                 family: "Feather",
                 name: isOpen ? "chevron-up" : "chevron-down",

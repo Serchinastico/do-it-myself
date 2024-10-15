@@ -1,3 +1,4 @@
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color } from "@app/core/theme/color";
 import { ProjectTag } from "@app/domain/project";
 import { Button, OnPress } from "@madeja-studio/telar";
@@ -10,17 +11,23 @@ interface Props {
 }
 
 export const Tag = ({ isSelected, onPress, tag }: Props) => {
+  const colorSwitch = useColorSwitch();
+
   return (
     <Button.Container
       hasHapticFeedback
       onPress={onPress}
       style={tw.style(`px-4 py-2 border rounded-full`, {
-        borderColor: isSelected ? color.primary : color.secondary,
+        borderColor: isSelected
+          ? color.primary
+          : colorSwitch({ dark: color.white, light: color.secondary }),
       })}
     >
       <Text
         style={tw.style(`body font-bold`, {
-          color: isSelected ? color.primary : color.secondary,
+          color: isSelected
+            ? color.primary
+            : colorSwitch({ dark: color.white, light: color.secondary }),
         })}
       >
         {tag.name}

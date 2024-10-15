@@ -1,3 +1,4 @@
+import { color as themeColor } from "@app/core/theme/color";
 import {
   PROJECT_COLORS,
   ProjectColor,
@@ -16,6 +17,8 @@ const ColorItem = ({
   onColorChange,
   selectedColorId,
 }: ColorItemProps) => {
+  const isSelected = color.id === selectedColorId;
+
   return (
     <Button.Container
       hasHapticFeedback
@@ -32,11 +35,14 @@ const ColorItem = ({
           ]}
         />
         <Text
-          style={tw.style(`body mt-1 px-1`, {
-            backgroundColor:
-              color.id === selectedColorId ? color.hex : undefined,
-            "font-bold": color.id === selectedColorId,
-          })}
+          style={tw.style(
+            `body mt-1 px-1 text-white`,
+            {
+              backgroundColor: isSelected ? color.hex : undefined,
+              "font-bold": color.id === selectedColorId,
+            },
+            isSelected && { color: themeColor.ash }
+          )}
         >
           {color.name}
         </Text>

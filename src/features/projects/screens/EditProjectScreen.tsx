@@ -10,7 +10,7 @@ import { ProjectHeader } from "features/projects/components/headers";
 import { useAtom, useSetAtom } from "jotai";
 import { unwrap } from "jotai/utils";
 import { useCallback, useState } from "react";
-import { ActivityIndicator, StatusBar } from "react-native";
+import { ActivityIndicator } from "react-native";
 import invariant from "tiny-invariant";
 
 export const EditProjectScreen = ({
@@ -71,8 +71,6 @@ export const EditProjectScreen = ({
 
   return (
     <SafeArea edges={SafeAreaViewEdges.NoTop} style={tw`android:mt-4 flex-1`}>
-      <StatusBar barStyle="dark-content" />
-
       <ProjectHeader.EditProject onClose={() => navigation.goBack()} />
 
       <ProjectDetails

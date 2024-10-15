@@ -7,7 +7,7 @@ module.exports = {
     plugin(({ addUtilities }) => {
       addUtilities({
         ".body": "text-body font-normal text-ash dark:text-white",
-        ".button": "text-button font-semibold text-ash dark:text-white",
+        ".button": "text-button font-semibold",
         ".caption": "text-caption font-light text-ash dark:text-white",
         ".center": "items-center justify-center",
         ".contain": { resizeMode: "contain" },

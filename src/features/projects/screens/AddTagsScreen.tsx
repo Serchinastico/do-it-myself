@@ -1,4 +1,5 @@
 import { Button } from "@app/core/components/Button";
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { PROJECT_TAGS, ProjectTagId } from "@app/domain/project";
@@ -6,10 +7,10 @@ import { ProjectTag } from "@app/domain/project/tags";
 import { Tag } from "@app/features/projects/components/Tag";
 import { t } from "@lingui/macro";
 import { toggleItem } from "@madeja-studio/cepillo";
-import { Column, Row } from "@madeja-studio/telar";
+import { Column, Row, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useAtom } from "jotai";
-import { ScrollView, StatusBar, Text, View } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -49,9 +50,7 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
   const { bottom } = useSafeAreaInsets();
 
   return (
-    <View style={tw`bg-white android:mt-4 flex-1`}>
-      <StatusBar barStyle="dark-content" />
-
+    <SafeArea edges={SafeAreaViewEdges.NoTop}>
       <ProjectHeader.AddTags onClose={() => navigation.goBack()} />
 
       <ScrollView style={tw`px-4`}>
@@ -77,6 +76,6 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
           />
         </Column>
       </ScrollView>
-    </View>
+    </SafeArea>
   );
 };
