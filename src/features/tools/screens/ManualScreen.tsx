@@ -1,10 +1,10 @@
 import { RichText } from "@10play/tentap-editor";
 import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { color } from "@app/core/theme/color";
 import { MANUAL_TOOLBAR } from "@app/features/tools/components/editor/tools";
-import { SafeAreaView } from "@madeja-studio/telar";
 import * as FileSystem from "expo-file-system";
 import { StatusBar } from "expo-status-bar";
 import { useAtom } from "jotai";
@@ -53,7 +53,7 @@ export const ManualScreen = ({
   }, [html]);
 
   return (
-    <SafeAreaView style={tw`bg-white`}>
+    <SafeArea>
       <StatusBar backgroundColor={color.white} style="dark" />
 
       <ToolHeader.Manual
@@ -78,6 +78,6 @@ export const ManualScreen = ({
       </KeyboardAvoidingView>
 
       <Toolbar editor={editor} project={project} tools={MANUAL_TOOLBAR} />
-    </SafeAreaView>
+    </SafeArea>
   );
 };

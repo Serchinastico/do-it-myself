@@ -6,7 +6,8 @@ import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { TelarContextProvider } from "@madeja-studio/telar";
 import { NavigationContainer } from "@react-navigation/native";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
+import { View } from "react-native";
 import ErrorBoundary from "react-native-error-boundary";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -29,15 +30,18 @@ const AllProviders = ({ children }: Props) => {
         }}
       >
         <ErrorBoundary FallbackComponent={ErrorScreen}>
-          <GestureHandlerRootView>
-            <ColorSchemeBootstrap>
-              <PreloadScreen>
-                <NavigationContainer>
-                  <I18nProvider i18n={i18n}>{children}</I18nProvider>
-                </NavigationContainer>
-              </PreloadScreen>
-            </ColorSchemeBootstrap>
-          </GestureHandlerRootView>
+          {/* This Suspense view is required to load jotai async atoms without errors */}
+          <Suspense fallback={<View />}>
+            <GestureHandlerRootView>
+              <ColorSchemeBootstrap>
+                <PreloadScreen>
+                  <NavigationContainer>
+                    <I18nProvider i18n={i18n}>{children}</I18nProvider>
+                  </NavigationContainer>
+                </PreloadScreen>
+              </ColorSchemeBootstrap>
+            </GestureHandlerRootView>
+          </Suspense>
         </ErrorBoundary>
       </TelarContextProvider>
     </DebugFileSystemProvider>

@@ -1,5 +1,6 @@
 import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { Button } from "@app/core/components/Button";
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import {
@@ -8,15 +9,10 @@ import {
 } from "@app/core/theme/color-scheme";
 import Illustration from "@assets/img/illustration.svg";
 import { Trans, t } from "@lingui/macro";
-import {
-  Center,
-  Column,
-  SafeAreaView,
-  Button as TelarButton,
-} from "@madeja-studio/telar";
+import { Center, Column, Button as TelarButton } from "@madeja-studio/telar";
 import { useAtom } from "jotai";
 import { useCallback, useRef } from "react";
-import { ScrollView, StatusBar, Text } from "react-native";
+import { Appearance, ScrollView, Text } from "react-native";
 import { useAppColorScheme } from "twrnc";
 
 import { Header } from "../components/headers";
@@ -30,6 +26,14 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
 
   const onColorSchemePress = useCallback(
     async (scheme: ColorScheme) => {
+      /**
+       * Appearance.setColorScheme is what really forces a re-render of all
+       * components in the app. This works because we are using tw.memoBuster
+       * in the main navigator.
+       *
+       * {@link https://github.com/jaredh159/tailwind-react-native-classnames/issues/112}
+       */
+      Appearance.setColorScheme(scheme);
       setColorScheme(scheme);
       setTwColorScheme(scheme);
       accordionRef.current?.close();
@@ -38,9 +42,7 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
   );
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
-
+    <SafeArea>
       <Header.Settings onClose={() => navigation.goBack()} />
 
       <ScrollView>
@@ -97,6 +99,6 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
         onPress={() => navigation.navigate("purchase")}
         text={t`Purchase`}
       />
-    </SafeAreaView>
+    </SafeArea>
   );
 };

@@ -10,6 +10,7 @@ import { t } from "@lingui/macro";
 import { Button, Center, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text, View } from "react-native";
+import { useAppColorScheme } from "twrnc";
 
 interface Props {
   onEditProjectPress: (project: Project) => Promise<void> | void;
@@ -22,6 +23,7 @@ export const ProjectCard = ({
   onToolPress,
   project,
 }: Props) => {
+  const [colorScheme] = useAppColorScheme(tw);
   const projectColor = getProjectColorById(project.colorId);
   const tags = getTagsByIds(project.tagIds);
 
@@ -34,18 +36,22 @@ export const ProjectCard = ({
     >
       <Row style={tw`justify-between`}>
         <Column style={tw`flex-1 mr-3`}>
-          <Text style={tw`h2`}>{project.name}</Text>
+          <Text style={tw`h2 text-ash`}>{project.name}</Text>
           {project.description && (
-            <Text style={tw`body mt-2`}>{project.description}</Text>
+            <Text style={tw`body mt-2 text-ash`}>{project.description}</Text>
           )}
         </Column>
 
         <Button.Container
           hasHapticFeedback
           onPress={() => onEditProjectPress(project)}
-          style={tw`bg-white rounded-full size-press center`}
+          style={tw`bg-white dark:bg-ash rounded-full size-press center`}
         >
-          <VectorIcon icon={{ family: "Feather", name: "edit" }} size={24} />
+          <VectorIcon
+            color={colorScheme === "light" ? color.ash : color.white}
+            icon={{ family: "Feather", name: "edit" }}
+            size={24}
+          />
         </Button.Container>
       </Row>
 

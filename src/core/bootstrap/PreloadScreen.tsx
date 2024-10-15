@@ -2,8 +2,8 @@ import { atoms } from "@app/core/storage/state";
 import dayjs from "dayjs";
 import { useLocales } from "expo-localization";
 import * as SplashScreen from "expo-splash-screen";
-import { useSetAtom } from "jotai";
-import { PropsWithChildren, useCallback, useState } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import { PropsWithChildren, useCallback, useEffect, useState } from "react";
 import { EmitterSubscription, Platform, View } from "react-native";
 import {
   ProductPurchase,
@@ -16,6 +16,7 @@ import {
   purchaseErrorListener,
   purchaseUpdatedListener,
 } from "react-native-iap";
+import { useAppColorScheme } from "twrnc";
 import useAsyncEffect from "use-async-effect";
 
 interface Props extends PropsWithChildren {}
@@ -23,7 +24,13 @@ interface Props extends PropsWithChildren {}
 const PreloadScreen = ({ children }: Props) => {
   const [appIsReady, setAppIsReady] = useState(false);
   const locales = useLocales();
+  const [, , setTwColorScheme] = useAppColorScheme(tw);
   const setHasPurchasedApp = useSetAtom(atoms.hasPurchasedApp);
+  const colorScheme = useAtomValue(atoms.colorScheme);
+
+  useEffect(() => {
+    setTwColorScheme(colorScheme);
+  }, [colorScheme]);
 
   const initialize = useCallback(async () => {
     /**

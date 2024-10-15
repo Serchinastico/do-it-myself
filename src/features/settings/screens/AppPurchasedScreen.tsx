@@ -1,21 +1,17 @@
 import { Button } from "@app/core/components/Button";
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { Header } from "@app/features/settings/components/headers";
 import Illustration from "@assets/img/illustration.svg";
 import { t } from "@lingui/macro";
-import {
-  Center,
-  Column,
-  SafeAreaView,
-  SafeAreaViewEdges,
-} from "@madeja-studio/telar";
+import { Center, Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { Linking, Text } from "react-native";
 
 export const AppPurchasedScreen = ({
   navigation,
 }: RootScreenProps<"appPurchased">) => {
   return (
-    <SafeAreaView edges={SafeAreaViewEdges.NoTop}>
+    <SafeArea edges={SafeAreaViewEdges.NoTop}>
       <Header.AppPurchased onClose={() => navigation.goBack()} />
 
       <Column style={tw`flex-1 px-8`}>
@@ -45,6 +41,6 @@ export const AppPurchasedScreen = ({
 
         <Button onPress={() => navigation.goBack()} text={t`Accept`} />
       </Column>
-    </SafeAreaView>
+    </SafeArea>
   );
 };

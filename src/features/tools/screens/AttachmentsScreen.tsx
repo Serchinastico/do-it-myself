@@ -1,10 +1,11 @@
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { ImageSource, getImagesFrom } from "@app/core/utils/imagePicker";
 import { Attachment, getProjectColorById } from "@app/domain/project";
 import { AddAttachmentButton } from "@app/features/tools/components/attachments/AddAttachmentButton";
 import { EmptyAttachments } from "@app/features/tools/components/attachments/EmptyAttachments";
-import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
+import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { MasonryFlashList } from "@shopify/flash-list";
 import { useAtom } from "jotai/index";
 import { useCallback, useMemo } from "react";
@@ -59,7 +60,7 @@ export const AttachmentsScreen = ({
   );
 
   return (
-    <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
+    <SafeArea edges={SafeAreaViewEdges.NoBottom}>
       <ToolHeader.Attachments onClose={() => navigation.goBack()} />
 
       <View style={tw`flex-1`}>
@@ -93,6 +94,6 @@ export const AttachmentsScreen = ({
       </View>
 
       <AddAttachmentButton onAddAttachment={onAddAttachment} />
-    </SafeAreaView>
+    </SafeArea>
   );
 };

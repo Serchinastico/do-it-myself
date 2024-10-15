@@ -1,12 +1,11 @@
 import { Button } from "@app/core/components/Button";
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
-import { color } from "@app/core/theme/color";
 import { ProjectsList } from "@app/features/projects/components/ProjectsList";
 import { Dialog } from "@app/features/projects/components/dialogs";
 import { t } from "@lingui/macro";
-import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
-import { StatusBar } from "expo-status-bar";
+import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
@@ -35,9 +34,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
   }, [projects]);
 
   return (
-    <SafeAreaView edges={SafeAreaViewEdges.NoBottom} style={tw`bg-white`}>
-      <StatusBar backgroundColor={color.white} style="dark" />
-
+    <SafeArea edges={SafeAreaViewEdges.NoBottom}>
       <ProjectHeader.Projects
         onSettingsPress={() => navigation.navigate("settings")}
       />
@@ -78,6 +75,6 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
           navigation.navigate("purchase");
         }}
       />
-    </SafeAreaView>
+    </SafeArea>
   );
 };

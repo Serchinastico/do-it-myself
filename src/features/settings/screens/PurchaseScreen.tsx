@@ -1,4 +1,5 @@
 import { Button } from "@app/core/components/Button";
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { Header } from "@app/features/settings/components/headers";
@@ -7,7 +8,6 @@ import { t } from "@lingui/macro";
 import {
   Center,
   Column,
-  SafeAreaView,
   SafeAreaViewEdges,
   useToast,
 } from "@madeja-studio/telar";
@@ -59,7 +59,7 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
   }, []);
 
   return (
-    <SafeAreaView edges={SafeAreaViewEdges.NoTop}>
+    <SafeArea edges={SafeAreaViewEdges.NoTop}>
       <Header.Purchase onClose={() => navigation.goBack()} />
 
       <Column style={tw`flex-1 px-8`}>
@@ -95,6 +95,6 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
           )}
         </Column>
       </Column>
-    </SafeAreaView>
+    </SafeArea>
   );
 };

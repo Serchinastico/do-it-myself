@@ -3,6 +3,7 @@ import { t } from "@lingui/macro";
 import { Column, IconReference, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Platform, Switch, SwitchProps, Text } from "react-native";
+import { useAppColorScheme } from "twrnc";
 
 interface ToolSectionProps {
   description: string;
@@ -20,12 +21,17 @@ const ToolSection = ({
   value,
 }: ToolSectionProps) => {
   const isAndroid = Platform.OS === "android";
+  const [colorScheme] = useAppColorScheme(tw);
 
   return (
     <Row style={tw`mt-6 items-start`}>
       <Column style={tw`flex-1`}>
         <Row style={tw`items-center`}>
-          <VectorIcon icon={icon} size={24} />
+          <VectorIcon
+            color={colorScheme === "dark" ? color.white : color.ash}
+            icon={icon}
+            size={24}
+          />
           <Text style={tw`button ml-2`}>{name}</Text>
         </Row>
 

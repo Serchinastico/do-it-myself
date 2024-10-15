@@ -1,4 +1,5 @@
 import { RichText } from "@10play/tentap-editor";
+import { SafeArea } from "@app/core/components/SafeArea";
 import { EventMessage, Events } from "@app/core/event-bus/eventBus";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
@@ -6,7 +7,6 @@ import { color } from "@app/core/theme/color";
 import { formatDate } from "@app/core/utils/date";
 import { WORKLOG_TOOLBAR } from "@app/features/tools/components/editor/tools";
 import { useDatePressHandler } from "@app/features/tools/hooks/useDatePressHandler";
-import { SafeAreaView } from "@madeja-studio/telar";
 import dayjs from "dayjs";
 import * as FileSystem from "expo-file-system";
 import { StatusBar } from "expo-status-bar";
@@ -57,7 +57,7 @@ export const WorklogScreen = ({
   }, [editor, hasOpenedKeyboard]);
 
   return (
-    <SafeAreaView style={tw`bg-white`}>
+    <SafeArea>
       <StatusBar backgroundColor={color.white} style="dark" />
 
       <ToolHeader.Worklog onBackPress={() => navigation.goBack()} />
@@ -94,6 +94,6 @@ export const WorklogScreen = ({
         }}
         open={selectedDate !== undefined}
       />
-    </SafeAreaView>
+    </SafeArea>
   );
 };

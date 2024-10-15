@@ -1,3 +1,4 @@
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { PROJECT_COLORS } from "@app/domain/project";
@@ -5,10 +6,11 @@ import { EditedProject } from "@app/domain/project/project";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
 import { t } from "@lingui/macro";
 import { oneOf, randomId } from "@madeja-studio/cepillo";
+import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useSetAtom } from "jotai";
 import { useCallback } from "react";
-import { StatusBar, View } from "react-native";
+import { StatusBar } from "react-native";
 
 export const CreateProjectScreen = ({
   navigation,
@@ -28,7 +30,7 @@ export const CreateProjectScreen = ({
   );
 
   return (
-    <View style={tw`bg-white android:mt-4 flex-1`}>
+    <SafeArea edges={SafeAreaViewEdges.NoTop} style={tw`android:mt-4 flex-1`}>
       <StatusBar barStyle="dark-content" />
 
       <ProjectHeader.CreateProject onClose={() => navigation.goBack()} />
@@ -43,6 +45,6 @@ export const CreateProjectScreen = ({
         saveButtonIcon={{ family: "Feather", name: "plus" }}
         saveButtonText={t`Create project`}
       />
-    </View>
+    </SafeArea>
   );
 };

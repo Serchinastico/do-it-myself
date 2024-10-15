@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator<RootNavigationParamList>();
 
 const RootNavigation = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator key={tw.memoBuster} screenOptions={{ headerShown: false }}>
       <Stack.Screen component={ProjectsScreen} name="projects" />
       <Stack.Screen component={SettingsScreen} name="settings" />
       <Stack.Screen

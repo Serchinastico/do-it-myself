@@ -1338,6 +1338,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNIap (12.15.4):
+    - React-Core
   - RNReanimated (3.15.4):
     - DoubleConversion
     - glog
@@ -1530,6 +1532,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNIap (from `../node_modules/react-native-iap`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -1697,6 +1700,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@shopify/flash-list"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNIap:
+    :path: "../node_modules/react-native-iap"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -1788,6 +1793,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNFlashList: e9c5b8fe1b84f9c198cb550eb4cc0c45569fbf42
   RNGestureHandler: 28078232f2868d3dcb4d4b6c8ab8691700187664
+  RNIap: 38776f86996edea5837ba2a0dfc1e35427191327
   RNReanimated: f05f23988b1456a594fc4eab0ef2c46b430007ac
   RNScreens: aa943ad421c3ced3ef5a47ede02b0cbfc43a012e
   RNSVG: 43b64ed39c14ce830d840903774154ca0c1f27ec

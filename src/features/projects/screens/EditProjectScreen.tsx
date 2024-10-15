@@ -1,14 +1,16 @@
+import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms, derivedAtoms } from "@app/core/storage/state";
 import { EditedProject } from "@app/domain/project/project";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
 import { Dialog } from "@app/features/projects/components/dialogs";
 import { t } from "@lingui/macro";
+import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useAtom, useSetAtom } from "jotai";
 import { unwrap } from "jotai/utils";
 import { useCallback, useState } from "react";
-import { ActivityIndicator, StatusBar, View } from "react-native";
+import { ActivityIndicator, StatusBar } from "react-native";
 import invariant from "tiny-invariant";
 
 export const EditProjectScreen = ({
@@ -68,7 +70,7 @@ export const EditProjectScreen = ({
   }
 
   return (
-    <View style={tw`bg-white android:mt-4 flex-1`}>
+    <SafeArea edges={SafeAreaViewEdges.NoTop} style={tw`android:mt-4 flex-1`}>
       <StatusBar barStyle="dark-content" />
 
       <ProjectHeader.EditProject onClose={() => navigation.goBack()} />
@@ -103,6 +105,6 @@ export const EditProjectScreen = ({
         onAccept={onProjectDelete}
         onClose={() => setIsProjectDeletionDialogVisible(false)}
       />
-    </View>
+    </SafeArea>
   );
 };
