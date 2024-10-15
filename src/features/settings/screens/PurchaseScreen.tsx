@@ -1,5 +1,6 @@
 import { Button } from "@app/core/components/Button";
 import { RootScreenProps } from "@app/core/navigation/routes";
+import { atoms } from "@app/core/storage/state";
 import { Header } from "@app/features/settings/components/headers";
 import Illustration from "@assets/img/illustration.svg";
 import { t } from "@lingui/macro";
@@ -8,10 +9,55 @@ import {
   Column,
   SafeAreaView,
   SafeAreaViewEdges,
+  useToast,
 } from "@madeja-studio/telar";
-import { Text } from "react-native";
+import { useSetAtom } from "jotai";
+import { useCallback, useState } from "react";
+import { Platform, Text } from "react-native";
+import { Product } from "react-native-iap";
+import useAsyncEffect from "use-async-effect";
+
+import { useInAppPurchase } from "../hooks/useInAppPurchase";
 
 export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
+  const { getAvailableProducts, hasPurchasedApp, requestPurchase } =
+    useInAppPurchase();
+  const [product, setProduct] = useState<Product | null>(null);
+  const setHasPurchasedApp = useSetAtom(atoms.hasPurchasedApp);
+  const { showToast } = useToast();
+
+  useAsyncEffect(async () => {
+    const products = await getAvailableProducts();
+    setProduct(products[0]);
+  }, []);
+
+  const onPurchasePress = useCallback(async () => {
+    const response = await requestPurchase("app_purchase");
+
+    if (response) {
+      setHasPurchasedApp(true);
+      navigation.goBack();
+      setTimeout(() => {
+        navigation.navigate("appPurchased");
+      }, 1);
+    }
+  }, [navigation]);
+
+  const onRestorePurchasePress = useCallback(async () => {
+    const hasRestoredPurchase = await hasPurchasedApp();
+
+    setHasPurchasedApp(hasRestoredPurchase);
+    showToast({
+      subtitle: hasRestoredPurchase
+        ? t`You can start using the full version of Do It Myself`
+        : t`There was no Do It Myself purchase found in your account`,
+      title: hasRestoredPurchase
+        ? t`You restored your Do Iy Myself purchase!`
+        : t`The purchase was not restored`,
+      variant: hasRestoredPurchase ? "success" : "error",
+    });
+  }, []);
+
   return (
     <SafeAreaView edges={SafeAreaViewEdges.NoTop}>
       <Header.Purchase onClose={() => navigation.goBack()} />
@@ -32,10 +78,22 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
           >{t`Let's be honest: We went to a store to see how much a personalized project notebook costs, and this was the price. That's it.`}</Text>
         </Column>
 
-        <Button
-          icon={{ family: "Feather", name: "shopping-bag" }}
-          text={t`6.99`}
-        />
+        <Column style={tw`gap-2`}>
+          <Button
+            hasAutoLoad
+            icon={{ family: "Feather", name: "shopping-bag" }}
+            onPress={onPurchasePress}
+            text={t`6.99€`}
+          />
+          {Platform.OS === "ios" && (
+            <Button
+              hasAutoLoad
+              onPress={onRestorePurchasePress}
+              text={t`Restore purchase`}
+              variant="text"
+            />
+          )}
+        </Column>
       </Column>
     </SafeAreaView>
   );

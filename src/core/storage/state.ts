@@ -8,8 +8,12 @@ import { atomWithAsyncStorage } from "./async-storage";
 
 export const atoms = {
   colorScheme: atomWithAsyncStorage<ColorScheme | null>("colorScheme", null),
+  hasPurchasedApp: atomWithAsyncStorage("hasPurchasedApp", false),
   projects: atomWithAsyncStorage<Project[]>("projects", []),
-  // This atom is created to keep the CreateProjectScreen and AddTagsScreen in sync
+  /**
+   * This atom is transient and used temporarily to synchronize the state
+   * between CreateProjectScreen and AddTagsScreen.
+   */
   selectedTagIds: atomWithAsyncStorage<ProjectTagId[]>("selectedTagIds", []),
 };
 

@@ -6,6 +6,7 @@ import {
   ProjectsScreen,
 } from "@app/features/projects/screens";
 import { PurchaseScreen, SettingsScreen } from "@app/features/settings/screens";
+import { AppPurchasedScreen } from "@app/features/settings/screens/AppPurchasedScreen";
 import { AttachmentsScreen } from "@app/features/tools/screens/AttachmentsScreen";
 import { ManualScreen } from "@app/features/tools/screens/ManualScreen";
 import { WorklogScreen } from "@app/features/tools/screens/WorklogScreen";
@@ -23,6 +24,11 @@ const RootNavigation = () => {
       <Stack.Screen
         component={PurchaseScreen}
         name="purchase"
+        options={{ presentation: "modal" }}
+      />
+      <Stack.Screen
+        component={AppPurchasedScreen}
+        name="appPurchased"
         options={{ presentation: "modal" }}
       />
       <Stack.Screen

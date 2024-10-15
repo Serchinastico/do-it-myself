@@ -1,23 +1,86 @@
+import { atoms } from "@app/core/storage/state";
+import dayjs from "dayjs";
+import { useLocales } from "expo-localization";
 import * as SplashScreen from "expo-splash-screen";
+import { useSetAtom } from "jotai";
 import { PropsWithChildren, useCallback, useState } from "react";
-import { View } from "react-native";
+import { EmitterSubscription, Platform, View } from "react-native";
+import {
+  ProductPurchase,
+  PurchaseError,
+  SubscriptionPurchase,
+  finishTransaction,
+  flushFailedPurchasesCachedAsPendingAndroid,
+  getAvailablePurchases,
+  initConnection,
+  purchaseErrorListener,
+  purchaseUpdatedListener,
+} from "react-native-iap";
 import useAsyncEffect from "use-async-effect";
 
 interface Props extends PropsWithChildren {}
 
 const PreloadScreen = ({ children }: Props) => {
   const [appIsReady, setAppIsReady] = useState(false);
+  const locales = useLocales();
+  const setHasPurchasedApp = useSetAtom(atoms.hasPurchasedApp);
 
   const initialize = useCallback(async () => {
     /**
      * Preload fonts, configure dayjs and warm caches.
      * Whatever is needed to launch the app in good terms.
      */
+    dayjs.locale(locales[0].languageCode ?? "es");
 
     setAppIsReady(true);
   }, []);
 
   useAsyncEffect(initialize, []);
+
+  useAsyncEffect(async () => {
+    let updateListener: EmitterSubscription;
+    let errorListener: EmitterSubscription;
+
+    await initConnection();
+
+    const history = await getAvailablePurchases({
+      onlyIncludeActiveItems: true,
+    });
+
+    setHasPurchasedApp(history.length > 0);
+
+    try {
+      if (Platform.OS === "android") {
+        // we make sure that "ghost" pending payment are removed
+        // (ghost = failed pending payment that are still marked as pending in Google's native Vending module cache)
+        try {
+          await flushFailedPurchasesCachedAsPendingAndroid();
+        } catch {}
+      }
+
+      updateListener = purchaseUpdatedListener(
+        async (purchase: ProductPurchase | SubscriptionPurchase) => {
+          console.log("purchaseUpdatedListener", purchase);
+
+          const receipt = purchase.transactionReceipt;
+          if (receipt) {
+            await finishTransaction({ isConsumable: false, purchase });
+          }
+        }
+      );
+
+      errorListener = purchaseErrorListener((error: PurchaseError) => {
+        console.warn("purchaseErrorListener", error);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    return () => {
+      updateListener?.remove();
+      errorListener?.remove();
+    };
+  }, []);
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
