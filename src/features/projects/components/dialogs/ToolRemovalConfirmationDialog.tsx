@@ -1,7 +1,8 @@
 import { Button } from "@app/core/components/Button";
+import { Dialog } from "@app/core/components/Dialog";
 import { Illustration } from "@app/core/components/Illustration";
 import { t } from "@lingui/macro";
-import { Center, Column, Dialog, OnPress, Row } from "@madeja-studio/telar";
+import { Center, Column, OnPress, Row } from "@madeja-studio/telar";
 import { ComponentProps } from "react";
 import { Text } from "react-native";
 
@@ -26,13 +27,13 @@ export const ToolRemovalConfirmationDialog = ({
           style={tw`body mt-4`}
         >{t`You are about to remove a tool from your project. If you had any data stored in the tool, you will not be able to recover it.`}</Text>
         <Row style={tw`center gap-4 mt-6`}>
-          <Button onPress={onAccept} text={t`Accept`} />
           <Button
             color="secondary"
             onPress={onClose}
             text={t`Cancel`}
             variant="text"
           />
+          <Button onPress={onAccept} text={t`Accept`} />
         </Row>
       </Column>
     </Dialog>

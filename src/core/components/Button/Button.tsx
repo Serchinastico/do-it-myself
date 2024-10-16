@@ -15,8 +15,9 @@ export const Button = ({
   const colorSwitch = useColorSwitch();
 
   const shouldSwitchTextColor =
-    colorSwitch.colorScheme === "light" &&
-    ["contained", undefined].includes(props.variant);
+    (colorSwitch.colorScheme === "dark" && props.variant === "text") ||
+    (colorSwitch.colorScheme === "light" &&
+      ["contained", undefined].includes(props.variant));
 
   return (
     <TelarButton

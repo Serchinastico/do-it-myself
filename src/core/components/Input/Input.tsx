@@ -1,6 +1,7 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color } from "@app/core/theme/color";
 import { Column } from "@madeja-studio/telar";
+import chroma from "chroma-js";
 import { forwardRef } from "react";
 import { Text, TextInput, TextInputProps } from "react-native";
 
@@ -26,6 +27,11 @@ export const Input = forwardRef<TextInput, Props>(
       <Column>
         <Text style={[tw`h3`, style]}>{title}</Text>
         <TextInput
+          placeholderTextColor={chroma(
+            colorSwitch({ dark: "white", light: "ash" })!
+          )
+            .alpha(0.6)
+            .hex()}
           ref={ref}
           style={tw.style(`border-b body pt-2 pb-1 my-2 ml-4`, {
             borderColor: props.hasError
