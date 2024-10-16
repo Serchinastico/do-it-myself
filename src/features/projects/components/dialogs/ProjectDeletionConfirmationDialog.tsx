@@ -1,9 +1,9 @@
 import { Button } from "@app/core/components/Button";
-import Illustration from "@assets/img/illustration.svg";
+import { Illustration } from "@app/core/components/Illustration";
 import { t } from "@lingui/macro";
-import { Column, Dialog, OnPress, Row } from "@madeja-studio/telar";
+import { Center, Column, Dialog, OnPress, Row } from "@madeja-studio/telar";
 import { ComponentProps } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 
 interface Props extends ComponentProps<typeof Dialog> {
   onAccept: OnPress;
@@ -17,11 +17,11 @@ export const ProjectDeletionConfirmationDialog = ({
   return (
     <Dialog isVisible={isVisible} onClose={onClose}>
       <Column>
-        <View style={tw`center mt-8`}>
-          <Illustration />
-        </View>
+        <Center style={tw`mt-8`}>
+          <Illustration heightWindowRatio="1/4" name="confirmation" />
+        </Center>
 
-        <Text style={tw`h1 mt-4`}>{t`Delete project`}</Text>
+        <Text style={tw`h1 mt-6`}>{t`Delete project`}</Text>
         <Text
           style={tw`body mt-4`}
         >{t`You are about to delete this project. All the data stored in the project will be permanently deleted and you will not be able to recover it.`}</Text>

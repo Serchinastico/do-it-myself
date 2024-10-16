@@ -1,5 +1,6 @@
 import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { Button } from "@app/core/components/Button";
+import { Illustration } from "@app/core/components/Illustration";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
@@ -7,7 +8,6 @@ import {
   ColorScheme,
   getNameFromColorScheme,
 } from "@app/core/theme/color-scheme";
-import Illustration from "@assets/img/illustration.svg";
 import { Trans, t } from "@lingui/macro";
 import { Center, Column, Button as TelarButton } from "@madeja-studio/telar";
 import { useAtom } from "jotai";
@@ -72,8 +72,8 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
             </Column>
           </Accordion>
 
-          <Center>
-            <Illustration />
+          <Center style={tw`mt-8`}>
+            <Illustration heightWindowRatio="1/3" name="settings" />
           </Center>
 
           <Text

@@ -1,3 +1,4 @@
+import { MasonryFlashList } from "@app/core/components/FlashList/MasonryFlashList";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
@@ -6,10 +7,8 @@ import { Attachment, getProjectColorById } from "@app/domain/project";
 import { AddAttachmentButton } from "@app/features/tools/components/attachments/AddAttachmentButton";
 import { EmptyAttachments } from "@app/features/tools/components/attachments/EmptyAttachments";
 import { SafeAreaViewEdges } from "@madeja-studio/telar";
-import { MasonryFlashList } from "@shopify/flash-list";
 import { useAtom } from "jotai/index";
 import { useCallback, useMemo } from "react";
-import { View } from "react-native";
 
 import { AttachmentImage } from "../components/attachments/AttachmentImage";
 import { ToolHeader } from "../components/headers";
@@ -63,35 +62,32 @@ export const AttachmentsScreen = ({
     <SafeArea edges={SafeAreaViewEdges.NoBottom}>
       <ToolHeader.Attachments onClose={() => navigation.goBack()} />
 
-      <View style={tw`flex-1`}>
-        <MasonryFlashList
-          ListEmptyComponent={<EmptyAttachments />}
-          ListFooterComponentStyle={tw`flex-1`}
-          contentContainerStyle={tw`pb-28 px-4`}
-          data={attachments}
-          estimatedItemSize={200}
-          numColumns={NUM_COLUMNS}
-          renderItem={({ item }) => {
-            switch (item.tag) {
-              case "image":
-                return (
-                  <AttachmentImage
-                    colSpan={NUM_COLUMNS}
-                    image={item}
-                    onDelete={() => onDeleteAttachment(item)}
-                    onPress={() =>
-                      navigation.navigate("imageViewer", {
-                        imagePaths: [item.path],
-                        initialImageIndex: 0,
-                      })
-                    }
-                    tint={getProjectColorById(project.colorId).hex}
-                  />
-                );
-            }
-          }}
-        />
-      </View>
+      <MasonryFlashList
+        ListEmptyComponent={<EmptyAttachments />}
+        contentContainerStyle={tw`pb-28 px-4`}
+        data={attachments}
+        estimatedItemSize={200}
+        numColumns={NUM_COLUMNS}
+        renderItem={({ item }) => {
+          switch (item.tag) {
+            case "image":
+              return (
+                <AttachmentImage
+                  colSpan={NUM_COLUMNS}
+                  image={item}
+                  onDelete={() => onDeleteAttachment(item)}
+                  onPress={() =>
+                    navigation.navigate("imageViewer", {
+                      imagePaths: [item.path],
+                      initialImageIndex: 0,
+                    })
+                  }
+                  tint={getProjectColorById(project.colorId).hex}
+                />
+              );
+          }
+        }}
+      />
 
       <AddAttachmentButton onAddAttachment={onAddAttachment} />
     </SafeArea>

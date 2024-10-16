@@ -1,9 +1,9 @@
 import { Button } from "@app/core/components/Button";
+import { Illustration } from "@app/core/components/Illustration";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { Header } from "@app/features/settings/components/headers";
-import Illustration from "@assets/img/illustration.svg";
 import { t } from "@lingui/macro";
 import {
   Center,
@@ -70,7 +70,7 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
           <Text style={tw`body mt-2`}>{t`Styles for your manuals`}</Text>
           <Text style={tw`body mt-2`}>{t`Future updates`}</Text>
           <Center style={tw`my-4`}>
-            <Illustration />
+            <Illustration heightWindowRatio="1/5" name="purchase" />
           </Center>
           <Text style={tw`h2`}>{t`Why 6.99?`}</Text>
           <Text
