@@ -1,9 +1,14 @@
+import { Cue } from "@app/core/components/Cue";
 import { Illustration } from "@app/core/components/Illustration";
 import { t } from "@lingui/macro";
-import { Column } from "@madeja-studio/telar";
+import { Button, Column, OnPress } from "@madeja-studio/telar";
 import { Text } from "react-native";
 
-export const EmptyProjects = () => {
+interface Props {
+  onCreatePress: OnPress;
+}
+
+export const EmptyProjects = ({ onCreatePress }: Props) => {
   return (
     <Column style={tw`flex-1 center mb-28 px-12`}>
       <Illustration heightWindowRatio="1/3" name="not_found" />
@@ -12,9 +17,12 @@ export const EmptyProjects = () => {
       <Text
         style={tw`body text-center mt-4`}
       >{t`It’s time to create a project and start doing things.`}</Text>
-      <Text
-        style={tw`body text-center font-bold text-white bg-primary px-4 py-2 mt-4`}
-      >{t`Create a new project to get going.`}</Text>
+
+      <Button.Container hasHapticFeedback onPress={onCreatePress}>
+        <Cue style={tw`mt-4`}>{t`Create a new project to get going.`}</Cue>
+      </Button.Container>
+
+      <Illustration heightWindowRatio="1/7" name="arrow" />
     </Column>
   );
 };

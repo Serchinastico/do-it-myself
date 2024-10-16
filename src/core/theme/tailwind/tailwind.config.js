@@ -11,6 +11,7 @@ module.exports = {
         ".caption": "text-caption font-light text-ash dark:text-white",
         ".center": "items-center justify-center",
         ".contain": { resizeMode: "contain" },
+        ".counter-skew": { transform: [{ skewX: "-15deg" }] },
         ".cover": { resizeMode: "cover" },
         ".error": "text-error text-button font-semibold",
         ".fill": "top-0 right-0 bottom-0 left-0",
@@ -21,6 +22,7 @@ module.exports = {
         ".min-size-press": "min-h-[44px] min-w-[44px]",
         ".min-w-press": "min-w-[44px]",
         ".size-press": "h-[44px] w-[44px]",
+        ".skew": { transform: [{ skewX: "15deg" }] },
       });
     }),
   ],

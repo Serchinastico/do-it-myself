@@ -40,6 +40,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
       />
 
       <ProjectsList
+        onCreatePress={onCreateProjectPress}
         onEditProjectPress={async (project) => {
           await setSelectedTagIds(project.tagIds);
           navigation.navigate("editProject", { projectId: project.id });

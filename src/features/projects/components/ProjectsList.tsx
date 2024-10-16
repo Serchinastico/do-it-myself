@@ -3,21 +3,24 @@ import { ToolType } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { EmptyProjects } from "@app/features/projects/components/EmptyProjects";
 import { ProjectCard } from "@app/features/projects/components/ProjectCard";
+import { OnPress } from "@madeja-studio/telar";
 
 interface Props {
+  onCreatePress: OnPress;
   onEditProjectPress: (project: Project) => Promise<void> | void;
   onToolPress: (tool: ToolType, project: Project) => Promise<void> | void;
   projects: Project[];
 }
 
 export const ProjectsList = ({
+  onCreatePress,
   onEditProjectPress,
   onToolPress,
   projects,
 }: Props) => {
   return (
     <FlashList
-      ListEmptyComponent={<EmptyProjects />}
+      ListEmptyComponent={<EmptyProjects onCreatePress={onCreatePress} />}
       contentContainerStyle={tw`pb-28 px-4`}
       data={projects}
       estimatedItemSize={195}

@@ -6,6 +6,7 @@ interface Props extends Omit<ImageProps, "source"> {
   heightWindowRatio: `${number}/${number}`;
   name:
     | "app_purchased"
+    | "arrow"
     | "confirmation"
     | "error"
     | "no_media"
@@ -21,6 +22,8 @@ type IllustrationName = `${ImageName}_${"dark" | "light"}`;
 const illustrationMap: Record<IllustrationName, () => any> = {
   app_purchased_dark: () => require("@assets/img/app_purchased_dark.png"),
   app_purchased_light: () => require("@assets/img/app_purchased_light.png"),
+  arrow_dark: () => require("@assets/img/arrow.png"),
+  arrow_light: () => require("@assets/img/arrow.png"),
   confirmation_dark: () => require("@assets/img/confirmation_dark.png"),
   confirmation_light: () => require("@assets/img/confirmation_light.png"),
   error_dark: () => require("@assets/img/error_dark.png"),

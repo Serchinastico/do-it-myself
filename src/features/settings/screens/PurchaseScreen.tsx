@@ -1,4 +1,5 @@
 import { Button } from "@app/core/components/Button";
+import { Cue } from "@app/core/components/Cue";
 import { Illustration } from "@app/core/components/Illustration";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
@@ -65,14 +66,23 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
       <Column style={tw`flex-1 px-8`}>
         <Column style={tw`flex-1 center`}>
           <Text style={tw`h2`}>{t`Why buy the app?`}</Text>
-          <Text style={tw`body mt-2`}>{t`The app for you, forever`}</Text>
-          <Text style={tw`body mt-2`}>{t`unlimited projects`}</Text>
-          <Text style={tw`body mt-2`}>{t`Styles for your manuals`}</Text>
-          <Text style={tw`body mt-2`}>{t`Future updates`}</Text>
+          <Cue
+            style={tw`mt-4`}
+            textStyle={tw`h3`}
+          >{t`The app for you, forever`}</Cue>
+          <Cue
+            style={tw`mt--2`}
+            textStyle={tw`h3`}
+          >{t`unlimited projects`}</Cue>
+          <Cue
+            style={tw`mt--2`}
+            textStyle={tw`h3`}
+          >{t`Styles for your manuals`}</Cue>
+          <Cue style={tw`mt--2`} textStyle={tw`h3`}>{t`Future updates`}</Cue>
           <Center style={tw`my-4`}>
             <Illustration heightWindowRatio="1/5" name="purchase" />
           </Center>
-          <Text style={tw`h2`}>{t`Why 6.99?`}</Text>
+          <Text style={tw`h2`}>{t`Why 6.99€?`}</Text>
           <Text
             style={tw`body mt-2 text-center`}
           >{t`Let's be honest: We went to a store to see how much a personalized project notebook costs, and this was the price. That's it.`}</Text>
@@ -84,6 +94,7 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
             icon={{ family: "Feather", name: "shopping-bag" }}
             onPress={onPurchasePress}
             text={t`6.99€`}
+            textStyle={tw`h3 text-white ml-3`}
           />
           {Platform.OS === "ios" && (
             <Button

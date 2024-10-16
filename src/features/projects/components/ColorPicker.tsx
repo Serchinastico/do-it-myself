@@ -36,10 +36,10 @@ const ColorItem = ({
         />
         <Text
           style={tw.style(
-            `body mt-1 px-1 text-white`,
+            `body mt-1 px-1`,
             {
               backgroundColor: isSelected ? color.hex : undefined,
-              "font-bold": color.id === selectedColorId,
+              "font-bold": isSelected,
             },
             isSelected && { color: themeColor.ash }
           )}
