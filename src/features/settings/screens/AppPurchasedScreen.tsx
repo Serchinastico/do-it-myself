@@ -2,6 +2,7 @@ import { Button } from "@app/core/components/Button";
 import { Illustration } from "@app/core/components/Illustration";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
+import { PartyAnimation } from "@app/features/settings/components/PartyAnimation";
 import { Header } from "@app/features/settings/components/headers";
 import { t } from "@lingui/macro";
 import { Center, Column, SafeAreaViewEdges } from "@madeja-studio/telar";
@@ -40,6 +41,8 @@ export const AppPurchasedScreen = ({
         </Column>
 
         <Button onPress={() => navigation.goBack()} text={t`Accept`} />
+
+        <PartyAnimation />
       </Column>
     </SafeArea>
   );
