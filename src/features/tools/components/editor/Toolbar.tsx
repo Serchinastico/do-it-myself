@@ -1,4 +1,5 @@
 import { EditorBridge, useBridgeState } from "@10play/tentap-editor";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color } from "@app/core/theme/color";
 import { Project } from "@app/domain/project";
 import { EditorTool } from "@app/features/tools/components/editor/tools/base";
@@ -16,15 +17,16 @@ interface Props {
 export const Toolbar = ({ editor, project, tools }: Props) => {
   const editorState = useBridgeState(editor);
   const { isKeyboardUp } = useKeyboard();
+  const colorSwitch = useColorSwitch();
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={tw.style(`absolute bottom-0 w-100 bg-white`)}
+      style={tw.style(`absolute bottom-0 w-100 bg-white dark:bg-ash`)}
     >
       <FlatList
         contentContainerStyle={[
-          tw`center border-t bg-white`,
+          tw`center border-t bg-white dark:bg-ash`,
           { borderColor: chroma(color.black).alpha(0.1).hex() },
         ]}
         data={tools}
@@ -61,8 +63,12 @@ export const Toolbar = ({ editor, project, tools }: Props) => {
                               editorState,
                               project,
                             })
-                          ? chroma(color.secondary).alpha(0.3).hex()
-                          : color.secondary,
+                          ? chroma(
+                              colorSwitch({ dark: "white", light: "ash" })!
+                            )
+                              .alpha(0.3)
+                              .hex()
+                          : colorSwitch({ dark: "white", light: "ash" }),
                     })}
                   />
                 </Center>

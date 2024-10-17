@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "editor:build": "run-s editor:build:manual editor:build:worklog",
-    "editor:build:manual": "TOOL=manual vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-manual/index.html",
-    "editor:build:worklog": "TOOL=worklog vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-worklog/index.html",
+    "editor:build": "run-s editor:build:manual:light editor:build:manual:dark editor:build:worklog:light editor:build:worklog:dark",
+    "editor:build:manual:light": "TOOL=manual COLOR_SCHEME=light vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-manual-light/index.html",
+    "editor:build:manual:dark": "TOOL=manual COLOR_SCHEME=dark vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-manual-dark/index.html",
+    "editor:build:worklog:light": "TOOL=worklog COLOR_SCHEME=light vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-worklog-light/index.html",
+    "editor:build:worklog:dark": "TOOL=worklog COLOR_SCHEME=dark vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-worklog-dark/index.html",
     "i18n:compile": "lingui compile --typescript",
     "i18n:extract": "lingui extract",
     "lint": "run-s lint:expo lint:eslint",

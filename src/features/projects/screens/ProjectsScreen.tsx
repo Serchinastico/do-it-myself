@@ -16,25 +16,23 @@ const FREE_VERSION_PROJECTS_LIMIT = 3;
 export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
   const setSelectedTagIds = useSetAtom(atoms.selectedTagIds);
   const projects = useAtomValue(atoms.projects);
+  const hasPurchasedApp = useAtomValue(atoms.hasPurchasedApp);
   const [isProjectLimitDialogOpen, setIsProjectLimitDialogOpen] =
     useState(false);
   const { bottom } = useSafeAreaInsets();
 
   const onCreateProjectPress = useCallback(() => {
-    if (
-      projects.length >=
-      FREE_VERSION_PROJECTS_LIMIT /* TODO: and has not purchased the app already */
-    ) {
+    if (projects.length >= FREE_VERSION_PROJECTS_LIMIT && !hasPurchasedApp) {
       setIsProjectLimitDialogOpen(true);
       return;
     }
 
     setSelectedTagIds([]);
     navigation.navigate("createProject");
-  }, [projects]);
+  }, [projects, hasPurchasedApp]);
 
   return (
-    <SafeArea edges={SafeAreaViewEdges.NoBottom}>
+    <SafeArea edges={SafeAreaViewEdges.NoBottom} key={tw.memoBuster}>
       <ProjectHeader.Projects
         onSettingsPress={() => navigation.navigate("settings")}
       />

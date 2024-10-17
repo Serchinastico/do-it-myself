@@ -57,7 +57,7 @@ export const ProjectCard = ({
         </Button.Container>
       </Row>
 
-      <Row style={tw`gap-1 flex-wrap mt-4`}>
+      <Row style={tw`gap-1 flex-wrap w-full mt-4`}>
         {tags.map((tag) => (
           <View
             key={tag.id}

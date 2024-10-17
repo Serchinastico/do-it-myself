@@ -8,15 +8,19 @@ import { viteSingleFile } from "vite-plugin-singlefile";
 
 export default defineConfig(async () => {
   const tool = process.env["TOOL"] ?? "manual";
+  const colorScheme = process.env["COLOR_SCHEME"] ?? "light";
 
   const templateDir = Path.join(process.cwd(), "src", "editor-web", "template");
   const srcDir = Path.join(process.cwd(), "src", "editor-web", "src");
-  await fs.cp(`${templateDir}/index.${tool}.html`, `${srcDir}/index.html`);
+  await fs.cp(
+    `${templateDir}/index.${tool}.${colorScheme}.html`,
+    `${srcDir}/index.html`
+  );
 
   return {
     build: {
       emptyOutDir: true,
-      outDir: tool === "manual" ? "../build-manual" : "../build-worklog",
+      outDir: `../build-${tool}-${colorScheme}`,
     },
     plugins: [react(), viteSingleFile()],
     resolve: {

@@ -32,7 +32,14 @@ export const ToolButton = ({ icon, onPress, style, text }: Props) => {
         icon={icon}
         size={24}
       />
-      <Text style={tw`button`}>{text}</Text>
+      <Text
+        style={[
+          tw`button`,
+          { color: colorSwitch({ dark: "white", light: "ash" }) },
+        ]}
+      >
+        {text}
+      </Text>
     </Button.Container>
   );
 };

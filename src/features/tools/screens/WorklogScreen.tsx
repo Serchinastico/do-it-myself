@@ -3,13 +3,11 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { EventMessage, Events } from "@app/core/event-bus/eventBus";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
-import { color } from "@app/core/theme/color";
 import { formatDate } from "@app/core/utils/date";
 import { WORKLOG_TOOLBAR } from "@app/features/tools/components/editor/tools";
 import { useDatePressHandler } from "@app/features/tools/hooks/useDatePressHandler";
 import dayjs from "dayjs";
 import * as FileSystem from "expo-file-system";
-import { StatusBar } from "expo-status-bar";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import DatePicker from "react-native-date-picker";
@@ -57,9 +55,7 @@ export const WorklogScreen = ({
   }, [editor, hasOpenedKeyboard]);
 
   return (
-    <SafeArea>
-      <StatusBar backgroundColor={color.white} style="dark" />
-
+    <SafeArea style={tw`bg-white dark:bg-ash`}>
       <ToolHeader.Worklog onBackPress={() => navigation.goBack()} />
 
       <RichText

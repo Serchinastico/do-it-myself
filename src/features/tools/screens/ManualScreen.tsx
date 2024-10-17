@@ -3,10 +3,8 @@ import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
-import { color } from "@app/core/theme/color";
 import { MANUAL_TOOLBAR } from "@app/features/tools/components/editor/tools";
 import * as FileSystem from "expo-file-system";
-import { StatusBar } from "expo-status-bar";
 import { useAtom } from "jotai";
 import { useCallback, useEffect, useState } from "react";
 
@@ -53,9 +51,7 @@ export const ManualScreen = ({
   }, [html]);
 
   return (
-    <SafeArea>
-      <StatusBar backgroundColor={color.white} style="dark" />
-
+    <SafeArea style={tw`bg-white dark:bg-ash`}>
       <ToolHeader.Manual
         isEditing={isEditing}
         onBackPress={() => navigation.goBack()}

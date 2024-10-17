@@ -4,15 +4,19 @@ import {
   useEditorContent,
 } from "@10play/tentap-editor";
 import eventBus, { EventMessage } from "@app/core/event-bus/eventBus";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { RootNavigation } from "@app/core/navigation/routes";
+import { ColorScheme } from "@app/core/theme/color-scheme";
 import {
   Project,
   ToolType,
   getProjectColorById,
   getToolEditorContent,
 } from "@app/domain/project";
-import { editorHtml as manualEditorHtml } from "@app/editor-web/build-manual/editorHtml";
-import { editorHtml as worklogEditorHtml } from "@app/editor-web/build-worklog/editorHtml";
+import { editorHtml as manualDarkEditorHtml } from "@app/editor-web/build-manual-dark/editorHtml";
+import { editorHtml as manualLightEditorHtml } from "@app/editor-web/build-manual-light/editorHtml";
+import { editorHtml as worklogDarkEditorHtml } from "@app/editor-web/build-worklog-dark/editorHtml";
+import { editorHtml as worklogLightEditorHtml } from "@app/editor-web/build-worklog-light/editorHtml";
 import { DateBridge } from "@app/editor-web/src/extensions/date/DateBridge";
 import { LocalImageBridge, TitleBridge } from "editor-web/src/extensions";
 import * as FileSystem from "expo-file-system";
@@ -38,6 +42,24 @@ export type HtmlFileStatus = "not-ready" | "ready" | "writing";
 
 const getHtmlPath = (toolType: ToolType) =>
   `${FileSystem.documentDirectory}${toolType}.index.html`;
+
+const getEditorHtml = ({
+  colorScheme,
+  toolType,
+}: {
+  colorScheme: ColorScheme;
+  toolType: ToolType;
+}) => {
+  if (toolType === "manual" && colorScheme === "light") {
+    return manualLightEditorHtml;
+  } else if (toolType === "manual" && colorScheme === "dark") {
+    return manualDarkEditorHtml;
+  } else if (toolType === "worklog" && colorScheme === "light") {
+    return worklogLightEditorHtml;
+  } else {
+    return worklogDarkEditorHtml;
+  }
+};
 
 /**
  * Custom hook to manage the state and operations of an editor instance.
@@ -71,8 +93,11 @@ export const useRichTextEditor = ({
   toolType,
 }: Props) => {
   const htmlPath = getHtmlPath(toolType);
-  const editorHtml =
-    toolType === "manual" ? manualEditorHtml : worklogEditorHtml;
+  const { colorScheme } = useColorSwitch();
+  const editorHtml = getEditorHtml({
+    colorScheme: colorScheme ?? "light",
+    toolType,
+  });
 
   const [htmlFileStatus, setHtmlFileStatus] =
     useState<HtmlFileStatus>("not-ready");
