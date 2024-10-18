@@ -23,9 +23,11 @@ export const Header = ({ onClose, page }: Props) => {
       <Text style={tw.style(`button text-center ml-12 text-white flex-1`)}>
         {t`${page.current} of ${page.total}`}
       </Text>
+
       <Button.Icon
         color="tertiary"
         icon={{ family: "Feather", name: "x" }}
+        iconTint={color.white}
         onPress={onClose}
         variant="text"
       />

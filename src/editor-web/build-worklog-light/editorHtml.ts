@@ -240,11 +240,11 @@ img.ProseMirror-separator {
     }
 
     p {
-        color: #171414;
+        color: #171922;
     }
 
     li::marker {
-        color: #171414;
+        color: #171922;
     }
 
     #root > div:nth-of-type(1) {

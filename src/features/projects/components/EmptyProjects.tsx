@@ -13,13 +13,16 @@ export const EmptyProjects = ({ onCreatePress }: Props) => {
     <Column style={tw`flex-1 center mb-28 px-12`}>
       <Illustration heightWindowRatio="1/3" name="not_found" />
 
-      <Text style={tw`h2 mt-6`}>{t`No projects yet`}</Text>
+      <Text style={tw`h2 mt-6 text-center`}>{t`No projects yet`}</Text>
       <Text
         style={tw`body text-center mt-4`}
       >{t`It’s time to create a project and start doing things.`}</Text>
 
       <Button.Container hasHapticFeedback onPress={onCreatePress}>
-        <Cue style={tw`mt-4`}>{t`Create a new project to get going.`}</Cue>
+        <Cue
+          style={tw`mt-4`}
+          textStyle={tw`text-center`}
+        >{t`Create a new project to get going.`}</Cue>
       </Button.Container>
 
       <Illustration heightWindowRatio="1/7" name="arrow" />

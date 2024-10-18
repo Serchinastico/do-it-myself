@@ -6,3 +6,479 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: es\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/features/image-viewer/components/Header.tsx:24
+msgid "{0} of {1}"
+msgstr "{0} de {1}"
+
+#: src/features/settings/screens/SettingsScreen.tsx:92
+msgid "<0><1>Support us in this project and get the app with no limitations </1><2>forever</2><3>.</3></0>"
+msgstr "<0><1>Apóyanos en este proyecto y consigue la app sin limitaciones </1><2>para siempre</2><3>.</3></0>"
+
+#: src/domain/project/tags.ts:30
+msgid "3d printing"
+msgstr "impresión 3d"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:96
+msgid "6.99€"
+msgstr "6.99€"
+
+#: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:36
+#: src/features/projects/components/dialogs/ToolRemovalConfirmationDialog.tsx:36
+#: src/features/projects/screens/AddTagsScreen.tsx:78
+#: src/features/settings/screens/AppPurchasedScreen.tsx:43
+msgid "Accept"
+msgstr "Aceptar"
+
+#: src/core/utils/imagePicker.ts:40
+msgid "Access to your camera or media library is required to pick a picture"
+msgstr "Se requiere acceso a tu cámara o galería para seleccionar una imagen"
+
+#: src/features/tools/components/attachments/AddAttachmentButton.tsx:20
+msgid "Add attachment"
+msgstr "Añadir fichero"
+
+#: src/features/tools/components/attachments/EmptyAttachments.tsx:15
+msgid "Add pictures and videos to your project to serve as references, inspiration or anything you want."
+msgstr "Agrega imágenes y videos a tu proyecto para que sirvan como referencias, inspiración o lo que desees."
+
+#: src/features/tools/components/attachments/EmptyAttachments.tsx:16
+msgid "Add some media to the project now."
+msgstr "Añade algunos ficheros al proyecto."
+
+#: src/features/projects/components/headers/AddTagsHeader.tsx:11
+#: src/features/projects/components/TagsPicker.tsx:29
+msgid "Add tags"
+msgstr "Añadir etiquetas"
+
+#: src/features/settings/screens/AppPurchasedScreen.tsx:29
+msgid "Any suggestion?"
+msgstr "¿Alguna sugerencia?"
+
+#: src/features/settings/components/headers/AppPurchasedHeader.tsx:11
+msgid "App purchased"
+msgstr "App comprada"
+
+#: src/features/projects/components/ProjectDetails.tsx:160
+msgid "At least one tool must be selected"
+msgstr "Debes seleccionar al menos una herramienta"
+
+#: src/features/projects/components/ProjectCard.tsx:98
+#: src/features/projects/components/ToolsPicker.tsx:130
+#: src/features/tools/components/headers/AttachmentsHeader.tsx:15
+msgid "Attachments"
+msgstr "Ficheros"
+
+#: src/domain/project/tags.ts:5
+msgid "build"
+msgstr "construir"
+
+#: src/features/settings/screens/SettingsScreen.tsx:89
+msgid "Buy the app to get unlimited projects"
+msgstr "Compra la app para tener proyectos ilimitados"
+
+#: src/core/utils/imagePicker.ts:52
+msgid "Camera unavailable"
+msgstr "Cámara no disponible"
+
+#: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:33
+#: src/features/projects/components/dialogs/ProjectsLimitReachedDialog.tsx:36
+#: src/features/projects/components/dialogs/ToolRemovalConfirmationDialog.tsx:33
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/core/utils/imagePicker.ts:46
+msgid "Canceled the selection of an image"
+msgstr "Cancelada la selección de imagen"
+
+#: src/domain/project/tags.ts:9
+msgid "chore"
+msgstr "tarea"
+
+#: src/domain/project/tags.ts:26
+msgid "clay"
+msgstr "arcilla"
+
+#: src/domain/project/colors.ts:5
+msgid "Clay"
+msgstr "Arcilla"
+
+#: src/domain/project/tags.ts:31
+msgid "CNC"
+msgstr "CNC"
+
+#: src/features/projects/components/ColorPicker.tsx:63
+msgid "Color"
+msgstr "Color"
+
+#: src/features/projects/components/EmptyProjects.tsx:22
+msgid "Create a new project to get going."
+msgstr "Crea un nuevo proyecto para empezar."
+
+#: src/features/projects/screens/ProjectsScreen.tsx:68
+msgid "Create new project"
+msgstr "Crear nuevo proyecto"
+
+#: src/features/projects/screens/CreateProjectScreen.tsx:43
+msgid "Create project"
+msgstr "Crear proyecto"
+
+#: src/core/theme/color-scheme.ts:9
+#: src/features/settings/screens/SettingsScreen.tsx:78
+msgid "Dark"
+msgstr "Oscuro"
+
+#: src/features/projects/components/ProjectDetails.tsx:176
+msgid "Delete"
+msgstr "Borrar"
+
+#: src/features/tools/components/attachments/AttachmentImage.tsx:54
+msgid "Delete item"
+msgstr "Borrar fichero"
+
+#: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:25
+msgid "Delete project"
+msgstr "Borrar proyecto"
+
+#: src/features/projects/components/ProjectDetails.tsx:148
+msgid "Description"
+msgstr "Descripción"
+
+#: src/domain/project/tags.ts:6
+msgid "design"
+msgstr "diseño"
+
+#: src/features/projects/components/ProjectDetails.tsx:144
+msgid "e.g. Hand the new mirror in the bathroom"
+msgstr "e.g. Colgar el nuevo espejo en el baño"
+
+#: src/features/projects/components/ProjectDetails.tsx:135
+msgid "e.g. Hang mirror"
+msgstr "e.g. Colgar espejo"
+
+#: src/domain/project/tags.ts:16
+msgid "easy"
+msgstr "fácil"
+
+#: src/features/projects/components/headers/EditProjectHeader.tsx:11
+msgid "Edit project"
+msgstr "Editar proyecto"
+
+#: src/features/tools/components/headers/ManualHeader.tsx:27
+msgid "Editing"
+msgstr "Editando"
+
+#: src/domain/project/tags.ts:28
+msgid "electronics"
+msgstr "electrónica"
+
+#: src/domain/project/tags.ts:29
+msgid "epoxy"
+msgstr "epoxi"
+
+#: src/domain/project/tags.ts:7
+msgid "fix"
+msgstr "arreglo"
+
+#: src/domain/project/colors.ts:11
+msgid "Fuchsia"
+msgstr "Fucsia"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:81
+msgid "Future updates."
+msgstr "Actualizaciones futuras."
+
+#: src/domain/project/colors.ts:6
+msgid "Grass"
+msgstr "Hierba"
+
+#: src/domain/project/tags.ts:18
+msgid "hard"
+msgstr "difícil"
+
+#: src/features/settings/screens/AppPurchasedScreen.tsx:31
+msgid ""
+"If you find any problem with the app or just want to help making\n"
+"it better, send me an email."
+msgstr "Si tienes algún problema con la app o simplemente quieres ayudarme a hacerla mejor, tan solo mándame un email."
+
+#: src/domain/project/tool.ts:36
+msgid "Introduction"
+msgstr "Introducción"
+
+#: src/features/projects/components/EmptyProjects.tsx:19
+msgid "It’s time to create a project and start doing things."
+msgstr "Es hora de crear un proyecto y empezar a hacer cosas."
+
+#: src/features/settings/screens/PurchaseScreen.tsx:88
+msgid "Let's be honest: We went to a store to see how much a personalized project notebook costs, and this was the price. That's it."
+msgstr "Seamos honestos: Fuimos a una tienda para ver cuánto cuesta un cuaderno de proyectos personalizado, y este fue el precio. Eso es todo."
+
+#: src/core/theme/color-scheme.ts:11
+#: src/features/settings/screens/SettingsScreen.tsx:67
+msgid "Light"
+msgstr "Claro"
+
+#: src/domain/project/colors.ts:8
+msgid "Lily"
+msgstr "Lirio"
+
+#: src/domain/project/colors.ts:7
+msgid "Lime"
+msgstr "Lima"
+
+#: src/domain/project/tags.ts:23
+msgid "long"
+msgstr "largo"
+
+#: src/features/projects/components/ProjectCard.tsx:80
+#: src/features/projects/components/ToolsPicker.tsx:114
+#: src/features/tools/components/headers/ManualHeader.tsx:28
+msgid "Manual"
+msgstr "Manual"
+
+#: src/domain/project/tags.ts:17
+#: src/domain/project/tags.ts:22
+msgid "medium"
+msgstr "medio"
+
+#: src/domain/project/tags.ts:34
+msgid "mixed medium"
+msgstr "múltiples medios"
+
+#: src/domain/project/tags.ts:8
+msgid "mount/unmount"
+msgstr "montar/desmontar"
+
+#: src/features/projects/components/ProjectDetails.tsx:138
+msgid "Name"
+msgstr "Nombre"
+
+#: src/features/projects/components/ProjectDetails.tsx:128
+msgid "Name is required"
+msgstr "El nombre es obligatorio"
+
+#: src/domain/project/tags.ts:13
+msgid "need help"
+msgstr "necesito ayuda"
+
+#: src/features/projects/components/headers/CreateProjectHeader.tsx:11
+msgid "New project"
+msgstr "Nuevo proyecto"
+
+#: src/features/tools/components/attachments/EmptyAttachments.tsx:12
+msgid "No attachments yet"
+msgstr "No hay ficheros todavía"
+
+#: src/features/projects/components/EmptyProjects.tsx:16
+msgid "No projects yet"
+msgstr "No hay proyectos todavía"
+
+#: src/features/projects/components/dialogs/ProjectsLimitReachedDialog.tsx:31
+msgid "No subscriptions, buy the app and it'll be yours, forever."
+msgstr "Sin suscripciones, compra la app y será tuya, para siempre."
+
+#: src/domain/project/colors.ts:10
+msgid "Ocean"
+msgstr "Oceano"
+
+#: src/domain/project/tags.ts:33
+msgid "paint"
+msgstr "pintar"
+
+#: src/features/tools/components/attachments/AddAttachmentButton.tsx:30
+#: src/features/tools/components/editor/tools/image.ts:34
+msgid "Photo Library"
+msgstr "Galería de fotos"
+
+#: src/features/projects/components/headers/ProjectsHeader.tsx:14
+msgid "Projects"
+msgstr "Proyectos"
+
+#: src/features/projects/components/dialogs/ProjectsLimitReachedDialog.tsx:42
+#: src/features/settings/components/headers/PurchaseHeader.tsx:11
+#: src/features/settings/screens/SettingsScreen.tsx:108
+msgid "Purchase"
+msgstr "Comprar"
+
+#: src/features/projects/components/ToolsPicker.tsx:120
+msgid "Record your progress on the project to resume it much more easily when you return to it."
+msgstr "Registra tu progreso durante el proyecto para volver a él más fácilmente."
+
+#: src/features/projects/components/dialogs/ToolRemovalConfirmationDialog.tsx:25
+msgid "Remove tool"
+msgstr "Eliminar herramienta"
+
+#: src/core/components/Error/ErrorScreen.tsx:28
+msgid "Reset"
+msgstr "Reiniciar"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:103
+msgid "Restore purchase"
+msgstr "Restaurar compra"
+
+#: src/features/projects/screens/EditProjectScreen.tsx:87
+msgid "Save"
+msgstr "Guardar"
+
+#: src/features/projects/components/ToolsPicker.tsx:128
+msgid "Save images and videos for future reference."
+msgstr "Guarda imágenes y videos para usarlas de referencia en el futuro."
+
+#: src/features/settings/components/headers/SettingsHeader.tsx:15
+msgid "Settings"
+msgstr "Configuración"
+
+#: src/domain/project/tags.ts:32
+msgid "sewing"
+msgstr "coser"
+
+#: src/domain/project/tags.ts:21
+msgid "short"
+msgstr "corto"
+
+#: src/domain/project/colors.ts:9
+msgid "Sky"
+msgstr "Cielo"
+
+#: src/domain/project/tags.ts:12
+msgid "solo project"
+msgstr "proyecto en solitario"
+
+#: src/core/components/Error/ErrorScreen.tsx:18
+msgid "Something went wrong"
+msgstr "Algo ha ido mal"
+
+#: src/domain/project/tool.ts:40
+msgid "Steps"
+msgstr "Pasos"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:80
+msgid "Styles for your manuals."
+msgstr "Estilos para tus manuales."
+
+#: src/features/projects/components/TagsPicker.tsx:19
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: src/features/projects/screens/AddTagsScreen.tsx:60
+msgid "Tags allow you to easily search for projects by their characteristics."
+msgstr "Las etiquetas te permiten buscar proyectos más facilmente por sus características."
+
+#: src/features/tools/components/editor/tools/image.ts:41
+msgid "Take photo"
+msgstr "Tomar una foto"
+
+#: src/features/tools/components/attachments/AddAttachmentButton.tsx:37
+msgid "Take Photo"
+msgstr "Tomar una foto"
+
+#: src/features/settings/screens/AppPurchasedScreen.tsx:22
+msgid "Thank you for purchasing Do It Myself!"
+msgstr "Gracias por comprar Do It Myself!"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:72
+msgid "The app for you, forever."
+msgstr "La app para ti, para siempre."
+
+#: src/features/projects/components/dialogs/ProjectsLimitReachedDialog.tsx:28
+msgid "The free version of Do It Myself only allows 3 projects. Buy the app to have access to unlimited projects and more."
+msgstr "La versión gratuita de Do It Myself solo permite 3 proyectos. Compra la app para crear tantos proyectos como quieras."
+
+#: src/features/settings/screens/PurchaseScreen.tsx:57
+msgid "The purchase was not restored"
+msgstr "La compra fue restaurada"
+
+#: src/features/settings/screens/SettingsScreen.tsx:52
+msgid "Theme"
+msgstr "Tema"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:54
+msgid "There was no Do It Myself purchase found in your account"
+msgstr "No hemos encontrado ninguna compra de Do It Myself en tu cuenta"
+
+#: src/core/utils/date.ts:14
+#: src/domain/project/tool.ts:49
+#: src/features/tools/components/editor/tools/date.ts:17
+msgid "Today"
+msgstr "Hoy"
+
+#: src/features/projects/components/ToolsPicker.tsx:100
+msgid "Tools"
+msgstr "Herramientas"
+
+#: src/features/projects/components/ToolsPicker.tsx:105
+msgid "Tools allow you to adapt your project to your needs. Remember that you can add and remove tools whenever you want."
+msgstr "Las herramientas te permiten adaptar tu proyecto a tus necesidades. Recuerda que puedes añadir o eliminar herramientas cuando lo necesites."
+
+#: src/domain/project/tool.ts:38
+msgid "Tools and materials"
+msgstr "Herramientas y materiales"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:76
+msgid "Unlimited projects."
+msgstr "Proyectos ilimitados."
+
+#: src/core/components/Error/ErrorScreen.tsx:21
+msgid "We are sorry but it looks like something failed. Send us an email to dim@serchinastico.com and we will work on it."
+msgstr "Lo sentimos mucho pero parece que algo ha fallado. Mándanos un email a dim@serchinastico.com y trabajaremos en arreglarlo tan pronto como podamos."
+
+#: src/domain/project/colors.ts:4
+msgid "Wheat"
+msgstr "Trigo"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:85
+msgid "Why 6.99€?"
+msgstr "¿Por qué 6.99€?"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:68
+msgid "Why buy the app?"
+msgstr "¿Por qué comprar la app?"
+
+#: src/domain/project/tags.ts:27
+msgid "wood"
+msgstr "madera"
+
+#: src/features/projects/components/ProjectCard.tsx:89
+#: src/features/projects/components/ToolsPicker.tsx:122
+#: src/features/tools/components/headers/WorklogHeader.tsx:15
+msgid "Worklog"
+msgstr "Diario"
+
+#: src/features/projects/components/ToolsPicker.tsx:112
+msgid "Write the detailed steps for your project. Include a list of requirements, use variables to adapt your project, and export a manual that you can print and keep near your finished project."
+msgstr "Escribe el paso a paso de tu proyecto. Incluye la lista de requisitos y exporta el manual para imprimirlo y mantenerlo cerca de tus proyectos finalizados."
+
+#: src/core/utils/date.ts:18
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:28
+msgid "You are about to delete this project. All the data stored in the project will be permanently deleted and you will not be able to recover it."
+msgstr "Estás a punto de borrar este proyecto. Toda la información del proyecto será borrada permanentemente y no serás capaz de recuperarla."
+
+#: src/features/projects/components/dialogs/ToolRemovalConfirmationDialog.tsx:28
+msgid "You are about to remove a tool from your project. If you had any data stored in the tool, you will not be able to recover it."
+msgstr "Estás a punto de borrar una herramienta de tu proyecto. Si tenías información almacenadas en la herramienta, no serás capaz de recuperarla."
+
+#: src/features/settings/screens/AppPurchasedScreen.tsx:25
+msgid "You can now enjoy the app, forever"
+msgstr "Ahora puedes disfrutar de la app, para siempre"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:53
+msgid "You can start using the full version of Do It Myself"
+msgstr "Puedes empezar a usar la versión completa de Do It Myself"
+
+#: src/features/projects/components/dialogs/ProjectsLimitReachedDialog.tsx:25
+msgid "You have run out of projects!"
+msgstr "¡Te has quedado sin proyectos!"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:56
+msgid "You restored your Do Iy Myself purchase!"
+msgstr "¡Has restaurado la compra de Do It Myself!"

@@ -1,3 +1,5 @@
+import { Cue } from "@app/core/components/Cue";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color as themeColor } from "@app/core/theme/color";
 import {
   PROJECT_COLORS,
@@ -17,6 +19,7 @@ const ColorItem = ({
   onColorChange,
   selectedColorId,
 }: ColorItemProps) => {
+  const colorSwitch = useColorSwitch();
   const isSelected = color.id === selectedColorId;
 
   return (
@@ -34,18 +37,21 @@ const ColorItem = ({
             },
           ]}
         />
-        <Text
-          style={tw.style(
-            `body mt-1 px-1`,
-            {
-              backgroundColor: isSelected ? color.hex : undefined,
-              "font-bold": isSelected,
-            },
-            isSelected && { color: themeColor.ash }
-          )}
+        <Cue
+          isMini
+          style={tw.style(`mt-1 px-2 py-1`, {
+            backgroundColor: isSelected ? color.hex : undefined,
+          })}
+          textStyle={tw.style({
+            color: isSelected
+              ? themeColor.ash
+              : colorSwitch({ dark: "white", light: "ash" }),
+            "font-extrabold": isSelected,
+            fontSize: 18,
+          })}
         >
           {color.name}
-        </Text>
+        </Cue>
       </Column>
     </Button.Container>
   );

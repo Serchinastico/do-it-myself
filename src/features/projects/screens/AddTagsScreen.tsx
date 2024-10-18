@@ -54,7 +54,7 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
       <ProjectHeader.AddTags onClose={() => navigation.goBack()} />
 
       <ScrollView style={tw`px-4`}>
-        <Column>
+        <Column style={tw`pb-28`}>
           <Text
             style={tw`body`}
           >{t`Tags allow you to easily search for projects by their characteristics.`}</Text>
@@ -69,13 +69,14 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
               tags={tags}
             />
           ))}
-          <Button
-            onPress={() => navigation.goBack()}
-            style={[tw`mt-6`, { marginBottom: bottom }]}
-            text={t`Accept`}
-          />
         </Column>
       </ScrollView>
+
+      <Button
+        onPress={() => navigation.goBack()}
+        style={[tw`absolute mb-4 left-0, right-0 shadow-lg`, { bottom }]}
+        text={t`Accept`}
+      />
     </SafeArea>
   );
 };

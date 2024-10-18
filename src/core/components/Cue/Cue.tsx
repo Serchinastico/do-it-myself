@@ -3,13 +3,31 @@ import { PropsWithChildren } from "react";
 import { StyleProp, Text, TextStyle, ViewProps } from "react-native";
 
 type Props = {
+  isMini?: boolean;
   textStyle?: StyleProp<TextStyle>;
 } & PropsWithChildren<ViewProps>;
 
-export const Cue = ({ children, style, textStyle, ...props }: Props) => {
+export const Cue = ({
+  children,
+  isMini,
+  style,
+  textStyle,
+  ...props
+}: Props) => {
+  isMini = isMini ?? false;
+
   return (
-    <Center style={[tw`bg-primary px-4 py-2 rounded-2 skew`, style]} {...props}>
-      <Text style={[tw`button`, textStyle, tw`text-white counter-skew`]}>
+    <Center
+      style={[
+        tw.style(`bg-primary px-4 py-2 skew`, {
+          "rounded-1": isMini,
+          "rounded-2": !isMini,
+        }),
+        style,
+      ]}
+      {...props}
+    >
+      <Text style={[tw`button text-white`, textStyle, tw`counter-skew`]}>
         {children}
       </Text>
     </Center>

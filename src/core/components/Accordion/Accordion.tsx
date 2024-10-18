@@ -28,8 +28,6 @@ export interface AccordionRef {
   open: () => void;
 }
 
-const CLOSED_ACCORDION_HEIGHT = 72;
-
 export const Accordion = forwardRef<AccordionRef, Props>(
   ({ children, childrenHeight, fieldName, selectedValue }, ref) => {
     const [isOpen, setIsOpen] = useState(false);

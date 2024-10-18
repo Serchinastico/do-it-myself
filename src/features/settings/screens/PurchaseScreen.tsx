@@ -65,20 +65,23 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
 
       <Column style={tw`flex-1 px-8`}>
         <Column style={tw`flex-1 center`}>
-          <Text style={tw`h2`}>{t`Why buy the app?`}</Text>
+          <Text style={tw`h2 text-center`}>{t`Why buy the app?`}</Text>
           <Cue
             style={tw`mt-4`}
-            textStyle={tw`h3`}
+            textStyle={tw`h3 text-white`}
           >{t`The app for you, forever.`}</Cue>
           <Cue
             style={tw`mt--2`}
-            textStyle={tw`h3`}
+            textStyle={tw`h3 text-white`}
           >{t`Unlimited projects.`}</Cue>
           <Cue
             style={tw`mt--2`}
-            textStyle={tw`h3`}
+            textStyle={tw`h3 text-white`}
           >{t`Styles for your manuals.`}</Cue>
-          <Cue style={tw`mt--2`} textStyle={tw`h3`}>{t`Future updates.`}</Cue>
+          <Cue
+            style={tw`mt--2`}
+            textStyle={tw`h3 text-white`}
+          >{t`Future updates.`}</Cue>
           <Center style={tw`my-4`}>
             <Illustration heightWindowRatio="1/5" name="purchase" />
           </Center>
