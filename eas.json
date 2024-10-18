@@ -11,13 +11,13 @@
     "preview": {
       "distribution": "internal",
       "env": {
-        "LEFTHOOK": false
+        "LEFTHOOK": "false"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "LEFTHOOK": false
+        "LEFTHOOK": "false"
       }
     }
   },
