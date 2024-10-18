@@ -5,7 +5,6 @@ export const color = {
   black: telarColor.black,
   error: telarColor.red[60],
   primary: "#C44529",
-  primaryDark: "#E55E41",
   secondary: telarColor.warmGray[100],
   white: telarColor.white,
 };

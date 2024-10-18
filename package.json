@@ -1,5 +1,11 @@
 {
   "scripts": {
+    "build:android": "eas build --platform android",
+    "build:android:local": "eas build --platform android --local",
+    "build:ios": "eas build --platform ios",
+    "build:ios:local": "eas build --platform ios --local",
+    "submit:android": "eas submit --platform android --latest",
+    "submit:ios": "eas submit --platform ios --latest",
     "editor:build": "run-s editor:build:manual:light editor:build:manual:dark editor:build:worklog:light editor:build:worklog:dark",
     "editor:build:manual:light": "TOOL=manual COLOR_SCHEME=light vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-manual-light/index.html",
     "editor:build:manual:dark": "TOOL=manual COLOR_SCHEME=dark vite --config ./src/editor-web/vite.config.ts build && node ./node_modules/@10play/tentap-editor/scripts/buildEditor.js ./src/editor-web/build-manual-dark/index.html",
