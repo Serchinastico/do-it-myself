@@ -32,7 +32,19 @@ const ToolSection = ({
             icon={icon}
             size={24}
           />
-          <Text style={tw`button ml-2 text-ash dark:text-white`}>{name}</Text>
+          <Text
+            style={[
+              tw`button ml-2`,
+              {
+                color: colorSwitch({
+                  dark: "white",
+                  light: "ash",
+                }),
+              },
+            ]}
+          >
+            {name}
+          </Text>
         </Row>
 
         <Text style={tw`body mt-2`}>{description}</Text>

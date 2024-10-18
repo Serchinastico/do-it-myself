@@ -23,7 +23,7 @@ const AllProviders = ({ children }: Props) => {
           core: {
             color: {
               primary: color.primary,
-              secondary: color.secondary,
+              secondary: color.ash,
               tertiary: color.white,
             },
           },

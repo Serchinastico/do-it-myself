@@ -18,16 +18,22 @@ export const Tag = ({ isSelected, onPress, tag }: Props) => {
       hasHapticFeedback
       onPress={onPress}
       style={tw.style(`px-4 py-2 border rounded-full`, {
-        borderColor: isSelected
-          ? color.primary
-          : colorSwitch({ dark: color.white, light: color.secondary }),
+        backgroundColor: colorSwitch({
+          dark: isSelected ? color.primary : color.ash,
+          light: undefined,
+        }),
+        borderColor: colorSwitch({
+          dark: isSelected ? color.ash : color.primary,
+          light: isSelected ? color.primary : color.ash,
+        }),
       })}
     >
       <Text
         style={tw.style(`body font-bold`, {
-          color: isSelected
-            ? color.primary
-            : colorSwitch({ dark: color.white, light: color.secondary }),
+          color: colorSwitch({
+            dark: color.white,
+            light: isSelected ? color.primary : color.ash,
+          }),
         })}
       >
         {tag.name}
