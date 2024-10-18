@@ -1,4 +1,5 @@
 import { RichText } from "@10play/tentap-editor";
+import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { EventMessage, Events } from "@app/core/event-bus/eventBus";
 import { RootScreenProps } from "@app/core/navigation/routes";
@@ -58,17 +59,21 @@ export const WorklogScreen = ({
     <SafeArea style={tw`bg-white dark:bg-ash`}>
       <ToolHeader.Worklog onBackPress={() => navigation.goBack()} />
 
-      <RichText
-        allowFileAccess
-        allowFileAccessFromFileURLs
-        allowUniversalAccessFromFileURLs
-        allowingReadAccessToURL={`${FileSystem.documentDirectory}`}
-        containerStyle={tw`px-4 pt-4`}
-        editor={editor}
-        focusable
-        originWhitelist={["*"]}
-        source={{ uri: htmlPath }}
-      />
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={44 /* To account for the Toolbar */}
+      >
+        <RichText
+          allowFileAccess
+          allowFileAccessFromFileURLs
+          allowUniversalAccessFromFileURLs
+          allowingReadAccessToURL={`${FileSystem.documentDirectory}`}
+          containerStyle={tw`px-4 pt-4`}
+          editor={editor}
+          focusable
+          originWhitelist={["*"]}
+          source={{ uri: htmlPath }}
+        />
+      </KeyboardAvoidingView>
 
       <Toolbar editor={editor} project={project} tools={WORKLOG_TOOLBAR} />
 

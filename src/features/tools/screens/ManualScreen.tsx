@@ -59,7 +59,9 @@ export const ManualScreen = ({
         onExportPress={() => {}}
       />
 
-      <KeyboardAvoidingView>
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={44 /* To account for the Toolbar */}
+      >
         <RichText
           allowFileAccess
           allowFileAccessFromFileURLs

@@ -69,16 +69,16 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
           <Cue
             style={tw`mt-4`}
             textStyle={tw`h3`}
-          >{t`The app for you, forever`}</Cue>
+          >{t`The app for you, forever.`}</Cue>
           <Cue
             style={tw`mt--2`}
             textStyle={tw`h3`}
-          >{t`unlimited projects`}</Cue>
+          >{t`Unlimited projects.`}</Cue>
           <Cue
             style={tw`mt--2`}
             textStyle={tw`h3`}
-          >{t`Styles for your manuals`}</Cue>
-          <Cue style={tw`mt--2`} textStyle={tw`h3`}>{t`Future updates`}</Cue>
+          >{t`Styles for your manuals.`}</Cue>
+          <Cue style={tw`mt--2`} textStyle={tw`h3`}>{t`Future updates.`}</Cue>
           <Center style={tw`my-4`}>
             <Illustration heightWindowRatio="1/5" name="purchase" />
           </Center>

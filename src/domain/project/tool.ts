@@ -33,7 +33,7 @@ export const getInitialManual = (
   colorId: ProjectColorId
 ): Project["manual"] => ({
   contentHtml: `
-${getTitleHtml(t`Variables`, colorId)}
+${getTitleHtml(t`Introduction`, colorId)}
 ${getParagraphHtml()}
 ${getTitleHtml(t`Tools and materials`, colorId)}
 ${getParagraphHtml()}

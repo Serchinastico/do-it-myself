@@ -116,7 +116,7 @@ export const useRichTextEditor = ({
 
   const editor = useEditorBridge({
     autofocus: false,
-    avoidIosKeyboard: true,
+    avoidIosKeyboard: false, // We rather deal with iOS keyboard ourselves
     bridgeExtensions: [
       ...TenTapStartKit,
       DateBridge((props) =>
