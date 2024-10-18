@@ -1,5 +1,6 @@
 import { Button } from "@app/core/components/Button";
 import { SafeArea } from "@app/core/components/SafeArea";
+import { useColorSchemeKey } from "@app/core/hooks/useColorSchemeKey";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { ProjectsList } from "@app/features/projects/components/ProjectsList";
@@ -20,6 +21,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
   const [isProjectLimitDialogOpen, setIsProjectLimitDialogOpen] =
     useState(false);
   const { bottom } = useSafeAreaInsets();
+  const colorSchemeKey = useColorSchemeKey();
 
   const onCreateProjectPress = useCallback(() => {
     if (projects.length >= FREE_VERSION_PROJECTS_LIMIT && !hasPurchasedApp) {
@@ -32,7 +34,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
   }, [projects, hasPurchasedApp]);
 
   return (
-    <SafeArea edges={SafeAreaViewEdges.NoBottom} key={tw.memoBuster}>
+    <SafeArea edges={SafeAreaViewEdges.NoBottom} key={colorSchemeKey}>
       <ProjectHeader.Projects
         onSettingsPress={() => navigation.navigate("settings")}
       />

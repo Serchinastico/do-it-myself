@@ -38,7 +38,7 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
       setTwColorScheme(scheme);
       accordionRef.current?.close();
     },
-    [setTwColorScheme]
+    [setColorScheme, setTwColorScheme]
   );
 
   return (
@@ -55,19 +55,27 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
               resolvedColorScheme ?? "light"
             )}
           >
-            <Column style={tw`center`}>
+            <Column style={tw`center py-2`}>
               <TelarButton.Container
                 hasHapticFeedback
                 onPress={() => onColorSchemePress("light")}
               >
-                <Text style={tw`h2`}>{t`Light`}</Text>
+                <Text
+                  style={tw.style(`h2`, {
+                    "text-primary underline": colorScheme === "light",
+                  })}
+                >{t`Light`}</Text>
               </TelarButton.Container>
 
               <TelarButton.Container
                 hasHapticFeedback
                 onPress={() => onColorSchemePress("dark")}
               >
-                <Text style={tw`h2 mt-3`}>{t`Dark`}</Text>
+                <Text
+                  style={tw.style(`h2 pt-3`, {
+                    "text-primary underline": colorScheme === "dark",
+                  })}
+                >{t`Dark`}</Text>
               </TelarButton.Container>
             </Column>
           </Accordion>

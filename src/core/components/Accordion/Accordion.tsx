@@ -28,31 +28,33 @@ export interface AccordionRef {
   open: () => void;
 }
 
+const CLOSED_ACCORDION_HEIGHT = 72;
+
 export const Accordion = forwardRef<AccordionRef, Props>(
   ({ children, childrenHeight, fieldName, selectedValue }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const colorSwitch = useColorSwitch();
 
-    const dateTimePickerHeight = useSharedValue(64);
-    const dateTimePickerOpacity = useSharedValue(0);
+    const valuePickerHeight = useSharedValue(64);
+    const valuePickerOpacity = useSharedValue(0);
 
     const accordionAnimationStyle = useAnimatedStyle(() => ({
-      height: withSpring(dateTimePickerHeight.value, {
+      height: withSpring(valuePickerHeight.value, {
         dampingRatio: 0.55,
         duration: 500,
       }),
     }));
 
     const childrenAnimationStyle = useAnimatedStyle(() => ({
-      opacity: withTiming(dateTimePickerOpacity.value, {
+      opacity: withTiming(valuePickerOpacity.value, {
         duration: 200,
         easing: Easing.cubic,
       }),
     }));
 
     useEffect(() => {
-      dateTimePickerHeight.value = isOpen ? 64 + childrenHeight : 64;
-      dateTimePickerOpacity.value = isOpen ? 1 : 0;
+      valuePickerHeight.value = isOpen ? 52 + childrenHeight : 52;
+      valuePickerOpacity.value = isOpen ? 1 : 0;
     }, [isOpen]);
 
     useImperativeHandle(ref, () => ({
@@ -61,7 +63,11 @@ export const Accordion = forwardRef<AccordionRef, Props>(
     }));
 
     return (
-      <Button.Container hasHapticFeedback onPress={() => setIsOpen((v) => !v)}>
+      <Button.Container
+        hasHapticFeedback
+        onPress={() => setIsOpen((v) => !v)}
+        style={tw``}
+      >
         <Animated.View style={[tw`mt-2 w-full px-2`, accordionAnimationStyle]}>
           <View style={tw`w-full flex-row center`}>
             <Text style={tw`flex-1 h3`}>{fieldName}</Text>
