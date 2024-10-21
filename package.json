@@ -18,7 +18,7 @@
     "lint:eslint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:expo": "expo-doctor",
     "prebuild": "expo prebuild --clean",
-    "prepare": "lefthook install",
+    "prepare": "if [ \"$LEFTHOOK\" != \"false\" ]; then lefthook install; fi",
     "start": "expo start -d",
     "android": "expo run:android -d",
     "ios": "expo run:ios -d"
