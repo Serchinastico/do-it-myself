@@ -1,37 +1,38 @@
+import { i18n } from "@lingui/core";
 import { t } from "@lingui/macro";
 
 export const PROJECT_TAGS = {
   category: [
-    { id: "build", name: t`build` },
-    { id: "design", name: t`design` },
-    { id: "fix", name: t`fix` },
-    { id: "mount_unmount", name: t`mount/unmount` },
-    { id: "chore", name: t`chore` },
+    { id: "build", name: t(i18n)`build` },
+    { id: "design", name: t(i18n)`design` },
+    { id: "fix", name: t(i18n)`fix` },
+    { id: "mount_unmount", name: t(i18n)`mount/unmount` },
+    { id: "chore", name: t(i18n)`chore` },
   ],
   collaboration: [
-    { id: "solo", name: t`solo project` },
-    { id: "need_help", name: t`need help` },
+    { id: "solo", name: t(i18n)`solo project` },
+    { id: "need_help", name: t(i18n)`need help` },
   ],
   complexity: [
-    { id: "easy", name: t`easy` },
-    { id: "medium_difficulty", name: t`medium` },
-    { id: "hard", name: t`hard` },
+    { id: "easy", name: t(i18n)`easy` },
+    { id: "medium_difficulty", name: t(i18n)`medium` },
+    { id: "hard", name: t(i18n)`hard` },
   ],
   duration: [
-    { id: "short", name: t`short` },
-    { id: "medium_duration", name: t`medium` },
-    { id: "long", name: t`long` },
+    { id: "short", name: t(i18n)`short` },
+    { id: "medium_duration", name: t(i18n)`medium` },
+    { id: "long", name: t(i18n)`long` },
   ],
   medium: [
-    { id: "clay", name: t`clay` },
-    { id: "wood", name: t`wood` },
-    { id: "electronics", name: t`electronics` },
-    { id: "epoxy", name: t`epoxy` },
-    { id: "3d_printing", name: t`3d printing` },
-    { id: "cnc", name: t`CNC` },
-    { id: "sewing", name: t`sewing` },
-    { id: "paint", name: t`paint` },
-    { id: "mixed medium", name: t`mixed medium` },
+    { id: "clay", name: t(i18n)`clay` },
+    { id: "wood", name: t(i18n)`wood` },
+    { id: "electronics", name: t(i18n)`electronics` },
+    { id: "epoxy", name: t(i18n)`epoxy` },
+    { id: "3d_printing", name: t(i18n)`3d printing` },
+    { id: "cnc", name: t(i18n)`CNC` },
+    { id: "sewing", name: t(i18n)`sewing` },
+    { id: "paint", name: t(i18n)`paint` },
+    { id: "mixed medium", name: t(i18n)`mixed medium` },
   ],
 } as const;
 
