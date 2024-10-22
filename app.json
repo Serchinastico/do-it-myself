@@ -13,7 +13,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#C44529"
     },
     "ios": {
       "supportsTablet": true,
@@ -22,12 +22,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#C44529"
       },
       "package": "com.serchinastico.doitmyself"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
