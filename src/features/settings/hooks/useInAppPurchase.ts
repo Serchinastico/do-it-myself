@@ -7,7 +7,7 @@ import {
 } from "react-native-iap";
 
 export const useInAppPurchase = () => {
-  const getAvailableProducts = () => getProducts({ skus: ["app_purchase"] });
+  const getAvailableProducts = () => getProducts({ skus: ["full_version"] });
 
   const getPurchaseOptions = (sku: string): RequestPurchase => {
     switch (Platform.OS) {
