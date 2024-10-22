@@ -1,6 +1,5 @@
 import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { Button } from "@app/core/components/Button";
-import { Illustration } from "@app/core/components/Illustration";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
@@ -8,19 +7,21 @@ import {
   ColorScheme,
   getNameFromColorScheme,
 } from "@app/core/theme/color-scheme";
-import { Trans, t } from "@lingui/macro";
-import { Center, Column, Button as TelarButton } from "@madeja-studio/telar";
-import { useAtom } from "jotai";
+import { t } from "@lingui/macro";
+import { Column, Button as TelarButton } from "@madeja-studio/telar";
+import { useAtom, useAtomValue } from "jotai";
 import { useCallback, useRef } from "react";
 import { Appearance, ScrollView, Text } from "react-native";
 import { useAppColorScheme } from "twrnc";
 
+import { AppPurchasePrompt } from "../components/AppPurchasePrompt";
 import { Header } from "../components/headers";
 
 export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
   const [twColorScheme, , setTwColorScheme] = useAppColorScheme(tw);
   const accordionRef = useRef<AccordionRef>(null);
   const [colorScheme, setColorScheme] = useAtom(atoms.colorScheme);
+  const hasPurchasedApp = useAtomValue(atoms.hasPurchasedApp);
 
   const resolvedColorScheme = colorScheme ?? twColorScheme;
 
@@ -80,33 +81,17 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
             </Column>
           </Accordion>
 
-          <Center style={tw`mt-8`}>
-            <Illustration heightWindowRatio="1/3" name="settings" />
-          </Center>
-
-          <Text
-            style={tw`h2 text-center mt-6`}
-          >{t`Buy the app to get unlimited projects`}</Text>
-
-          <Center style={tw`mt-4`}>
-            <Trans>
-              <Text style={tw`body text-center`}>
-                <Text>
-                  Support us in this project and get the app with no limitations{" "}
-                </Text>
-                <Text style={tw`font-bold`}>forever</Text>
-                <Text>.</Text>
-              </Text>
-            </Trans>
-          </Center>
+          {!hasPurchasedApp && <AppPurchasePrompt />}
         </Column>
       </ScrollView>
 
-      <Button
-        icon={{ family: "Feather", name: "shopping-bag" }}
-        onPress={() => navigation.navigate("purchase")}
-        text={t`Purchase`}
-      />
+      {!hasPurchasedApp && (
+        <Button
+          icon={{ family: "Feather", name: "shopping-bag" }}
+          onPress={() => navigation.navigate("purchase")}
+          text={t`Purchase`}
+        />
+      )}
     </SafeArea>
   );
 };

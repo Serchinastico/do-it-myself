@@ -13,27 +13,18 @@ import {
   useToast,
 } from "@madeja-studio/telar";
 import { useSetAtom } from "jotai";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Platform, Text } from "react-native";
-import { Product } from "react-native-iap";
-import useAsyncEffect from "use-async-effect";
 
 import { useInAppPurchase } from "../hooks/useInAppPurchase";
 
 export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
-  const { getAvailableProducts, hasPurchasedApp, requestPurchase } =
-    useInAppPurchase();
-  const [product, setProduct] = useState<Product | null>(null);
+  const { hasPurchasedApp, product, requestPurchase } = useInAppPurchase();
   const setHasPurchasedApp = useSetAtom(atoms.hasPurchasedApp);
   const { showToast } = useToast();
 
-  useAsyncEffect(async () => {
-    const products = await getAvailableProducts();
-    setProduct(products[0]);
-  }, []);
-
   const onPurchasePress = useCallback(async () => {
-    const response = await requestPurchase("app_purchase");
+    const response = await requestPurchase("full_version");
 
     if (response) {
       setHasPurchasedApp(true);
@@ -57,7 +48,11 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
         : t`The purchase was not restored`,
       variant: hasRestoredPurchase ? "success" : "error",
     });
-  }, []);
+
+    if (hasRestoredPurchase) {
+      navigation.goBack();
+    }
+  }, [navigation]);
 
   return (
     <SafeArea edges={SafeAreaViewEdges.NoTop}>
@@ -85,7 +80,7 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
           <Center style={tw`my-4`}>
             <Illustration heightWindowRatio="1/5" name="purchase" />
           </Center>
-          <Text style={tw`h2`}>{t`Why 6.99€?`}</Text>
+          <Text style={tw`h2`}>{t`Why ${product?.priceTag ?? "-"}?`}</Text>
           <Text
             style={tw`body mt-2 text-center`}
           >{t`Let's be honest: We went to a store to see how much a personalized project notebook costs, and this was the price. That's it.`}</Text>
@@ -95,8 +90,9 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
           <Button
             hasAutoLoad
             icon={{ family: "Feather", name: "shopping-bag" }}
+            isLoading={!product}
             onPress={onPurchasePress}
-            text={t`6.99€`}
+            text={product?.priceTag ?? "-"}
             textStyle={tw`h3 text-white ml-3`}
           />
           {Platform.OS === "ios" && (
