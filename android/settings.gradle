@@ -44,7 +44,7 @@ if (getRNMinorVersion() >= 75) {
   }
 }
 
-rootProject.name = 'do-it-myself'
+rootProject.name = 'do-it-myself (DEV)'
 
 dependencyResolutionManagement {
   versionCatalogs {

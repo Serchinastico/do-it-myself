@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "build:android": "eas build --platform android",
+    "build:android": "eas build --platform android --profile production",
     "build:android:local": "eas build --platform android --local",
-    "build:ios": "eas build --platform ios",
+    "build:ios": "eas build --platform ios --profile production",
     "build:ios:local": "eas build --platform ios --local",
     "submit:android": "eas submit --platform android --latest",
     "submit:ios": "eas submit --platform ios --latest",
@@ -17,11 +17,11 @@
     "lint:eslint": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:eslint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:expo": "expo-doctor",
-    "prebuild": "expo prebuild --clean",
+    "prebuild": "APP_VARIANT=development expo prebuild --clean",
     "prepare": "if [ \"$LEFTHOOK\" != \"false\" ]; then lefthook install; fi",
-    "start": "expo start -d",
-    "android": "expo run:android -d",
-    "ios": "expo run:ios -d"
+    "start": "APP_VARIANT=development expo start -d",
+    "android": "APP_VARIANT=development expo run:android -d",
+    "ios": "APP_VARIANT=development expo run:ios -d"
   },
   "main": "./src/index.ts",
   "name": "do-it-myself",
