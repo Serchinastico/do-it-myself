@@ -1,18 +1,24 @@
 import { Header } from "@app/core/components/Header";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { t } from "@lingui/macro";
-import { OnPress } from "@madeja-studio/telar";
+import { Button, OnPress } from "@madeja-studio/telar";
 
 interface Props {
   onClose: OnPress;
 }
 
-export const AttachmentsHeader = ({ onClose }: Props) => {
+export const ExportManualHeader = ({ onClose }: Props) => {
+  const colorSwitch = useColorSwitch();
+
   return (
-    <Header
-      hasBackButton
-      onBackPress={onClose}
-      style={tw`mt-4`}
-      title={t`Attachments`}
-    />
+    <Header style={tw`mt-4`} title={t`Export`}>
+      <Button.Icon
+        color="secondary"
+        icon={{ family: "Feather", name: "x" }}
+        iconTint={colorSwitch({ dark: "white", light: "ash" })}
+        onPress={onClose}
+        variant="text"
+      />
+    </Header>
   );
 };

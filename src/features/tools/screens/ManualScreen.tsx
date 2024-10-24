@@ -51,12 +51,12 @@ export const ManualScreen = ({
   }, [html]);
 
   return (
-    <SafeArea style={tw`bg-white dark:bg-ash`}>
+    <SafeArea>
       <ToolHeader.Manual
         isEditing={isEditing}
         onBackPress={() => navigation.goBack()}
         onEditPress={onEditPress}
-        onExportPress={() => {}}
+        onExportPress={() => navigation.navigate("exportManual", { projectId })}
       />
 
       <KeyboardAvoidingView

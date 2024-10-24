@@ -56,7 +56,7 @@ export const WorklogScreen = ({
   }, [editor, hasOpenedKeyboard]);
 
   return (
-    <SafeArea style={tw`bg-white dark:bg-ash`}>
+    <SafeArea>
       <ToolHeader.Worklog onBackPress={() => navigation.goBack()} />
 
       <KeyboardAvoidingView

@@ -121,7 +121,7 @@ export const ProjectDetails = ({
   ]);
 
   return (
-    <ScrollView style={tw`px-4`}>
+    <ScrollView keyboardShouldPersistTaps="handled" style={tw`px-4`}>
       <Column style={tw`pb-4`}>
         <Input
           autoFocus={autoFocus}

@@ -50,11 +50,14 @@ const PreloadScreen = ({ children }: Props) => {
 
     await initConnection();
 
-    const history = await getAvailablePurchases({
-      onlyIncludeActiveItems: true,
-    });
-
-    setHasPurchasedApp(history.length > 0);
+    try {
+      const history = await getAvailablePurchases({
+        onlyIncludeActiveItems: true,
+      });
+      setHasPurchasedApp(history.length > 0);
+    } catch (e) {
+      setHasPurchasedApp(false);
+    }
 
     try {
       if (Platform.OS === "android") {

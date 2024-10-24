@@ -8,6 +8,7 @@ import {
 import { PurchaseScreen, SettingsScreen } from "@app/features/settings/screens";
 import { AppPurchasedScreen } from "@app/features/settings/screens/AppPurchasedScreen";
 import { AttachmentsScreen } from "@app/features/tools/screens/AttachmentsScreen";
+import { ExportManualScreen } from "@app/features/tools/screens/ExportManualScreen";
 import { ManualScreen } from "@app/features/tools/screens/ManualScreen";
 import { WorklogScreen } from "@app/features/tools/screens/WorklogScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -49,6 +50,11 @@ const RootNavigation = () => {
       <Stack.Screen component={ManualScreen} name="manual" />
       <Stack.Screen component={WorklogScreen} name="worklog" />
       <Stack.Screen component={AttachmentsScreen} name="attachments" />
+      <Stack.Screen
+        component={ExportManualScreen}
+        name="exportManual"
+        options={{ presentation: "modal" }}
+      />
       <Stack.Screen
         component={ImageViewerScreen}
         name="imageViewer"

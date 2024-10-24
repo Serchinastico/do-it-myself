@@ -14,14 +14,14 @@ export const PROJECT_TAGS = {
     { id: "need_help", name: t(i18n)`need help` },
   ],
   complexity: [
-    { id: "easy", name: t(i18n)`easy` },
-    { id: "medium_difficulty", name: t(i18n)`medium` },
-    { id: "hard", name: t(i18n)`hard` },
+    { id: "complexity:easy", name: t(i18n)`complexity:easy` },
+    { id: "complexity:medium", name: t(i18n)`complexity:medium` },
+    { id: "complexity:hard", name: t(i18n)`complexity:hard` },
   ],
   duration: [
-    { id: "short", name: t(i18n)`short` },
-    { id: "medium_duration", name: t(i18n)`medium` },
-    { id: "long", name: t(i18n)`long` },
+    { id: "duration:short", name: t(i18n)`duration:short` },
+    { id: "duration:medium", name: t(i18n)`duration:medium` },
+    { id: "duration:long", name: t(i18n)`duration:long` },
   ],
   medium: [
     { id: "clay", name: t(i18n)`clay` },

@@ -2,6 +2,7 @@ import { ColorSchemeBootstrap } from "@app/core/bootstrap/ColorSchemeBootstrap";
 import { ErrorScreen } from "@app/core/components/Error";
 import { DebugFileSystemProvider } from "@app/core/providers/DebugFileSystemProvider";
 import { color } from "@app/core/theme/color";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { TelarContextProvider } from "@madeja-studio/telar";
@@ -36,7 +37,9 @@ const AllProviders = ({ children }: Props) => {
               <ColorSchemeBootstrap>
                 <PreloadScreen>
                   <NavigationContainer>
-                    <I18nProvider i18n={i18n}>{children}</I18nProvider>
+                    <BottomSheetModalProvider>
+                      <I18nProvider i18n={i18n}>{children}</I18nProvider>
+                    </BottomSheetModalProvider>
                   </NavigationContainer>
                 </PreloadScreen>
               </ColorSchemeBootstrap>

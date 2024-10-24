@@ -7,6 +7,7 @@ export type RootNavigationParamList = {
   attachments: { projectId: string };
   createProject: undefined;
   editProject: { projectId: string };
+  exportManual: { projectId: string };
   imageViewer: { imagePaths: string[]; initialImageIndex: number };
   manual: { projectId: string };
   projects: undefined;
