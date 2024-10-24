@@ -55,7 +55,7 @@ const PreloadScreen = ({ children }: Props) => {
         onlyIncludeActiveItems: true,
       });
       setHasPurchasedApp(history.length > 0);
-    } catch (e) {
+    } catch {
       setHasPurchasedApp(false);
     }
 
