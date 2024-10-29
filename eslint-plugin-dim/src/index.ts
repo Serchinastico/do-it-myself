@@ -1,7 +1,7 @@
 import { TSESLint } from "@typescript-eslint/utils";
 
-import { keyboardShouldPersistTaps } from "./rules/keyboardShouldPersistTaps.js";
+import { useCustomScrollView } from "./rules/useCustomScrollView";
 
 export const rules = {
-  "keyboard-should-persist-taps": keyboardShouldPersistTaps,
+  "use-custom-scroll-view": useCustomScrollView,
 } satisfies Record<string, TSESLint.RuleModule<string, unknown[]>>;

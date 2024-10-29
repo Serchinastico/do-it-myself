@@ -1,5 +1,6 @@
 import { Button } from "@app/core/components/Button";
 import { Input } from "@app/core/components/Input";
+import { ScrollView } from "@app/core/components/ScrollView";
 import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import {
@@ -16,7 +17,7 @@ import { t } from "@lingui/macro";
 import { Column, IconReference, OnPress, Row } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai/index";
 import React, { useCallback, useRef, useState } from "react";
-import { ScrollView, TextInput } from "react-native";
+import { TextInput } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type DeleteProps =
@@ -121,7 +122,7 @@ export const ProjectDetails = ({
   ]);
 
   return (
-    <ScrollView keyboardShouldPersistTaps="handled" style={tw`px-4`}>
+    <ScrollView style={tw`px-4`}>
       <Column style={tw`pb-4`}>
         <Input
           autoFocus={autoFocus}

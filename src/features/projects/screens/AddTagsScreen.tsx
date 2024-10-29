@@ -1,5 +1,6 @@
 import { Button } from "@app/core/components/Button";
 import { SafeArea } from "@app/core/components/SafeArea";
+import { ScrollView } from "@app/core/components/ScrollView";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { PROJECT_TAGS, ProjectTagId } from "@app/domain/project";
@@ -10,7 +11,7 @@ import { toggleItem } from "@madeja-studio/cepillo";
 import { Column, Row, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useAtom } from "jotai";
-import { ScrollView, Text } from "react-native";
+import { Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {

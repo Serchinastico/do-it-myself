@@ -1,6 +1,7 @@
 import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { Cue } from "@app/core/components/Cue";
 import { SafeArea } from "@app/core/components/SafeArea";
+import { ScrollView } from "@app/core/components/ScrollView";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import {
@@ -13,7 +14,7 @@ import { t } from "@lingui/macro";
 import { Button, Column, Row, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai";
 import { useCallback, useRef, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { ToolHeader } from "../components/headers";
 

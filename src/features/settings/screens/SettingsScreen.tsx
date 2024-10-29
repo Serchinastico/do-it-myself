@@ -1,6 +1,7 @@
 import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { Button } from "@app/core/components/Button";
 import { SafeArea } from "@app/core/components/SafeArea";
+import { ScrollView } from "@app/core/components/ScrollView";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import {
@@ -11,7 +12,7 @@ import { t } from "@lingui/macro";
 import { Column, Button as TelarButton } from "@madeja-studio/telar";
 import { useAtom, useAtomValue } from "jotai";
 import { useCallback, useRef } from "react";
-import { Appearance, ScrollView, Text } from "react-native";
+import { Appearance, Text } from "react-native";
 import { useAppColorScheme } from "twrnc";
 
 import { AppPurchasePrompt } from "../components/AppPurchasePrompt";

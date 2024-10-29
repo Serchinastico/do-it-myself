@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rules = void 0;
-const keyboardShouldPersistTaps_js_1 = require("./rules/keyboardShouldPersistTaps.js");
+const useCustomScrollView_1 = require("./rules/useCustomScrollView");
 exports.rules = {
-    "keyboard-should-persist-taps": keyboardShouldPersistTaps_js_1.keyboardShouldPersistTaps,
+    "use-custom-scroll-view": useCustomScrollView_1.useCustomScrollView,
 };
 //# sourceMappingURL=index.js.map
