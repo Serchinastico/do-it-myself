@@ -1,4 +1,4 @@
-package com.serchinastico.doitmyself.dev
+package com.serchinastico.doitmyself
 
 import android.app.Application
 import android.content.res.Configuration

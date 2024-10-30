@@ -12,6 +12,7 @@ export const AddAttachmentButton = ({ onAddAttachment }: Props) => {
   const { bottom } = useSafeAreaInsets();
   return (
     <DropdownMenu.Root
+      // @ts-expect-error DropdownMenu.Root prop type does not accept style, but it actually uses it
       style={tw.style(`absolute mb-4 inset-x-0 shadow-lg`, { bottom })}
     >
       <DropdownMenu.Trigger>

@@ -3,9 +3,11 @@ import { t } from "@lingui/macro";
 
 export const ExportTheme = {
   dim: {
+    getPreview: () => require("@assets/img/dim-theme.png"),
     name: t(i18n)`Do It Myself`,
   },
   sweden: {
+    getPreview: () => require("@assets/img/sweden-theme.png"),
     name: t(i18n)`Sweden`,
   },
 } as const;

@@ -1,4 +1,4 @@
-package com.serchinastico.doitmyself.dev
+package com.serchinastico.doitmyself
 
 import android.os.Build
 import android.os.Bundle

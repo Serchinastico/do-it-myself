@@ -25,6 +25,7 @@ export const AttachmentImage = ({
   const imageHeight = imageWidth * (image.height / image.width);
 
   return (
+    // @ts-expect-error ContextMenu.Root prop type does not accept style, but it actually uses it
     <ContextMenu.Root style={tw`rounded-card my-1`}>
       <ContextMenu.Trigger>
         <Center style={tw`pb-1.5 relative`}>

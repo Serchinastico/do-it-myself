@@ -109,9 +109,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.serchinastico.doitmyself.dev'
+    namespace 'com.serchinastico.doitmyself'
     defaultConfig {
-        applicationId 'com.serchinastico.doitmyself.dev'
+        applicationId 'com.serchinastico.doitmyself'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

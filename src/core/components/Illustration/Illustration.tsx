@@ -1,5 +1,6 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
-import { Dimensions, Image, ImageProps } from "react-native";
+import { Image, ImageProps } from "expo-image";
+import { Dimensions } from "react-native";
 import { ImageSourcePropType } from "react-native/Libraries/Image/Image";
 import invariant from "tiny-invariant";
 
@@ -48,7 +49,7 @@ export const Illustration = ({
   ...props
 }: Props) => {
   const { colorScheme } = useColorSwitch();
-  const { height: windowHeight } = Dimensions.get("window");
+  const { height: windowHeight } = Dimensions.get("screen");
 
   const [a, b] = heightWindowRatio
     .split("/")
@@ -60,10 +61,6 @@ export const Illustration = ({
   const source = illustrationMap[illustrationName]();
 
   return (
-    <Image
-      source={source}
-      style={[tw`contain`, { height }, style]}
-      {...props}
-    />
+    <Image source={source} style={[tw`bg-[#FA5]`, { height, width: 500 }]} />
   );
 };
