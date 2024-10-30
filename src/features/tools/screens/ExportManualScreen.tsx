@@ -61,6 +61,7 @@ export const ExportManualScreen = ({
               {Object.entries(ExportTheme).map(([id, theme]) => (
                 <Button.Container
                   hasHapticFeedback
+                  key={id}
                   onPress={() => onExportThemeSelect(id as ExportThemeId)}
                 >
                   <Column style={tw`items-center gap-2 w-[120px] h-[200px]`}>
@@ -92,6 +93,7 @@ export const ExportManualScreen = ({
               {Object.entries(Layout).map(([id, layout]) => (
                 <Button.Container
                   hasHapticFeedback
+                  key={id}
                   onPress={() => onLayoutSelect(id as LayoutId)}
                 >
                   <Column style={tw`items-center gap-2 w-[120px] h-[200px]`}>
