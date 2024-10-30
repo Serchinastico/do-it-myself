@@ -8,10 +8,10 @@ import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { RootNavigation } from "@app/core/navigation/routes";
 import { ColorScheme } from "@app/core/theme/color-scheme";
 import {
-  Project,
-  ToolType,
   getProjectColorById,
   getToolEditorContent,
+  Project,
+  ToolType,
 } from "@app/domain/project";
 import { editorHtml as manualDarkEditorHtml } from "@app/editor-web/build-manual-dark/editorHtml";
 import { editorHtml as manualLightEditorHtml } from "@app/editor-web/build-manual-light/editorHtml";

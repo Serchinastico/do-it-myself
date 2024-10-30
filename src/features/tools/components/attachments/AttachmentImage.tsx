@@ -48,7 +48,7 @@ export const AttachmentImage = ({
           />
         </Center>
       </ContextMenu.Trigger>
-      {/* @ts-ignore */}
+
       <ContextMenu.Content>
         <ContextMenu.Item destructive key="delete" onSelect={onDelete}>
           <ContextMenu.ItemTitle>{t`Delete item`}</ContextMenu.ItemTitle>

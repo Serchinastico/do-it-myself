@@ -2,9 +2,9 @@ import { ToolButton } from "@app/core/components/ToolButton";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color } from "@app/core/theme/color";
 import {
-  ToolType,
   getProjectColorById,
   getTagsByIds,
+  ToolType,
 } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";

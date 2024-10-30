@@ -5,10 +5,10 @@ import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import {
   EditedProject,
-  ProjectColorId,
-  ToolType,
   getInitialManual,
   getInitialWorklog,
+  ProjectColorId,
+  ToolType,
 } from "@app/domain/project";
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";

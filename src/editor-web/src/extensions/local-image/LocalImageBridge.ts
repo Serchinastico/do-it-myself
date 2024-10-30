@@ -57,9 +57,12 @@ export const LocalImageBridge = (
 
       return false;
     },
-    onEditorMessage: (message, _editorBridge) => {
+    onEditorMessage: (message) => {
       if (message.type === LocalImageEditorActionType.Click) {
-        onClick && onClick(message.payload);
+        if (onClick) {
+          onClick(message.payload);
+        }
+
         return true;
       }
 

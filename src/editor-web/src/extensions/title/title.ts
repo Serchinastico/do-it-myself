@@ -1,8 +1,8 @@
-import { Node, mergeAttributes } from "@tiptap/core";
+import { mergeAttributes, Node } from "@tiptap/core";
 
 export interface TitleOptions {
-  HTMLAttributes: Record<string, any>;
   backgroundColor: string;
+  HTMLAttributes: Record<string, any>;
 }
 
 declare module "@tiptap/core" {
@@ -39,8 +39,8 @@ export const Title = Node.create<TitleOptions>({
 
   addOptions() {
     return {
-      HTMLAttributes: {},
       backgroundColor: "#F90",
+      HTMLAttributes: {},
     };
   },
   atom: false,

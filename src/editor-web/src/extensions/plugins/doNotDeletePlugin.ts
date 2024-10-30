@@ -25,7 +25,7 @@ export const doNotDeletePlugin = (nodeName: string) => {
       let result = true; // true for keep, false for stop transaction
       const replaceSteps: number[] = [];
       transaction.steps.forEach((step, index) => {
-        // @ts-ignore
+        // @ts-expect-error jsonID exists even though typescript reports it doesn't
         if (step.jsonID === "replace") {
           replaceSteps.push(index);
         }
@@ -33,9 +33,9 @@ export const doNotDeletePlugin = (nodeName: string) => {
 
       replaceSteps.forEach((index) => {
         const map = transaction.mapping.maps[index];
-        // @ts-ignore
+        // @ts-expect-error ranges exists even though typescript reports it doesn't
         const oldStart = map.ranges[0];
-        // @ts-ignore
+        // @ts-expect-error ranges exists even though typescript reports it doesn't
         const oldEnd = map.ranges[0] + map.ranges[1];
         state.doc.nodesBetween(oldStart, oldEnd, (node) => {
           if (node.type.name === nodeName) {

@@ -1,5 +1,6 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { Dimensions, Image, ImageProps } from "react-native";
+import { ImageSourcePropType } from "react-native/Libraries/Image/Image";
 import invariant from "tiny-invariant";
 
 interface Props extends Omit<ImageProps, "source"> {
@@ -19,7 +20,7 @@ interface Props extends Omit<ImageProps, "source"> {
 type ImageName = Props["name"];
 type IllustrationName = `${ImageName}_${"dark" | "light"}`;
 
-const illustrationMap: Record<IllustrationName, () => any> = {
+const illustrationMap: Record<IllustrationName, () => ImageSourcePropType> = {
   app_purchased_dark: () => require("@assets/img/app_purchased_dark.png"),
   app_purchased_light: () => require("@assets/img/app_purchased_light.png"),
   arrow_dark: () => require("@assets/img/arrow.png"),

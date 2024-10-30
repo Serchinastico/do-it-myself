@@ -76,7 +76,6 @@ export const Toolbar = ({ editor, project, tools }: Props) => {
             </DropdownMenu.Trigger>
 
             {item.hasMenu ? (
-              // @ts-ignore
               <DropdownMenu.Content>
                 {item.menuOptions.map(({ key, onPress, text }) => (
                   <DropdownMenu.Item

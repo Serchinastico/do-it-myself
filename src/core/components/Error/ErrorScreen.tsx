@@ -8,7 +8,7 @@ import { SafeArea } from "../SafeArea";
 
 interface Props {
   error: Error;
-  resetError: Function;
+  resetError: () => void;
 }
 
 export const ErrorScreen = ({ error, resetError }: Props) => {

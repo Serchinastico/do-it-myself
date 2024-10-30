@@ -20,11 +20,11 @@ export const ProjectsList = ({
 }: Props) => {
   return (
     <FlashList
-      ListEmptyComponent={<EmptyProjects onCreatePress={onCreatePress} />}
       contentContainerStyle={tw`pb-28 px-4`}
       data={projects}
       estimatedItemSize={195}
       keyExtractor={(item) => item.id}
+      ListEmptyComponent={<EmptyProjects onCreatePress={onCreatePress} />}
       renderItem={({ item }) => (
         <ProjectCard
           onEditProjectPress={onEditProjectPress}

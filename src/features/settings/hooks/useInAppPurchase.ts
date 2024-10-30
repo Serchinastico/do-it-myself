@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { Platform } from "react-native";
 import {
-  Product as IapProduct,
-  RequestPurchase,
   getAvailablePurchases,
   getProducts,
+  Product as IapProduct,
   requestPurchase as requestIapPurchase,
+  RequestPurchase,
 } from "react-native-iap";
 import useAsyncEffect from "use-async-effect";
 
@@ -28,7 +28,7 @@ const formatPrice = (product: IapProduct) => {
 };
 
 export const useInAppPurchase = () => {
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<null | Product>(null);
 
   const getAvailableProducts = useCallback(
     () => getProducts({ skus: ["full_version"] }),

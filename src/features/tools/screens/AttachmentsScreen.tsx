@@ -2,7 +2,7 @@ import { MasonryFlashList } from "@app/core/components/FlashList/MasonryFlashLis
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
-import { ImageSource, getImagesFrom } from "@app/core/utils/imagePicker";
+import { getImagesFrom, ImageSource } from "@app/core/utils/imagePicker";
 import { Attachment, getProjectColorById } from "@app/domain/project";
 import { AddAttachmentButton } from "@app/features/tools/components/attachments/AddAttachmentButton";
 import { EmptyAttachments } from "@app/features/tools/components/attachments/EmptyAttachments";
@@ -63,10 +63,10 @@ export const AttachmentsScreen = ({
       <ToolHeader.Attachments onClose={() => navigation.goBack()} />
 
       <MasonryFlashList
-        ListEmptyComponent={<EmptyAttachments />}
         contentContainerStyle={tw`pb-28 px-4`}
         data={attachments}
         estimatedItemSize={200}
+        ListEmptyComponent={<EmptyAttachments />}
         numColumns={NUM_COLUMNS}
         renderItem={({ item }) => {
           switch (item.tag) {

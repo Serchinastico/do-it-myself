@@ -1,4 +1,4 @@
-// @ts-ignore For some reason TS can't find the useTenTap definition even though it works
+// @ts-expect-error For some reason TS can't find the useTenTap definition even though it works
 import { TenTapStartKit, useTenTap } from "@10play/tentap-editor";
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";

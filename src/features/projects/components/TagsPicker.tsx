@@ -1,5 +1,5 @@
 import { Button } from "@app/core/components/Button";
-import { ProjectTagId, getTagsByIds } from "@app/domain/project";
+import { getTagsByIds, ProjectTagId } from "@app/domain/project";
 import { Tag } from "@app/features/projects/components/Tag";
 import { t } from "@lingui/macro";
 import { Column, OnPress, Row } from "@madeja-studio/telar";

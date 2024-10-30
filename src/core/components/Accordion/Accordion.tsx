@@ -1,8 +1,8 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { Button, VectorIcon } from "@madeja-studio/telar";
 import {
-  ReactNode,
   forwardRef,
+  ReactNode,
   useEffect,
   useImperativeHandle,
   useState,

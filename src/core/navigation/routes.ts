@@ -28,6 +28,6 @@ export type RootScreenProps<TRoute extends keyof RootNavigationParamList> =
   ScreenProps<RootNavigationParamList, TRoute>;
 
 export type ScreenProps<
-  TParamList extends Record<string, any>,
+  TParamList extends Record<string, object | undefined>,
   TRoute extends keyof TParamList,
 > = NativeStackScreenProps<TParamList, TRoute>;

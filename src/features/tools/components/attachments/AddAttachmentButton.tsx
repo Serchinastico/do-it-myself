@@ -21,7 +21,6 @@ export const AddAttachmentButton = ({ onAddAttachment }: Props) => {
         />
       </DropdownMenu.Trigger>
 
-      {/* @ts-ignore */}
       <DropdownMenu.Content>
         <DropdownMenu.Item
           key="library"

@@ -1,7 +1,7 @@
 import { formatDate } from "@app/core/utils/date";
 import {
-  ProjectColorId,
   getProjectColorById,
+  ProjectColorId,
 } from "@app/domain/project/colors";
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";

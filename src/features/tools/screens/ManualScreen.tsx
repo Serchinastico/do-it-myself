@@ -65,8 +65,8 @@ export const ManualScreen = ({
         <RichText
           allowFileAccess
           allowFileAccessFromFileURLs
-          allowUniversalAccessFromFileURLs
           allowingReadAccessToURL={`${FileSystem.documentDirectory}`}
+          allowUniversalAccessFromFileURLs
           containerStyle={tw`px-4 pt-4`}
           editor={editor}
           focusable={isEditing}

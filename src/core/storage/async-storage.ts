@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
 
-const getItem = async <T>(key: string): Promise<T | null> => {
+const getItem = async <T>(key: string): Promise<null | T> => {
   const value = await AsyncStorage.getItem(key);
   return value !== null ? JSON.parse(value) : null;
 };
