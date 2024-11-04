@@ -34,7 +34,7 @@ export const ExportThemePicker = ({
               onPress={() => onThemeSelect(id as ExportThemeId)}
             >
               <Column style={tw`items-center gap-2 w-[120px] h-[200px]`}>
-                <View style={tw`w-[100px] aspect-square border rounded-sm`}>
+                <View style={tw`w-[100px] aspect-square`}>
                   <Image
                     source={theme.getPreview()}
                     style={tw.style(`contain`, {

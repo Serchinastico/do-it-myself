@@ -30,7 +30,6 @@ module.exports = {
     borderRadius: {
       card: "32px",
       full: "999px",
-      sm: "16px",
     },
     colors: { ...color },
     fontSize: {

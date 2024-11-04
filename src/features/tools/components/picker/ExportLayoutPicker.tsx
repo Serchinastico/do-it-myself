@@ -1,6 +1,7 @@
 import { Accordion } from "@app/core/components/Accordion";
 import { Cue } from "@app/core/components/Cue";
 import { ScrollView } from "@app/core/components/ScrollView";
+import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { Layout, LayoutId } from "@app/domain/project/export";
 import { t } from "@lingui/macro";
 import { Button, Column, Row } from "@madeja-studio/telar";
@@ -15,6 +16,8 @@ export const ExportLayoutPicker = ({
   onLayoutSelect,
   selectedLayoutId,
 }: Props) => {
+  const { colorScheme } = useColorSwitch();
+
   return (
     <Accordion
       childrenHeight={220}
@@ -36,7 +39,7 @@ export const ExportLayoutPicker = ({
               <Column style={tw`items-center gap-2 w-[120px] h-[200px]`}>
                 <View style={tw`w-[100px] aspect-square`}>
                   <Image
-                    source={layout.getPreview()}
+                    source={layout.getPreview(colorScheme ?? "light")}
                     style={tw.style(`contain`, {
                       height: 100,
                       width: 100,
