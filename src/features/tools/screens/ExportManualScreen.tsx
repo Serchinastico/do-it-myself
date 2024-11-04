@@ -64,10 +64,10 @@ export const ExportManualScreen = ({
                   >
                     <Column style={tw`items-center gap-2 w-[120px] h-[200px]`}>
                       <View
-                        style={tw`w-[100px] aspect-square border rounded-2`}
+                        style={tw`w-[100px] aspect-square border rounded-sm`}
                       >
                         <Image
-                          source={require("@assets/img/dim-theme.png")}
+                          source={theme.getPreview()}
                           style={tw.style(`contain`, {
                             height: 100,
                             width: 100,
@@ -107,9 +107,15 @@ export const ExportManualScreen = ({
                     onPress={() => setSelectedLayoutId(id as LayoutId)}
                   >
                     <Column style={tw`items-center gap-2 w-[120px] h-[200px]`}>
-                      <View
-                        style={tw`w-[100px] aspect-square border rounded-2`}
-                      />
+                      <View style={tw`w-[100px] aspect-square`}>
+                        <Image
+                          source={layout.getPreview()}
+                          style={tw.style(`contain`, {
+                            height: 100,
+                            width: 100,
+                          })}
+                        />
+                      </View>
                       <Cue.Selectable
                         isSelected={id === selectedLayoutId}
                         key={id}
