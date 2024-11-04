@@ -5,6 +5,7 @@ import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { ExportThemeId, LayoutId } from "@app/domain/project/export";
 import { Picker } from "@app/features/tools/components/picker";
+import { usePdfExporter } from "@app/features/tools/hooks/usePdfExporter";
 import { t } from "@lingui/macro";
 import { Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai";
@@ -24,6 +25,7 @@ export const ExportManualScreen = ({
     useState<ExportThemeId>("dim");
   const [selectedLayoutId, setSelectedLayoutId] =
     useState<LayoutId>("landscape2pages");
+  const { sharePdf } = usePdfExporter();
   const { bottom } = useSafeAreaInsets();
 
   return (
@@ -47,6 +49,8 @@ export const ExportManualScreen = ({
       </ScrollView>
 
       <DIMButton
+        hasAutoLoad
+        onPress={() => sharePdf(project)}
         style={tw.style(`absolute inset-x-0`, { bottom })}
         text={t`Export`}
       />

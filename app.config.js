@@ -31,7 +31,10 @@ export default {
     },
     name: IS_DEV ? "do-it-myself (DEV)" : "do-it-myself",
     orientation: "portrait",
-    plugins: [["expo-dev-client", { addGeneratedScheme: !IS_DEV }]],
+    plugins: [
+      ["expo-dev-client", { addGeneratedScheme: !IS_DEV }],
+      ["expo-asset", { assets: ["./src/editor-web/src/index.html"] }],
+    ],
     slug: "do-it-myself",
     splash: {
       backgroundColor: "#C44529",
