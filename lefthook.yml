@@ -1,16 +1,16 @@
 pre-push:
   commands:
     packages-audit:
-      run: npm audit
+      run: pnpm audit
     expo-doctor:
-      run: npm run lint:expo
+      run: pnpm run lint:expo
 
 pre-commit:
   parallel: true
   commands:
     eslint:
       glob: "*.{ts,tsx}"
-      run: npm run lint:eslint:fix {staged_files}
+      run: pnpm run lint:eslint:fix {staged_files}
 
 commit-msg:
   parallel: true
