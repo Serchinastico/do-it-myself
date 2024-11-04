@@ -16,12 +16,12 @@ const compat = new FlatCompat({
   recommendedConfig: eslint.configs.recommended,
 });
 
-const universeConfig = compat.extends("prettier");
+const prettierConfig = compat.extends("prettier");
 
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
-  ...universeConfig,
+  ...prettierConfig,
   perfectionist.configs["recommended-natural"],
   {
     ignores: [
@@ -46,5 +46,5 @@ export default tseslint.config(
       "perfectionist/sort-objects": "error",
       "prettier/prettier": "error",
     },
-  }
+  },
 );

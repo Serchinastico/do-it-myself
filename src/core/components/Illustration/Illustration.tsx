@@ -1,6 +1,5 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
-import { Image, ImageProps } from "expo-image";
-import { Dimensions } from "react-native";
+import { Dimensions, Image, ImageProps } from "react-native";
 import { ImageSourcePropType } from "react-native/Libraries/Image/Image";
 import invariant from "tiny-invariant";
 
@@ -61,6 +60,10 @@ export const Illustration = ({
   const source = illustrationMap[illustrationName]();
 
   return (
-    <Image source={source} style={[tw`bg-[#FA5]`, { height, width: 500 }]} />
+    <Image
+      source={source}
+      style={[tw`contain`, { height }, style]}
+      {...props}
+    />
   );
 };

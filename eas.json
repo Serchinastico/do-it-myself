@@ -8,6 +8,7 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
+        "LEFTHOOK": "false",
         "APP_VARIANT": "development"
       }
     },
