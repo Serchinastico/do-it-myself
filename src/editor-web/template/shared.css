@@ -1,49 +1,4 @@
-<!--
-  This file has been automatically generated with Vite.
-  All changes made to this file will be ignored.
--->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Do It Myself Editor</title>
-</head>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-        background-color: #171922;
-    }
 
-    p {
-        color: #FFF;
-    }
-
-    li::marker {
-        color: #FFF;
-    }
-
-    #root > div:nth-of-type(1) {
-        overflow: auto;
-        height: 100%;
-        position: absolute;
-        width: 100%;
-        top: 0;
-        bottom: 0;
-    }
-
-    #root div .ProseMirror {
-        height: 100%;
-        overflow: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-start;
-    }
-
-    
 .ProseMirror:focus {
     outline: none;
 }
@@ -120,10 +75,3 @@
     width: 100%;
     height: 100%;
 }
-
-</style>
-<body>
-<div id="root"></div>
-<script type="module" src="/index.tsx"></script>
-</body>
-</html>

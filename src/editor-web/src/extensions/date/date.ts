@@ -102,7 +102,9 @@ export const Date = Node.create<DateOptions>({
       {
         getAttrs: (dom) => {
           const skew = dom.querySelector<HTMLDivElement>(".skew");
-          const content = dom.querySelector<HTMLHeadingElement>(".content");
+          const content = dom.querySelector<HTMLHeadingElement>(
+            ".skewed-item-content"
+          );
           return {
             backgroundColor: skew?.style.backgroundColor,
             date: content?.dataset["date"],
@@ -129,7 +131,7 @@ export const Date = Node.create<DateOptions>({
         "div",
         { class: "skew", style: `background-color: ${backgroundColor};` },
       ],
-      ["h1", { class: "content", "data-date": date }, text],
+      ["h1", { class: "skewed-item-content", "data-date": date }, text],
     ];
   },
 

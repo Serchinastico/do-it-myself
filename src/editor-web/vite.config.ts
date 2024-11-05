@@ -5,17 +5,34 @@ import { defineConfig } from "vite";
 import { viteSingleFile } from "vite-plugin-singlefile";
 
 // This config is used to build the web editor into a single file
-
 export default defineConfig(async () => {
   const tool = process.env["TOOL"] ?? "manual";
   const colorScheme = process.env["COLOR_SCHEME"] ?? "light";
 
   const templateDir = Path.join(process.cwd(), "src", "editor-web", "template");
   const srcDir = Path.join(process.cwd(), "src", "editor-web", "src");
-  await fs.cp(
-    `${templateDir}/index.${tool}.${colorScheme}.html`,
-    `${srcDir}/index.html`
+
+  const sharedCss = await fs.readFile(Path.join(templateDir, "shared.css"), {
+    encoding: "utf-8",
+  });
+  const templateHtml = await fs.readFile(
+    Path.join(templateDir, `index.${tool}.${colorScheme}.html`),
+    { encoding: "utf-8" }
   );
+
+  const finalHtml = templateHtml
+    .replace(
+      "<!-- $INTRO$ -->",
+      `<!--
+  This file has been automatically generated with Vite.
+  All changes made to this file will be ignored.
+-->`
+    )
+    .replace("/* $SHARED_CSS$ */", sharedCss);
+
+  await fs.writeFile(Path.join(srcDir, `/index.html`), finalHtml, {
+    encoding: "utf-8",
+  });
 
   return {
     build: {

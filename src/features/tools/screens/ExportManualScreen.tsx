@@ -34,7 +34,9 @@ export const ExportManualScreen = ({
 
       <ScrollView style={tw`pb-8`}>
         <Column style={tw`px-4`}>
-          <Text>{t`Export your manual to a PDF file you can print and store along with your finished project for future reference and maintenance, or share it with anyone.`}</Text>
+          <Text
+            style={tw`body`}
+          >{t`Export your manual to a PDF file you can print and store along with your finished project for future reference and maintenance, or share it with anyone.`}</Text>
 
           <Picker.Theme
             onThemeSelect={(id) => setSelectedExportThemeId(id)}
