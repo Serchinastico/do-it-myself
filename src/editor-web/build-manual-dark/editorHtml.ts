@@ -265,23 +265,31 @@ img.ProseMirror-separator {
         overflow: auto;
     }
 
-    
-.ProseMirror:focus {
-    outline: none;
+    html {
+    -webkit-print-color-adjust: exact;
 }
 
-.immutable-section {
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 4px;
-    padding: 8px;
+body {
+    font-size: 16px;
+}
+
+p {
+    font-size: 1em;
+}
+
+h1 {
+    font-size: 1.2em;
+}
+
+.ProseMirror:focus {
+    outline: none;
 }
 
 .title, .date {
     position: relative;
     display: inline-block;
     margin: 8px 0 8px 6px;
-    padding: 0;
+    padding: 0 12px;
     white-space: nowrap;
 }
 
@@ -297,11 +305,8 @@ img.ProseMirror-separator {
 }
 
 .skewed-item-content {
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    font-size: 20px;
+    padding: 0 12px;
+    font-size: 1.1em;
     font-weight: bold;
 }
 
@@ -342,6 +347,8 @@ img.ProseMirror-separator {
     width: 100%;
     height: 100%;
 }
+
+/* <END_CSS> */
 
 </style>
 <body>

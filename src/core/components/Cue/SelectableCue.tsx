@@ -15,8 +15,8 @@ export const SelectableCue = ({ isSelected, ...props }: Props) => {
         "bg-white dark:bg-ash": !isSelected,
       })}
       textStyle={tw.style(`text-center`, {
-        "text-ash dark:text-white": !isSelected,
         "text-white": isSelected,
+        "text-white dark:text-white": !isSelected,
       })}
     />
   );

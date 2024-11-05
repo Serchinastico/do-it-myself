@@ -5,7 +5,7 @@ import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
 import { ExportThemeId, LayoutId } from "@app/domain/project/export";
 import { Picker } from "@app/features/tools/components/picker";
-import { usePdfExporter } from "@app/features/tools/hooks/usePdfExporter";
+import { usePdfExporter } from "@app/features/tools/hooks/pdf/usePdfExporter";
 import { t } from "@lingui/macro";
 import { Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai";
@@ -52,7 +52,13 @@ export const ExportManualScreen = ({
 
       <DIMButton
         hasAutoLoad
-        onPress={() => sharePdf(project)}
+        onPress={() =>
+          sharePdf({
+            layoutId: selectedLayoutId,
+            project,
+            themeId: selectedExportThemeId,
+          })
+        }
         style={tw.style(`absolute inset-x-0`, { bottom })}
         text={t`Export`}
       />

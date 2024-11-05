@@ -1,8 +1,12 @@
-import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { Project } from "@app/domain/project";
+import { ExportThemeId, LayoutId } from "@app/domain/project/export";
+import {
+  AddContent,
+  NormalizeCss,
+} from "@app/features/tools/hooks/pdf/processing";
+import { TransformImageSourcesToBase64 } from "@app/features/tools/hooks/pdf/processing/transformImageSourcesToBase64";
 import { i18n } from "@lingui/core";
 import { t } from "@lingui/macro";
-import dayjs from "dayjs";
 import { Asset } from "expo-asset";
 import {
   cacheDirectory,
@@ -14,35 +18,46 @@ import { printToFileAsync } from "expo-print";
 import { shareAsync } from "expo-sharing";
 import { useCallback, useMemo } from "react";
 
-const darkThemeHtmlRef = require("../../../editor-web/build-manual-dark/index.html");
-const lightThemeHtmlRef = require("../../../editor-web/build-manual-light/index.html");
+const darkThemeHtmlRef = require("../../../../editor-web/build-manual-dark/index.html");
+const lightThemeHtmlRef = require("../../../../editor-web/build-manual-light/index.html");
 
 export const usePdfExporter = () => {
-  const { colorScheme } = useColorSwitch();
   const exportDirectory = useMemo(() => `${cacheDirectory}Export`, []);
 
   const sharePdf = useCallback(
-    async (project: Project) => {
-      console.log(colorScheme);
+    async ({
+      layoutId,
+      project,
+      themeId,
+    }: {
+      layoutId: LayoutId;
+      project: Project;
+      themeId: ExportThemeId;
+    }) => {
       const assets = await Asset.loadAsync(
-        colorScheme === "light" ? lightThemeHtmlRef : darkThemeHtmlRef
+        themeId.endsWith("Dark") ? darkThemeHtmlRef : lightThemeHtmlRef
       );
 
       const asset = assets[0];
       if (!asset) return;
       if (!asset?.localUri) return;
 
-      const html = await readAsStringAsync(asset.localUri);
-      const htmlWithManual = html
-        // This is patch to remove a CSS rule that breaks PDF printing
-        .replace("#root > div:nth-of-type(1)", ".nothing")
-        .replace(
-          '<div id="root"></div>',
-          `<div id="root"><div class="tiptap ProseMirror">${project.manual?.contentHtml}</div></div>`
-        );
+      let processedHtml = await readAsStringAsync(asset.localUri);
+      const steps = [
+        new NormalizeCss(),
+        new AddContent(project.manual!.contentHtml),
+        new TransformImageSourcesToBase64(),
+      ];
 
+      for (const step of steps) {
+        processedHtml = await step.process(processedHtml);
+      }
+
+      // Size calculated with https://www.a4-size.com/a4-size-in-pixels/
       const { uri: temporaryUri } = await printToFileAsync({
-        html: htmlWithManual,
+        height: 842,
+        html: processedHtml,
+        width: 595,
       });
 
       const uri = `${exportDirectory}/${t(i18n)`${project.name} - Manual`}.pdf`;
@@ -55,7 +70,7 @@ export const usePdfExporter = () => {
         UTI: ".pdf",
       });
     },
-    [colorScheme]
+    []
   );
 
   return { sharePdf };
