@@ -3,6 +3,7 @@ import { ExportThemeId, LayoutId } from "@app/domain/project/export";
 import {
   AddContent,
   NormalizeCss,
+  RemoveTitleBackground,
 } from "@app/features/tools/hooks/pdf/processing";
 import { TransformImageSourcesToBase64 } from "@app/features/tools/hooks/pdf/processing/transformImageSourcesToBase64";
 import { i18n } from "@lingui/core";
@@ -44,9 +45,10 @@ export const usePdfExporter = () => {
 
       let processedHtml = await readAsStringAsync(asset.localUri);
       const steps = [
-        new NormalizeCss(),
+        new NormalizeCss(themeId),
         new AddContent(project.manual!.contentHtml),
         new TransformImageSourcesToBase64(),
+        new RemoveTitleBackground(themeId),
       ];
 
       for (const step of steps) {
