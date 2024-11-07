@@ -7,6 +7,7 @@ import { RedoTool } from "./redo";
 import { TitleTool } from "./title";
 import { UnderlineTool } from "./underline";
 import { UndoTool } from "./undo";
+import { VoiceTool } from "./voice";
 
 /**
  * The order in which the tools appear in the list determines the order
@@ -19,6 +20,7 @@ export const MANUAL_TOOLBAR = [
   ItalicTool,
   UnderlineTool,
   ImageTool,
+  VoiceTool,
   UndoTool,
   RedoTool,
 ];
@@ -30,6 +32,7 @@ export const WORKLOG_TOOLBAR = [
   ItalicTool,
   UnderlineTool,
   ImageTool,
+  VoiceTool,
   UndoTool,
   RedoTool,
 ];

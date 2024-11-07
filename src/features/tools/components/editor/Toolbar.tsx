@@ -42,6 +42,8 @@ export const Toolbar = ({ editor, project, tools }: Props) => {
 
                   item.onPress({ editor, editorState, project });
                 }}
+                onPressIn={() => {}}
+                onPressOut={() => {}}
               >
                 <Center
                   style={tw.style(`h-[32px] w-[32px] mx-2 rounded-1`, {

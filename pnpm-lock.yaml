@@ -18,11 +18,11 @@ importers:
         specifier: ^4.13.0
         version: 4.13.0(react@18.2.0)
       '@madeja-studio/cepillo':
-        specifier: ^0.1.17
+        specifier: 0.1.17
         version: 0.1.17(react-native-uuid@2.0.2)(tiny-invariant@1.3.3)
       '@madeja-studio/telar':
-        specifier: ^0.2.41
-        version: 0.2.41(ynbnzxvq7lq3m5nzkn3ks2mcem)
+        specifier: 0.2.42
+        version: 0.2.42(ynbnzxvq7lq3m5nzkn3ks2mcem)
       '@react-native-async-storage/async-storage':
         specifier: 1.23.1
         version: 1.23.1(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))
@@ -1685,8 +1685,8 @@ packages:
       react-native-uuid: ^2
       tiny-invariant: ^1
 
-  '@madeja-studio/telar@0.2.41':
-    resolution: {integrity: sha512-2eB1RRwJK7btoLlzaFeNL6E0g2mAdoi80ht6qc9VChVq9+kizHlCJPNOIlxXhAOAQc5e/rAlfBORtuqfFzfeSA==}
+  '@madeja-studio/telar@0.2.42':
+    resolution: {integrity: sha512-NRo1FlCK59dJeUVYw0R3XpN37ZMS7Op7och0OzbTHlbkjOQDSq2bo/zUWYuarOXhubnKYBqVMSFuSZ4TAFQmaA==}
     peerDependencies:
       '@expo/vector-icons': 14.x.x
       '@gorhom/portal': ^1.x.x
@@ -9283,7 +9283,7 @@ snapshots:
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu': 4.9.5
 
-  '@madeja-studio/telar@0.2.41(ynbnzxvq7lq3m5nzkn3ks2mcem)':
+  '@madeja-studio/telar@0.2.42(ynbnzxvq7lq3m5nzkn3ks2mcem)':
     dependencies:
       '@expo/vector-icons': 14.0.3
       '@gorhom/portal': 1.0.14(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
