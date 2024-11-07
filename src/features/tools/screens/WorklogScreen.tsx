@@ -4,21 +4,17 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { EventMessage, Events } from "@app/core/event-bus/eventBus";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
-import { color } from "@app/core/theme/color";
 import { formatDate } from "@app/core/utils/date";
 import { WORKLOG_TOOLBAR } from "@app/features/tools/components/editor/tools";
 import { useDatePressHandler } from "@app/features/tools/hooks/useDatePressHandler";
-import { Button, Center } from "@madeja-studio/telar";
-import chroma from "chroma-js";
 import dayjs from "dayjs";
 import * as FileSystem from "expo-file-system";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { Image, Platform } from "react-native";
 import DatePicker from "react-native-date-picker";
 
 import { Toolbar } from "../components/editor/Toolbar";
-import { RecordVoiceMemo } from "../components/editor/tools/RecordVoiceMemo";
+import { RecordVoiceMemo } from "../components/editor/tools/voice/RecordVoiceMemo";
 import { ToolHeader } from "../components/headers";
 import { useRichTextEditor } from "../hooks/useRichTextEditor";
 
