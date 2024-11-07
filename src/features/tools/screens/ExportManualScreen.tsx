@@ -3,7 +3,7 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { ScrollView } from "@app/core/components/ScrollView";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
-import { ExportThemeId, LayoutId } from "@app/domain/project/export";
+import { ExportThemeId } from "@app/domain/project/export";
 import { Picker } from "@app/features/tools/components/picker";
 import { usePdfExporter } from "@app/features/tools/hooks/pdf/usePdfExporter";
 import { t } from "@lingui/macro";
@@ -23,8 +23,6 @@ export const ExportManualScreen = ({
   const project = useAtomValue(derivedAtoms.projectAtomFamily(projectId));
   const [selectedExportThemeId, setSelectedExportThemeId] =
     useState<ExportThemeId>("dim");
-  const [selectedLayoutId, setSelectedLayoutId] =
-    useState<LayoutId>("landscape2pages");
   const { sharePdf } = usePdfExporter();
   const { bottom } = useSafeAreaInsets();
 
@@ -42,11 +40,6 @@ export const ExportManualScreen = ({
             onThemeSelect={(id) => setSelectedExportThemeId(id)}
             selectedThemeId={selectedExportThemeId}
           />
-
-          <Picker.Layout
-            onLayoutSelect={(id) => setSelectedLayoutId(id)}
-            selectedLayoutId={selectedLayoutId}
-          />
         </Column>
       </ScrollView>
 
@@ -54,7 +47,6 @@ export const ExportManualScreen = ({
         hasAutoLoad
         onPress={() =>
           sharePdf({
-            layoutId: selectedLayoutId,
             project,
             themeId: selectedExportThemeId,
           })

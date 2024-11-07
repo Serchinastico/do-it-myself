@@ -1,5 +1,5 @@
 import { Project } from "@app/domain/project";
-import { ExportThemeId, LayoutId } from "@app/domain/project/export";
+import { ExportThemeId } from "@app/domain/project/export";
 import {
   AddContent,
   NormalizeCss,
@@ -22,26 +22,14 @@ import { useCallback, useMemo } from "react";
 const darkThemeHtmlRef = require("../../../../editor-web/build-manual-dark/index.html");
 const lightThemeHtmlRef = require("../../../../editor-web/build-manual-light/index.html");
 
-const getDocumentSizeForLayout = (layoutId: LayoutId) => {
-  // Size calculated with https://www.a4-size.com/a4-size-in-pixels/
-  switch (layoutId) {
-    case "landscape2pages":
-      return { height: 595, width: 842 };
-    case "portrait":
-      return { height: 842, width: 595 };
-  }
-};
-
 export const usePdfExporter = () => {
   const exportDirectory = useMemo(() => `${cacheDirectory}Export`, []);
 
   const sharePdf = useCallback(
     async ({
-      layoutId,
       project,
       themeId,
     }: {
-      layoutId: LayoutId;
       project: Project;
       themeId: ExportThemeId;
     }) => {
@@ -65,10 +53,11 @@ export const usePdfExporter = () => {
         processedHtml = await step.process(processedHtml);
       }
 
-      const documentSize = getDocumentSizeForLayout(layoutId);
+      // Size calculated with https://www.a4-size.com/a4-size-in-pixels/
       const { uri: temporaryUri } = await printToFileAsync({
+        height: 842,
         html: processedHtml,
-        ...documentSize,
+        width: 595,
       });
 
       const uri = `${exportDirectory}/${t(i18n)`${project.name} - Manual`}.pdf`;
