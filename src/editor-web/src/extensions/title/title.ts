@@ -73,7 +73,7 @@ export const Title = Node.create<TitleOptions>({
         "div",
         { class: "skew", style: `background-color: ${backgroundColor};` },
       ],
-      ["h1", { class: "content" }, 0],
+      ["h1", { class: "skewed-item-content" }, 0],
     ];
   },
 });

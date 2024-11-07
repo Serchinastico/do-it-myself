@@ -1,3 +1,4 @@
+import { color } from "@app/core/theme/color";
 import { ExportThemeId } from "@app/domain/project/export";
 
 import { HtmlProcessingStep } from "./step";
@@ -19,11 +20,12 @@ html {
 }
 `;
 
-const SWEDEN_CSS = `
+const getSwedenCss = (theme: "dark" | "light") => `
 h1 {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 2em;
+  color: ${theme === "dark" ? color.white : color.ash};
 }
 `;
 
@@ -34,9 +36,9 @@ const cssForTheme = (themeId: ExportThemeId) => {
     case "dimDark":
       return [BASE_CSS];
     case "sweden":
-      return [BASE_CSS, SWEDEN_CSS];
+      return [BASE_CSS, getSwedenCss("light")];
     case "swedenDark":
-      return [BASE_CSS, SWEDEN_CSS];
+      return [BASE_CSS, getSwedenCss("dark")];
   }
 };
 
