@@ -6,7 +6,7 @@ import { t } from "@lingui/macro";
 import { Button, Center, useToast } from "@madeja-studio/telar";
 import { ContainerProps } from "@madeja-studio/telar/lib/typescript/src/component/Button/Container";
 import * as Haptics from "expo-haptics";
-import { forwardRef, useCallback, useRef } from "react";
+import { forwardRef, useCallback, useEffect, useRef } from "react";
 import { Image, Platform } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -38,6 +38,7 @@ export const RecordVoiceMemo = (_props: Props) => {
   const {
     hasGrantedPermission,
     recording,
+    recordingState,
     requestPermission,
     startRecording,
     stopRecording,
@@ -54,14 +55,14 @@ export const RecordVoiceMemo = (_props: Props) => {
 
     if (hasPermission) {
       await Haptics.impactAsync();
-      scale.value = withSpring(2, ANIMATION_CONFIG);
+      scale.value = withSpring(1.75, ANIMATION_CONFIG);
       rotation.value = withSpring(5, {
         ...ANIMATION_CONFIG,
         duration: 200,
       });
       effectRef.current?.start();
 
-      const result = await startRecording();
+      await startRecording();
     } else {
       const result = await requestPermission();
 
@@ -73,7 +74,7 @@ export const RecordVoiceMemo = (_props: Props) => {
         });
       }
     }
-  }, []);
+  }, [startRecording, hasGrantedPermission, requestPermission, volume]);
 
   const onPressOut = useCallback(async () => {
     scale.value = withSpring(1, ANIMATION_CONFIG);
@@ -82,7 +83,24 @@ export const RecordVoiceMemo = (_props: Props) => {
       duration: 400,
     });
     effectRef.current?.stop();
-  }, []);
+
+    await stopRecording();
+  }, [stopRecording]);
+
+  useEffect(() => {
+    if (!recording) return;
+    if (volume === 0) return;
+
+    scale.value = withSpring(0.5 * volume + 1.75, ANIMATION_CONFIG);
+  }, [recording, volume]);
+
+  useEffect(() => {
+    if (!recording) return;
+    if (recordingState !== "idle") return;
+
+    // TODO: Get that information inside the tool
+    console.log(recording.getURI());
+  }, [recording, recordingState]);
 
   return (
     <KeyboardAvoidingView
