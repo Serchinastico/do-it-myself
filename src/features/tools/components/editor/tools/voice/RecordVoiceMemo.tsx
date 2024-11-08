@@ -1,7 +1,10 @@
 import type { SpringConfig } from "react-native-reanimated/src/reanimated2/animation/springUtils";
 
 import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
-import { Button, Center } from "@madeja-studio/telar";
+import useRecording from "@app/core/hooks/useRecording";
+import { t } from "@lingui/macro";
+import { Button, Center, useToast } from "@madeja-studio/telar";
+import { ContainerProps } from "@madeja-studio/telar/lib/typescript/src/component/Button/Container";
 import * as Haptics from "expo-haptics";
 import { forwardRef, useCallback, useRef } from "react";
 import { Image, Platform } from "react-native";
@@ -14,7 +17,10 @@ import Animated, {
 import { RecordingEffect, RecordingEffectRef } from "./RecordingEffect";
 
 const AnimatedButtonContainer = Animated.createAnimatedComponent(
-  forwardRef(Button.Container)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  forwardRef<{}, ContainerProps>(({ children, ...props }, _ref) => (
+    <Button.Container {...props}>{children}</Button.Container>
+  ))
 );
 
 const ANIMATION_CONFIG: SpringConfig = {
@@ -29,19 +35,44 @@ export const RecordVoiceMemo = (_props: Props) => {
   const scale = useSharedValue(1);
   const rotation = useSharedValue(0);
   const effectRef = useRef<RecordingEffectRef>(null);
+  const {
+    hasGrantedPermission,
+    recording,
+    requestPermission,
+    startRecording,
+    stopRecording,
+    volume,
+  } = useRecording();
+  const { showToast } = useToast();
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }, { rotate: `${rotation.value}deg` }],
   }));
 
   const onPressIn = useCallback(async () => {
-    await Haptics.impactAsync();
-    scale.value = withSpring(2, ANIMATION_CONFIG);
-    rotation.value = withSpring(5, {
-      ...ANIMATION_CONFIG,
-      duration: 200,
-    });
-    effectRef.current?.start();
+    const hasPermission = await hasGrantedPermission();
+
+    if (hasPermission) {
+      await Haptics.impactAsync();
+      scale.value = withSpring(2, ANIMATION_CONFIG);
+      rotation.value = withSpring(5, {
+        ...ANIMATION_CONFIG,
+        duration: 200,
+      });
+      effectRef.current?.start();
+
+      const result = await startRecording();
+    } else {
+      const result = await requestPermission();
+
+      if (!result) {
+        showToast({
+          subtitle: t`Permissions for recording were not granted. Change the option from your device settings to record voice memos`,
+          title: t`Unable to record audio`,
+          variant: "error",
+        });
+      }
+    }
   }, []);
 
   const onPressOut = useCallback(async () => {
