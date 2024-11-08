@@ -1,6 +1,5 @@
 import { Audio } from "expo-av";
 import { PermissionStatus } from "expo-av/build/Audio";
-import * as Haptics from "expo-haptics";
 import { useCallback, useEffect, useState } from "react";
 
 const VOLUME_CAPTURE_INTERVAL = 50;

@@ -29,9 +29,11 @@ const ANIMATION_CONFIG: SpringConfig = {
   stiffness: 50,
 };
 
-interface Props {}
+interface Props {
+  onRecordedAudio: (uri: string) => Promise<void> | void;
+}
 
-export const RecordVoiceMemo = (_props: Props) => {
+export const RecordVoiceMemo = ({ onRecordedAudio }: Props) => {
   const scale = useSharedValue(1);
   const rotation = useSharedValue(0);
   const effectRef = useRef<RecordingEffectRef>(null);
@@ -98,8 +100,10 @@ export const RecordVoiceMemo = (_props: Props) => {
     if (!recording) return;
     if (recordingState !== "idle") return;
 
-    // TODO: Get that information inside the tool
-    console.log(recording.getURI());
+    const uri = recording.getURI();
+    if (!uri) return;
+
+    onRecordedAudio(uri);
   }, [recording, recordingState]);
 
   return (

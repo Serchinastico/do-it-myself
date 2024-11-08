@@ -76,7 +76,11 @@ export const WorklogScreen = ({
         />
       </KeyboardAvoidingView>
 
-      <RecordVoiceMemo />
+      <RecordVoiceMemo
+        onRecordedAudio={(uri) => {
+          editor.setAudioRecording({ fileName: uri });
+        }}
+      />
 
       <Toolbar editor={editor} project={project} tools={WORKLOG_TOOLBAR} />
 

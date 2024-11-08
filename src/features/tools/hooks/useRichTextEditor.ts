@@ -18,7 +18,11 @@ import { editorHtml as manualLightEditorHtml } from "@app/editor-web/build-manua
 import { editorHtml as worklogDarkEditorHtml } from "@app/editor-web/build-worklog-dark/editorHtml";
 import { editorHtml as worklogLightEditorHtml } from "@app/editor-web/build-worklog-light/editorHtml";
 import { DateBridge } from "@app/editor-web/src/extensions/date/DateBridge";
-import { LocalImageBridge, TitleBridge } from "editor-web/src/extensions";
+import {
+  AudioRecordingBridge,
+  LocalImageBridge,
+  TitleBridge,
+} from "editor-web/src/extensions";
 import * as FileSystem from "expo-file-system";
 import { useCallback, useEffect, useState } from "react";
 
@@ -131,6 +135,9 @@ export const useRichTextEditor = ({
         eventBus.emit(EventMessage.LocalImagePress, props)
       ).configureExtension({
         imagesRootPath: `${FileSystem.documentDirectory}`,
+      }),
+      AudioRecordingBridge.configureExtension({
+        backgroundColor: getProjectColorById(project.colorId).hex,
       }),
     ],
     customSource: editorHtml,
