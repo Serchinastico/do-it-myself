@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 interface Props {
   numberOfLines: number;
@@ -9,12 +9,14 @@ interface Props {
   progress: number;
 }
 
+const LINE_HEIGHT = 20;
+
 export const Waveform = ({ numberOfLines, progress }: Props) => {
   const linesPathData = useMemo(() => {
     return Array.from(Array(numberOfLines), (_, index) => {
-      const height = Math.random() * 40;
+      const height = Math.random() * LINE_HEIGHT;
 
-      return `M ${1.5 + 5 * index} ${40 + height / 2} v ${-height}`;
+      return `M ${1.5 + 5 * index} ${LINE_HEIGHT + height / 2} v ${-height}`;
     });
   }, [numberOfLines]);
 
@@ -29,8 +31,8 @@ export const Waveform = ({ numberOfLines, progress }: Props) => {
     <svg
       className="waveform"
       fill="none"
-      height="80"
-      viewBox="0 0 178 80"
+      height={LINE_HEIGHT * 2}
+      viewBox={`0 0 178 ${LINE_HEIGHT * 2}`}
       width="178"
       xmlns="http://www.w3.org/2000/svg"
     >

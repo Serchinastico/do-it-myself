@@ -2,7 +2,6 @@ import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { LocalImage } from "@app/domain/project";
 import { t } from "@lingui/macro";
 import { randomId, Tagged } from "@madeja-studio/cepillo";
-import * as FileSystem from "expo-file-system";
 import {
   getCameraPermissionsAsync,
   getMediaLibraryPermissionsAsync,

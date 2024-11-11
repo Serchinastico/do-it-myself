@@ -31,10 +31,12 @@ export const AudioRecordingBridge = new BridgeExtension<
 .audio-player {
     position: relative;
     width: 250px;
-    height: 88px;
+    height: 72px;
     border-radius: 16px;
     display: flex;
-    padding-left: 16px;
+    padding-left: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     justify-content: center;
     align-items: center;
 }
@@ -48,7 +50,7 @@ export const AudioRecordingBridge = new BridgeExtension<
 }
 
 .audio-player .waveform {
-    margin-left: 16px;
+    margin-left: 12px;
 }
 
 .audio-player .remaining_time {

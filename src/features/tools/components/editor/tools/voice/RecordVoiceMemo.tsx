@@ -6,7 +6,6 @@ import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { t } from "@lingui/macro";
 import { Button, Center, useToast } from "@madeja-studio/telar";
 import { ContainerProps } from "@madeja-studio/telar/lib/typescript/src/component/Button/Container";
-import * as FileSystem from "expo-file-system";
 import * as Haptics from "expo-haptics";
 import { forwardRef, useCallback, useEffect, useRef } from "react";
 import { Image, Platform } from "react-native";
@@ -19,7 +18,7 @@ import useAsyncEffect from "use-async-effect";
 
 import { RecordingEffect, RecordingEffectRef } from "./RecordingEffect";
 
-const VOICE_RECORDINGS_DIRECTORY = "Voice";
+const VOICE_RECORDINGS_DIRECTORY = "VoiceRec";
 
 const AnimatedButtonContainer = Animated.createAnimatedComponent(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
