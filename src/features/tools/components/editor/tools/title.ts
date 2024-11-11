@@ -10,4 +10,5 @@ export const TitleTool: EditorTool = {
     editor.toggleTitle({
       backgroundColor: getProjectColorById(project.colorId).hex,
     }),
+  tag: "icon",
 };

@@ -6,4 +6,5 @@ export const ItalicTool: EditorTool = {
   isActive: ({ editorState }) => editorState.isItalicActive,
   isDisabled: ({ editorState }) => !editorState.canToggleItalic,
   onPress: ({ editor }) => editor.toggleItalic(),
+  tag: "icon",
 };

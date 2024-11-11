@@ -5,6 +5,7 @@ import { Project } from "@app/domain/project";
 import { EditorTool } from "@app/features/tools/components/editor/tools/base";
 import { Button, Center, useKeyboard } from "@madeja-studio/telar";
 import chroma from "chroma-js";
+import React from "react";
 import { FlatList, Image, KeyboardAvoidingView, Platform } from "react-native";
 import * as DropdownMenu from "zeego/dropdown-menu";
 
@@ -31,50 +32,64 @@ export const Toolbar = ({ editor, project, tools }: Props) => {
         ]}
         data={tools}
         horizontal
+        removeClippedSubviews={false}
         renderItem={({ item }) => (
           <DropdownMenu.Root>
             <DropdownMenu.Trigger>
-              <Button.Container
-                hasHapticFeedback
-                isDisabled={item.isDisabled({ editor, editorState, project })}
-                onPress={() => {
-                  if (item.hasMenu) return;
+              {item.tag === "icon" && (
+                <Button.Container
+                  hasHapticFeedback
+                  isDisabled={item.isDisabled({ editor, editorState, project })}
+                  onPress={() => {
+                    if (item.hasMenu) return;
 
-                  item.onPress({ editor, editorState, project });
-                }}
-                onPressIn={() => {}}
-                onPressOut={() => {}}
-              >
-                <Center
-                  style={tw.style(`h-[32px] w-[32px] mx-2 rounded-1`, {
-                    "bg-primary": item.isActive({
-                      editor,
-                      editorState,
-                      project,
-                    }),
-                  })}
+                    item.onPress({ editor, editorState, project });
+                  }}
+                  onPressIn={() => {}}
+                  onPressOut={() => {}}
                 >
-                  <Image
-                    resizeMode="contain"
-                    source={item.image()}
-                    style={tw.style(`h-[20px] w-[20px]`, {
-                      tintColor: item.isActive({ editor, editorState, project })
-                        ? color.white
-                        : item.isDisabled({
-                              editor,
-                              editorState,
-                              project,
-                            })
-                          ? chroma(
-                              colorSwitch({ dark: "white", light: "ash" })!
-                            )
-                              .alpha(0.3)
-                              .hex()
-                          : colorSwitch({ dark: "white", light: "ash" }),
+                  <Center
+                    style={tw.style(`h-[32px] w-[32px] mx-2 rounded-1`, {
+                      "bg-primary": item.isActive({
+                        editor,
+                        editorState,
+                        project,
+                      }),
                     })}
-                  />
-                </Center>
-              </Button.Container>
+                  >
+                    <Image
+                      resizeMode="contain"
+                      source={item.image()}
+                      style={tw.style(`h-[20px] w-[20px]`, {
+                        tintColor: item.isActive({
+                          editor,
+                          editorState,
+                          project,
+                        })
+                          ? color.white
+                          : item.isDisabled({
+                                editor,
+                                editorState,
+                                project,
+                              })
+                            ? chroma(
+                                colorSwitch({ dark: "white", light: "ash" })!
+                              )
+                                .alpha(0.3)
+                                .hex()
+                            : colorSwitch({ dark: "white", light: "ash" }),
+                      })}
+                    />
+                  </Center>
+                </Button.Container>
+              )}
+
+              {item.tag === "component" &&
+                React.createElement(item.component, {
+                  editor,
+                  editorState,
+                  project,
+                })}
             </DropdownMenu.Trigger>
 
             {item.hasMenu ? (

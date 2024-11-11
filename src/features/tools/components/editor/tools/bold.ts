@@ -6,4 +6,5 @@ export const BoldTool: EditorTool = {
   isActive: ({ editorState }) => editorState.isBoldActive,
   isDisabled: ({ editorState }) => !editorState.canToggleBold,
   onPress: ({ editor }) => editor.toggleBold(),
+  tag: "icon",
 };

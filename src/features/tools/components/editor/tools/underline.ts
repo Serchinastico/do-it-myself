@@ -6,4 +6,5 @@ export const UnderlineTool: EditorTool = {
   isActive: ({ editorState }) => editorState.isUnderlineActive,
   isDisabled: ({ editorState }) => !editorState.canToggleUnderline,
   onPress: ({ editor }) => editor.toggleUnderline(),
+  tag: "icon",
 };

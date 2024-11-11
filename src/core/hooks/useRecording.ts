@@ -66,6 +66,8 @@ const useRecording = () => {
   const stopRecording = useCallback(async () => {
     await recording?.stopAndUnloadAsync();
     setRecordingState("idle");
+
+    return recording;
   }, [recording]);
 
   useEffect(() => {

@@ -78,12 +78,6 @@ export const WorklogScreen = ({
         />
       </KeyboardAvoidingView>
 
-      <RecordVoiceMemo
-        onRecordedAudio={async (path) =>
-          editor.setAudioRecording({ fileName: path })
-        }
-      />
-
       <Toolbar editor={editor} project={project} tools={WORKLOG_TOOLBAR} />
 
       <DatePicker
@@ -91,9 +85,7 @@ export const WorklogScreen = ({
         maximumDate={new Date()}
         modal
         mode="date"
-        onCancel={() => {
-          setSelectedDate(undefined);
-        }}
+        onCancel={() => setSelectedDate(undefined)}
         onConfirm={(date) => {
           editor.setDate({
             date: dayjs(date).toISOString(),

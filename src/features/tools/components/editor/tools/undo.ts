@@ -6,4 +6,5 @@ export const UndoTool: EditorTool = {
   isActive: () => false,
   isDisabled: ({ editorState }) => !editorState.canUndo,
   onPress: ({ editor }) => editor.undo(),
+  tag: "icon",
 };

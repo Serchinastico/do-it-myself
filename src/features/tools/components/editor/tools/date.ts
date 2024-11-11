@@ -16,4 +16,5 @@ export const DateTool: EditorTool = {
       id: randomId(),
       text: t`Today`,
     }),
+  tag: "icon",
 };

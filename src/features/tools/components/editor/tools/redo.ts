@@ -6,4 +6,5 @@ export const RedoTool: EditorTool = {
   isActive: () => false,
   isDisabled: ({ editorState }) => !editorState.canRedo,
   onPress: ({ editor }) => editor.redo(),
+  tag: "icon",
 };

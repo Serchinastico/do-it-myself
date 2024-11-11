@@ -2,13 +2,15 @@ import type { SpringConfig } from "react-native-reanimated/src/reanimated2/anima
 
 import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
 import useRecording from "@app/core/hooks/useRecording";
+import { color } from "@app/core/theme/color";
 import { moveToDocuments } from "@app/core/utils/mediaFile";
+import { ToolCallbackArgs } from "@app/features/tools/components/editor/tools/base";
 import { t } from "@lingui/macro";
 import { Button, Center, useToast } from "@madeja-studio/telar";
 import { ContainerProps } from "@madeja-studio/telar/lib/typescript/src/component/Button/Container";
 import * as Haptics from "expo-haptics";
 import { forwardRef, useCallback, useEffect, useRef } from "react";
-import { Image, Platform } from "react-native";
+import { Image } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -33,11 +35,9 @@ const ANIMATION_CONFIG: SpringConfig = {
   stiffness: 50,
 };
 
-interface Props {
-  onRecordedAudio: (path: string) => Promise<void> | void;
-}
+interface Props extends ToolCallbackArgs {}
 
-export const RecordVoiceMemo = ({ onRecordedAudio }: Props) => {
+export const RecordVoiceMemo = ({ editor }: Props) => {
   const scale = useSharedValue(1);
   const rotation = useSharedValue(0);
   const effectRef = useRef<RecordingEffectRef>(null);
@@ -61,7 +61,7 @@ export const RecordVoiceMemo = ({ onRecordedAudio }: Props) => {
 
     if (hasPermission) {
       await Haptics.impactAsync();
-      scale.value = withSpring(1.75, ANIMATION_CONFIG);
+      scale.value = withSpring(1.1, ANIMATION_CONFIG);
       rotation.value = withSpring(5, {
         ...ANIMATION_CONFIG,
         duration: 200,
@@ -90,19 +90,8 @@ export const RecordVoiceMemo = ({ onRecordedAudio }: Props) => {
     });
     effectRef.current?.stop();
 
-    await stopRecording();
-  }, [stopRecording]);
-
-  useEffect(() => {
+    const recording = await stopRecording();
     if (!recording) return;
-    if (volume === 0) return;
-
-    scale.value = withSpring(0.5 * volume + 1.75, ANIMATION_CONFIG);
-  }, [recording, volume]);
-
-  useAsyncEffect(async () => {
-    if (!recording) return;
-    if (recordingState !== "idle") return;
 
     const uri = recording.getURI();
     if (!uri) return;
@@ -113,35 +102,38 @@ export const RecordVoiceMemo = ({ onRecordedAudio }: Props) => {
       uri,
     });
 
-    onRecordedAudio(path);
-  }, [recording, recordingState]);
+    editor.setAudioRecording({ fileName: path });
+  }, [editor, stopRecording]);
+
+  useEffect(() => {
+    if (!recording) return;
+    if (volume === 0) return;
+
+    scale.value = withSpring(0.1 * volume + 1, ANIMATION_CONFIG);
+  }, [recording, volume]);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={tw.style(`absolute right-4 top-[100px] bg-white dark:bg-ash`)}
+    <AnimatedButtonContainer
+      hasHapticFeedback
+      onPress={() => {}}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      style={[animatedStyle]}
     >
-      <AnimatedButtonContainer
-        hasHapticFeedback
-        onPress={() => {}}
-        onPressIn={onPressIn}
-        onPressOut={onPressOut}
-        style={[animatedStyle]}
+      <Center
+        style={tw.style(`h-[44px] w-[44px] mx-2 rounded-4`, {
+          "bg-primary": recordingState === "recording",
+        })}
       >
-        <Center
-          style={tw.style(
-            `h-[44px] w-[44px] mx-2 rounded-4 bg-primary relative`
-          )}
-        >
-          <Image
-            resizeMode="contain"
-            source={require("@assets/icons/mic.png")}
-            style={tw.style(`h-[20px] w-[20px] z-10`)}
-          />
+        <Image
+          resizeMode="contain"
+          source={require("@assets/icons/mic.png")}
+          style={tw.style(`h-[20px] w-[20px] z-10`)}
+          tintColor={recordingState === "recording" ? color.white : color.ash}
+        />
 
-          <RecordingEffect ref={effectRef} />
-        </Center>
-      </AnimatedButtonContainer>
-    </KeyboardAvoidingView>
+        <RecordingEffect ref={effectRef} />
+      </Center>
+    </AnimatedButtonContainer>
   );
 };

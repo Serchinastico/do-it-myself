@@ -41,4 +41,5 @@ export const ImageTool: EditorTool = {
       text: t`Take photo`,
     },
   ],
+  tag: "icon",
 };

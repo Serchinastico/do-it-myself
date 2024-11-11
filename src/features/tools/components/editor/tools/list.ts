@@ -6,4 +6,5 @@ export const ListTool: EditorTool = {
   isActive: ({ editorState }) => editorState.isBulletListActive,
   isDisabled: ({ editorState }) => !editorState.canToggleBulletList,
   onPress: ({ editor }) => editor.toggleBulletList(),
+  tag: "icon",
 };
