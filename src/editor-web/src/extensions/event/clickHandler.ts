@@ -19,7 +19,7 @@ export const clickHandler = (
    * attributes to send them up in the postMessage call.
    */
   while (parent && !clickEvent) {
-    clickEvent = parent.dataset["click-event"];
+    clickEvent = parent?.dataset?.["click-event"];
     Object.assign(dataProps, parent.dataset);
     parent = parent.parentNode as HTMLElement;
   }

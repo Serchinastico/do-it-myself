@@ -1,3 +1,4 @@
+import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { LocalImage } from "@app/domain/project";
 import { t } from "@lingui/macro";
 import { randomId, Tagged } from "@madeja-studio/cepillo";
@@ -67,23 +68,17 @@ const storeImagesLocally = async (assets: ImagePickerAsset[]) => {
   const images: LocalImage[] = [];
 
   for (const asset of assets) {
-    const originalUri = asset.uri;
-    const fileName = asset.fileName ?? `${randomId()}.jpg`;
-    const relativePath = `${IMAGES_DIRECTORY}/${fileName}`;
-    const absolutePath = `${FileSystem.documentDirectory}${relativePath}`;
-
-    await FileSystem.makeDirectoryAsync(
-      `${FileSystem.documentDirectory}${IMAGES_DIRECTORY}`,
-      { intermediates: true }
-    );
-
-    await FileSystem.copyAsync({ from: originalUri, to: absolutePath });
+    const path = await moveToDocuments({
+      documentsDirectoryName: IMAGES_DIRECTORY,
+      extension: "jpg",
+      uri: asset.uri,
+    });
 
     // Return the relative path to preserve the image between app updates
     images.push({
       height: asset.height,
       id: randomId(),
-      path: relativePath,
+      path: path,
       width: asset.width,
     });
   }

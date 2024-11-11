@@ -30,13 +30,11 @@ export const AudioRecordingBridge = new BridgeExtension<
   extendCSS: `
 .audio-player {
     position: relative;
-    background-color: #00C75D;
-    width: 300px;
-    height: 100px;
+    width: 250px;
+    height: 88px;
     border-radius: 16px;
     display: flex;
     padding-left: 16px;
-    padding-right: 16px;
     justify-content: center;
     align-items: center;
 }
@@ -55,7 +53,9 @@ export const AudioRecordingBridge = new BridgeExtension<
 
 .audio-player .remaining_time {
     position: absolute;
-    bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    bottom: 6px;
     right: 8px;
 }
 `,

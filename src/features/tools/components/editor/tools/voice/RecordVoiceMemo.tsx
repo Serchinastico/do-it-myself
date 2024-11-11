@@ -2,9 +2,11 @@ import type { SpringConfig } from "react-native-reanimated/src/reanimated2/anima
 
 import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
 import useRecording from "@app/core/hooks/useRecording";
+import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { t } from "@lingui/macro";
 import { Button, Center, useToast } from "@madeja-studio/telar";
 import { ContainerProps } from "@madeja-studio/telar/lib/typescript/src/component/Button/Container";
+import * as FileSystem from "expo-file-system";
 import * as Haptics from "expo-haptics";
 import { forwardRef, useCallback, useEffect, useRef } from "react";
 import { Image, Platform } from "react-native";
@@ -13,8 +15,11 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import useAsyncEffect from "use-async-effect";
 
 import { RecordingEffect, RecordingEffectRef } from "./RecordingEffect";
+
+const VOICE_RECORDINGS_DIRECTORY = "Voice";
 
 const AnimatedButtonContainer = Animated.createAnimatedComponent(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -30,7 +35,7 @@ const ANIMATION_CONFIG: SpringConfig = {
 };
 
 interface Props {
-  onRecordedAudio: (uri: string) => Promise<void> | void;
+  onRecordedAudio: (path: string) => Promise<void> | void;
 }
 
 export const RecordVoiceMemo = ({ onRecordedAudio }: Props) => {
@@ -96,14 +101,20 @@ export const RecordVoiceMemo = ({ onRecordedAudio }: Props) => {
     scale.value = withSpring(0.5 * volume + 1.75, ANIMATION_CONFIG);
   }, [recording, volume]);
 
-  useEffect(() => {
+  useAsyncEffect(async () => {
     if (!recording) return;
     if (recordingState !== "idle") return;
 
     const uri = recording.getURI();
     if (!uri) return;
 
-    onRecordedAudio(uri);
+    const path = await moveToDocuments({
+      documentsDirectoryName: VOICE_RECORDINGS_DIRECTORY,
+      extension: "m4a",
+      uri,
+    });
+
+    onRecordedAudio(path);
   }, [recording, recordingState]);
 
   return (

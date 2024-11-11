@@ -67,19 +67,21 @@ export const WorklogScreen = ({
           allowFileAccess
           allowFileAccessFromFileURLs
           allowingReadAccessToURL={`${FileSystem.documentDirectory}`}
+          allowsInlineMediaPlayback
           allowUniversalAccessFromFileURLs
           containerStyle={tw`px-4 pt-4`}
           editor={editor}
           focusable
+          mediaPlaybackRequiresUserAction={false}
           originWhitelist={["*"]}
           source={{ uri: htmlPath }}
         />
       </KeyboardAvoidingView>
 
       <RecordVoiceMemo
-        onRecordedAudio={(uri) => {
-          editor.setAudioRecording({ fileName: uri });
-        }}
+        onRecordedAudio={async (path) =>
+          editor.setAudioRecording({ fileName: path })
+        }
       />
 
       <Toolbar editor={editor} project={project} tools={WORKLOG_TOOLBAR} />

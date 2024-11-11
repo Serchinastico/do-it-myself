@@ -137,6 +137,7 @@ export const useRichTextEditor = ({
         imagesRootPath: `${FileSystem.documentDirectory}`,
       }),
       AudioRecordingBridge.configureExtension({
+        audioRootPath: `${FileSystem.documentDirectory}`,
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
     ],
