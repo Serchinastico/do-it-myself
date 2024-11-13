@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-native-date-picker";
 
 import { Toolbar } from "../components/editor/Toolbar";
-import { RecordVoiceMemo } from "../components/editor/tools/voice/RecordVoiceMemo";
 import { ToolHeader } from "../components/headers";
 import { useRichTextEditor } from "../hooks/useRichTextEditor";
 

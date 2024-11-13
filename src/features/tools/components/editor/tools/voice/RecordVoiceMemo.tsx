@@ -1,6 +1,5 @@
 import type { SpringConfig } from "react-native-reanimated/src/reanimated2/animation/springUtils";
 
-import { KeyboardAvoidingView } from "@app/core/components/Keyboard";
 import useRecording from "@app/core/hooks/useRecording";
 import { color } from "@app/core/theme/color";
 import { moveToDocuments } from "@app/core/utils/mediaFile";
@@ -16,7 +15,6 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
-import useAsyncEffect from "use-async-effect";
 
 import { RecordingEffect, RecordingEffectRef } from "./RecordingEffect";
 

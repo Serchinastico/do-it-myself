@@ -30,8 +30,12 @@ export const AudioRecording = Node.create<AudioRecordingOptions>({
     return {
       setAudioRecording:
         (attrs: SetAudioRecordingProps) =>
-        ({ commands }) => {
-          return commands.insertContent({ attrs, type: this.name });
+        ({ chain }) => {
+          return chain()
+            .insertContent({ attrs, type: this.name })
+            .insertContent({ type: "text" })
+            .focus("end")
+            .run();
         },
     };
   },
@@ -72,5 +76,5 @@ export const AudioRecording = Node.create<AudioRecordingOptions>({
     return ["audio-player", { "data-file-name": fileName }];
   },
 
-  selectable: true,
+  selectable: false,
 });

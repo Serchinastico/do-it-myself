@@ -5,8 +5,8 @@ import { AudioPlayerControls } from "./AudioPlayerControls";
 import { Waveform } from "./Waveform";
 
 const toDurationString = (durationInSeconds: number) => {
-  const minutes = Math.floor(durationInSeconds / 60);
-  const seconds = Math.floor(durationInSeconds % 60);
+  const minutes = Math.max(0, Math.floor(durationInSeconds / 60));
+  const seconds = Math.max(0, Math.floor(durationInSeconds % 60));
 
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 };
