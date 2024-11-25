@@ -50,7 +50,7 @@ const ColorItem = ({
             fontSize: 18,
           })}
         >
-          {color.name}
+          {color.getName}
         </Cue>
       </Column>
     </Button.Container>
