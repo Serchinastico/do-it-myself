@@ -1,3 +1,4 @@
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { LocalImage } from "@app/domain/project";
 import { t } from "@lingui/macro";
 import { Button, Center, OnPress } from "@madeja-studio/telar";
@@ -20,6 +21,7 @@ export const AttachmentImage = ({
   onPress,
   tint,
 }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const { width } = Dimensions.get("screen");
   const imageWidth = (width - 48) / colSpan;
   const imageHeight = imageWidth * (image.height / image.width);
@@ -30,7 +32,7 @@ export const AttachmentImage = ({
       <ContextMenu.Trigger>
         <Center style={tw`pb-1.5 relative`}>
           <Button.Container
-            hasHapticFeedback
+            hasHapticFeedback={isHapticFeedbackEnabled}
             onPress={onPress}
             style={tw`z-10`}
           >

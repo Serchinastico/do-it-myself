@@ -1,5 +1,6 @@
 import { Cue } from "@app/core/components/Cue";
 import { Illustration } from "@app/core/components/Illustration";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { t } from "@lingui/macro";
 import { Button, Column, OnPress } from "@madeja-studio/telar";
 import { Text } from "react-native";
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export const EmptyProjects = ({ onCreatePress }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
+
   return (
     <Column style={tw`flex-1 center mb-28 px-12`}>
       <Illustration heightWindowRatio="1/3" name="not_found" />
@@ -18,7 +21,10 @@ export const EmptyProjects = ({ onCreatePress }: Props) => {
         style={tw`body text-center mt-4`}
       >{t`It’s time to create a project and start doing things.`}</Text>
 
-      <Button.Container hasHapticFeedback onPress={onCreatePress}>
+      <Button.Container
+        hasHapticFeedback={isHapticFeedbackEnabled}
+        onPress={onCreatePress}
+      >
         <Cue
           style={tw`mt-4`}
           textStyle={tw`text-center`}

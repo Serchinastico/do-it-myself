@@ -1,5 +1,6 @@
 import { Header } from "@app/core/components/Header";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { color } from "@app/core/theme/color";
 import { t } from "@lingui/macro";
 import { Button, OnPress } from "@madeja-studio/telar";
@@ -17,6 +18,7 @@ export const ManualHeader = ({
   onEditPress,
   onExportPress,
 }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
 
   return (
@@ -28,7 +30,7 @@ export const ManualHeader = ({
       title={t`Manual`}
     >
       <Button.Icon
-        hasHapticFeedback
+        hasHapticFeedback={isHapticFeedbackEnabled}
         icon={{ family: "Feather", name: "edit-3" }}
         iconTint={
           isEditing
@@ -40,7 +42,7 @@ export const ManualHeader = ({
       />
 
       <Button.Icon
-        hasHapticFeedback
+        hasHapticFeedback={isHapticFeedbackEnabled}
         icon={{ family: "Feather", name: "share" }}
         iconTint={colorSwitch({ dark: "white", light: "secondary" })}
         onPress={onExportPress}

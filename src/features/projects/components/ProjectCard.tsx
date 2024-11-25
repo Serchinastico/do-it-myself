@@ -1,5 +1,6 @@
 import { ToolButton } from "@app/core/components/ToolButton";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { color } from "@app/core/theme/color";
 import {
   getProjectColorById,
@@ -23,6 +24,7 @@ export const ProjectCard = ({
   onToolPress,
   project,
 }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
   const projectColor = getProjectColorById(project.colorId);
   const tags = getTagsByIds(project.tagIds);
@@ -43,7 +45,7 @@ export const ProjectCard = ({
         </Column>
 
         <Button.Container
-          hasHapticFeedback
+          hasHapticFeedback={isHapticFeedbackEnabled}
           onPress={() => onEditProjectPress(project)}
           style={tw`bg-white dark:bg-ash rounded-full size-press center`}
         >
@@ -66,7 +68,7 @@ export const ProjectCard = ({
               { backgroundColor: chroma(color.secondary).alpha(0.5).hex() },
             ]}
           >
-            <Text style={tw`text-white body`}>{tag.name}</Text>
+            <Text style={tw`text-white body`}>{tag.getName()}</Text>
           </View>
         ))}
       </Row>

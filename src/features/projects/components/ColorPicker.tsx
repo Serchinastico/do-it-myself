@@ -1,5 +1,6 @@
 import { Cue } from "@app/core/components/Cue";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { color as themeColor } from "@app/core/theme/color";
 import {
   PROJECT_COLORS,
@@ -19,12 +20,13 @@ const ColorItem = ({
   onColorChange,
   selectedColorId,
 }: ColorItemProps) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
   const isSelected = color.id === selectedColorId;
 
   return (
     <Button.Container
-      hasHapticFeedback
+      hasHapticFeedback={isHapticFeedbackEnabled}
       onPress={() => onColorChange(color.id)}
       style={tw`w-1/4`}
     >
@@ -50,7 +52,7 @@ const ColorItem = ({
             fontSize: 18,
           })}
         >
-          {color.getName}
+          {color.getName()}
         </Cue>
       </Column>
     </Button.Container>

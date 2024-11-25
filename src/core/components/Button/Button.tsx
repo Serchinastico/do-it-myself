@@ -1,4 +1,5 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { color } from "@app/core/theme/color";
 import { Button as TelarButton } from "@madeja-studio/telar";
 import { ComponentProps } from "react";
@@ -12,6 +13,7 @@ export const Button = ({
   textStyle,
   ...props
 }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
 
   const shouldSwitchTextColor =
@@ -21,7 +23,7 @@ export const Button = ({
 
   return (
     <TelarButton
-      hasHapticFeedback
+      hasHapticFeedback={isHapticFeedbackEnabled}
       rowStyle={[tw`flex-row-reverse rounded-full py-3`, rowStyle]}
       style={[tw`center`, style]}
       text={text}

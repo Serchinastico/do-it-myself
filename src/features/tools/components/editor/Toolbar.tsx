@@ -1,5 +1,6 @@
 import { EditorBridge, useBridgeState } from "@10play/tentap-editor";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { color } from "@app/core/theme/color";
 import { Project } from "@app/domain/project";
 import { EditorTool } from "@app/features/tools/components/editor/tools/base";
@@ -18,6 +19,7 @@ interface Props {
 export const Toolbar = ({ editor, project, tools }: Props) => {
   const editorState = useBridgeState(editor);
   const { isKeyboardUp } = useKeyboard();
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
 
   return (
@@ -38,7 +40,7 @@ export const Toolbar = ({ editor, project, tools }: Props) => {
             <DropdownMenu.Trigger>
               {item.tag === "icon" && (
                 <Button.Container
-                  hasHapticFeedback
+                  hasHapticFeedback={isHapticFeedbackEnabled}
                   isDisabled={item.isDisabled({ editor, editorState, project })}
                   onPress={() => {
                     if (item.hasMenu) return;

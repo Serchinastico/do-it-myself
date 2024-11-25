@@ -1,5 +1,6 @@
 import type { SpringConfig } from "react-native-reanimated/src/reanimated2/animation/springUtils";
 
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import useRecording from "@app/core/hooks/useRecording";
 import { color } from "@app/core/theme/color";
 import { moveToDocuments } from "@app/core/utils/mediaFile";
@@ -48,6 +49,7 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
     stopRecording,
     volume,
   } = useRecording();
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const { showToast } = useToast();
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -112,7 +114,7 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
 
   return (
     <AnimatedButtonContainer
-      hasHapticFeedback
+      hasHapticFeedback={isHapticFeedbackEnabled}
       onPress={() => {}}
       onPressIn={onPressIn}
       onPressOut={onPressOut}

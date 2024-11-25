@@ -9,6 +9,10 @@ import { atomWithAsyncStorage } from "./async-storage";
 export const atoms = {
   colorScheme: atomWithAsyncStorage<ColorScheme | null>("colorScheme", null),
   hasPurchasedApp: atomWithAsyncStorage("hasPurchasedApp", false),
+  isHapticFeedbackEnabled: atomWithAsyncStorage(
+    "isHapticFeedbackEnabled",
+    true
+  ),
   projects: atomWithAsyncStorage<Project[]>("projects", []),
   /**
    * This atom is transient and used temporarily to synchronize the state

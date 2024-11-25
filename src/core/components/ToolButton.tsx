@@ -1,4 +1,5 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import {
   Button,
   IconReference,
@@ -15,12 +16,13 @@ interface Props {
 }
 
 export const ToolButton = ({ icon, onPress, style, text }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
 
   return (
     <Button.Container
       color="tertiary"
-      hasHapticFeedback
+      hasHapticFeedback={isHapticFeedbackEnabled}
       onPress={onPress}
       style={[
         tw`gap-2 flex-row center bg-white dark:bg-ash rounded-full px-4 py-2`,

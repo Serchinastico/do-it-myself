@@ -2,6 +2,7 @@ import { Accordion } from "@app/core/components/Accordion";
 import { Cue } from "@app/core/components/Cue";
 import { ScrollView } from "@app/core/components/ScrollView";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { Layout, LayoutId } from "@app/domain/project/export";
 import { t } from "@lingui/macro";
 import { Button, Column, Row } from "@madeja-studio/telar";
@@ -16,6 +17,7 @@ export const ExportLayoutPicker = ({
   onLayoutSelect,
   selectedLayoutId,
 }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const { colorScheme } = useColorSwitch();
 
   return (
@@ -32,7 +34,7 @@ export const ExportLayoutPicker = ({
         <Row style={tw`gap-4`}>
           {Object.entries(Layout).map(([id, layout]) => (
             <Button.Container
-              hasHapticFeedback
+              hasHapticFeedback={isHapticFeedbackEnabled}
               key={id}
               onPress={() => onLayoutSelect(id as LayoutId)}
             >

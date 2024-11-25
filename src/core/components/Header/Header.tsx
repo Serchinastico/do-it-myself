@@ -1,4 +1,5 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { Button, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import { animated } from "@react-spring/native";
 import { PropsWithChildren } from "react";
@@ -23,6 +24,7 @@ export const Header = ({ children, subtitle, title, ...props }: Props) => {
   const { animatedStyle, subtitle: subtitleText } = useHeaderAnimation({
     subtitle,
   });
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
 
   return (
@@ -35,7 +37,7 @@ export const Header = ({ children, subtitle, title, ...props }: Props) => {
         <Row style={tw`center`}>
           {props.hasBackButton && (
             <Button.Container
-              hasHapticFeedback
+              hasHapticFeedback={isHapticFeedbackEnabled}
               onPress={props.onBackPress}
               style={tw`center android:mt-1 ios:mt-0.5 size-press`}
             >

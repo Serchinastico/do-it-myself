@@ -1,4 +1,5 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { Button, VectorIcon } from "@madeja-studio/telar";
 import {
   forwardRef,
@@ -31,6 +32,7 @@ export interface AccordionRef {
 export const Accordion = forwardRef<AccordionRef, Props>(
   ({ children, childrenHeight, fieldName, selectedValue }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { isHapticFeedbackEnabled } = useHapticFeedback();
     const colorSwitch = useColorSwitch();
 
     const valuePickerHeight = useSharedValue(64);
@@ -62,7 +64,7 @@ export const Accordion = forwardRef<AccordionRef, Props>(
 
     return (
       <Button.Container
-        hasHapticFeedback
+        hasHapticFeedback={isHapticFeedbackEnabled}
         onPress={() => setIsOpen((v) => !v)}
         style={tw``}
       >

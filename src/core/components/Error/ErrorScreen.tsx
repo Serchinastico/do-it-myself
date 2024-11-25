@@ -25,7 +25,7 @@ export const ErrorScreen = ({ error, resetError }: Props) => {
         )}
       </Column>
 
-      <Button hasHapticFeedback onPress={() => resetError()} text={t`Reset`} />
+      <Button onPress={() => resetError()} text={t`Reset`} />
     </SafeArea>
   );
 };

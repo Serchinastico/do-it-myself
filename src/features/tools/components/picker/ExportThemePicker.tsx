@@ -1,6 +1,7 @@
 import { Accordion } from "@app/core/components/Accordion";
 import { Cue } from "@app/core/components/Cue";
 import { ScrollView } from "@app/core/components/ScrollView";
+import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { ExportTheme, ExportThemeId } from "@app/domain/project/export";
 import { t } from "@lingui/macro";
 import { Button, Column, Row } from "@madeja-studio/telar";
@@ -15,6 +16,8 @@ export const ExportThemePicker = ({
   onThemeSelect,
   selectedThemeId,
 }: Props) => {
+  const { isHapticFeedbackEnabled } = useHapticFeedback();
+
   return (
     <Accordion
       childrenHeight={220}
@@ -29,7 +32,7 @@ export const ExportThemePicker = ({
         <Row style={tw`gap-4 center`}>
           {Object.entries(ExportTheme).map(([id, theme]) => (
             <Button.Container
-              hasHapticFeedback
+              hasHapticFeedback={isHapticFeedbackEnabled}
               key={id}
               onPress={() => onThemeSelect(id as ExportThemeId)}
             >
