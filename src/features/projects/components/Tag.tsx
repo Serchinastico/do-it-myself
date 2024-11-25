@@ -36,7 +36,7 @@ export const Tag = ({ isSelected, onPress, tag }: Props) => {
           }),
         })}
       >
-        {tag.name}
+        {tag.getName()}
       </Text>
     </Button.Container>
   );
