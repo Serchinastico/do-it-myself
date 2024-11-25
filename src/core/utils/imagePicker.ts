@@ -1,5 +1,6 @@
 import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { LocalImage } from "@app/domain/project";
+import { i18n } from "@lingui/core";
 import { t } from "@lingui/macro";
 import { randomId, Tagged } from "@madeja-studio/cepillo";
 import {
@@ -37,19 +38,21 @@ export type ImagePickerResult =
 
 const ACCESS_DENIED_ERROR: InternalImagePickerResult = {
   code: "access_denied",
-  message: t`Access to your camera or media library is required to pick a picture`,
+  message: t(
+    i18n
+  )`Access to your camera or media library is required to pick a picture`,
   tag: "error",
 };
 
 const USER_CANCELED_ERROR: InternalImagePickerResult = {
   code: "user_canceled",
-  message: t`Canceled the selection of an image`,
+  message: t(i18n)`Canceled the selection of an image`,
   tag: "error",
 };
 
 const CAMERA_UNAVAILABLE_ERROR: InternalImagePickerResult = {
   code: "camera_unavailable",
-  message: t`Camera unavailable`,
+  message: t(i18n)`Camera unavailable`,
   tag: "error",
 };
 

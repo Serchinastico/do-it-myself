@@ -1,4 +1,5 @@
 import { getImagesFrom, ImageSource } from "@app/core/utils/imagePicker";
+import { i18n } from "@lingui/core";
 import { t } from "@lingui/macro";
 import { randomId } from "@madeja-studio/cepillo";
 
@@ -31,14 +32,14 @@ export const ImageTool: EditorTool = {
       onPress: async (args) => {
         await addImageToEditor({ ...args, source: "media_library" });
       },
-      text: t`Photo Library`,
+      text: t(i18n)`Photo Library`,
     },
     {
       key: "camera",
       onPress: async (args) => {
         await addImageToEditor({ ...args, source: "camera" });
       },
-      text: t`Take photo`,
+      text: t(i18n)`Take photo`,
     },
   ],
   tag: "icon",
