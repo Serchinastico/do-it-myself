@@ -1,6 +1,7 @@
 import { NodeViewProps, NodeViewWrapper } from "@tiptap/react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
+import { useInterval } from "../../../../core/hooks/useInterval";
 import { AudioPlayerControls } from "./AudioPlayerControls";
 import { Waveform } from "./Waveform";
 
@@ -12,64 +13,80 @@ const toDurationString = (durationInSeconds: number) => {
 };
 
 const NUMBER_OF_WAVEFORM_LINES = 32;
+const WAVEFORM_UPDATE_INTERVAL_IN_MS = 50;
 
 export const AudioPlayer = ({ extension, node }: NodeViewProps) => {
-  const fileName = node.attrs.fileName;
   const backgroundColor = extension.options.backgroundColor;
-  const audioRootPath = extension.options.audioRootPath;
+  const durationInMs = node.attrs.durationInMs;
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  const [remainingPlayTime, setRemainingPlayTime] = useState(
-    audioRef.current?.duration ?? 0
+  const [playtimeProgress, setPlaytimeProgress] = useState(0);
+  const remainingTimeInMs = useMemo(
+    () => durationInMs - playtimeProgress * durationInMs,
+    [playtimeProgress]
   );
-
-  const normalizedDuration = audioRef.current?.duration ?? 1;
-  const playTimeInSeconds = normalizedDuration - remainingPlayTime;
-  const playProgress = playTimeInSeconds / normalizedDuration;
+  const playtimeInMs = useRef(0);
 
   const onPlay = useCallback(() => {
+    const startTimeInMs =
+      playtimeInMs.current >= durationInMs ? 0 : playtimeInMs.current;
     window.ReactNativeWebView?.postMessage(
       JSON.stringify({
         payload: {
           fileName: node.attrs.fileName,
-          startTimeInMs: playTimeInSeconds * 1000,
+          startTimeInMs,
         },
         type: "play-audio",
       })
     );
-  }, [node, remainingPlayTime]);
+
+    setIsPlaying(true);
+    playtimeInMs.current = startTimeInMs;
+    setPlaytimeProgress(startTimeInMs / durationInMs);
+  }, [node]);
+
+  const onPause = useCallback(() => {
+    window.ReactNativeWebView?.postMessage(
+      JSON.stringify({
+        payload: { fileName: node.attrs.fileName },
+        type: "pause-audio",
+      })
+    );
+
+    setIsPlaying(false);
+  }, [node]);
+
+  useInterval(
+    () => {
+      if (playtimeInMs.current >= durationInMs) {
+        setIsPlaying(false);
+        setPlaytimeProgress(1);
+        return false;
+      }
+
+      playtimeInMs.current += WAVEFORM_UPDATE_INTERVAL_IN_MS;
+      setPlaytimeProgress(playtimeInMs.current / durationInMs);
+      return true;
+    },
+    isPlaying ? WAVEFORM_UPDATE_INTERVAL_IN_MS : null,
+    [durationInMs, isPlaying]
+  );
 
   return (
-    <NodeViewWrapper class="audio-player" style={{ backgroundColor }}>
-      <audio
-        onLoadedMetadata={(e) => setRemainingPlayTime(e.currentTarget.duration)}
-        onPause={() => setIsPlaying(false)}
-        onPlay={() => setIsPlaying(true)}
-        onTimeUpdate={(e) =>
-          setRemainingPlayTime(
-            e.currentTarget.duration - e.currentTarget.currentTime
-          )
-        }
-        preload="metadata"
-        ref={audioRef}
-        src={`${audioRootPath}${fileName}`}
-      />
-
-      <AudioPlayerControls
-        isPlaying={isPlaying}
-        onPause={() => audioRef.current?.pause()}
-        onPlay={onPlay}
-      />
+    <NodeViewWrapper
+      class="audio-player"
+      onClick={() => (isPlaying ? onPause() : onPlay())}
+      style={{ backgroundColor }}
+    >
+      <AudioPlayerControls isPlaying={isPlaying} />
 
       <Waveform
         numberOfLines={NUMBER_OF_WAVEFORM_LINES}
-        progress={playProgress}
+        progress={playtimeProgress}
       />
 
       <div className="remaining_time">
-        {toDurationString(remainingPlayTime)}
+        {toDurationString(remainingTimeInMs / 1000)}
       </div>
     </NodeViewWrapper>
   );

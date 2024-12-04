@@ -64,7 +64,16 @@ const useRecording = () => {
     }, [recordingState]);
 
   const stopRecording = useCallback(async () => {
-    await recording?.stopAndUnloadAsync();
+    if (!recording) return;
+    /**
+     * Apparently, the recording duration is set back to 0 once we stop it, so
+     * we get it right before ending the recording and set it to the recording
+     * object so that it's updated for future use.
+     * @see https://github.com/expo/expo/issues/17909
+     */
+    const status = await recording.getStatusAsync();
+    await recording.stopAndUnloadAsync();
+    recording._finalDurationMillis = status.durationMillis;
     setRecordingState("idle");
 
     return recording;

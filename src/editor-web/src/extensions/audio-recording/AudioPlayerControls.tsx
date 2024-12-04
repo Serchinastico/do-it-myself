@@ -1,20 +1,16 @@
-import { DOMAttributes, HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 
 type ClassName = HTMLAttributes<any>["className"];
 type ControlButtonProps = {
   className: ClassName;
-  onClick: OnClick;
 };
 
-type OnClick = DOMAttributes<any>["onClick"];
-
-const PlayButton = ({ className, onClick }: ControlButtonProps) => {
+const PlayButton = ({ className }: ControlButtonProps) => {
   return (
     <svg
       className={`play-icon ${className}`}
       fill="none"
       height="44"
-      onClick={onClick}
       viewBox="0 0 44 44"
       width="44"
       xmlns="http://www.w3.org/2000/svg"
@@ -29,13 +25,12 @@ const PlayButton = ({ className, onClick }: ControlButtonProps) => {
   );
 };
 
-const PauseButton = ({ className, onClick }: ControlButtonProps) => {
+const PauseButton = ({ className }: ControlButtonProps) => {
   return (
     <svg
       className={`pause-icon ${className}`}
       fill="none"
       height="44"
-      onClick={onClick}
       viewBox="0 0 44 44"
       width="44"
       xmlns="http://www.w3.org/2000/svg"
@@ -60,15 +55,13 @@ const PauseButton = ({ className, onClick }: ControlButtonProps) => {
 
 interface Props {
   isPlaying: boolean;
-  onPause: () => void;
-  onPlay: () => void;
 }
 
-export const AudioPlayerControls = ({ isPlaying, onPause, onPlay }: Props) => {
+export const AudioPlayerControls = ({ isPlaying }: Props) => {
   return (
     <div className="controls">
-      <PlayButton className={isPlaying ? "hidden" : ""} onClick={onPlay} />
-      <PauseButton className={isPlaying ? "" : "hidden"} onClick={onPause} />
+      <PlayButton className={isPlaying ? "hidden" : ""} />
+      <PauseButton className={isPlaying ? "" : "hidden"} />
     </div>
   );
 };

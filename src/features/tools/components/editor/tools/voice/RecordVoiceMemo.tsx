@@ -102,8 +102,10 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
       uri,
     });
 
-    console.log("SET AUDIO RECORDING");
-    editor.setAudioRecording({ fileName: path });
+    editor.setAudioRecording({
+      durationInMs: recording._finalDurationMillis,
+      fileName: path,
+    });
   }, [editor, stopRecording]);
 
   useEffect(() => {

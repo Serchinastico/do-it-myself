@@ -21,11 +21,11 @@ declare module "@tiptap/core" {
 
 export type OnAudioPauseProps = { fileName: string };
 export type OnAudioPlayProps = { fileName: string; startTimeInMs: number };
-export type SetAudioRecordingProps = { fileName: string };
+export type SetAudioRecordingProps = { durationInMs: number; fileName: string };
 
 export const AudioRecording = Node.create<AudioRecordingOptions>({
   addAttributes() {
-    return { fileName: "" };
+    return { durationInMs: 0, fileName: "" };
   },
 
   addCommands() {
@@ -64,8 +64,9 @@ export const AudioRecording = Node.create<AudioRecordingOptions>({
       {
         getAttrs: (dom) => {
           const fileName = dom.getAttribute("data-file-name");
+          const durationInMs = dom.getAttribute("data-duration-in-ms");
 
-          return { fileName };
+          return { durationInMs, fileName };
         },
         tag: "audio-player",
       },
@@ -74,8 +75,12 @@ export const AudioRecording = Node.create<AudioRecordingOptions>({
 
   renderHTML({ HTMLAttributes }) {
     const fileName: string = HTMLAttributes.fileName;
+    const durationInMs: number = HTMLAttributes.durationInMs;
 
-    return ["audio-player", { "data-file-name": fileName }];
+    return [
+      "audio-player",
+      { "data-duration-in-ms": durationInMs, "data-file-name": fileName },
+    ];
   },
 
   selectable: false,
