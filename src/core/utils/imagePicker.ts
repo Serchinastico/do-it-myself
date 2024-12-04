@@ -15,26 +15,26 @@ import {
 } from "expo-image-picker";
 import { MediaTypeOptions } from "expo-image-picker/src/ImagePicker.types";
 
-interface InternalImagePickerSuccess {
-  assets: ImagePickerAsset[];
-}
+export type ImagePickerResult =
+  | Tagged<"error", ImagePickerError>
+  | Tagged<"success", ImagePickerSuccess>;
 
-interface ImagePickerSuccess {
-  images: LocalImage[];
-}
+export type InternalImagePickerResult =
+  | Tagged<"error", ImagePickerError>
+  | Tagged<"success", InternalImagePickerSuccess>;
 
 interface ImagePickerError {
   code: "access_denied" | "camera_unavailable" | "user_canceled";
   message?: string;
 }
 
-export type InternalImagePickerResult =
-  | Tagged<"error", ImagePickerError>
-  | Tagged<"success", InternalImagePickerSuccess>;
+interface ImagePickerSuccess {
+  images: LocalImage[];
+}
 
-export type ImagePickerResult =
-  | Tagged<"error", ImagePickerError>
-  | Tagged<"success", ImagePickerSuccess>;
+interface InternalImagePickerSuccess {
+  assets: ImagePickerAsset[];
+}
 
 const ACCESS_DENIED_ERROR: InternalImagePickerResult = {
   code: "access_denied",

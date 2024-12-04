@@ -2,11 +2,11 @@ import { BridgeExtension } from "@10play/tentap-editor";
 
 import { CreateDateProps, Date, OnDateClickProps, SetDateProps } from "./date";
 
-type DateEditorState = object;
 type DateEditorInstance = {
   createDate: (props: CreateDateProps) => void;
   setDate: (props: SetDateProps) => void;
 };
+type DateEditorState = object;
 
 declare module "@10play/tentap-editor" {
   interface BridgeState extends DateEditorState {}

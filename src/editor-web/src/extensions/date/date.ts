@@ -15,16 +15,6 @@ declare module "@tiptap/core" {
   }
 }
 
-export type SetDateProps = {
-  /**
-   * In ISO-8601 format
-   * {@link https://en.wikipedia.org/wiki/ISO_8601}
-   */
-  date: string;
-  id: string;
-  text: string;
-};
-
 export type CreateDateProps = {
   backgroundColor: string;
   /**
@@ -37,6 +27,16 @@ export type CreateDateProps = {
 };
 
 export type OnDateClickProps = { date: string; id: string };
+
+export type SetDateProps = {
+  /**
+   * In ISO-8601 format
+   * {@link https://en.wikipedia.org/wiki/ISO_8601}
+   */
+  date: string;
+  id: string;
+  text: string;
+};
 
 export const Date = Node.create<DateOptions>({
   addAttributes() {

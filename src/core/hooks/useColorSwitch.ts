@@ -2,13 +2,13 @@ import { color } from "@app/core/theme/color";
 import { useCallback } from "react";
 import { useAppColorScheme } from "twrnc";
 
-type ThemeColor = keyof typeof color;
-type SwitchColor = ({} & string) | ThemeColor | undefined;
-
 interface Props {
   dark: SwitchColor;
   light: SwitchColor;
 }
+type SwitchColor = (string & {}) | ThemeColor | undefined;
+
+type ThemeColor = keyof typeof color;
 
 const isThemeColor = (switchColor: SwitchColor): switchColor is ThemeColor =>
   !!switchColor && Object.hasOwn(color, switchColor);

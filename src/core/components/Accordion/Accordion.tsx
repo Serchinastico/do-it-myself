@@ -17,16 +17,16 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+export interface AccordionRef {
+  close: () => void;
+  open: () => void;
+}
+
 interface Props {
   children: ReactNode;
   childrenHeight: number;
   fieldName: string;
   selectedValue: string;
-}
-
-export interface AccordionRef {
-  close: () => void;
-  open: () => void;
 }
 
 export const Accordion = forwardRef<AccordionRef, Props>(

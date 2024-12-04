@@ -7,18 +7,18 @@ import { Text, ViewProps } from "react-native";
 
 import { useHeaderAnimation } from "./useHeaderAnimation";
 
-type Props = {
-  subtitle?: string;
-  title: string;
-} & BackProps &
-  PropsWithChildren<ViewProps>;
-
 type BackProps =
   | {
       hasBackButton: true;
       onBackPress: () => Promise<void> | void;
     }
   | { hasBackButton?: false };
+
+type Props = BackProps &
+  PropsWithChildren<ViewProps> & {
+    subtitle?: string;
+    title: string;
+  };
 
 export const Header = ({ children, subtitle, title, ...props }: Props) => {
   const { animatedStyle, subtitle: subtitleText } = useHeaderAnimation({

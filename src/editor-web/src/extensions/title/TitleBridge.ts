@@ -2,12 +2,12 @@ import { BridgeExtension } from "@10play/tentap-editor";
 
 import { Title, ToggleTitleProps } from "./title";
 
+type TitleEditorInstance = {
+  toggleTitle: (props: ToggleTitleProps) => void;
+};
 type TitleEditorState = {
   canToggleTitle: boolean;
   isTitleActive: boolean;
-};
-type TitleEditorInstance = {
-  toggleTitle: (props: ToggleTitleProps) => void;
 };
 
 declare module "@10play/tentap-editor" {

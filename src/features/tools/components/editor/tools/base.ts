@@ -4,15 +4,28 @@ import { Tagged } from "@madeja-studio/cepillo";
 import React from "react";
 import { ImageSourcePropType } from "react-native";
 
+export type EditorTool = (ComponentEditorTool | IconEditorTool) &
+  Identifiable &
+  MenuProps;
+
+export interface MenuOption {
+  key: string;
+  onPress: (args: ToolCallbackArgs) => Promise<void> | void;
+  text: string;
+}
+
 export type ToolCallbackArgs = {
   editor: EditorBridge;
   editorState: BridgeState;
   project: Project;
 };
 
-type Identifiable = {
-  id: string;
-};
+type ComponentEditorTool = Tagged<
+  "component",
+  {
+    component: (props: ToolCallbackArgs) => React.JSX.Element;
+  }
+>;
 
 type IconEditorTool = Tagged<
   "icon",
@@ -23,16 +36,9 @@ type IconEditorTool = Tagged<
   }
 >;
 
-type ComponentEditorTool = Tagged<
-  "component",
-  {
-    component: (props: ToolCallbackArgs) => React.JSX.Element;
-  }
->;
-
-export type EditorTool = (ComponentEditorTool | IconEditorTool) &
-  Identifiable &
-  MenuProps;
+type Identifiable = {
+  id: string;
+};
 
 type MenuProps =
   | {
@@ -43,9 +49,3 @@ type MenuProps =
       hasMenu?: false;
       onPress: (args: ToolCallbackArgs) => void;
     };
-
-export interface MenuOption {
-  key: string;
-  onPress: (args: ToolCallbackArgs) => Promise<void> | void;
-  text: string;
-}

@@ -68,15 +68,6 @@ const ToolSection = ({
   );
 };
 
-type Props = {
-  onWantsAttachmentsChange: SwitchProps["onValueChange"];
-  onWantsManualChange: SwitchProps["onValueChange"];
-  onWantsWorklogChange: SwitchProps["onValueChange"];
-  wantsAttachments: boolean;
-  wantsManual: boolean;
-  wantsWorklog: boolean;
-} & ErrorProps;
-
 type ErrorProps =
   | {
       errorMessage: string;
@@ -85,6 +76,15 @@ type ErrorProps =
   | {
       hasError?: false;
     };
+
+type Props = ErrorProps & {
+  onWantsAttachmentsChange: SwitchProps["onValueChange"];
+  onWantsManualChange: SwitchProps["onValueChange"];
+  onWantsWorklogChange: SwitchProps["onValueChange"];
+  wantsAttachments: boolean;
+  wantsManual: boolean;
+  wantsWorklog: boolean;
+};
 
 export const ToolsPicker = ({
   onWantsAttachmentsChange,

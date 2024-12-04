@@ -5,11 +5,6 @@ import chroma from "chroma-js";
 import { forwardRef } from "react";
 import { Text, TextInput, TextInputProps } from "react-native";
 
-type Props = {
-  title: string;
-} & ErrorProps &
-  TextInputProps;
-
 type ErrorProps =
   | {
       errorMessage: string;
@@ -18,6 +13,11 @@ type ErrorProps =
   | {
       hasError?: false;
     };
+
+type Props = ErrorProps &
+  TextInputProps & {
+    title: string;
+  };
 
 export const Input = forwardRef<TextInput, Props>(
   ({ style, title, ...props }, ref) => {

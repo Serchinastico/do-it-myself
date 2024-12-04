@@ -2,9 +2,9 @@ import { ComponentProps } from "react";
 
 import { Cue } from "./Cue";
 
-type Props = {
+type Props = ComponentProps<typeof Cue> & {
   isSelected: boolean;
-} & ComponentProps<typeof Cue>;
+};
 
 export const SelectableCue = ({ isSelected, ...props }: Props) => {
   return (

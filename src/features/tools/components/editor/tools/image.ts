@@ -8,7 +8,7 @@ import { EditorTool, ToolCallbackArgs } from "./base";
 const addImageToEditor = async ({
   editor,
   source,
-}: { source: ImageSource } & ToolCallbackArgs) => {
+}: ToolCallbackArgs & { source: ImageSource }) => {
   const result = await getImagesFrom(source);
 
   if (result.tag === "error") {

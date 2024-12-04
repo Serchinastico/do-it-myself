@@ -24,7 +24,7 @@ type DeleteProps =
   | { hasDeleteButton: true; onProjectDelete: OnPress }
   | { hasDeleteButton?: false };
 
-type Props = {
+type Props = DeleteProps & {
   autoFocus: boolean;
   initialColorId: ProjectColorId;
   initialDescription?: string;
@@ -35,7 +35,7 @@ type Props = {
   onProjectSave: (project: EditedProject) => Promise<void> | void;
   saveButtonIcon?: IconReference;
   saveButtonText: string;
-} & DeleteProps;
+};
 
 export const ProjectDetails = ({
   autoFocus,

@@ -3,6 +3,9 @@ import { Dimensions, Image, ImageProps } from "react-native";
 import { ImageSourcePropType } from "react-native/Libraries/Image/Image";
 import invariant from "tiny-invariant";
 
+type IllustrationName = `${ImageName}_${"dark" | "light"}`;
+
+type ImageName = Props["name"];
 interface Props extends Omit<ImageProps, "source"> {
   heightWindowRatio: `${number}/${number}`;
   name:
@@ -16,9 +19,6 @@ interface Props extends Omit<ImageProps, "source"> {
     | "purchase"
     | "settings";
 }
-
-type ImageName = Props["name"];
-type IllustrationName = `${ImageName}_${"dark" | "light"}`;
 
 const illustrationMap: Record<IllustrationName, () => ImageSourcePropType> = {
   app_purchased_dark: () => require("@assets/img/app_purchased_dark.png"),

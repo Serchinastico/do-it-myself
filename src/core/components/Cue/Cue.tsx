@@ -2,10 +2,10 @@ import { Center } from "@madeja-studio/telar";
 import { PropsWithChildren } from "react";
 import { StyleProp, Text, TextStyle, ViewProps } from "react-native";
 
-type Props = {
+type Props = PropsWithChildren<ViewProps> & {
   isMini?: boolean;
   textStyle?: StyleProp<TextStyle>;
-} & PropsWithChildren<ViewProps>;
+};
 
 export const Cue = ({
   children,

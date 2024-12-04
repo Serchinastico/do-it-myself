@@ -1,12 +1,12 @@
 import { DOMAttributes, HTMLAttributes } from "react";
 
 type ClassName = HTMLAttributes<any>["className"];
-type OnClick = DOMAttributes<any>["onClick"];
-
 type ControlButtonProps = {
   className: ClassName;
   onClick: OnClick;
 };
+
+type OnClick = DOMAttributes<any>["onClick"];
 
 const PlayButton = ({ className, onClick }: ControlButtonProps) => {
   return (
