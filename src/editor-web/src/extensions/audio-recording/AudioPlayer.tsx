@@ -1,5 +1,5 @@
 import { NodeViewProps, NodeViewWrapper } from "@tiptap/react";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { AudioPlayerControls } from "./AudioPlayerControls";
 import { Waveform } from "./Waveform";
@@ -26,8 +26,20 @@ export const AudioPlayer = ({ extension, node }: NodeViewProps) => {
   );
 
   const normalizedDuration = audioRef.current?.duration ?? 1;
-  const playProgress =
-    (normalizedDuration - remainingPlayTime) / normalizedDuration;
+  const playTimeInSeconds = normalizedDuration - remainingPlayTime;
+  const playProgress = playTimeInSeconds / normalizedDuration;
+
+  const onPlay = useCallback(() => {
+    window.ReactNativeWebView?.postMessage(
+      JSON.stringify({
+        payload: {
+          fileName: node.attrs.fileName,
+          startTimeInMs: playTimeInSeconds * 1000,
+        },
+        type: "play-audio",
+      })
+    );
+  }, [node, remainingPlayTime]);
 
   return (
     <NodeViewWrapper class="audio-player" style={{ backgroundColor }}>
@@ -48,7 +60,7 @@ export const AudioPlayer = ({ extension, node }: NodeViewProps) => {
       <AudioPlayerControls
         isPlaying={isPlaying}
         onPause={() => audioRef.current?.pause()}
-        onPlay={() => audioRef.current?.play()}
+        onPlay={onPlay}
       />
 
       <Waveform

@@ -4,11 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 
 const VOLUME_CAPTURE_INTERVAL = 50;
 
+type RecordingState = "idle" | "recording";
+
 type StartRecordingResult =
   | { error?: "already_recording" | "permissions_denied"; type: "error" }
   | { type: "success" };
-
-type RecordingState = "idle" | "recording";
 
 const useRecording = () => {
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
@@ -55,7 +55,7 @@ const useRecording = () => {
         playsInSilentModeIOS: true,
       });
       const { recording } = await Audio.Recording.createAsync(
-        Audio.RecordingOptionsPresets.HIGH_QUALITY
+        Audio.RecordingOptionsPresets.LOW_QUALITY
       );
       setRecordingState("recording");
       setRecording(recording);

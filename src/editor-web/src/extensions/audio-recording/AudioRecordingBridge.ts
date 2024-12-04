@@ -1,11 +1,18 @@
 import { BridgeExtension } from "@10play/tentap-editor";
 
-import { AudioRecording, SetAudioRecordingProps } from "./audioRecording";
+import {
+  AudioRecording,
+  OnAudioPauseProps,
+  OnAudioPlayProps,
+  SetAudioRecordingProps,
+} from "./audioRecording";
+import { audioRecordingStyle } from "./style";
 
-type AudioRecordingEditorState = object;
 type AudioRecordingEditorInstance = {
   setAudioRecording: (props: SetAudioRecordingProps) => void;
 };
+
+type AudioRecordingEditorState = object;
 
 declare module "@10play/tentap-editor" {
   interface BridgeState extends AudioRecordingEditorState {}
@@ -14,72 +21,68 @@ declare module "@10play/tentap-editor" {
 }
 
 export enum AudioRecordingEditorActionType {
+  PauseAudio = "pause-audio",
+  PlayAudio = "play-audio",
   SetAudioRecording = "set-audio-recording",
 }
 
-export type AudioRecordingMessage = {
-  payload: SetAudioRecordingProps;
-  type: AudioRecordingEditorActionType.SetAudioRecording;
-};
-
-export const AudioRecordingBridge = new BridgeExtension<
-  AudioRecordingEditorState,
-  AudioRecordingEditorInstance,
-  AudioRecordingMessage
->({
-  extendCSS: `
-.audio-player {
-    position: relative;
-    width: 250px;
-    height: 72px;
-    border-radius: 16px;
-    display: flex;
-    padding-left: 8px;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    justify-content: center;
-    align-items: center;
-}
-
-.audio-player .controls {
-    cursor: pointer;
-}
-
-.audio-player .hidden {
-    display: none;
-}
-
-.audio-player .waveform {
-    margin-left: 12px;
-}
-
-.audio-player .remaining_time {
-    position: absolute;
-    font-size: 14px;
-    font-weight: 500;
-    bottom: 6px;
-    right: 8px;
-}
-`,
-  extendEditorInstance: (sendBridgeMessage) => {
-    return {
-      setAudioRecording: (props: SetAudioRecordingProps) =>
-        sendBridgeMessage({
-          payload: props,
-          type: AudioRecordingEditorActionType.SetAudioRecording,
-        }),
-    };
-  },
-  onBridgeMessage: (editor, message) => {
-    if (message.type === AudioRecordingEditorActionType.SetAudioRecording) {
-      editor.chain().focus().setAudioRecording(message.payload).run();
-      return true;
+export type AudioRecordingMessage =
+  | {
+      payload: OnAudioPauseProps;
+      type: AudioRecordingEditorActionType.PauseAudio;
     }
+  | {
+      payload: OnAudioPlayProps;
+      type: AudioRecordingEditorActionType.PlayAudio;
+    }
+  | {
+      payload: SetAudioRecordingProps;
+      type: AudioRecordingEditorActionType.SetAudioRecording;
+    };
 
-    return false;
-  },
-  onEditorMessage: () => {
-    return false;
-  },
-  tiptapExtension: AudioRecording.configure(),
-});
+interface Props {
+  onPause?: (props: OnAudioPauseProps) => Promise<void> | void;
+  onPlay?: (props: OnAudioPlayProps) => Promise<void> | void;
+}
+
+export const AudioRecordingBridge = ({ onPause, onPlay }: Props = {}) =>
+  new BridgeExtension<
+    AudioRecordingEditorState,
+    AudioRecordingEditorInstance,
+    AudioRecordingMessage
+  >({
+    extendCSS: audioRecordingStyle,
+    extendEditorInstance: (sendBridgeMessage) => {
+      return {
+        setAudioRecording: (props: SetAudioRecordingProps) =>
+          sendBridgeMessage({
+            payload: props,
+            type: AudioRecordingEditorActionType.SetAudioRecording,
+          }),
+      };
+    },
+    onBridgeMessage: (editor, message) => {
+      if (message.type === AudioRecordingEditorActionType.SetAudioRecording) {
+        editor.chain().focus().setAudioRecording(message.payload).run();
+        return true;
+      }
+
+      return false;
+    },
+    onEditorMessage: (message) => {
+      if (message.type === AudioRecordingEditorActionType.PlayAudio) {
+        onPlay?.(message.payload);
+
+        return true;
+      }
+
+      if (message.type === AudioRecordingEditorActionType.PauseAudio) {
+        onPause?.(message.payload);
+
+        return true;
+      }
+
+      return false;
+    },
+    tiptapExtension: AudioRecording.configure(),
+  });

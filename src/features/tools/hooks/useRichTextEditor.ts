@@ -18,6 +18,8 @@ import { editorHtml as manualLightEditorHtml } from "@app/editor-web/build-manua
 import { editorHtml as worklogDarkEditorHtml } from "@app/editor-web/build-worklog-dark/editorHtml";
 import { editorHtml as worklogLightEditorHtml } from "@app/editor-web/build-worklog-light/editorHtml";
 import { DateBridge } from "@app/editor-web/src/extensions/date/DateBridge";
+import { TrailingNodeBridge } from "@app/editor-web/src/extensions/trailing-node/TrailingNodeBridge";
+import { useAudioPlayerPressHandler } from "@app/features/tools/hooks/useAudioPlayerPressHandler";
 import {
   AudioRecordingBridge,
   LocalImageBridge,
@@ -28,21 +30,21 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useLocalImagePressHandler } from "./useLocalImagePressHandler";
 
+export type HtmlFileStatus = "not-ready" | "ready" | "writing";
+
+export type JsonDocument =
+  | undefined
+  | {
+      content: { attrs: Record<string, any>; type: string }[];
+      type: "doc";
+    };
+
 interface Props {
   isEditing: boolean;
   navigation: Pick<RootNavigation, "navigate">;
   project: Project;
   toolType: ToolType;
 }
-
-export type JsonDocument =
-  | {
-      content: { attrs: Record<string, any>; type: string }[];
-      type: "doc";
-    }
-  | undefined;
-
-export type HtmlFileStatus = "not-ready" | "ready" | "writing";
 
 const getHtmlPath = (toolType: ToolType) =>
   `${FileSystem.documentDirectory}${toolType}.index.html`;
@@ -136,10 +138,14 @@ export const useRichTextEditor = ({
       ).configureExtension({
         imagesRootPath: `${FileSystem.documentDirectory}`,
       }),
-      AudioRecordingBridge.configureExtension({
+      AudioRecordingBridge({
+        onPause: (props) => eventBus.emit(EventMessage.AudioPause, props),
+        onPlay: (props) => eventBus.emit(EventMessage.AudioPlay, props),
+      }).configureExtension({
         audioRootPath: `${FileSystem.documentDirectory}`,
         backgroundColor: getProjectColorById(project.colorId).hex,
       }),
+      TrailingNodeBridge,
     ],
     customSource: editorHtml,
     dynamicHeight: true,
@@ -151,6 +157,7 @@ export const useRichTextEditor = ({
   const json = useEditorContent(editor, { type: "json" }) as JsonDocument;
 
   useLocalImagePressHandler({ isEditing, json, navigation });
+  useAudioPlayerPressHandler();
 
   return { editor, html, htmlPath, json };
 };

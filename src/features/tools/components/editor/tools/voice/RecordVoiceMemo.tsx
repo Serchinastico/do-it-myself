@@ -102,6 +102,7 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
       uri,
     });
 
+    console.log("SET AUDIO RECORDING");
     editor.setAudioRecording({ fileName: path });
   }, [editor, stopRecording]);
 
@@ -121,7 +122,7 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
       style={[animatedStyle]}
     >
       <Center
-        style={tw.style(`h-[44px] w-[44px] mx-2 rounded-4`, {
+        style={tw.style(`h-[44px] w-[44px] rounded-4`, {
           "bg-primary": recordingState === "recording",
         })}
       >

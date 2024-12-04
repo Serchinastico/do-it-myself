@@ -13,6 +13,7 @@ import {
   TitleBridge,
 } from "./extensions";
 import { clickHandler } from "./extensions/event/clickHandler";
+import { TrailingNodeBridge } from "./extensions/trailing-node/TrailingNodeBridge";
 
 declare global {
   interface Window {
@@ -27,7 +28,8 @@ export const AdvancedEditor = () => {
       DateBridge(),
       TitleBridge,
       LocalImageBridge(),
-      AudioRecordingBridge,
+      AudioRecordingBridge(),
+      TrailingNodeBridge,
     ],
     tiptapOptions: {
       editorProps: {

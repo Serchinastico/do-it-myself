@@ -19,6 +19,8 @@ declare module "@tiptap/core" {
   }
 }
 
+export type OnAudioPauseProps = { fileName: string };
+export type OnAudioPlayProps = { fileName: string; startTimeInMs: number };
 export type SetAudioRecordingProps = { fileName: string };
 
 export const AudioRecording = Node.create<AudioRecordingOptions>({

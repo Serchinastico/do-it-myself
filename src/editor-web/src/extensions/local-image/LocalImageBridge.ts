@@ -6,10 +6,10 @@ import {
   SetLocalImagesProps,
 } from "./localImage";
 
-type LocalImageEditorState = object;
 type LocalImageEditorInstance = {
   setLocalImages: (props: SetLocalImagesProps) => void;
 };
+type LocalImageEditorState = object;
 
 declare module "@10play/tentap-editor" {
   interface BridgeState extends LocalImageEditorState {}
@@ -18,7 +18,7 @@ declare module "@10play/tentap-editor" {
 }
 
 export enum LocalImageEditorActionType {
-  Click = "local-images-click",
+  Click = "local-image-click",
   SetImages = "set-local-images",
 }
 
@@ -59,9 +59,7 @@ export const LocalImageBridge = (
     },
     onEditorMessage: (message) => {
       if (message.type === LocalImageEditorActionType.Click) {
-        if (onClick) {
-          onClick(message.payload);
-        }
+        onClick?.(message.payload);
 
         return true;
       }

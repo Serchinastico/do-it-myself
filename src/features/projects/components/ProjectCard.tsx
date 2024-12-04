@@ -73,12 +73,12 @@ export const ProjectCard = ({
         ))}
       </Row>
 
-      <Row style={tw`flex-wrap justify-between mt-4 gap-y-2`}>
+      <Row style={tw`flex-wrap mt-4 gap-2`}>
         {project.manual && (
           <ToolButton
             icon={{ family: "Feather", name: "book-open" }}
             onPress={() => onToolPress("manual", project)}
-            style={tw`w-[49%]`}
+            style={tw`w-[48%]`}
             text={t`Manual`}
           />
         )}
@@ -87,7 +87,7 @@ export const ProjectCard = ({
           <ToolButton
             icon={{ family: "Feather", name: "bookmark" }}
             onPress={() => onToolPress("worklog", project)}
-            style={tw`w-[49%]`}
+            style={tw`w-[48%]`}
             text={t`Worklog`}
           />
         )}
@@ -96,7 +96,7 @@ export const ProjectCard = ({
           <ToolButton
             icon={{ family: "Feather", name: "paperclip" }}
             onPress={() => onToolPress("attachments", project)}
-            style={tw`w-[49%]`}
+            style={tw`w-[48%]`}
             text={t`Attachments`}
           />
         )}

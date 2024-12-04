@@ -16,9 +16,9 @@ declare module "@tiptap/core" {
   }
 }
 
-type Image = { fileName: string };
-export type SetLocalImagesProps = { groupId: string; images: Image[] };
 export type OnImageClickProps = { fileName: string; groupId: string };
+export type SetLocalImagesProps = { groupId: string; images: Image[] };
+type Image = { fileName: string };
 
 export const LocalImage = Node.create<LocalImageOptions>({
   addAttributes() {
