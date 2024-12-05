@@ -35,6 +35,7 @@ export const fuzzySearch = <T extends object>({
 }) => {
   const fuse = new Fuse(items, {
     distance: 100,
+    isCaseSensitive: false,
     keys: Array.isArray(keys) ? (keys as string[]) : [keys as string],
     threshold: 0.3,
   });

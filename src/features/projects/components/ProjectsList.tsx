@@ -4,9 +4,12 @@ import { getTagsByIds, ToolType } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { EmptyProjects } from "@app/features/projects/components/EmptyProjects";
 import { ProjectCard } from "@app/features/projects/components/ProjectCard";
-import { SearchBar } from "@app/features/projects/components/SearchBar";
+import {
+  SearchBar,
+  SearchBarRef,
+} from "@app/features/projects/components/SearchBar";
 import { Column, OnPress } from "@madeja-studio/telar";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 interface Props {
   onCreatePress: OnPress;
@@ -21,6 +24,7 @@ export const ProjectsList = ({
   onToolPress,
   projects,
 }: Props) => {
+  const searchBarRef = useRef<SearchBarRef>(null);
   const [currentSearch, setCurrentSearch] = useState("");
   const [scroll, setScroll] = useState(0);
 
@@ -56,6 +60,7 @@ export const ProjectsList = ({
         renderItem={({ item }) => (
           <ProjectCard
             onEditProjectPress={onEditProjectPress}
+            onTagPress={(tag) => searchBarRef.current?.setSearch(tag.getName())}
             onToolPress={onToolPress}
             project={item}
           />
@@ -63,7 +68,11 @@ export const ProjectsList = ({
       />
 
       {mustShowSearchBar && (
-        <SearchBar onSearchChange={setCurrentSearch} scroll={scroll} />
+        <SearchBar
+          onSearchChange={setCurrentSearch}
+          ref={searchBarRef}
+          scroll={scroll}
+        />
       )}
     </Column>
   );

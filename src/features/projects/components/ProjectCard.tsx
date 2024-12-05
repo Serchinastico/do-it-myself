@@ -5,22 +5,25 @@ import { color } from "@app/core/theme/color";
 import {
   getProjectColorById,
   getTagsByIds,
+  ProjectTag,
   ToolType,
 } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { t } from "@lingui/macro";
 import { Button, Center, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 
 interface Props {
   onEditProjectPress: (project: Project) => Promise<void> | void;
+  onTagPress: (tag: ProjectTag) => Promise<void> | void;
   onToolPress: (tool: ToolType, project: Project) => Promise<void> | void;
   project: Project;
 }
 
 export const ProjectCard = ({
   onEditProjectPress,
+  onTagPress,
   onToolPress,
   project,
 }: Props) => {
@@ -61,15 +64,17 @@ export const ProjectCard = ({
 
       <Row style={tw`gap-1 flex-wrap w-full mt-4`}>
         {tags.map((tag) => (
-          <View
+          <Button.Container
+            hasHapticFeedback
             key={tag.id}
+            onPress={() => onTagPress(tag)}
             style={[
               tw`px-3 py-1.5 rounded-full`,
               { backgroundColor: chroma(color.secondary).alpha(0.5).hex() },
             ]}
           >
             <Text style={tw`text-white body`}>{tag.getName()}</Text>
-          </View>
+          </Button.Container>
         ))}
       </Row>
 
