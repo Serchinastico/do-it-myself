@@ -98,14 +98,22 @@ export const LocalImage = Node.create<LocalImageOptions>({
       const rightImages = imagesHtml.slice(2);
       return [
         "div",
-        { class: "image-masonry row", "data-group-id": groupId },
+        {
+          class: "image-masonry row",
+          "data-click-event": "local-image",
+          "data-group-id": groupId,
+        },
         ["div", { class: "column full" }, ...leftImages],
         ["div", { class: "column full" }, ...rightImages],
       ];
     } else {
       return [
         "div",
-        { class: "image-masonry row", "data-group-id": groupId },
+        {
+          class: "image-masonry row",
+          "data-click-event": "local-image",
+          "data-group-id": groupId,
+        },
         ...imagesHtml,
       ];
     }

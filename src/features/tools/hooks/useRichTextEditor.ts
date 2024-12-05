@@ -156,7 +156,7 @@ export const useRichTextEditor = ({
   const html = useEditorContent(editor, { type: "html" });
   const json = useEditorContent(editor, { type: "json" }) as JsonDocument;
 
-  useLocalImagePressHandler({ isEditing, json, navigation });
+  useLocalImagePressHandler({ json, navigation });
   useAudioPlayerPressHandler();
 
   return { editor, html, htmlPath, json };

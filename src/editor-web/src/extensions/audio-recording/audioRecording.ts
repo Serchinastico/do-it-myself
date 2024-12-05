@@ -35,7 +35,7 @@ export const AudioRecording = Node.create<AudioRecordingOptions>({
         ({ chain }) => {
           return chain()
             .insertContent({ attrs, type: this.name })
-            .insertContent({ type: "text" })
+            .insertContent({ type: "textBlock" })
             .focus("end")
             .run();
         },

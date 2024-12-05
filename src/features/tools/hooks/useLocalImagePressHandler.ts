@@ -10,16 +10,10 @@ interface Props {
   navigation: Pick<RootNavigation, "navigate">;
 }
 
-export const useLocalImagePressHandler = ({
-  isEditing,
-  json,
-  navigation,
-}: Props) => {
+export const useLocalImagePressHandler = ({ json, navigation }: Props) => {
   useEventBus(
     EventMessage.LocalImagePress,
     ({ fileName, groupId }) => {
-      if (isEditing) return;
-
       const node = json?.content.find(
         (node) =>
           node.type === "local-image" && node.attrs["groupId"] === groupId

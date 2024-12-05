@@ -17,7 +17,10 @@ export const useAudioPlayerPressHandler = () => {
       }
 
       const uri = `${FileSystem.documentDirectory}${fileName}`;
-      await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: false,
+        playsInSilentModeIOS: true,
+      });
       const audio = await Audio.Sound.createAsync(
         { uri },
         { shouldPlay: true }

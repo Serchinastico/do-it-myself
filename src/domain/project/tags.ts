@@ -26,6 +26,7 @@ export const PROJECT_TAGS = {
   medium: [
     { getName: () => t(i18n)`clay`, id: "clay" },
     { getName: () => t(i18n)`wood`, id: "wood" },
+    { getName: () => t(i18n)`paper`, id: "paper" },
     { getName: () => t(i18n)`electronics`, id: "electronics" },
     { getName: () => t(i18n)`epoxy`, id: "epoxy" },
     { getName: () => t(i18n)`3d printing`, id: "3d_printing" },
