@@ -27,6 +27,7 @@ interface Props {
 export const SearchBar = forwardRef<SearchBarRef, Props>(
   ({ onSearchChange, scroll }, ref) => {
     const [searchText, setSearchText] = useState("");
+
     const opacity = useSharedValue(1);
     const bottom = useSharedValue(0);
 
@@ -60,7 +61,7 @@ export const SearchBar = forwardRef<SearchBarRef, Props>(
         ]}
       >
         <View
-          style={tw`bg-ash opacity-10 rounded-full absolute inset-0 mx-4`}
+          style={tw`bg-ash dark:bg-white opacity-10 rounded-full absolute inset-0 mx-4`}
         />
 
         <VectorIcon

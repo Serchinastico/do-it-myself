@@ -14,6 +14,7 @@ import { useMemo, useRef, useState } from "react";
 interface Props {
   onCreatePress: OnPress;
   onEditProjectPress: (project: Project) => Promise<void> | void;
+  onScroll: (offset: number) => void;
   onToolPress: (tool: ToolType, project: Project) => Promise<void> | void;
   projects: Project[];
 }
@@ -21,6 +22,7 @@ interface Props {
 export const ProjectsList = ({
   onCreatePress,
   onEditProjectPress,
+  onScroll,
   onToolPress,
   projects,
 }: Props) => {
@@ -56,6 +58,7 @@ export const ProjectsList = ({
         ListEmptyComponent={<EmptyProjects onCreatePress={onCreatePress} />}
         onScroll={(ev) => {
           setScroll(ev.nativeEvent.contentOffset.y);
+          onScroll(ev.nativeEvent.contentOffset.y);
         }}
         renderItem={({ item }) => (
           <ProjectCard

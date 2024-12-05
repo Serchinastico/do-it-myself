@@ -22,6 +22,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
     useState(false);
   const { bottom } = useSafeAreaInsets();
   const colorSchemeKey = useColorSchemeKey();
+  const [scroll, setScroll] = useState(0);
 
   const onCreateProjectPress = useCallback(() => {
     if (projects.length >= FREE_VERSION_PROJECTS_LIMIT && !hasPurchasedApp) {
@@ -37,6 +38,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
     <SafeArea edges={SafeAreaViewEdges.NoBottom} key={colorSchemeKey}>
       <ProjectHeader.Projects
         onSettingsPress={() => navigation.navigate("settings")}
+        scrollOffset={scroll}
       />
 
       <ProjectsList
@@ -45,6 +47,7 @@ export const ProjectsScreen = ({ navigation }: RootScreenProps<"projects">) => {
           await setSelectedTagIds(project.tagIds);
           navigation.navigate("editProject", { projectId: project.id });
         }}
+        onScroll={setScroll}
         onToolPress={(tool, project) => {
           switch (tool) {
             case "attachments":
