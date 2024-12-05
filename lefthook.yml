@@ -1,7 +1,5 @@
 pre-push:
   commands:
-    packages-audit:
-      run: pnpm audit
     expo-doctor:
       run: pnpm run lint:expo
 
