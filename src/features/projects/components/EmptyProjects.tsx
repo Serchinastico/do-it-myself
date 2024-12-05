@@ -13,7 +13,7 @@ export const EmptyProjects = ({ onCreatePress }: Props) => {
   const { isHapticFeedbackEnabled } = useHapticFeedback();
 
   return (
-    <Column style={tw`flex-1 center mb-28 px-12`}>
+    <Column style={tw`flex-1 center mb-28 mt-14 px-12`}>
       <Illustration heightWindowRatio="1/3" name="not_found" />
 
       <Text style={tw`h2 mt-6 text-center`}>{t`No projects yet`}</Text>
