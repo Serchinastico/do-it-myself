@@ -6,11 +6,13 @@ import invariant from "tiny-invariant";
 type IllustrationName = `${ImageName}_${"dark" | "light"}`;
 
 type ImageName = Props["name"];
+
 interface Props extends Omit<ImageProps, "source"> {
   heightWindowRatio: `${number}/${number}`;
   name:
     | "app_purchased"
     | "arrow"
+    | "backup_conflict"
     | "confirmation"
     | "error"
     | "no_media"
@@ -25,6 +27,8 @@ const illustrationMap: Record<IllustrationName, () => ImageSourcePropType> = {
   app_purchased_light: () => require("@assets/img/app_purchased_light.png"),
   arrow_dark: () => require("@assets/img/arrow.png"),
   arrow_light: () => require("@assets/img/arrow.png"),
+  backup_conflict_dark: () => require("@assets/img/backup_conflict_dark.png"),
+  backup_conflict_light: () => require("@assets/img/backup_conflict_light.png"),
   confirmation_dark: () => require("@assets/img/confirmation_dark.png"),
   confirmation_light: () => require("@assets/img/confirmation_light.png"),
   error_dark: () => require("@assets/img/error_dark.png"),

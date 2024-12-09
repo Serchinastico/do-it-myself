@@ -1,5 +1,6 @@
 import { ColorSchemeBootstrap } from "@app/core/bootstrap/ColorSchemeBootstrap";
 import { ErrorScreen } from "@app/core/components/Error";
+import { CloudBackupContextProvider } from "@app/core/providers/CloudBackupContextProvider";
 import { DebugFileSystemProvider } from "@app/core/providers/DebugFileSystemProvider";
 import { color } from "@app/core/theme/color";
 import { i18n } from "@lingui/core";
@@ -29,20 +30,22 @@ const AllProviders = ({ children }: Props) => {
           },
         }}
       >
-        <ErrorBoundary FallbackComponent={ErrorScreen}>
-          {/* This Suspense view is required to load jotai async atoms without errors */}
-          <Suspense fallback={<View />}>
-            <GestureHandlerRootView>
-              <ColorSchemeBootstrap>
-                <PreloadScreen>
-                  <NavigationContainer>
-                    <I18nProvider i18n={i18n}>{children}</I18nProvider>
-                  </NavigationContainer>
-                </PreloadScreen>
-              </ColorSchemeBootstrap>
-            </GestureHandlerRootView>
-          </Suspense>
-        </ErrorBoundary>
+        {/* This Suspense view is required to load jotai async atoms without errors */}
+        <Suspense fallback={<View />}>
+          <ErrorBoundary FallbackComponent={ErrorScreen}>
+            <CloudBackupContextProvider>
+              <GestureHandlerRootView>
+                <ColorSchemeBootstrap>
+                  <PreloadScreen>
+                    <NavigationContainer>
+                      <I18nProvider i18n={i18n}>{children}</I18nProvider>
+                    </NavigationContainer>
+                  </PreloadScreen>
+                </ColorSchemeBootstrap>
+              </GestureHandlerRootView>
+            </CloudBackupContextProvider>
+          </ErrorBoundary>
+        </Suspense>
       </TelarContextProvider>
     </DebugFileSystemProvider>
   );

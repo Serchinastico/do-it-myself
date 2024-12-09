@@ -34,6 +34,20 @@ export default {
     plugins: [
       ["expo-dev-client", { addGeneratedScheme: !IS_DEV }],
       ["expo-asset", { assets: ["./src/editor-web/src/index.html"] }],
+      [
+        "react-native-cloud-storage",
+        {
+          iCloudContainerEnvironment: IS_DEV ? "Development" : "Production",
+          iCloudContainerIdentifier: "iCloud.com.serchinastico.doitmyself",
+        },
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          iosUrlScheme:
+            "com.googleusercontent.apps.1042198232576-k04hfde0atd4m0cri6v59ps49sac51mc",
+        },
+      ],
     ],
     slug: "do-it-myself",
     splash: {

@@ -1,4 +1,5 @@
 import { ColorScheme } from "@app/core/theme/color-scheme";
+import { CloudBackupProvider } from "@app/domain/cloudBackup";
 import { ProjectTagId } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
 import { atom } from "jotai";
@@ -7,6 +8,10 @@ import { atomFamily } from "jotai/utils";
 import { atomWithAsyncStorage } from "./async-storage";
 
 export const atoms = {
+  cloudBackupProvider: atomWithAsyncStorage<CloudBackupProvider>(
+    "cloudBackupProvider",
+    false
+  ),
   colorScheme: atomWithAsyncStorage<ColorScheme | null>("colorScheme", null),
   hasPurchasedApp: atomWithAsyncStorage("hasPurchasedApp", false),
   isHapticFeedbackEnabled: atomWithAsyncStorage(
