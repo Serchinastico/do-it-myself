@@ -1,8 +1,7 @@
-import { createAnimatedFunctionalComponent } from "@app/core/animations/createAnimatedFunctionalComponent";
 import { color } from "@app/core/theme/color";
 import { t } from "@lingui/macro";
 import { lerp } from "@madeja-studio/cepillo";
-import { Button, Row, VectorIcon } from "@madeja-studio/telar";
+import { Button, VectorIcon } from "@madeja-studio/telar";
 import {
   forwardRef,
   useCallback,
@@ -11,9 +10,10 @@ import {
   useState,
 } from "react";
 import { TextInput, View } from "react-native";
-import { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
-
-const AnimatedRow = createAnimatedFunctionalComponent(Row);
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
 
 export interface SearchBarRef {
   setSearch: (text: string) => void;
@@ -54,9 +54,9 @@ export const SearchBar = forwardRef<SearchBarRef, Props>(
     }));
 
     return (
-      <AnimatedRow
+      <Animated.View
         style={[
-          tw`justify-between items-center px-4 mb-4 absolute`,
+          tw`flex-row justify-between items-center px-4 mb-4 absolute`,
           animatedStyle,
         ]}
       >
@@ -86,7 +86,7 @@ export const SearchBar = forwardRef<SearchBarRef, Props>(
           style={tw.style(`mr-2`, { display: searchText ? "flex" : "none" })}
           variant="text"
         />
-      </AnimatedRow>
+      </Animated.View>
     );
   }
 );

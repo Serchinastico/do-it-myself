@@ -1,4 +1,3 @@
-import { Button } from "@app/core/components/Button";
 import { t } from "@lingui/macro";
 import { Column } from "@madeja-studio/telar";
 import Constants from "expo-constants";
@@ -25,7 +24,7 @@ export const ErrorScreen = ({ error, resetError }: Props) => {
         )}
       </Column>
 
-      <Button onPress={() => resetError()} text={t`Reset`} />
+      {/*<Button onPress={() => resetError()} text={t`Reset`} />*/}
     </SafeArea>
   );
 };

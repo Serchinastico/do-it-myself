@@ -1,32 +1,23 @@
-import type { SpringConfig } from "react-native-reanimated/src/reanimated2/animation/springUtils";
-
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import useRecording from "@app/core/hooks/useRecording";
 import { color } from "@app/core/theme/color";
 import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { ToolCallbackArgs } from "@app/features/tools/components/editor/tools/base";
 import { t } from "@lingui/macro";
-import { Button, Center, useToast } from "@madeja-studio/telar";
-import { ContainerProps } from "@madeja-studio/telar/lib/typescript/src/component/Button/Container";
+import { Button, useToast } from "@madeja-studio/telar";
 import * as Haptics from "expo-haptics";
-import { forwardRef, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Image } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { SpringConfig } from "react-native-reanimated/lib/typescript/animation/springUtils";
 
 import { RecordingEffect, RecordingEffectRef } from "./RecordingEffect";
 
 const VOICE_RECORDINGS_DIRECTORY = "VoiceRec";
-
-const AnimatedButtonContainer = Animated.createAnimatedComponent(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  forwardRef<{}, ContainerProps>(({ children, ...props }, _ref) => (
-    <Button.Container {...props}>{children}</Button.Container>
-  ))
-);
 
 const ANIMATION_CONFIG: SpringConfig = {
   dampingRatio: 0.5,
@@ -116,16 +107,16 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
   }, [recording, volume]);
 
   return (
-    <AnimatedButtonContainer
+    <Button.Container
       hasHapticFeedback={isHapticFeedbackEnabled}
       onPress={() => {}}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
       style={[animatedStyle]}
     >
-      <Center
+      <Animated.View
         style={tw.style(`h-[44px] w-[44px] rounded-4`, {
-          "bg-primary": recordingState === "recording",
+          "center bg-primary": recordingState === "recording",
         })}
       >
         <Image
@@ -136,7 +127,7 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
         />
 
         <RecordingEffect ref={effectRef} />
-      </Center>
-    </AnimatedButtonContainer>
+      </Animated.View>
+    </Button.Container>
   );
 };
