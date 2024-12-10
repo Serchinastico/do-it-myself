@@ -8,7 +8,6 @@ export class RemoveTitleBackground extends HtmlProcessingStep {
   }
 
   process(html: string): Promise<string> | string {
-    console.log(html);
     switch (this.themeId) {
       case "dim":
       case "dimDark":

@@ -70,8 +70,6 @@ const PreloadScreen = ({ children }: Props) => {
 
       updateListener = purchaseUpdatedListener(
         async (purchase: ProductPurchase | SubscriptionPurchase) => {
-          console.log("purchaseUpdatedListener", purchase);
-
           const receipt = purchase.transactionReceipt;
           if (receipt) {
             await finishTransaction({ isConsumable: false, purchase });

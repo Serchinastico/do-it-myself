@@ -17,7 +17,6 @@ export const CloudBackupOption = () => {
     accordionRef.current?.close();
   }, []);
 
-  console.log(provider);
   return (
     <Accordion
       childrenHeight={148}

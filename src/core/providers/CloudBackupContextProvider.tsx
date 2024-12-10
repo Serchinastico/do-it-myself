@@ -48,7 +48,6 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
     }
 
     const jsonProjects = JSON.stringify(projects);
-    console.log("WRITING PROJECTS");
     await cloudStorage.writeFile(CLOUD_BACKUP_FILE_PATH, jsonProjects);
   }, [projects, cloudStorage, showToast]);
 

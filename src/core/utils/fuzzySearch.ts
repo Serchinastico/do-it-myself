@@ -39,6 +39,5 @@ export const fuzzySearch = <T extends object>({
     keys: Array.isArray(keys) ? (keys as string[]) : [keys as string],
     threshold: 0.3,
   });
-  console.log(fuse.search(search));
   return fuse.search(search).map((result) => result.item);
 };
