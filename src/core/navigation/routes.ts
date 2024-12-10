@@ -1,5 +1,9 @@
-import { useNavigation } from "@react-navigation/native";
+import {
+  createNavigationContainerRef,
+  useNavigation,
+} from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { NativeStackNavigationOptions } from "@react-navigation/native-stack/src/types";
 
 export type RootNavigationParamList = {
   addTags: undefined;
@@ -31,3 +35,6 @@ export type ScreenProps<
   TParamList extends Record<string, object | undefined>,
   TRoute extends keyof TParamList,
 > = NativeStackScreenProps<TParamList, TRoute>;
+
+export const navigationRef = createNavigationContainerRef();
+export type NavigationScreenOptions = NativeStackNavigationOptions;

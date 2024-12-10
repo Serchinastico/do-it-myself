@@ -70,7 +70,7 @@ export const EditProjectScreen = ({
   }
 
   return (
-    <SafeArea edges={SafeAreaViewEdges.NoTop} style={tw`android:mt-4 flex-1`}>
+    <SafeArea edges={SafeAreaViewEdges.NoTop}>
       <ProjectHeader.EditProject onClose={() => navigation.goBack()} />
 
       <ProjectDetails

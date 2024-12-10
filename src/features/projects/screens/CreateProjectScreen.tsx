@@ -29,7 +29,7 @@ export const CreateProjectScreen = ({
   );
 
   return (
-    <SafeArea edges={SafeAreaViewEdges.NoTop} style={tw`android:mt-4 flex-1`}>
+    <SafeArea edges={SafeAreaViewEdges.NoTop}>
       <ProjectHeader.CreateProject onClose={() => navigation.goBack()} />
 
       <ProjectDetails

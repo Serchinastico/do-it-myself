@@ -4,7 +4,7 @@ export default {
   expo: {
     android: {
       adaptiveIcon: {
-        backgroundColor: "#C44529",
+        backgroundColor: IS_DEV ? "#6553EC" : "#C44529",
         foregroundImage: IS_DEV
           ? "./assets/adaptive-icon-dev.png"
           : "./assets/adaptive-icon.png",
@@ -32,6 +32,14 @@ export default {
     name: IS_DEV ? "do-it-myself (DEV)" : "do-it-myself",
     orientation: "portrait",
     plugins: [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          iosUrlScheme:
+            "com.googleusercontent.apps.1042198232576-k04hfde0atd4m0cri6v59ps49sac51mc",
+        },
+      ],
+      ["expo-build-properties"],
       ["expo-dev-client", { addGeneratedScheme: !IS_DEV }],
       ["expo-asset", { assets: ["./src/editor-web/src/index.html"] }],
       [
@@ -41,13 +49,7 @@ export default {
           iCloudContainerIdentifier: "iCloud.com.serchinastico.doitmyself",
         },
       ],
-      [
-        "@react-native-google-signin/google-signin",
-        {
-          iosUrlScheme:
-            "com.googleusercontent.apps.1042198232576-k04hfde0atd4m0cri6v59ps49sac51mc",
-        },
-      ],
+      ["react-native-iap"],
     ],
     slug: "do-it-myself",
     splash: {

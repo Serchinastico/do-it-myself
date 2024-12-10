@@ -1,5 +1,6 @@
 import { ColorSchemeBootstrap } from "@app/core/bootstrap/ColorSchemeBootstrap";
 import { ErrorScreen } from "@app/core/components/Error";
+import { navigationRef } from "@app/core/navigation/routes";
 import { CloudBackupContextProvider } from "@app/core/providers/CloudBackupContextProvider";
 import { DebugFileSystemProvider } from "@app/core/providers/DebugFileSystemProvider";
 import { color } from "@app/core/theme/color";
@@ -37,7 +38,7 @@ const AllProviders = ({ children }: Props) => {
               <GestureHandlerRootView>
                 <ColorSchemeBootstrap>
                   <PreloadScreen>
-                    <NavigationContainer>
+                    <NavigationContainer ref={navigationRef}>
                       <I18nProvider i18n={i18n}>{children}</I18nProvider>
                     </NavigationContainer>
                   </PreloadScreen>

@@ -17,7 +17,7 @@ export const SettingsHeader = ({ onClose, scrollOffset }: Props) => {
     <Header
       hasBackButton
       onBackPress={onClose}
-      style={tw.style(`mt-4`, {
+      style={tw.style(`ios:mt-4`, {
         borderBottomWidth: 0.5,
         borderColor: chroma(colorSwitch({ dark: "white", light: "ash" })!)
           .alpha(
