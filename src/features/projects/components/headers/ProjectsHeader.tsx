@@ -22,7 +22,7 @@ export const ProjectsHeader = ({ onSettingsPress, scrollOffset }: Props) => {
         borderColor: chroma(colorSwitch({ dark: "white", light: "ash" })!)
           .alpha(
             clamp(lerp(scrollOffset, { max: 50, min: 30 }), {
-              max: 0.25,
+              max: 0.15,
               min: 0,
             })
           )

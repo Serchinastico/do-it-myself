@@ -4,9 +4,9 @@ import { ScrollView } from "@app/core/components/ScrollView";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { t } from "@lingui/macro";
-import { Column } from "@madeja-studio/telar";
+import { Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { Appearance } from "react-native";
 
 import { AppPurchasePrompt } from "../components/AppPurchasePrompt";
@@ -15,6 +15,7 @@ import { Option } from "../components/options";
 
 export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
   const hasPurchasedApp = useAtomValue(atoms.hasPurchasedApp);
+  const [scrollOffset, setScrollOffset] = useState(0);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   useEffect(() => {
@@ -28,26 +29,36 @@ export const SettingsScreen = ({ navigation }: RootScreenProps<"settings">) => {
   }, []);
 
   return (
-    <SafeArea>
-      <Header.Settings onClose={() => navigation.goBack()} />
+    <SafeArea edges={SafeAreaViewEdges.NoBottom}>
+      <Header.Settings
+        onClose={() => navigation.goBack()}
+        scrollOffset={scrollOffset}
+      />
 
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={tw`pb-8`}
+        onScroll={({ nativeEvent }) =>
+          setScrollOffset(nativeEvent.contentOffset.y)
+        }
+      >
         <Column style={tw`px-8`}>
           <Option.Theme />
           <Option.HapticFeedback />
           <Option.CloudBackup />
 
-          {!hasPurchasedApp && <AppPurchasePrompt />}
+          {!hasPurchasedApp && (
+            <>
+              <AppPurchasePrompt />
+              <Button
+                icon={{ family: "Feather", name: "shopping-bag" }}
+                onPress={() => navigation.navigate("purchase")}
+                style={tw`mt-8`}
+                text={t`Purchase`}
+              />
+            </>
+          )}
         </Column>
       </ScrollView>
-
-      {!hasPurchasedApp && (
-        <Button
-          icon={{ family: "Feather", name: "shopping-bag" }}
-          onPress={() => navigation.navigate("purchase")}
-          text={t`Purchase`}
-        />
-      )}
     </SafeArea>
   );
 };
