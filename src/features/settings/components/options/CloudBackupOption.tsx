@@ -4,23 +4,31 @@ import { useCloudBackup } from "@app/core/providers/CloudBackupContextProvider";
 import { CloudBackupProvider } from "@app/domain/cloudBackup";
 import { t } from "@lingui/macro";
 import { Button, Column } from "@madeja-studio/telar";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Platform, Text } from "react-native";
 
 export const CloudBackupOption = () => {
   const accordionRef = useRef<AccordionRef>(null);
   const { provider, setProvider } = useCloudBackup();
+  const [isLoading, setIsLoading] = useState(false);
   const { isHapticFeedbackEnabled } = useHapticFeedback();
 
-  const onOptionPress = useCallback(async (value: CloudBackupProvider) => {
-    setProvider(value);
-    accordionRef.current?.close();
-  }, []);
+  const onOptionPress = useCallback(
+    async (value: CloudBackupProvider) => {
+      accordionRef.current?.close();
+
+      setIsLoading(true);
+      await setProvider(value);
+      setIsLoading(false);
+    },
+    [setProvider]
+  );
 
   return (
     <Accordion
       childrenHeight={148}
       fieldName={t`Cloud Backup`}
+      isLoading={isLoading}
       ref={accordionRef}
       selectedValue={
         provider === "gcloud"

@@ -3,6 +3,7 @@ import { atoms } from "@app/core/storage/state";
 import { CloudBackupProvider as Provider } from "@app/domain/cloudBackup";
 import { t } from "@lingui/macro";
 import { useToast } from "@madeja-studio/telar";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useAtom } from "jotai";
 import {
   createContext,
@@ -18,14 +19,24 @@ const CLOUD_BACKUP_FILE_PATH = "/dim.projects.json";
 
 interface ContextProps {
   provider: Provider;
-  setProvider: (provider: Provider) => void;
+  setProvider: (provider: Provider) => Promise<void>;
 }
 
 const CloudBackupContext = createContext<ContextProps>({} as ContextProps);
 
+const getCloudStorageErrorToastProps = () =>
+  ({
+    subtitle: t`There is a problem with your cloud storage provider. Cloud backups have been disabled.`,
+    title: t`Unable to store backup`,
+    variant: "error",
+  }) as const;
+
 export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
   const [projects, setProjects] = useAtom(atoms.projects);
   const [provider, setProviderAtom] = useAtom(atoms.cloudBackupProvider);
+  const [googleCloudToken, setGoogleCloudToken] = useAtom(
+    atoms.googleCloudToken
+  );
   const [selectedProvider, setSelectedProvider] = useState(provider);
   const { showToast } = useToast();
   const [cloudStorage, setCloudStorage] = useState<CloudStorage>(
@@ -38,11 +49,7 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
 
     const isAvailable = await cloudStorage.isCloudAvailable();
     if (!isAvailable) {
-      showToast({
-        subtitle: t`There is a problem with your cloud storage provider. Cloud backups have been disabled.`,
-        title: t`Unable to store backup`,
-        variant: "error",
-      });
+      showToast(getCloudStorageErrorToastProps());
       setProviderAtom(false);
       return;
     }
@@ -51,6 +58,35 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
     await cloudStorage.writeFile(CLOUD_BACKUP_FILE_PATH, jsonProjects);
   }, [projects, cloudStorage, showToast]);
 
+  const createCloudStorageForProvider = useCallback(
+    async (provider: Provider) => {
+      switch (provider) {
+        case "gcloud": {
+          if (!googleCloudToken) {
+            const response = await GoogleSignin.signIn();
+            if (response.type === "success" && response.data.idToken) {
+              const tokens = await GoogleSignin.getTokens();
+              setGoogleCloudToken(tokens.accessToken);
+
+              return new CloudStorage(CloudStorageProvider.GoogleDrive, {
+                accessToken: tokens.accessToken,
+              });
+            } else {
+              return null;
+            }
+          } else {
+            return new CloudStorage(CloudStorageProvider.GoogleDrive, {
+              accessToken: googleCloudToken,
+            });
+          }
+        }
+        case "icloud":
+          return new CloudStorage(CloudStorageProvider.ICloud);
+      }
+    },
+    [googleCloudToken]
+  );
+
   const setProvider = useCallback(
     async (provider: Provider) => {
       if (!provider) {
@@ -58,21 +94,21 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
         return;
       }
 
-      const storage = new CloudStorage(
-        provider === "icloud"
-          ? CloudStorageProvider.ICloud
-          : CloudStorageProvider.GoogleDrive
-      );
+      const storage = await createCloudStorageForProvider(provider);
+
+      if (!storage) {
+        showToast(getCloudStorageErrorToastProps());
+        setProviderAtom(false);
+        return;
+      }
+
       setCloudStorage(storage);
       setSelectedProvider(provider);
 
       const isAvailable = await storage.isCloudAvailable();
       if (!isAvailable) {
-        showToast({
-          subtitle: t`There is a problem with your cloud storage provider. Cloud backups have been disabled.`,
-          title: t`Unable to store backup`,
-          variant: "error",
-        });
+        showToast(getCloudStorageErrorToastProps());
+        setGoogleCloudToken(null);
         setProviderAtom(false);
         return;
       }
@@ -87,11 +123,10 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
 
       setProviderAtom(provider);
     },
-    [showToast]
+    [showToast, createCloudStorageForProvider, projects]
   );
 
   const onDeleteBackup = useCallback(async () => {
-    await cloudStorage.rmdir(CLOUD_BACKUP_FILE_PATH);
     await cloudStorage.writeFile(
       CLOUD_BACKUP_FILE_PATH,
       JSON.stringify(projects)

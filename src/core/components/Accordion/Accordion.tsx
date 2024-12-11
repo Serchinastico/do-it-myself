@@ -1,6 +1,7 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
-import { Button, VectorIcon } from "@madeja-studio/telar";
+import { t } from "@lingui/macro";
+import { Button, Row, VectorIcon } from "@madeja-studio/telar";
 import {
   forwardRef,
   ReactNode,
@@ -8,7 +9,7 @@ import {
   useImperativeHandle,
   useState,
 } from "react";
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -26,11 +27,12 @@ interface Props {
   children: ReactNode;
   childrenHeight: number;
   fieldName: string;
+  isLoading?: boolean;
   selectedValue: string;
 }
 
 export const Accordion = forwardRef<AccordionRef, Props>(
-  ({ children, childrenHeight, fieldName, selectedValue }, ref) => {
+  ({ children, childrenHeight, fieldName, isLoading, selectedValue }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const { isHapticFeedbackEnabled } = useHapticFeedback();
     const colorSwitch = useColorSwitch();
@@ -71,7 +73,16 @@ export const Accordion = forwardRef<AccordionRef, Props>(
         <Animated.View style={[tw`mt-2 w-full px-2`, accordionAnimationStyle]}>
           <View style={tw`w-full flex-row center`}>
             <Text style={tw`flex-1 h3`}>{fieldName}</Text>
-            <Text style={tw`body`}>{selectedValue}</Text>
+
+            {isLoading ? (
+              <Row style={tw`gap-2`}>
+                <Text style={tw`body italic opacity-50`}>{t`Loading`}</Text>
+                <ActivityIndicator />
+              </Row>
+            ) : (
+              <Text style={tw`body`}>{selectedValue}</Text>
+            )}
+
             <VectorIcon
               color={colorSwitch({ dark: "white", light: "ash" })}
               icon={{

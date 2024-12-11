@@ -36,7 +36,7 @@ export default {
         "@react-native-google-signin/google-signin",
         {
           iosUrlScheme:
-            "com.googleusercontent.apps.1042198232576-k04hfde0atd4m0cri6v59ps49sac51mc",
+            "com.googleusercontent.apps.917430307232-gstt43na0eebs3jgrn4cb3ghpnnip7rs",
         },
       ],
       ["expo-build-properties"],

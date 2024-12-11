@@ -13,6 +13,10 @@ export const atoms = {
     false
   ),
   colorScheme: atomWithAsyncStorage<ColorScheme | null>("colorScheme", null),
+  googleCloudToken: atomWithAsyncStorage<null | string>(
+    "googleCloudToken",
+    null
+  ),
   hasPurchasedApp: atomWithAsyncStorage("hasPurchasedApp", false),
   isHapticFeedbackEnabled: atomWithAsyncStorage(
     "isHapticFeedbackEnabled",
