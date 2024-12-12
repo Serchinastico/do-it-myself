@@ -37,10 +37,10 @@ export const PROJECT_TAGS = {
   ],
 } as const;
 
-export type ProjectTag = ProjectTagSection[number];
-export type ProjectTagId = ProjectTag["id"];
 export type ProjectTags = typeof PROJECT_TAGS;
 export type ProjectTagSection = ProjectTags[keyof ProjectTags];
+export type ProjectTag = ProjectTagSection[number];
+export type ProjectTagId = ProjectTag["id"];
 
 export const getTagsByIds = (ids: ProjectTagId[]): ProjectTag[] => {
   return ids.flatMap((id) =>

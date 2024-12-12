@@ -9,6 +9,7 @@ import {
   ToolType,
 } from "@app/domain/project";
 import { Project } from "@app/domain/project/project";
+import { ProjectCardBackground } from "@app/features/projects/components/icons";
 import { t } from "@lingui/macro";
 import { Button, Center, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
@@ -35,10 +36,12 @@ export const ProjectCard = ({
   return (
     <Center
       style={[
-        tw`rounded-card px-5 py-4 mb-2`,
+        tw`rounded-card px-5 py-4 mb-2 overflow-hidden`,
         { backgroundColor: projectColor.hex },
       ]}
     >
+      <ProjectCardBackground project={project} />
+
       <Row style={tw`justify-between`}>
         <Column style={tw`flex-1 mr-3`}>
           <Text style={tw`h2 text-ash`}>{project.name}</Text>

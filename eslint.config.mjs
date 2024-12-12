@@ -42,9 +42,11 @@ export default tseslint.config(
       "dim/use-custom-scroll-view": "error",
       "json-files/sort-package-json": "error",
       "no-empty": "off",
+      "perfectionist/sort-exports": "off",
       "perfectionist/sort-imports": "error",
+      "perfectionist/sort-modules": "off",
       "perfectionist/sort-objects": "error",
       "prettier/prettier": "error",
     },
-  },
+  }
 );
