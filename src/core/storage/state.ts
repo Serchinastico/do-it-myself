@@ -18,6 +18,7 @@ export const atoms = {
     null
   ),
   hasPurchasedApp: atomWithAsyncStorage("hasPurchasedApp", false),
+  hasSeenOnboarding: atomWithAsyncStorage("hasSeenOnboarding", false),
   isHapticFeedbackEnabled: atomWithAsyncStorage(
     "isHapticFeedbackEnabled",
     true

@@ -14,6 +14,7 @@ export type RootNavigationParamList = {
   exportManual: { projectId: string };
   imageViewer: { imagePaths: string[]; initialImageIndex: number };
   manual: { projectId: string };
+  onboarding: undefined;
   projects: undefined;
   purchase: undefined;
   settings: undefined;

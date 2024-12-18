@@ -1,4 +1,6 @@
+import { atoms } from "@app/core/storage/state";
 import { ImageViewerScreen } from "@app/features/image-viewer/screens/ImageViewerScreen";
+import OnboardingScreen from "@app/features/onboarding/screens/OnboardingScreen";
 import {
   AddTagsScreen,
   CreateProjectScreen,
@@ -12,14 +14,24 @@ import { ExportManualScreen } from "@app/features/tools/screens/ExportManualScre
 import { ManualScreen } from "@app/features/tools/screens/ManualScreen";
 import { WorklogScreen } from "@app/features/tools/screens/WorklogScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useAtomValue } from "jotai";
 
 import { RootNavigationParamList } from "./routes";
 
 const Stack = createNativeStackNavigator<RootNavigationParamList>();
 
 const RootNavigation = () => {
+  const hasSeenOnboarding = useAtomValue(atoms.hasSeenOnboarding);
+
+  const initialRouteName = hasSeenOnboarding ? "projects" : "onboarding";
+
   return (
-    <Stack.Navigator key={tw.memoBuster} screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      initialRouteName={initialRouteName}
+      key={tw.memoBuster}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen component={OnboardingScreen} name="onboarding" />
       <Stack.Screen component={ProjectsScreen} name="projects" />
       <Stack.Screen component={SettingsScreen} name="settings" />
       <Stack.Screen

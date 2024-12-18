@@ -18,11 +18,11 @@ importers:
         specifier: ^4.13.0
         version: 4.14.1(react@18.2.0)
       '@madeja-studio/cepillo':
-        specifier: 0.1.19
-        version: 0.1.19(react-native-uuid@2.0.3)(tiny-invariant@1.3.3)
+        specifier: 0.1.20
+        version: 0.1.20(react-native-uuid@2.0.3)(tiny-invariant@1.3.3)
       '@madeja-studio/telar':
         specifier: 0.2.42
-        version: 0.2.42(har3sd6sl23hbpufdarx467ft4)
+        version: 0.2.42(xulmxi6xbevujomv6jnws6kvum)
       '@react-native-async-storage/async-storage':
         specifier: 1.23.1
         version: 1.23.1(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))
@@ -107,9 +107,6 @@ importers:
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
-      optics-ts:
-        specifier: ^2.4.1
-        version: 2.4.1
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -141,8 +138,8 @@ importers:
         specifier: ^4.4.5
         version: 4.5.1(expo@51.0.39(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0)))(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
       react-native-pager-view:
-        specifier: 6.3.0
-        version: 6.3.0(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
+        specifier: ^6.6.1
+        version: 6.6.1(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
       react-native-reanimated:
         specifier: ~3.10.1
         version: 3.10.1(@babel/core@7.26.0)(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
@@ -1646,8 +1643,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@madeja-studio/cepillo@0.1.19':
-    resolution: {integrity: sha512-cmxktUgx4jM58mhcnuIHD4BH57uNbxlwxRHkJIAU50urdUwOEfloInrP6T7yL31XQPgT21Bd3s8ZLC0NYCNwhA==}
+  '@madeja-studio/cepillo@0.1.20':
+    resolution: {integrity: sha512-0WFDfW539Oi5CheaB9H0F44Bx6mZldCkT002xKw/5Gyd8c2rhjXxuC5GkBEpU/60wGPpPXQcwZuDVE8LidpQaw==}
     peerDependencies:
       react-native-uuid: ^2
       tiny-invariant: ^1
@@ -6110,8 +6107,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  react-native-pager-view@6.3.0:
-    resolution: {integrity: sha512-ufJOoVa9pFL1J/yb4hpsCqp8n1qTlcF5VvwqvCacHX//D7hSeRscsiIXg1u1pXNWwllvACb+mqxec/3Uj2mxrA==}
+  react-native-pager-view@6.6.1:
+    resolution: {integrity: sha512-2dFulYs8JxEUecemv1PGWCUv+ZQuwSaQfFiSr2++KH8km5HzpuS8vJ3MVb0M6UhpqacFDj9OGe7z97ks/mr7gA==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -9169,18 +9166,18 @@ snapshots:
       '@lingui/core': 4.14.1
       react: 18.2.0
 
-  '@madeja-studio/cepillo@0.1.19(react-native-uuid@2.0.3)(tiny-invariant@1.3.3)':
+  '@madeja-studio/cepillo@0.1.20(react-native-uuid@2.0.3)(tiny-invariant@1.3.3)':
     dependencies:
       react-native-uuid: 2.0.3
       tiny-invariant: 1.3.3
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu': 4.9.5
 
-  '@madeja-studio/telar@0.2.42(har3sd6sl23hbpufdarx467ft4)':
+  '@madeja-studio/telar@0.2.42(xulmxi6xbevujomv6jnws6kvum)':
     dependencies:
       '@expo/vector-icons': 14.0.4
       '@gorhom/portal': 1.0.14(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
-      '@madeja-studio/cepillo': 0.1.19(react-native-uuid@2.0.3)(tiny-invariant@1.3.3)
+      '@madeja-studio/cepillo': 0.1.20(react-native-uuid@2.0.3)(tiny-invariant@1.3.3)
       '@react-spring/native': 9.7.5(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
       expo-blur: 13.0.2(expo@51.0.39(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0)))
       expo-haptics: 13.0.1(expo@51.0.39(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0)))
@@ -9188,7 +9185,7 @@ snapshots:
       react: 18.2.0
       react-native: 0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0)
       react-native-gesture-handler: 2.16.2(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
-      react-native-pager-view: 6.3.0(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
+      react-native-pager-view: 6.6.1(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
       react-native-safe-area-context: 4.10.5(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
       react-native-screens: 3.31.1(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0)
       smob: 1.5.0
@@ -11833,7 +11830,7 @@ snapshots:
       eslint: 9.16.0(jiti@1.21.6)
       eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint@9.16.0(jiti@1.21.6)))(eslint@9.16.0(jiti@1.21.6))
       eslint-plugin-expo: 0.1.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint-import-resolver-typescript@3.7.0)(eslint@9.16.0(jiti@1.21.6))
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint@9.16.0(jiti@1.21.6)))(eslint@9.16.0(jiti@1.21.6)))(eslint@9.16.0(jiti@1.21.6))
       eslint-plugin-react: 7.37.2(eslint@9.16.0(jiti@1.21.6))
       eslint-plugin-react-hooks: 4.6.2(eslint@9.16.0(jiti@1.21.6))
     transitivePeerDependencies:
@@ -11870,7 +11867,7 @@ snapshots:
       is-glob: 4.0.3
       stable-hash: 0.0.4
     optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint-import-resolver-typescript@3.7.0)(eslint@9.16.0(jiti@1.21.6))
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint@9.16.0(jiti@1.21.6)))(eslint@9.16.0(jiti@1.21.6)))(eslint@9.16.0(jiti@1.21.6))
     transitivePeerDependencies:
       - supports-color
 
@@ -11907,7 +11904,7 @@ snapshots:
       lodash: 4.17.21
       string-natural-compare: 3.0.1
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint-import-resolver-typescript@3.7.0)(eslint@9.16.0(jiti@1.21.6)):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.3.3))(eslint@9.16.0(jiti@1.21.6)))(eslint@9.16.0(jiti@1.21.6)))(eslint@9.16.0(jiti@1.21.6)):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -14345,7 +14342,7 @@ snapshots:
       react: 18.2.0
       react-native: 0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0)
 
-  react-native-pager-view@6.3.0(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0):
+  react-native-pager-view@6.6.1(react-native@0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0))(react@18.2.0):
     dependencies:
       react: 18.2.0
       react-native: 0.74.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.14)(react@18.2.0)

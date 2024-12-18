@@ -28,6 +28,9 @@ const PreloadScreen = ({ children }: Props) => {
   const setHasPurchasedApp = useSetAtom(atoms.hasPurchasedApp);
   const colorScheme = useAtomValue(atoms.colorScheme);
 
+  // Warm the storage
+  useAtomValue(atoms.hasSeenOnboarding);
+
   useEffect(() => {
     setTwColorScheme(colorScheme);
   }, [colorScheme]);
