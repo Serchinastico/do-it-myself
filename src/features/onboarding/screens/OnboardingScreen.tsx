@@ -10,11 +10,7 @@ import { useSetAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import PagerView from "react-native-pager-view";
-import {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import { useSharedValue } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import OnboardingPages from "../components/pages";
@@ -25,10 +21,6 @@ const OnboardingScreen = () => {
   const startButtonOpacity = useSharedValue(0);
   const navigation = useRootNavigation();
   const setHasSeenOnboarding = useSetAtom(atoms.hasSeenOnboarding);
-
-  const buttonStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(startButtonOpacity.value, { duration: 100 }),
-  }));
 
   useEffect(() => {
     if (page === 2) {
