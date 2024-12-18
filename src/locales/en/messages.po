@@ -13,34 +13,38 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/features/tools/hooks/pdf/usePdfExporter.ts:63
+msgid "{0} - Manual"
+msgstr "{0} - Manual"
+
 #: src/features/image-viewer/components/Header.tsx:24
 msgid "{0} of {1}"
 msgstr "{0} of {1}"
 
-#: src/features/settings/screens/SettingsScreen.tsx:92
+#: src/features/settings/components/AppPurchasePrompt.tsx:18
 msgid "<0><1>Support us in this project and get the app with no limitations </1><2>forever</2><3>.</3></0>"
 msgstr "<0><1>Support us in this project and get the app with no limitations </1><2>forever</2><3>.</3></0>"
 
-#: src/domain/project/tags.ts:30
+#: src/domain/project/tags.ts:32
 msgid "3d printing"
 msgstr "3d printing"
 
 #: src/features/settings/screens/PurchaseScreen.tsx:96
-msgid "6.99€"
-msgstr "6.99€"
+#~ msgid "6.99€"
+#~ msgstr "6.99€"
 
 #: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:36
 #: src/features/projects/components/dialogs/ToolRemovalConfirmationDialog.tsx:36
-#: src/features/projects/screens/AddTagsScreen.tsx:78
+#: src/features/projects/screens/AddTagsScreen.tsx:79
 #: src/features/settings/screens/AppPurchasedScreen.tsx:43
 msgid "Accept"
 msgstr "Accept"
 
-#: src/core/utils/imagePicker.ts:40
+#: src/core/utils/imagePicker.ts:41
 msgid "Access to your camera or media library is required to pick a picture"
 msgstr "Access to your camera or media library is required to pick a picture"
 
-#: src/features/tools/components/attachments/AddAttachmentButton.tsx:20
+#: src/features/tools/components/attachments/AddAttachmentButton.tsx:21
 msgid "Add attachment"
 msgstr "Add attachment"
 
@@ -52,7 +56,7 @@ msgstr "Add pictures and videos to your project to serve as references, inspirat
 msgid "Add some media to the project now."
 msgstr "Add some media to the project now."
 
-#: src/features/projects/components/headers/AddTagsHeader.tsx:11
+#: src/features/projects/components/headers/AddTagsHeader.tsx:14
 #: src/features/projects/components/TagsPicker.tsx:29
 msgid "Add tags"
 msgstr "Add tags"
@@ -61,29 +65,33 @@ msgstr "Add tags"
 msgid "Any suggestion?"
 msgstr "Any suggestion?"
 
-#: src/features/settings/components/headers/AppPurchasedHeader.tsx:11
+#: src/features/settings/components/headers/AppPurchasedHeader.tsx:14
 msgid "App purchased"
 msgstr "App purchased"
 
-#: src/features/projects/components/ProjectDetails.tsx:160
+#: src/features/projects/components/ProjectDetails.tsx:161
 msgid "At least one tool must be selected"
 msgstr "At least one tool must be selected"
 
-#: src/features/projects/components/ProjectCard.tsx:98
+#: src/features/projects/components/ProjectCard.tsx:108
 #: src/features/projects/components/ToolsPicker.tsx:130
 #: src/features/tools/components/headers/AttachmentsHeader.tsx:15
 msgid "Attachments"
 msgstr "Attachments"
 
-#: src/domain/project/tags.ts:5
+#: src/core/providers/CloudBackupContextProvider.tsx:152
+msgid "Backup loaded"
+msgstr "Backup loaded"
+
+#: src/domain/project/tags.ts:6
 msgid "build"
 msgstr "build"
 
-#: src/features/settings/screens/SettingsScreen.tsx:89
+#: src/features/settings/components/AppPurchasePrompt.tsx:15
 msgid "Buy the app to get unlimited projects"
 msgstr "Buy the app to get unlimited projects"
 
-#: src/core/utils/imagePicker.ts:52
+#: src/core/utils/imagePicker.ts:55
 msgid "Camera unavailable"
 msgstr "Camera unavailable"
 
@@ -93,35 +101,51 @@ msgstr "Camera unavailable"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/core/utils/imagePicker.ts:46
+#: src/core/utils/imagePicker.ts:49
 msgid "Canceled the selection of an image"
 msgstr "Canceled the selection of an image"
 
-#: src/domain/project/tags.ts:9
+#: src/domain/project/tags.ts:10
 msgid "chore"
 msgstr "chore"
 
-#: src/domain/project/tags.ts:26
+#: src/domain/project/tags.ts:27
 msgid "clay"
 msgstr "clay"
 
-#: src/domain/project/colors.ts:5
+#: src/domain/project/colors.ts:6
 msgid "Clay"
 msgstr "Clay"
 
-#: src/domain/project/tags.ts:31
+#: src/features/settings/components/options/CloudBackupOption.tsx:30
+msgid "Cloud Backup"
+msgstr "Cloud Backup"
+
+#: src/domain/project/tags.ts:33
 msgid "CNC"
 msgstr "CNC"
 
-#: src/features/projects/components/ColorPicker.tsx:63
+#: src/features/projects/components/ColorPicker.tsx:70
 msgid "Color"
 msgstr "Color"
 
-#: src/features/projects/components/EmptyProjects.tsx:22
+#: src/domain/project/tags.ts:17
+msgid "complexity:easy"
+msgstr "complexity:easy"
+
+#: src/domain/project/tags.ts:19
+msgid "complexity:hard"
+msgstr "complexity:hard"
+
+#: src/domain/project/tags.ts:18
+msgid "complexity:medium"
+msgstr "complexity:medium"
+
+#: src/features/projects/components/EmptyProjects.tsx:31
 msgid "Create a new project to get going."
 msgstr "Create a new project to get going."
 
-#: src/features/projects/screens/ProjectsScreen.tsx:68
+#: src/features/projects/screens/ProjectsScreen.tsx:71
 msgid "Create new project"
 msgstr "Create new project"
 
@@ -130,15 +154,15 @@ msgid "Create project"
 msgstr "Create project"
 
 #: src/core/theme/color-scheme.ts:9
-#: src/features/settings/screens/SettingsScreen.tsx:78
+#: src/features/settings/components/options/ThemeOption.tsx:67
 msgid "Dark"
 msgstr "Dark"
 
-#: src/features/projects/components/ProjectDetails.tsx:176
+#: src/features/projects/components/ProjectDetails.tsx:177
 msgid "Delete"
 msgstr "Delete"
 
-#: src/features/tools/components/attachments/AttachmentImage.tsx:54
+#: src/features/tools/components/attachments/AttachmentImage.tsx:57
 msgid "Delete item"
 msgstr "Delete item"
 
@@ -146,61 +170,120 @@ msgstr "Delete item"
 msgid "Delete project"
 msgstr "Delete project"
 
-#: src/features/projects/components/ProjectDetails.tsx:148
+#: src/features/projects/components/ProjectDetails.tsx:149
 msgid "Description"
 msgstr "Description"
 
-#: src/domain/project/tags.ts:6
+#: src/domain/project/tags.ts:7
 msgid "design"
 msgstr "design"
 
-#: src/features/projects/components/ProjectDetails.tsx:144
+#: src/features/settings/components/options/CloudBackupOption.tsx:38
+#: src/features/settings/components/options/CloudBackupOption.tsx:50
+#: src/features/settings/components/options/HapticFeedbackOption.tsx:23
+#: src/features/settings/components/options/HapticFeedbackOption.tsx:46
+msgid "Disabled"
+msgstr "Disabled"
+
+#: src/domain/project/export.ts:7
+msgid "Do It Myself"
+msgstr "Do It Myself"
+
+#: src/domain/project/export.ts:11
+msgid "Do It Myself (Dark)"
+msgstr "Do It Myself (Dark)"
+
+#: src/domain/project/tags.ts:24
+msgid "duration:long"
+msgstr "duration:long"
+
+#: src/domain/project/tags.ts:23
+msgid "duration:medium"
+msgstr "duration:medium"
+
+#: src/domain/project/tags.ts:22
+msgid "duration:short"
+msgstr "duration:short"
+
+#: src/features/projects/components/ProjectDetails.tsx:145
 msgid "e.g. Hand the new mirror in the bathroom"
 msgstr "e.g. Hand the new mirror in the bathroom"
 
-#: src/features/projects/components/ProjectDetails.tsx:135
+#: src/features/projects/components/ProjectDetails.tsx:136
 msgid "e.g. Hang mirror"
 msgstr "e.g. Hang mirror"
 
 #: src/domain/project/tags.ts:16
-msgid "easy"
-msgstr "easy"
+#~ msgid "easy"
+#~ msgstr "easy"
 
-#: src/features/projects/components/headers/EditProjectHeader.tsx:11
+#: src/features/projects/components/headers/EditProjectHeader.tsx:14
 msgid "Edit project"
 msgstr "Edit project"
 
-#: src/features/tools/components/headers/ManualHeader.tsx:27
+#: src/features/tools/components/headers/ManualHeader.tsx:29
 msgid "Editing"
 msgstr "Editing"
 
-#: src/domain/project/tags.ts:28
+#: src/domain/project/tags.ts:30
 msgid "electronics"
 msgstr "electronics"
 
-#: src/domain/project/tags.ts:29
+#: src/features/settings/components/options/HapticFeedbackOption.tsx:23
+#: src/features/settings/components/options/HapticFeedbackOption.tsx:35
+msgid "Enabled"
+msgstr "Enabled"
+
+#: src/domain/project/tags.ts:31
 msgid "epoxy"
 msgstr "epoxy"
 
-#: src/domain/project/tags.ts:7
+#: src/features/tools/components/headers/ExportManualHeader.tsx:14
+#: src/features/tools/screens/ExportManualScreen.tsx:55
+msgid "Export"
+msgstr "Export"
+
+#: src/features/tools/screens/ExportManualScreen.tsx:37
+msgid "Export your manual to a PDF file you can print and store along with your finished project for future reference and maintenance, or share it with anyone."
+msgstr "Export your manual to a PDF file you can print and store along with your finished project for future reference and maintenance, or share it with anyone."
+
+#: src/domain/project/tags.ts:8
 msgid "fix"
 msgstr "fix"
 
-#: src/domain/project/colors.ts:11
+#: src/features/onboarding/components/pages/OnboardingPage3.tsx:12
+msgid "Free Version vs. Unlimited Access"
+msgstr "Free Version vs. Unlimited Access"
+
+#: src/domain/project/colors.ts:12
 msgid "Fuchsia"
 msgstr "Fuchsia"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:81
+#: src/features/settings/screens/PurchaseScreen.tsx:79
 msgid "Future updates."
 msgstr "Future updates."
 
-#: src/domain/project/colors.ts:6
+#: src/features/settings/components/options/CloudBackupOption.tsx:35
+#: src/features/settings/components/options/CloudBackupOption.tsx:61
+msgid "Google Cloud"
+msgstr "Google Cloud"
+
+#: src/domain/project/colors.ts:7
 msgid "Grass"
 msgstr "Grass"
 
+#: src/features/settings/components/options/HapticFeedbackOption.tsx:21
+msgid "Haptic Feedback"
+msgstr "Haptic Feedback"
+
 #: src/domain/project/tags.ts:18
-msgid "hard"
-msgstr "hard"
+#~ msgid "hard"
+#~ msgstr "hard"
+
+#: src/features/settings/components/options/CloudBackupOption.tsx:37
+#: src/features/settings/components/options/CloudBackupOption.tsx:73
+msgid "iCloud"
+msgstr "iCloud"
 
 #: src/features/settings/screens/AppPurchasedScreen.tsx:31
 msgid ""
@@ -214,67 +297,87 @@ msgstr ""
 msgid "Introduction"
 msgstr "Introduction"
 
-#: src/features/projects/components/EmptyProjects.tsx:19
+#: src/features/projects/components/EmptyProjects.tsx:22
 msgid "It’s time to create a project and start doing things."
 msgstr "It’s time to create a project and start doing things."
 
-#: src/features/settings/screens/PurchaseScreen.tsx:88
+#: src/features/onboarding/components/pages/OnboardingPage1.tsx:12
+msgid "Keep your DIY projects well organized"
+msgstr "Keep your DIY projects well organized"
+
+#: src/features/tools/components/picker/ExportLayoutPicker.tsx:26
+msgid "Layout"
+msgstr "Layout"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:86
 msgid "Let's be honest: We went to a store to see how much a personalized project notebook costs, and this was the price. That's it."
 msgstr "Let's be honest: We went to a store to see how much a personalized project notebook costs, and this was the price. That's it."
 
 #: src/core/theme/color-scheme.ts:11
-#: src/features/settings/screens/SettingsScreen.tsx:67
+#: src/features/settings/components/options/ThemeOption.tsx:56
 msgid "Light"
 msgstr "Light"
 
-#: src/domain/project/colors.ts:8
+#: src/domain/project/colors.ts:9
 msgid "Lily"
 msgstr "Lily"
 
-#: src/domain/project/colors.ts:7
+#: src/domain/project/colors.ts:8
 msgid "Lime"
 msgstr "Lime"
 
-#: src/domain/project/tags.ts:23
-msgid "long"
-msgstr "long"
+#: src/core/components/CloudBackupFileAlreadyExistsDialog.tsx:47
+msgid "Load"
+msgstr "Load"
 
-#: src/features/projects/components/ProjectCard.tsx:80
+#: src/core/components/Accordion/Accordion.tsx:79
+msgid "Loading"
+msgstr "Loading"
+
+#: src/domain/project/tags.ts:23
+#~ msgid "long"
+#~ msgstr "long"
+
+#: src/features/projects/components/ProjectCard.tsx:90
 #: src/features/projects/components/ToolsPicker.tsx:114
-#: src/features/tools/components/headers/ManualHeader.tsx:28
+#: src/features/tools/components/headers/ManualHeader.tsx:30
 msgid "Manual"
 msgstr "Manual"
 
 #: src/domain/project/tags.ts:17
 #: src/domain/project/tags.ts:22
-msgid "medium"
-msgstr "medium"
+#~ msgid "medium"
+#~ msgstr "medium"
 
 #: src/domain/project/tags.ts:12
 #~ msgid "mix"
 #~ msgstr "mix"
 
-#: src/domain/project/tags.ts:34
+#: src/domain/project/tags.ts:36
 msgid "mixed medium"
 msgstr "mixed medium"
 
-#: src/domain/project/tags.ts:8
+#: src/domain/project/tags.ts:9
 msgid "mount/unmount"
 msgstr "mount/unmount"
 
-#: src/features/projects/components/ProjectDetails.tsx:138
+#: src/features/projects/components/ProjectDetails.tsx:139
 msgid "Name"
 msgstr "Name"
 
-#: src/features/projects/components/ProjectDetails.tsx:128
+#: src/features/projects/components/ProjectDetails.tsx:129
 msgid "Name is required"
 msgstr "Name is required"
 
-#: src/domain/project/tags.ts:13
+#: src/features/onboarding/components/pages/OnboardingPage1.tsx:20
+msgid "Name them, tag them, search through your collection, and never lose track of a project again."
+msgstr "Name them, tag them, search through your collection, and never lose track of a project again."
+
+#: src/domain/project/tags.ts:14
 msgid "need help"
 msgstr "need help"
 
-#: src/features/projects/components/headers/CreateProjectHeader.tsx:11
+#: src/features/projects/components/headers/CreateProjectHeader.tsx:14
 msgid "New project"
 msgstr "New project"
 
@@ -282,7 +385,7 @@ msgstr "New project"
 msgid "No attachments yet"
 msgstr "No attachments yet"
 
-#: src/features/projects/components/EmptyProjects.tsx:16
+#: src/features/projects/components/EmptyProjects.tsx:19
 msgid "No projects yet"
 msgstr "No projects yet"
 
@@ -290,26 +393,42 @@ msgstr "No projects yet"
 msgid "No subscriptions, buy the app and it'll be yours, forever."
 msgstr "No subscriptions, buy the app and it'll be yours, forever."
 
-#: src/domain/project/colors.ts:10
+#: src/domain/project/colors.ts:11
 msgid "Ocean"
 msgstr "Ocean"
 
-#: src/domain/project/tags.ts:33
+#: src/core/components/CloudBackupFileAlreadyExistsDialog.tsx:36
+msgid "Or you can make as if nothing happened and cancel the backup entirely. We won't tell anyone."
+msgstr "Or you can make as if nothing happened and cancel the backup entirely. We won't tell anyone."
+
+#: src/core/components/CloudBackupFileAlreadyExistsDialog.tsx:41
+msgid "Overwrite"
+msgstr "Overwrite"
+
+#: src/domain/project/tags.ts:35
 msgid "paint"
 msgstr "paint"
 
+#: src/domain/project/tags.ts:29
+msgid "paper"
+msgstr "paper"
+
+#: src/features/tools/components/editor/tools/voice/RecordVoiceMemo.tsx:77
+msgid "Permissions for recording were not granted. Change the option from your device settings to record voice memos"
+msgstr "Permissions for recording were not granted. Change the option from your device settings to record voice memos"
+
 #: src/features/tools/components/attachments/AddAttachmentButton.tsx:30
-#: src/features/tools/components/editor/tools/image.ts:34
+#: src/features/tools/components/editor/tools/image.ts:35
 msgid "Photo Library"
 msgstr "Photo Library"
 
-#: src/features/projects/components/headers/ProjectsHeader.tsx:14
+#: src/features/projects/components/headers/ProjectsHeader.tsx:31
 msgid "Projects"
 msgstr "Projects"
 
 #: src/features/projects/components/dialogs/ProjectsLimitReachedDialog.tsx:42
-#: src/features/settings/components/headers/PurchaseHeader.tsx:11
-#: src/features/settings/screens/SettingsScreen.tsx:108
+#: src/features/settings/components/headers/PurchaseHeader.tsx:14
+#: src/features/settings/screens/SettingsScreen.tsx:56
 msgid "Purchase"
 msgstr "Purchase"
 
@@ -325,7 +444,7 @@ msgstr "Remove tool"
 msgid "Reset"
 msgstr "Reset"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:103
+#: src/features/settings/screens/PurchaseScreen.tsx:102
 msgid "Restore purchase"
 msgstr "Restore purchase"
 
@@ -337,23 +456,31 @@ msgstr "Save"
 msgid "Save images and videos for future reference."
 msgstr "Save images and videos for future reference."
 
-#: src/features/settings/components/headers/SettingsHeader.tsx:15
+#: src/features/tools/hooks/pdf/usePdfExporter.ts:68
+msgid "Save or share your project's manual"
+msgstr "Save or share your project's manual"
+
+#: src/features/projects/components/SearchBar.tsx:76
+msgid "Search project..."
+msgstr "Search project..."
+
+#: src/features/settings/components/headers/SettingsHeader.tsx:31
 msgid "Settings"
 msgstr "Settings"
 
-#: src/domain/project/tags.ts:32
+#: src/domain/project/tags.ts:34
 msgid "sewing"
 msgstr "sewing"
 
 #: src/domain/project/tags.ts:21
-msgid "short"
-msgstr "short"
+#~ msgid "short"
+#~ msgstr "short"
 
-#: src/domain/project/colors.ts:9
+#: src/domain/project/colors.ts:10
 msgid "Sky"
 msgstr "Sky"
 
-#: src/domain/project/tags.ts:12
+#: src/domain/project/tags.ts:13
 msgid "solo project"
 msgstr "solo project"
 
@@ -361,23 +488,35 @@ msgstr "solo project"
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
+#: src/features/onboarding/screens/OnboardingScreen.tsx:68
+msgid "Start"
+msgstr "Start"
+
 #: src/domain/project/tool.ts:40
 msgid "Steps"
 msgstr "Steps"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:80
+#: src/features/settings/screens/PurchaseScreen.tsx:75
 msgid "Styles for your manuals."
 msgstr "Styles for your manuals."
+
+#: src/domain/project/export.ts:15
+msgid "Sweden"
+msgstr "Sweden"
+
+#: src/domain/project/export.ts:19
+msgid "Sweden (Dark)"
+msgstr "Sweden (Dark)"
 
 #: src/features/projects/components/TagsPicker.tsx:19
 msgid "Tags"
 msgstr "Tags"
 
-#: src/features/projects/screens/AddTagsScreen.tsx:60
+#: src/features/projects/screens/AddTagsScreen.tsx:61
 msgid "Tags allow you to easily search for projects by their characteristics."
 msgstr "Tags allow you to easily search for projects by their characteristics."
 
-#: src/features/tools/components/editor/tools/image.ts:41
+#: src/features/tools/components/editor/tools/image.ts:42
 msgid "Take photo"
 msgstr "Take photo"
 
@@ -389,7 +528,7 @@ msgstr "Take Photo"
 msgid "Thank you for purchasing Do It Myself!"
 msgstr "Thank you for purchasing Do It Myself!"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:72
+#: src/features/settings/screens/PurchaseScreen.tsx:67
 msgid "The app for you, forever."
 msgstr "The app for you, forever."
 
@@ -397,15 +536,20 @@ msgstr "The app for you, forever."
 msgid "The free version of Do It Myself only allows 3 projects. Buy the app to have access to unlimited projects and more."
 msgstr "The free version of Do It Myself only allows 3 projects. Buy the app to have access to unlimited projects and more."
 
-#: src/features/settings/screens/PurchaseScreen.tsx:57
+#: src/features/settings/screens/PurchaseScreen.tsx:48
 msgid "The purchase was not restored"
 msgstr "The purchase was not restored"
 
-#: src/features/settings/screens/SettingsScreen.tsx:52
+#: src/features/settings/components/options/ThemeOption.tsx:43
+#: src/features/tools/components/picker/ExportThemePicker.tsx:24
 msgid "Theme"
 msgstr "Theme"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:54
+#: src/core/providers/CloudBackupContextProvider.tsx:29
+msgid "There is a problem with your cloud storage provider. Cloud backups have been disabled."
+msgstr "There is a problem with your cloud storage provider. Cloud backups have been disabled."
+
+#: src/features/settings/screens/PurchaseScreen.tsx:45
 msgid "There was no Do It Myself purchase found in your account"
 msgstr "There was no Do It Myself purchase found in your account"
 
@@ -427,7 +571,19 @@ msgstr "Tools allow you to adapt your project to your needs. Remember that you c
 msgid "Tools and materials"
 msgstr "Tools and materials"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:76
+#: src/features/onboarding/components/pages/OnboardingPage2.tsx:12
+msgid "Tools to track your progress"
+msgstr "Tools to track your progress"
+
+#: src/features/tools/components/editor/tools/voice/RecordVoiceMemo.tsx:78
+msgid "Unable to record audio"
+msgstr "Unable to record audio"
+
+#: src/core/providers/CloudBackupContextProvider.tsx:30
+msgid "Unable to store backup"
+msgstr "Unable to store backup"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:71
 msgid "Unlimited projects."
 msgstr "Unlimited projects."
 
@@ -435,27 +591,40 @@ msgstr "Unlimited projects."
 msgid "We are sorry but it looks like something failed. Send us an email to dim@serchinastico.com and we will work on it."
 msgstr "We are sorry but it looks like something failed. Send us an email to dim@serchinastico.com and we will work on it."
 
-#: src/domain/project/colors.ts:4
+#: src/core/components/CloudBackupFileAlreadyExistsDialog.tsx:33
+msgid "We found a backup file in your {0} account. You can overwrite it, or you can load it up, deleting your current projects."
+msgstr "We found a backup file in your {0} account. You can overwrite it, or you can load it up, deleting your current projects."
+
+#: src/domain/project/colors.ts:5
 msgid "Wheat"
 msgstr "Wheat"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:85
-msgid "Why 6.99€?"
-msgstr "Why 6.99€?"
+#: src/features/settings/screens/PurchaseScreen.tsx:83
+msgid "Why {0}?"
+msgstr "Why {0}?"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:68
+#: src/features/settings/screens/PurchaseScreen.tsx:85
+#~ msgid "Why 6.99€?"
+#~ msgstr "Why 6.99€?"
+
+#: src/features/settings/screens/PurchaseScreen.tsx:63
 msgid "Why buy the app?"
 msgstr "Why buy the app?"
 
-#: src/domain/project/tags.ts:27
+#: src/domain/project/tags.ts:28
 msgid "wood"
 msgstr "wood"
 
-#: src/features/projects/components/ProjectCard.tsx:89
+#: src/features/projects/components/ProjectCard.tsx:99
 #: src/features/projects/components/ToolsPicker.tsx:122
 #: src/features/tools/components/headers/WorklogHeader.tsx:15
 msgid "Worklog"
 msgstr "Worklog"
+
+#: src/features/onboarding/components/pages/OnboardingPage2.tsx:20
+#: src/features/onboarding/components/pages/OnboardingPage3.tsx:20
+msgid "Worklogs, manuals and attachments at your fingertips, you'll have everything you need to keep track of your progress."
+msgstr "Worklogs, manuals and attachments at your fingertips, you'll have everything you need to keep track of your progress."
 
 #: src/features/projects/components/ToolsPicker.tsx:112
 msgid "Write the detailed steps for your project. Include a list of requirements, use variables to adapt your project, and export a manual that you can print and keep near your finished project."
@@ -464,6 +633,10 @@ msgstr "Write the detailed steps for your project. Include a list of requirement
 #: src/core/utils/date.ts:18
 msgid "Yesterday"
 msgstr "Yesterday"
+
+#: src/core/components/CloudBackupFileAlreadyExistsDialog.tsx:30
+msgid "You already have a backup!"
+msgstr "You already have a backup!"
 
 #: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:28
 msgid "You are about to delete this project. All the data stored in the project will be permanently deleted and you will not be able to recover it."
@@ -477,7 +650,7 @@ msgstr "You are about to remove a tool from your project. If you had any data st
 msgid "You can now enjoy the app, forever"
 msgstr "You can now enjoy the app, forever"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:53
+#: src/features/settings/screens/PurchaseScreen.tsx:44
 msgid "You can start using the full version of Do It Myself"
 msgstr "You can start using the full version of Do It Myself"
 
@@ -485,6 +658,18 @@ msgstr "You can start using the full version of Do It Myself"
 msgid "You have run out of projects!"
 msgstr "You have run out of projects!"
 
-#: src/features/settings/screens/PurchaseScreen.tsx:56
+#: src/features/settings/screens/PurchaseScreen.tsx:47
 msgid "You restored your Do Iy Myself purchase!"
 msgstr "You restored your Do Iy Myself purchase!"
+
+#: src/core/providers/CloudBackupContextProvider.tsx:138
+msgid "Your current projects are now backed up."
+msgstr "Your current projects are now backed up."
+
+#: src/core/providers/CloudBackupContextProvider.tsx:139
+msgid "Your remote projects have been deleted."
+msgstr "Your remote projects have been deleted."
+
+#: src/core/providers/CloudBackupContextProvider.tsx:151
+msgid "Your remote projects have been loaded and are ready to use."
+msgstr "Your remote projects have been loaded and are ready to use."
