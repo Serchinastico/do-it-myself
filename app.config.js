@@ -23,6 +23,9 @@ export default {
       bundleIdentifier: IS_DEV
         ? "com.sechinastico.doitmyself.dev"
         : "com.serchinastico.doitmyself",
+      config: {
+        usesNonExemptEncryption: false,
+      },
       supportsTablet: true,
     },
     locales: {
