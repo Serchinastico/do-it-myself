@@ -35,6 +35,14 @@ const getIconForTag = (tagId: ProjectTagId): IconReference | null => {
   }
 };
 
+const getFallbackIcons = (): IconReference[] => {
+  return [
+    { family: "Feather", name: "disc" },
+    { family: "Feather", name: "hexagon" },
+    { family: "Feather", name: "circle" },
+  ];
+};
+
 export interface CaptureProps {
   project: Project;
 }
@@ -58,7 +66,10 @@ export const ProjectCardBackground = ({ project }: CaptureProps) => {
 
     return chunkify(
       repeatToLength(
-        uniqueBy(refs, (ref) => `${ref.family} - ${ref.name}`),
+        uniqueBy(
+          refs.length === 0 ? getFallbackIcons() : refs,
+          (ref) => `${ref.family} - ${ref.name}`
+        ),
         100
       ),
       10
