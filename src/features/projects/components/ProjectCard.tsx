@@ -11,7 +11,7 @@ import {
 import { Project } from "@app/domain/project/project";
 import { ProjectCardBackground } from "@app/features/projects/components/icons";
 import { t } from "@lingui/macro";
-import { Button, Center, Column, Row, VectorIcon } from "@madeja-studio/telar";
+import { Button, Column, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text } from "react-native";
 
@@ -34,7 +34,7 @@ export const ProjectCard = ({
   const tags = getTagsByIds(project.tagIds);
 
   return (
-    <Center
+    <Column
       style={[
         tw`rounded-card px-5 py-4 mb-2 overflow-hidden`,
         { backgroundColor: projectColor.hex },
@@ -81,7 +81,7 @@ export const ProjectCard = ({
         ))}
       </Row>
 
-      <Row style={tw`flex-wrap mt-4 gap-2`}>
+      <Row style={tw`flex-wrap justify-start items-start mt-4 gap-2`}>
         {project.manual && (
           <ToolButton
             icon={{ family: "Feather", name: "book-open" }}
@@ -109,6 +109,6 @@ export const ProjectCard = ({
           />
         )}
       </Row>
-    </Center>
+    </Column>
   );
 };

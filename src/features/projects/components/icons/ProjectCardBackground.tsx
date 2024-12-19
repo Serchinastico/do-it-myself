@@ -86,18 +86,18 @@ export const ProjectCardBackground = ({ project }: CaptureProps) => {
         onGenerateCapture={setUri}
         style={{ height: 600, width: Dimensions.get("window").width }}
       >
-        <Row style={tw`gap-2`}>
+        <Row style={tw`gap-3`}>
           {iconReferences.map((iconsColumn, columnIndex) => (
             <Column
               key={`${columnIndex}`}
-              style={[tw`gap-2`, { opacity: columnIndex * 0.1 }]}
+              style={[tw`gap-3`, { opacity: columnIndex * 0.05 }]}
             >
               {iconsColumn.map((iconRef, index) => (
                 <VectorIcon
                   color={chroma(color.white).alpha(0.4).hex()}
                   icon={iconRef}
                   key={`${iconRef.family} - ${iconRef.name} - ${index}`}
-                  size={32}
+                  size={24}
                 />
               ))}
             </Column>
@@ -107,7 +107,7 @@ export const ProjectCardBackground = ({ project }: CaptureProps) => {
 
       {uri && (
         <Image
-          height={parentSize.height + 100}
+          height={parentSize.height + 160}
           resizeMode="cover"
           source={{ uri }}
           style={{ transform: [{ rotate: "-30deg" }] }}

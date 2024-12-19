@@ -207,7 +207,7 @@ msgstr "duration:short"
 
 #: src/features/projects/components/ProjectDetails.tsx:145
 msgid "e.g. Hand the new mirror in the bathroom"
-msgstr "e.g. Hand the new mirror in the bathroom"
+msgstr "e.g. Hang the new mirror in the bathroom"
 
 #: src/features/projects/components/ProjectDetails.tsx:136
 msgid "e.g. Hang mirror"
