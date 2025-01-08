@@ -1,9 +1,8 @@
-/** @type {import('@lingui/conf').LinguiConfig} */
 export const locales = ["en", "es"];
 export const catalogs = [
   {
-    path: "<rootDir>/src/locales/{locale}/messages",
     include: ["src"],
+    path: "<rootDir>/src/locales/{locale}/messages",
   },
 ];
 export const format = "po";
