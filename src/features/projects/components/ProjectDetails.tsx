@@ -13,7 +13,7 @@ import {
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Column, IconReference, OnPress, Row } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai/index";
 import React, { useCallback, useRef, useState } from "react";

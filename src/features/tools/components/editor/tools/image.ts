@@ -1,6 +1,6 @@
 import { getImagesFrom, ImageSource } from "@app/core/utils/imagePicker";
 import { i18n } from "@lingui/core";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { randomId } from "@madeja-studio/cepillo";
 
 import { EditorTool, ToolCallbackArgs } from "./base";

@@ -1,6 +1,6 @@
 import { getProjectColorById } from "@app/domain/project";
 import { EditorTool } from "@app/features/tools/components/editor/tools/base";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { randomId } from "@madeja-studio/cepillo";
 import dayjs from "dayjs";
 

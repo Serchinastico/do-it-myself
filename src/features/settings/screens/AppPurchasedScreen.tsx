@@ -4,7 +4,7 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { Header } from "@app/features/settings/components/headers";
 import { PartyAnimation } from "@app/features/settings/components/PartyAnimation";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Center, Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { Linking, Text } from "react-native";
 

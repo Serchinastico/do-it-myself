@@ -1,6 +1,6 @@
 import { Button } from "@app/core/components/Button";
 import { ImageSource } from "@app/core/utils/imagePicker";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as DropdownMenu from "zeego/dropdown-menu";
 

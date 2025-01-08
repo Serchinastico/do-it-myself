@@ -1,6 +1,6 @@
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { LocalImage } from "@app/domain/project";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, Center, OnPress } from "@madeja-studio/telar";
 import * as FileSystem from "expo-file-system";
 import { Dimensions, Image, View } from "react-native";
@@ -51,7 +51,6 @@ export const AttachmentImage = ({
           />
         </Center>
       </ContextMenu.Trigger>
-
       <ContextMenu.Content>
         <ContextMenu.Item destructive key="delete" onSelect={onDelete}>
           <ContextMenu.ItemTitle>{t`Delete item`}</ContextMenu.ItemTitle>

@@ -1,7 +1,7 @@
 import { Cue } from "@app/core/components/Cue";
 import { Illustration } from "@app/core/components/Illustration";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, Column, OnPress } from "@madeja-studio/telar";
 import { Text } from "react-native";
 

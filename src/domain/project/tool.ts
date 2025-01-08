@@ -4,7 +4,7 @@ import {
   ProjectColorId,
 } from "@app/domain/project/colors";
 import { Project } from "@app/domain/project/project";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import * as cheerio from "cheerio";
 import dayjs from "dayjs";
 import invariant from "tiny-invariant";

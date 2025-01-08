@@ -5,7 +5,7 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { Header } from "@app/features/settings/components/headers";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import {
   Center,
   Column,

@@ -7,7 +7,7 @@ import {
 } from "@app/features/tools/hooks/pdf/processing";
 import { TransformImageSourcesToBase64 } from "@app/features/tools/hooks/pdf/processing/transformImageSourcesToBase64";
 import { i18n } from "@lingui/core";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Asset } from "expo-asset";
 import {
   cacheDirectory,

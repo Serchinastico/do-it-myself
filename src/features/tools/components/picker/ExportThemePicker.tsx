@@ -3,7 +3,7 @@ import { Cue } from "@app/core/components/Cue";
 import { ScrollView } from "@app/core/components/ScrollView";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { ExportTheme, ExportThemeId } from "@app/domain/project/export";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, Column, Row } from "@madeja-studio/telar";
 import { Image, View } from "react-native";
 

@@ -1,6 +1,6 @@
 import { Header } from "@app/core/components/Header";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, OnPress } from "@madeja-studio/telar";
 
 interface Props {

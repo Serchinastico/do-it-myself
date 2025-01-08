@@ -1,5 +1,5 @@
 import { color } from "@app/core/theme/color";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, OnPress, Row } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text } from "react-native";

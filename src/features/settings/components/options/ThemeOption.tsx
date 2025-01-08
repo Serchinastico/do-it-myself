@@ -5,7 +5,7 @@ import {
   ColorScheme,
   getNameFromColorScheme,
 } from "@app/core/theme/color-scheme";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Column, Button as TelarButton } from "@madeja-studio/telar";
 import { useAtom } from "jotai/index";
 import { useCallback, useRef } from "react";

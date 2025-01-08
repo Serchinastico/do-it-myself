@@ -1,7 +1,7 @@
 import { Button } from "@app/core/components/Button";
 import { getTagsByIds, ProjectTagId } from "@app/domain/project";
 import { Tag } from "@app/features/projects/components/Tag";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Column, OnPress, Row } from "@madeja-studio/telar";
 import { useMemo } from "react";
 import { Text } from "react-native";

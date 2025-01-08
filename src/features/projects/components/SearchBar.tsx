@@ -1,6 +1,6 @@
 import { createAnimatedFunctionalComponent } from "@app/core/animations/createAnimatedFunctionalComponent";
 import { color } from "@app/core/theme/color";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { lerp } from "@madeja-studio/cepillo";
 import { Button, Row, VectorIcon } from "@madeja-studio/telar";
 import {

@@ -4,7 +4,7 @@ import { atoms } from "@app/core/storage/state";
 import { PROJECT_COLORS } from "@app/domain/project";
 import { EditedProject } from "@app/domain/project/project";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { oneOf, randomId } from "@madeja-studio/cepillo";
 import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";

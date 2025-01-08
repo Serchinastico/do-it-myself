@@ -1,6 +1,6 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, Row, VectorIcon } from "@madeja-studio/telar";
 import {
   forwardRef,

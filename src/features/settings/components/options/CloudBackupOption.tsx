@@ -2,7 +2,7 @@ import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { useCloudBackup } from "@app/core/providers/CloudBackupContextProvider";
 import { CloudBackupProvider } from "@app/domain/cloudBackup";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, Column } from "@madeja-studio/telar";
 import { useCallback, useRef, useState } from "react";
 import { Platform, Text } from "react-native";

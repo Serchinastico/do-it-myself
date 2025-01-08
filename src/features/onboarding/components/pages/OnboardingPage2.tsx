@@ -1,6 +1,6 @@
 import { Cue } from "@app/core/components/Cue";
 import { Illustration } from "@app/core/components/Illustration";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Center, Column } from "@madeja-studio/telar";
 import { Text } from "react-native";
 

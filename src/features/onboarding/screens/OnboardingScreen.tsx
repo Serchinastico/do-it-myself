@@ -3,7 +3,7 @@ import PageIndicator from "@app/core/components/PageIndicator";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { AnimatedSwitch } from "@madeja-studio/telar";
 import { StatusBar } from "expo-status-bar";
 import { useSetAtom } from "jotai";

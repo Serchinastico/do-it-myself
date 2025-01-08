@@ -1,7 +1,7 @@
 import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { LocalImage } from "@app/domain/project";
 import { i18n } from "@lingui/core";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { randomId, Tagged } from "@madeja-studio/cepillo";
 import {
   getCameraPermissionsAsync,

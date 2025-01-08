@@ -5,7 +5,7 @@ import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { Dialog } from "@app/features/projects/components/dialogs";
 import { ProjectsList } from "@app/features/projects/components/ProjectsList";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useAtomValue, useSetAtom } from "jotai";

@@ -1,7 +1,7 @@
 import { CloudBackupFileAlreadyExistsDialog } from "@app/core/components/CloudBackupFileAlreadyExistsDialog";
 import { atoms } from "@app/core/storage/state";
 import { CloudBackupProvider as Provider } from "@app/domain/cloudBackup";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { useToast } from "@madeja-studio/telar";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useAtom } from "jotai";

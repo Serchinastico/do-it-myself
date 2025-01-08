@@ -1,5 +1,6 @@
 import { Illustration } from "@app/core/components/Illustration";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { Center, Column } from "@madeja-studio/telar";
 import { Text } from "react-native";
 

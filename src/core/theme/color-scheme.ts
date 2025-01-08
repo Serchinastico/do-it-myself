@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { ColorSchemeName } from "react-native";
 
 export type ColorScheme = NonNullable<ColorSchemeName>;

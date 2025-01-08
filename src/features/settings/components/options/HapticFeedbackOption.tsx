@@ -1,6 +1,6 @@
 import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { atoms } from "@app/core/storage/state";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Column, Button as TelarButton } from "@madeja-studio/telar";
 import { useAtom } from "jotai";
 import { useCallback, useRef } from "react";

@@ -3,7 +3,7 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { ScrollView } from "@app/core/components/ScrollView";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai";
 import { useEffect, useReducer, useState } from "react";

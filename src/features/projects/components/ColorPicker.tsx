@@ -7,7 +7,7 @@ import {
   ProjectColor,
   ProjectColorId,
 } from "@app/domain/project";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, Column, Row } from "@madeja-studio/telar";
 import { Text, View } from "react-native";
 

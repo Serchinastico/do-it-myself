@@ -1,5 +1,5 @@
 import { Button } from "@app/core/components/Button";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Column } from "@madeja-studio/telar";
 import Constants from "expo-constants";
 import { Text } from "react-native";
