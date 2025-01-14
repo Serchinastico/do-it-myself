@@ -56,8 +56,8 @@ export default {
     ],
     slug: "do-it-myself",
     splash: {
-      backgroundColor: "#C44529",
-      image: "./assets/splash.png",
+      backgroundColor: IS_DEV ? "#6553EC" : "#C44529",
+      image: IS_DEV ? "./assets/splash-dev.png" : "./assets/splash.png",
       resizeMode: "contain",
     },
     userInterfaceStyle: "automatic",
