@@ -6,27 +6,21 @@ import { atoms } from "@app/core/storage/state";
 import { t } from "@lingui/core/macro";
 import { StatusBar } from "expo-status-bar";
 import { useSetAtom } from "jotai";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { View } from "react-native";
 import PagerView from "react-native-pager-view";
-import { useSharedValue } from "react-native-reanimated";
 
 import OnboardingPages from "../components/pages";
 
 const OnboardingScreen = () => {
   const [page, setPage] = useState(0);
-  const startButtonOpacity = useSharedValue(0);
   const navigation = useRootNavigation();
   const setHasSeenOnboarding = useSetAtom(atoms.hasSeenOnboarding);
 
-  useEffect(() => {
-    if (page === 2) {
-      startButtonOpacity.value = 1;
-      setHasSeenOnboarding(true);
-    } else {
-      startButtonOpacity.value = 0;
-    }
-  }, [page]);
+  const onSkipOnboarding = useCallback(() => {
+    setHasSeenOnboarding(true);
+    navigation.replace("projects");
+  }, []);
 
   return (
     <SafeArea>
@@ -46,7 +40,7 @@ const OnboardingScreen = () => {
       </View>
 
       <Button
-        onPress={() => navigation.replace("projects")}
+        onPress={onSkipOnboarding}
         style={tw`mb-2`}
         text={t`Get started`}
       />

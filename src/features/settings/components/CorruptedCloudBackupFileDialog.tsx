@@ -9,15 +9,13 @@ import { Text } from "react-native";
 
 interface Props extends ComponentProps<typeof Dialog> {
   onDeleteBackup: OnPress;
-  onLoadBackup: OnPress;
   provider: CloudBackupProvider;
 }
 
-export const CloudBackupFileAlreadyExistsDialog = ({
+export const CorruptedCloudBackupFileDialog = ({
   isVisible,
   onClose,
   onDeleteBackup,
-  onLoadBackup,
   provider,
 }: Props) => {
   return (
@@ -27,24 +25,19 @@ export const CloudBackupFileAlreadyExistsDialog = ({
           <Illustration heightWindowRatio="1/4" name="backup_conflict" />
         </Center>
 
-        <Text style={tw`h1 mt-4`}>{t`You already have a backup!`}</Text>
+        <Text style={tw`h1 mt-4`}>{t`You have a corrupted backup`}</Text>
         <Text
           style={tw`body mt-4`}
-        >{t`We found a backup file in your ${provider === "gcloud" ? "Google Cloud" : "iCloud"} account. You can overwrite it, or you can load it up, deleting your current projects.`}</Text>
+        >{t`We found a backup file in your ${provider === "gcloud" ? "Google Cloud" : "iCloud"} account. However, we noticed it's corrupted and we can't seem to recover it.`}</Text>
         <Text
           style={tw`body mt-4`}
-        >{t`Or you can make as if nothing happened and cancel the backup entirely. We won't tell anyone.`}</Text>
+        >{t`You can overwrite it with this device's data or you can leave cloud backups for later.`}</Text>
         <Row style={tw`center gap-4 mt-6`}>
           <Button
+            hasAutoLoad
             icon={{ family: "Feather", name: "upload" }}
             onPress={onDeleteBackup}
             text={t`Overwrite`}
-            variant="outlined"
-          />
-          <Button
-            icon={{ family: "Feather", name: "download" }}
-            onPress={onLoadBackup}
-            text={t`Load`}
             variant="contained"
           />
         </Row>

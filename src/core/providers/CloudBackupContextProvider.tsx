@@ -1,6 +1,13 @@
-import { CloudBackupFileAlreadyExistsDialog } from "@app/core/components/CloudBackupFileAlreadyExistsDialog";
 import { atoms } from "@app/core/storage/state";
+import {
+  existsBackupFile,
+  loadFromBackup,
+  storeInBackup,
+  validateBackup,
+} from "@app/core/utils/cloudBackup";
 import { CloudBackupProvider as Provider } from "@app/domain/cloudBackup";
+import { CloudBackupFileAlreadyExistsDialog } from "@app/features/settings/components/CloudBackupFileAlreadyExistsDialog";
+import { CorruptedCloudBackupFileDialog } from "@app/features/settings/components/CorruptedCloudBackupFileDialog";
 import { t } from "@lingui/core/macro";
 import { useToast } from "@madeja-studio/telar";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -14,8 +21,6 @@ import {
 } from "react";
 import { CloudStorage, CloudStorageProvider } from "react-native-cloud-storage";
 import useAsyncEffect from "use-async-effect";
-
-const CLOUD_BACKUP_FILE_PATH = "/dim.projects.json";
 
 interface ContextProps {
   provider: Provider;
@@ -42,7 +47,10 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
   const [cloudStorage, setCloudStorage] = useState<CloudStorage>(
     CloudStorage.getDefaultInstance()
   );
-  const [isShowingDialog, setIsShowingDialog] = useState(false);
+  const [isShowingOverwriteDialog, setIsShowingOverwriteDialog] =
+    useState(false);
+  const [isShowingCorruptedDialog, setIsShowingCorruptedDialog] =
+    useState(false);
 
   useAsyncEffect(async () => {
     if (!provider) return;
@@ -54,8 +62,7 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
       return;
     }
 
-    const jsonProjects = JSON.stringify(projects);
-    await cloudStorage.writeFile(CLOUD_BACKUP_FILE_PATH, jsonProjects);
+    await storeInBackup({ cloudStorage, projects });
   }, [projects, cloudStorage, showToast]);
 
   const createCloudStorageForProvider = useCallback(
@@ -113,13 +120,24 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
         return;
       }
 
-      const existsPreviousBackup = await storage.exists(CLOUD_BACKUP_FILE_PATH);
+      const existsPreviousBackup = await existsBackupFile({
+        cloudStorage: storage,
+      });
       if (existsPreviousBackup) {
-        setIsShowingDialog(true);
+        const backupValidation = await validateBackup({
+          cloudStorage: storage,
+        });
+
+        if (backupValidation.success) {
+          setIsShowingOverwriteDialog(true);
+        } else {
+          setIsShowingCorruptedDialog(true);
+        }
+
         return;
       }
 
-      await storage.writeFile(CLOUD_BACKUP_FILE_PATH, JSON.stringify(projects));
+      await storeInBackup({ cloudStorage: storage, projects });
 
       setProviderAtom(provider);
     },
@@ -127,13 +145,11 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
   );
 
   const onDeleteBackup = useCallback(async () => {
-    await cloudStorage.writeFile(
-      CLOUD_BACKUP_FILE_PATH,
-      JSON.stringify(projects)
-    );
+    await storeInBackup({ cloudStorage, projects });
 
     setProviderAtom(selectedProvider);
-    setIsShowingDialog(false);
+    setIsShowingOverwriteDialog(false);
+    setIsShowingCorruptedDialog(false);
     showToast({
       subtitle: t`Your current projects are now backed up.`,
       title: t`Your remote projects have been deleted.`,
@@ -142,11 +158,12 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
   }, [projects, cloudStorage, selectedProvider]);
 
   const onLoadBackup = useCallback(async () => {
-    const rawProjects = await cloudStorage.readFile(CLOUD_BACKUP_FILE_PATH);
-    setProjects(JSON.parse(rawProjects));
+    const projects = await loadFromBackup({ cloudStorage });
+    setProjects(projects);
 
     setProviderAtom(selectedProvider);
-    setIsShowingDialog(false);
+    setIsShowingOverwriteDialog(false);
+    setIsShowingCorruptedDialog(false);
     showToast({
       subtitle: t`Your remote projects have been loaded and are ready to use.`,
       title: t`Backup loaded`,
@@ -159,10 +176,17 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
       {children}
 
       <CloudBackupFileAlreadyExistsDialog
-        isVisible={isShowingDialog}
-        onClose={() => setIsShowingDialog(false)}
+        isVisible={isShowingOverwriteDialog}
+        onClose={() => setIsShowingOverwriteDialog(false)}
         onDeleteBackup={onDeleteBackup}
         onLoadBackup={onLoadBackup}
+        provider={selectedProvider}
+      />
+
+      <CorruptedCloudBackupFileDialog
+        isVisible={isShowingCorruptedDialog}
+        onClose={() => setIsShowingCorruptedDialog(false)}
+        onDeleteBackup={onDeleteBackup}
         provider={selectedProvider}
       />
     </CloudBackupContext.Provider>

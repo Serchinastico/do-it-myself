@@ -12,7 +12,7 @@ const addImageToEditor = async ({
   const result = await getImagesFrom(source);
 
   if (result.tag === "error") {
-    throw new Error(result.message);
+    throw new Error(result.getMessage?.());
   }
 
   const images = result.images.map(({ path }) => ({ fileName: path }));

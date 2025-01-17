@@ -43,7 +43,7 @@ export const AttachmentsScreen = ({
       const result = await getImagesFrom(source);
 
       if (result.tag === "error") {
-        throw new Error(result.message);
+        throw new Error(result.getMessage?.());
       }
 
       const editedItems = [

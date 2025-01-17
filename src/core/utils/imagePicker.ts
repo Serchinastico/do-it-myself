@@ -25,7 +25,7 @@ export type InternalImagePickerResult =
 
 interface ImagePickerError {
   code: "access_denied" | "camera_unavailable" | "user_canceled";
-  message?: string;
+  getMessage?: () => string;
 }
 
 interface ImagePickerSuccess {
@@ -38,21 +38,22 @@ interface InternalImagePickerSuccess {
 
 const ACCESS_DENIED_ERROR: InternalImagePickerResult = {
   code: "access_denied",
-  message: t(
-    i18n
-  )`Access to your camera or media library is required to pick a picture`,
+  getMessage: () =>
+    t(
+      i18n
+    )`Access to your camera or media library is required to pick a picture`,
   tag: "error",
 };
 
 const USER_CANCELED_ERROR: InternalImagePickerResult = {
   code: "user_canceled",
-  message: t(i18n)`Canceled the selection of an image`,
+  getMessage: () => t(i18n)`Canceled the selection of an image`,
   tag: "error",
 };
 
 const CAMERA_UNAVAILABLE_ERROR: InternalImagePickerResult = {
   code: "camera_unavailable",
-  message: t(i18n)`Camera unavailable`,
+  getMessage: () => t(i18n)`Camera unavailable`,
   tag: "error",
 };
 

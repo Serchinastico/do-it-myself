@@ -49,3 +49,26 @@ export const moveToDocuments = async ({
 
   return relativePath;
 };
+
+/**
+ * Extracts the directory name from a given file path.
+ *
+ * This function takes a file path as input and returns the directory
+ * portion of the path. It removes the file name or the last
+ * component of the path and returns the rest of the path.
+ *
+ * If the given path does not contain any directory separators,
+ * an empty string is returned.
+ *
+ * @param path The file path from which the directory name is extracted.
+ * @returns The directory name portion of the provided path.
+ *
+ * @example
+ *
+ * const path = "/home/user/documents/file.txt";
+ * const directory = dirname(path); // "/home/user/documents"
+ *
+ * const rootPath = "/file.txt";
+ * const rootDirectory = dirname(rootPath); // ""
+ */
+export const dirname = (path: string) => path.split("/").slice(0, -1).join("/");
