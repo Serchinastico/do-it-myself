@@ -2,9 +2,18 @@ import { ProjectColorId } from "@app/domain/project/colors";
 import { ProjectTagId } from "@app/domain/project/tags";
 import { Tagged } from "@madeja-studio/cepillo";
 
-export type Attachment = Tagged<"image", LocalImage>;
+export type LocalMediaAsset =
+  | Tagged<"image", LocalImage>
+  | Tagged<"video", LocalVideo>;
 
 export type EditedProject = Omit<Project, "id">;
+
+export type LocalVideo = {
+  height: number;
+  id: string;
+  path: string;
+  width: number;
+};
 
 export type LocalImage = {
   height: number;
@@ -14,7 +23,7 @@ export type LocalImage = {
 };
 
 export interface Project {
-  attachments?: { items: Attachment[] };
+  attachments?: { items: LocalMediaAsset[] };
   colorId: ProjectColorId;
   description?: string;
   id: string;

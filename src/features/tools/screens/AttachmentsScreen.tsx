@@ -2,8 +2,11 @@ import { MasonryFlashList } from "@app/core/components/FlashList/MasonryFlashLis
 import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { derivedAtoms } from "@app/core/storage/state";
-import { getImagesFrom, ImageSource } from "@app/core/utils/imagePicker";
-import { Attachment, getProjectColorById } from "@app/domain/project";
+import {
+  getMediaAssetsFrom,
+  ImageSource,
+} from "@app/core/utils/mediaAssetPicker";
+import { getProjectColorById, LocalMediaAsset } from "@app/domain/project";
 import { AddAttachmentButton } from "@app/features/tools/components/attachments/AddAttachmentButton";
 import { EmptyAttachments } from "@app/features/tools/components/attachments/EmptyAttachments";
 import { SafeAreaViewEdges } from "@madeja-studio/telar";
@@ -11,6 +14,7 @@ import { useAtom } from "jotai/index";
 import { useCallback, useMemo } from "react";
 
 import { AttachmentImage } from "../components/attachments/AttachmentImage";
+import { AttachmentVideo } from "../components/attachments/AttachmentVideo";
 import { ToolHeader } from "../components/headers";
 
 const NUM_COLUMNS = 2;
@@ -29,7 +33,7 @@ export const AttachmentsScreen = ({
   );
 
   const onDeleteAttachment = useCallback(
-    (attachment: Attachment) => {
+    (attachment: LocalMediaAsset) => {
       const updatedAttachments = attachments.filter(
         (item) => item.id !== attachment.id
       );
@@ -40,19 +44,13 @@ export const AttachmentsScreen = ({
 
   const onAddAttachment = useCallback(
     async (source: ImageSource) => {
-      const result = await getImagesFrom(source);
+      const result = await getMediaAssetsFrom(source);
 
       if (result.tag === "error") {
         throw new Error(result.getMessage?.());
       }
 
-      const editedItems = [
-        ...attachments,
-        ...result.images.map((image) => ({
-          ...image,
-          tag: "image" as const,
-        })),
-      ];
+      const editedItems = [...attachments, ...result.assets];
       setProject({ ...project, attachments: { items: editedItems } });
     },
     [project, attachments]
@@ -77,12 +75,27 @@ export const AttachmentsScreen = ({
                   image={item}
                   onDelete={() => onDeleteAttachment(item)}
                   onPress={() =>
-                    navigation.navigate("imageViewer", {
-                      imagePaths: [item.path],
+                    navigation.navigate("assetViewer", {
+                      assetPaths: [item.path],
                       initialImageIndex: 0,
                     })
                   }
                   tint={getProjectColorById(project.colorId).hex}
+                />
+              );
+            case "video":
+              return (
+                <AttachmentVideo
+                  colSpan={NUM_COLUMNS}
+                  onDelete={() => onDeleteAttachment(item)}
+                  onPress={() =>
+                    navigation.navigate("assetViewer", {
+                      assetPaths: [item.path],
+                      initialImageIndex: 0,
+                    })
+                  }
+                  tint={getProjectColorById(project.colorId).hex}
+                  video={item}
                 />
               );
           }

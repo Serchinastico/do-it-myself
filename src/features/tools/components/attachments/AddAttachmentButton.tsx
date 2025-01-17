@@ -1,5 +1,5 @@
 import { Button } from "@app/core/components/Button";
-import { ImageSource } from "@app/core/utils/imagePicker";
+import { ImageSource } from "@app/core/utils/mediaAssetPicker";
 import { t } from "@lingui/core/macro";
 import { useCallback, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

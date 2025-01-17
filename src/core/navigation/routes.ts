@@ -8,11 +8,11 @@ import { NativeStackNavigationOptions } from "@react-navigation/native-stack/src
 export type RootNavigationParamList = {
   addTags: undefined;
   appPurchased: undefined;
+  assetViewer: { assetPaths: string[]; initialImageIndex: number };
   attachments: { projectId: string };
   createProject: undefined;
   editProject: { projectId: string };
   exportManual: { projectId: string };
-  imageViewer: { imagePaths: string[]; initialImageIndex: number };
   manual: { projectId: string };
   onboarding: undefined;
   projects: undefined;

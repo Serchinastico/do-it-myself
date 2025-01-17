@@ -22,11 +22,11 @@ export const useLocalImagePressHandler = ({ json, navigation }: Props) => {
       invariant(node);
 
       const images = node.attrs["images"] as { fileName: string }[];
-      const imagePaths = images.map(({ fileName }) => fileName);
-      const initialImageIndex = imagePaths.indexOf(fileName);
+      const assetPaths = images.map(({ fileName }) => fileName);
+      const initialImageIndex = assetPaths.indexOf(fileName);
 
-      navigation.navigate("imageViewer", {
-        imagePaths,
+      navigation.navigate("assetViewer", {
+        assetPaths,
         initialImageIndex,
       });
     },

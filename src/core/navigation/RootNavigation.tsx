@@ -1,5 +1,5 @@
 import { atoms } from "@app/core/storage/state";
-import { ImageViewerScreen } from "@app/features/image-viewer/screens/ImageViewerScreen";
+import { AssetViewerScreen } from "@app/features/asset-viewer/screens/AssetViewerScreen";
 import OnboardingScreen from "@app/features/onboarding/screens/OnboardingScreen";
 import {
   AddTagsScreen,
@@ -68,8 +68,8 @@ const RootNavigation = () => {
         options={{ presentation: "modal" }}
       />
       <Stack.Screen
-        component={ImageViewerScreen}
-        name="imageViewer"
+        component={AssetViewerScreen}
+        name="assetViewer"
         options={{
           animationDuration: 200,
           gestureDirection: "vertical",

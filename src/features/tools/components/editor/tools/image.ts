@@ -1,4 +1,7 @@
-import { getImagesFrom, ImageSource } from "@app/core/utils/imagePicker";
+import {
+  getMediaAssetsFrom,
+  ImageSource,
+} from "@app/core/utils/mediaAssetPicker";
 import { i18n } from "@lingui/core";
 import { t } from "@lingui/core/macro";
 import { randomId } from "@madeja-studio/cepillo";
@@ -9,13 +12,13 @@ const addImageToEditor = async ({
   editor,
   source,
 }: ToolCallbackArgs & { source: ImageSource }) => {
-  const result = await getImagesFrom(source);
+  const result = await getMediaAssetsFrom(source);
 
   if (result.tag === "error") {
     throw new Error(result.getMessage?.());
   }
 
-  const images = result.images.map(({ path }) => ({ fileName: path }));
+  const images = result.assets.map(({ path }) => ({ fileName: path }));
 
   editor.setLocalImages({ groupId: randomId(), images });
 };

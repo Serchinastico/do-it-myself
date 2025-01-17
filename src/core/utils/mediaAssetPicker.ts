@@ -1,5 +1,5 @@
 import { moveToDocuments } from "@app/core/utils/mediaFile";
-import { LocalImage } from "@app/domain/project";
+import { LocalMediaAsset } from "@app/domain/project";
 import { i18n } from "@lingui/core";
 import { t } from "@lingui/core/macro";
 import { randomId, Tagged } from "@madeja-studio/cepillo";
@@ -29,7 +29,7 @@ interface ImagePickerError {
 }
 
 interface ImagePickerSuccess {
-  images: LocalImage[];
+  assets: LocalMediaAsset[];
 }
 
 interface InternalImagePickerSuccess {
@@ -57,7 +57,8 @@ const CAMERA_UNAVAILABLE_ERROR: InternalImagePickerResult = {
   tag: "error",
 };
 
-const IMAGES_DIRECTORY = "Image";
+export const IMAGES_DIRECTORY = "Image";
+export const VIDEOS_DIRECTORY = "Video";
 
 /**
  * Asynchronously stores an image asset locally in the application's file system.
@@ -67,26 +68,28 @@ const IMAGES_DIRECTORY = "Image";
  * @returns A promise that resolves to the relative path of the stored image file,
  * or undefined if the asset is not provided.
  */
-const storeImagesLocally = async (assets: ImagePickerAsset[]) => {
-  const images: LocalImage[] = [];
+const storeMediaAssetsLocally = async (assets: ImagePickerAsset[]) => {
+  const mediaAssets: LocalMediaAsset[] = [];
 
   for (const asset of assets) {
     const path = await moveToDocuments({
-      documentsDirectoryName: IMAGES_DIRECTORY,
-      extension: "jpg",
+      documentsDirectoryName:
+        asset.type === "image" ? IMAGES_DIRECTORY : VIDEOS_DIRECTORY,
+      extension: asset.type === "image" ? "jpg" : "mov",
       uri: asset.uri,
     });
 
     // Return the relative path to preserve the image between app updates
-    images.push({
+    mediaAssets.push({
       height: asset.height,
       id: randomId(),
       path: path,
+      tag: asset.type === "image" ? "image" : "video",
       width: asset.width,
     });
   }
 
-  return images;
+  return mediaAssets;
 };
 
 /**
@@ -99,7 +102,7 @@ const storeImagesLocally = async (assets: ImagePickerAsset[]) => {
  * @param options Options to configure the image picker.
  * @returns A promise that resolves to the image picker result or an error code.
  */
-const getImageFromCamera = async (
+const getMediaAssetFromCamera = async (
   options: ImagePickerOptions
 ): Promise<InternalImagePickerResult> => {
   const cameraPermissionStatus = await getCameraPermissionsAsync();
@@ -136,7 +139,7 @@ const getImageFromCamera = async (
  * @param options Configuration options for image selection from the media library.
  * @returns A promise that resolves to an ImagePickerResult indicating the outcome.
  */
-const getImageFromMediaLibrary = async (
+const getMediaAssetFromMediaLibrary = async (
   options: ImagePickerOptions
 ): Promise<InternalImagePickerResult> => {
   const mediaLibraryPermissionStatus = await getMediaLibraryPermissionsAsync();
@@ -173,21 +176,21 @@ const getImageFromMediaLibrary = async (
  * action is successful, the result includes the image asset and a success tag.
  * @throws Will throw an error if the image retrieval fails for any reason.
  */
-export const getImagesFrom = async (
+export const getMediaAssetsFrom = async (
   source: ImageSource,
   options: ImagePickerOptions = {
     allowsMultipleSelection: true,
-    mediaTypes: MediaTypeOptions.Images,
+    mediaTypes: MediaTypeOptions.All,
     quality: 0.2,
   }
 ): Promise<ImagePickerResult> => {
   let result: InternalImagePickerResult;
   switch (source) {
     case "camera":
-      result = await getImageFromCamera(options);
+      result = await getMediaAssetFromCamera(options);
       break;
     case "media_library":
-      result = await getImageFromMediaLibrary(options);
+      result = await getMediaAssetFromMediaLibrary(options);
       break;
   }
 
@@ -195,8 +198,8 @@ export const getImagesFrom = async (
     return result;
   }
 
-  const images = await storeImagesLocally(result.assets);
-  return { images, tag: "success" };
+  const assets = await storeMediaAssetsLocally(result.assets);
+  return { assets, tag: "success" };
 };
 
 export type ImageSource = "camera" | "media_library";
