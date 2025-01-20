@@ -1,17 +1,17 @@
 import { Video } from "expo-av";
-import { Dimensions } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
   uri: string;
 }
 
 export const PlayableVideo = ({ uri }: Props) => {
-  const { height, width } = Dimensions.get("screen");
+  const { bottom } = useSafeAreaInsets();
   return (
     <Video
       shouldPlay
       source={{ uri }}
-      style={[tw`mt-4`, { height, width }]}
+      style={[tw`flex-1`, { marginBottom: bottom }]}
       useNativeControls
       usePoster
     />

@@ -10,7 +10,7 @@ interface Props {
   page: { current: number; total: number };
 }
 
-export const Header = ({ onClose, page }: Props) => {
+export const ImageViewerHeader = ({ onClose, page }: Props) => {
   const { top } = useSafeAreaInsets();
 
   return (

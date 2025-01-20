@@ -27,8 +27,6 @@ export const AttachmentVideo = ({
   const imageWidth = (width - 48) / colSpan;
   const imageHeight = imageWidth * (video.height / video.width);
 
-  console.log(colSpan, imageWidth, imageHeight);
-
   return (
     // @ts-expect-error ContextMenu.Root prop type does not accept style, but it actually uses it
     <ContextMenu.Root style={tw`rounded-card my-1`}>
