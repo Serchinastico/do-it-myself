@@ -5,6 +5,7 @@ import {
 import { i18n } from "@lingui/core";
 import { t } from "@lingui/core/macro";
 import { randomId } from "@madeja-studio/cepillo";
+import { MediaTypeOptions } from "expo-image-picker/src/ImagePicker.types";
 
 import { EditorTool, ToolCallbackArgs } from "./base";
 
@@ -12,7 +13,11 @@ const addImageToEditor = async ({
   editor,
   source,
 }: ToolCallbackArgs & { source: ImageSource }) => {
-  const result = await getMediaAssetsFrom(source);
+  const result = await getMediaAssetsFrom(source, {
+    allowsMultipleSelection: true,
+    mediaTypes: MediaTypeOptions.Images,
+    quality: 0.2,
+  });
 
   if (result.tag === "error") {
     throw new Error(result.getMessage?.());
