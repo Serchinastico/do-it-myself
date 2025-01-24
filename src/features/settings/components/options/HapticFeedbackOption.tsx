@@ -1,6 +1,6 @@
 import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { atoms } from "@app/core/storage/state";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column, Button as TelarButton } from "@madeja-studio/telar";
 import { useAtom } from "jotai";
 import { useCallback, useRef } from "react";
@@ -9,6 +9,7 @@ import { Text } from "react-native";
 export const HapticFeedbackOption = () => {
   const accordionRef = useRef<AccordionRef>(null);
   const [isEnabled, setIsEnabled] = useAtom(atoms.isHapticFeedbackEnabled);
+  const { t } = useLingui();
 
   const onOptionPress = useCallback(async (value: boolean) => {
     setIsEnabled(value);

@@ -5,7 +5,7 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { Header } from "@app/features/settings/components/headers";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import {
   Center,
   Column,
@@ -22,6 +22,7 @@ export const PurchaseScreen = ({ navigation }: RootScreenProps<"purchase">) => {
   const { hasPurchasedApp, product, requestPurchase } = useInAppPurchase();
   const setHasPurchasedApp = useSetAtom(atoms.hasPurchasedApp);
   const { showToast } = useToast();
+  const { t } = useLingui();
 
   const onPurchasePress = useCallback(async () => {
     const response = await requestPurchase("full_version");

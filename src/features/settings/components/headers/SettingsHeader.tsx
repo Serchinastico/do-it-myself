@@ -1,6 +1,6 @@
 import { Header } from "@app/core/components/Header";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { clamp, lerp } from "@madeja-studio/cepillo";
 import { OnPress } from "@madeja-studio/telar";
 import chroma from "chroma-js";
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export const SettingsHeader = ({ onClose, scrollOffset }: Props) => {
+  const { t } = useLingui();
   const colorSwitch = useColorSwitch();
 
   return (

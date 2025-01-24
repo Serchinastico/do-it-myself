@@ -1,6 +1,6 @@
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { LocalImage } from "@app/domain/project";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, Center, OnPress } from "@madeja-studio/telar";
 import * as FileSystem from "expo-file-system";
 import { Dimensions, Image, View } from "react-native";
@@ -22,6 +22,7 @@ export const AttachmentImage = ({
   tint,
 }: Props) => {
   const { isHapticFeedbackEnabled } = useHapticFeedback();
+  const { t } = useLingui();
   const { width } = Dimensions.get("screen");
   const imageWidth = (width - 48) / colSpan;
   const imageHeight = imageWidth * (image.height / image.width);

@@ -13,7 +13,7 @@ import {
 import { ColorPicker } from "@app/features/projects/components/ColorPicker";
 import { TagsPicker } from "@app/features/projects/components/TagsPicker";
 import { ToolsPicker } from "@app/features/projects/components/ToolsPicker";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column, IconReference, OnPress, Row } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai/index";
 import React, { useCallback, useRef, useState } from "react";
@@ -65,6 +65,7 @@ export const ProjectDetails = ({
 
   const navigation = useRootNavigation();
   const { bottom } = useSafeAreaInsets();
+  const { t } = useLingui();
 
   const nameRef = useRef<TextInput>(null);
   const descriptionRef = useRef<TextInput>(null);

@@ -1,6 +1,6 @@
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { LocalVideo } from "@app/domain/project";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, Center, OnPress } from "@madeja-studio/telar";
 import { ResizeMode, Video } from "expo-av";
 import * as FileSystem from "expo-file-system";
@@ -23,6 +23,7 @@ export const AttachmentVideo = ({
   video,
 }: Props) => {
   const { isHapticFeedbackEnabled } = useHapticFeedback();
+  const { t } = useLingui();
   const { width } = Dimensions.get("screen");
   const imageWidth = (width - 48) / colSpan;
   const imageHeight = imageWidth * (video.height / video.width);

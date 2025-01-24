@@ -1,5 +1,5 @@
 import { Header } from "@app/core/components/Header";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { OnPress } from "@madeja-studio/telar";
 
 interface Props {
@@ -7,6 +7,8 @@ interface Props {
 }
 
 export const WorklogHeader = ({ onBackPress }: Props) => {
+  const { t } = useLingui();
+
   return (
     <Header
       hasBackButton

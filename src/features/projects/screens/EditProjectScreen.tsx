@@ -4,7 +4,7 @@ import { atoms, derivedAtoms } from "@app/core/storage/state";
 import { EditedProject } from "@app/domain/project/project";
 import { Dialog } from "@app/features/projects/components/dialogs";
 import { ProjectDetails } from "@app/features/projects/components/ProjectDetails";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
 import { useAtom, useSetAtom } from "jotai";
@@ -30,6 +30,8 @@ export const EditProjectScreen = ({
     useState(false);
   const [isProjectDeletionDialogVisible, setIsProjectDeletionDialogVisible] =
     useState(false);
+
+  const { t } = useLingui();
 
   const onProjectSave = useCallback(
     async (editedProject: EditedProject) => {

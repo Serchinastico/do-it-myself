@@ -4,13 +4,15 @@ import { SafeArea } from "@app/core/components/SafeArea";
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { Header } from "@app/features/settings/components/headers";
 import { PartyAnimation } from "@app/features/settings/components/PartyAnimation";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Center, Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { Linking, Text } from "react-native";
 
 export const AppPurchasedScreen = ({
   navigation,
 }: RootScreenProps<"appPurchased">) => {
+  const { t } = useLingui();
+
   return (
     <SafeArea edges={SafeAreaViewEdges.NoTop}>
       <Header.AppPurchased onClose={() => navigation.goBack()} />

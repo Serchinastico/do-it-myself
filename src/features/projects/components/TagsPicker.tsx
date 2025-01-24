@@ -1,7 +1,7 @@
 import { Button } from "@app/core/components/Button";
 import { getTagsByIds, ProjectTagId } from "@app/domain/project";
 import { Tag } from "@app/features/projects/components/Tag";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column, OnPress, Row } from "@madeja-studio/telar";
 import { useMemo } from "react";
 import { Text } from "react-native";
@@ -13,6 +13,7 @@ interface Props {
 
 export const TagsPicker = ({ onPress, tagIds }: Props) => {
   const tags = useMemo(() => getTagsByIds(tagIds), [tagIds]);
+  const { t } = useLingui();
 
   return (
     <Column>

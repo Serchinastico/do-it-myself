@@ -1,6 +1,6 @@
 import { getProjectColorById } from "@app/domain/project";
 import { EditorTool } from "@app/features/tools/components/editor/tools/base";
-import { t } from "@lingui/core/macro";
+import { i18n } from "@lingui/core";
 import { randomId } from "@madeja-studio/cepillo";
 import dayjs from "dayjs";
 
@@ -14,7 +14,7 @@ export const DateTool: EditorTool = {
       backgroundColor: getProjectColorById(project.colorId).hex,
       date: dayjs().toISOString(),
       id: randomId(),
-      text: t`Today`,
+      text: i18n._(`Today`),
     }),
   tag: "icon",
 };

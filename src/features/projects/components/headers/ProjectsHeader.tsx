@@ -1,7 +1,7 @@
 import { Header } from "@app/core/components/Header";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { clamp, lerp } from "@madeja-studio/cepillo";
 import { Button, OnPress } from "@madeja-studio/telar";
 import chroma from "chroma-js";
@@ -14,6 +14,7 @@ interface Props {
 export const ProjectsHeader = ({ onSettingsPress, scrollOffset }: Props) => {
   const { isHapticFeedbackEnabled } = useHapticFeedback();
   const colorSwitch = useColorSwitch();
+  const { t } = useLingui();
 
   return (
     <Header

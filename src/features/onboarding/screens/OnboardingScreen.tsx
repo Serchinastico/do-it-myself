@@ -3,7 +3,7 @@ import PageIndicator from "@app/core/components/PageIndicator";
 import { SafeArea } from "@app/core/components/SafeArea";
 import { useRootNavigation } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { StatusBar } from "expo-status-bar";
 import { useSetAtom } from "jotai";
 import React, { useCallback, useState } from "react";
@@ -16,6 +16,7 @@ const OnboardingScreen = () => {
   const [page, setPage] = useState(0);
   const navigation = useRootNavigation();
   const setHasSeenOnboarding = useSetAtom(atoms.hasSeenOnboarding);
+  const { t } = useLingui();
 
   const onSkipOnboarding = useCallback(() => {
     setHasSeenOnboarding(true);

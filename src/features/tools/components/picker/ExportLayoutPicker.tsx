@@ -4,7 +4,7 @@ import { ScrollView } from "@app/core/components/ScrollView";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { Layout, LayoutId } from "@app/domain/project/export";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, Column, Row } from "@madeja-studio/telar";
 import { Image, View } from "react-native";
 
@@ -19,6 +19,7 @@ export const ExportLayoutPicker = ({
 }: Props) => {
   const { isHapticFeedbackEnabled } = useHapticFeedback();
   const { colorScheme } = useColorSwitch();
+  const { t } = useLingui();
 
   return (
     <Accordion

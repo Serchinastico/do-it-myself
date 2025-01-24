@@ -1,6 +1,6 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { color } from "@app/core/theme/color";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column, IconReference, Row, VectorIcon } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Platform, Switch, SwitchProps, Text } from "react-native";
@@ -95,6 +95,8 @@ export const ToolsPicker = ({
   wantsWorklog,
   ...props
 }: Props) => {
+  const { t } = useLingui();
+
   return (
     <Column>
       <Text style={tw`h3 my-4`}>{t`Tools`}</Text>

@@ -7,7 +7,7 @@ import {
   ProjectColor,
   ProjectColorId,
 } from "@app/domain/project";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, Column, Row } from "@madeja-studio/telar";
 import { Text, View } from "react-native";
 
@@ -65,6 +65,8 @@ interface Props {
 }
 
 export const ColorPicker = ({ onColorChange, selectedColorId }: Props) => {
+  const { t } = useLingui();
+
   return (
     <Column>
       <Text style={tw`h3 mt-4`}>{t`Color`}</Text>

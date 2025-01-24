@@ -4,7 +4,7 @@ import {
   ProjectColorId,
 } from "@app/domain/project/colors";
 import { Project } from "@app/domain/project/project";
-import { t } from "@lingui/core/macro";
+import { i18n } from "@lingui/core";
 import * as cheerio from "cheerio";
 import dayjs from "dayjs";
 import invariant from "tiny-invariant";
@@ -33,11 +33,11 @@ export const getInitialManual = (
   colorId: ProjectColorId
 ): Project["manual"] => ({
   contentHtml: `
-${getTitleHtml(t`Introduction`, colorId)}
+${getTitleHtml(i18n._(`Introduction`), colorId)}
 ${getParagraphHtml()}
-${getTitleHtml(t`Tools and materials`, colorId)}
+${getTitleHtml(i18n._(`Tools and materials`), colorId)}
 ${getParagraphHtml()}
-${getTitleHtml(t`Steps`, colorId)}
+${getTitleHtml(i18n._(`Steps`), colorId)}
 ${getParagraphHtml()}
 `,
 });
@@ -46,7 +46,7 @@ export const getInitialWorklog = (
   colorId: ProjectColorId
 ): Project["worklog"] => ({
   contentHtml: `
-${getDateHtml(t`Today`, colorId)}
+${getDateHtml(i18n._(`Today`), colorId)}
 ${getParagraphHtml()}
 `,
 });

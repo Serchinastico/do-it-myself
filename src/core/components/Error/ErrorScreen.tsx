@@ -1,5 +1,5 @@
 import { Button } from "@app/core/components/Button";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column } from "@madeja-studio/telar";
 import Constants from "expo-constants";
 import { Text } from "react-native";
@@ -12,6 +12,8 @@ interface Props {
 }
 
 export const ErrorScreen = ({ error, resetError }: Props) => {
+  const { t } = useLingui();
+
   return (
     <SafeArea style={tw`justify-between px-4`}>
       <Column style={tw`flex-1`}>

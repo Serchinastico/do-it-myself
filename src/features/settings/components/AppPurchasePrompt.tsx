@@ -1,10 +1,11 @@
 import { Illustration } from "@app/core/components/Illustration";
-import { t } from "@lingui/core/macro";
-import { Trans } from "@lingui/react/macro";
+import { Trans, useLingui } from "@lingui/react/macro";
 import { Center, Column } from "@madeja-studio/telar";
 import { Text } from "react-native";
 
 export const AppPurchasePrompt = () => {
+  const { t } = useLingui();
+
   return (
     <Column>
       <Center style={tw`mt-8`}>

@@ -1,6 +1,6 @@
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, Row, VectorIcon } from "@madeja-studio/telar";
 import {
   forwardRef,
@@ -36,6 +36,7 @@ export const Accordion = forwardRef<AccordionRef, Props>(
     const [isOpen, setIsOpen] = useState(false);
     const { isHapticFeedbackEnabled } = useHapticFeedback();
     const colorSwitch = useColorSwitch();
+    const { t } = useLingui();
 
     const valuePickerHeight = useSharedValue(64);
     const valuePickerOpacity = useSharedValue(0);

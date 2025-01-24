@@ -1,6 +1,6 @@
 import { createAnimatedFunctionalComponent } from "@app/core/animations/createAnimatedFunctionalComponent";
 import { color } from "@app/core/theme/color";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { lerp } from "@madeja-studio/cepillo";
 import { Button, Row, VectorIcon } from "@madeja-studio/telar";
 import {
@@ -27,6 +27,7 @@ interface Props {
 export const SearchBar = forwardRef<SearchBarRef, Props>(
   ({ onSearchChange, scroll }, ref) => {
     const [searchText, setSearchText] = useState("");
+    const { t } = useLingui();
 
     const opacity = useSharedValue(1);
     const bottom = useSharedValue(0);

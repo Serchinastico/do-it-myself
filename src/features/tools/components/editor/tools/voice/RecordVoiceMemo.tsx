@@ -5,7 +5,7 @@ import useRecording from "@app/core/hooks/useRecording";
 import { color } from "@app/core/theme/color";
 import { moveToDocuments } from "@app/core/utils/mediaFile";
 import { ToolCallbackArgs } from "@app/features/tools/components/editor/tools/base";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, Center, useToast } from "@madeja-studio/telar";
 import { ContainerProps } from "@madeja-studio/telar/lib/typescript/src/component/Button/Container";
 import * as Haptics from "expo-haptics";
@@ -51,6 +51,7 @@ export const RecordVoiceMemo = ({ editor }: Props) => {
   } = useRecording();
   const { isHapticFeedbackEnabled } = useHapticFeedback();
   const { showToast } = useToast();
+  const { t } = useLingui();
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }, { rotate: `${rotation.value}deg` }],

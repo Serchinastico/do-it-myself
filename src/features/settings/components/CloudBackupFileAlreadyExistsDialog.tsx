@@ -2,7 +2,7 @@ import { Button } from "@app/core/components/Button";
 import { Dialog } from "@app/core/components/Dialog";
 import { Illustration } from "@app/core/components/Illustration";
 import { CloudBackupProvider } from "@app/domain/cloudBackup";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Center, Column, OnPress, Row } from "@madeja-studio/telar";
 import { ComponentProps } from "react";
 import { Text } from "react-native";
@@ -20,6 +20,8 @@ export const CloudBackupFileAlreadyExistsDialog = ({
   onLoadBackup,
   provider,
 }: Props) => {
+  const { t } = useLingui();
+
   return (
     <Dialog isVisible={isVisible} onClose={onClose}>
       <Column>

@@ -1,10 +1,12 @@
 import { Cue } from "@app/core/components/Cue";
 import { Illustration } from "@app/core/components/Illustration";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column } from "@madeja-studio/telar";
 import { Text } from "react-native";
 
 export const EmptyAttachments = () => {
+  const { t } = useLingui();
+
   return (
     <Column style={tw`center flex-1 px-8 mb-28`}>
       <Illustration heightWindowRatio="2/7" name="no_media" />

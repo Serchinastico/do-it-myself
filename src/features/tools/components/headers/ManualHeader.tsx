@@ -2,7 +2,7 @@ import { Header } from "@app/core/components/Header";
 import { useColorSwitch } from "@app/core/hooks/useColorSwitch";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { color } from "@app/core/theme/color";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, OnPress } from "@madeja-studio/telar";
 
 interface Props {
@@ -19,6 +19,7 @@ export const ManualHeader = ({
   onExportPress,
 }: Props) => {
   const { isHapticFeedbackEnabled } = useHapticFeedback();
+  const { t } = useLingui();
   const colorSwitch = useColorSwitch();
 
   return (

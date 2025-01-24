@@ -1,5 +1,5 @@
 import { color } from "@app/core/theme/color";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, OnPress, Row } from "@madeja-studio/telar";
 import chroma from "chroma-js";
 import { Text } from "react-native";
@@ -12,6 +12,7 @@ interface Props {
 
 export const ImageViewerHeader = ({ onClose, page }: Props) => {
   const { top } = useSafeAreaInsets();
+  const { t } = useLingui();
 
   return (
     <Row

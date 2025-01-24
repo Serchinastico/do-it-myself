@@ -5,7 +5,7 @@ import {
   ColorScheme,
   getNameFromColorScheme,
 } from "@app/core/theme/color-scheme";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column, Button as TelarButton } from "@madeja-studio/telar";
 import { useAtom } from "jotai/index";
 import { useCallback, useRef } from "react";
@@ -17,6 +17,7 @@ export const ThemeOption = () => {
   const { isHapticFeedbackEnabled } = useHapticFeedback();
   const [colorScheme, setColorScheme] = useAtom(atoms.colorScheme);
   const accordionRef = useRef<AccordionRef>(null);
+  const { t } = useLingui();
 
   const resolvedColorScheme = colorScheme ?? twColorScheme;
 

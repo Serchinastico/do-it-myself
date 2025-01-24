@@ -1,7 +1,9 @@
 import { BaseOnboardingPage } from "@app/features/onboarding/components/pages/BaseOnboardingPage";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 
 const OnboardingPage1 = () => {
+  const { t } = useLingui();
+
   return (
     <BaseOnboardingPage
       description={t`Name them, tag them, search through your collection, and never lose track of a project again.`}

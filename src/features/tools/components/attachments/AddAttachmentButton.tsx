@@ -1,6 +1,6 @@
 import { Button } from "@app/core/components/Button";
 import { ImageSource } from "@app/core/utils/mediaAssetPicker";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { useCallback, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as DropdownMenu from "zeego/dropdown-menu";
@@ -12,6 +12,7 @@ interface Props {
 export const AddAttachmentButton = ({ onAddAttachment }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const { bottom } = useSafeAreaInsets();
+  const { t } = useLingui();
 
   const addAttachment = useCallback(
     async (source: ImageSource) => {

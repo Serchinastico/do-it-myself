@@ -6,7 +6,7 @@ import { atoms } from "@app/core/storage/state";
 import { PROJECT_TAGS, ProjectTagId } from "@app/domain/project";
 import { ProjectTag } from "@app/domain/project/tags";
 import { Tag } from "@app/features/projects/components/Tag";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { toggleItem } from "@madeja-studio/cepillo";
 import { Column, Row, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { ProjectHeader } from "features/projects/components/headers";
@@ -49,6 +49,7 @@ export const AddTagsScreen = ({ navigation }: RootScreenProps<"addTags">) => {
   const [selectedTagIds, setSelectedTagIds] = useAtom(atoms.selectedTagIds);
 
   const { bottom } = useSafeAreaInsets();
+  const { t } = useLingui();
 
   return (
     <SafeArea edges={SafeAreaViewEdges.NoTop}>

@@ -2,7 +2,7 @@ import { Accordion, AccordionRef } from "@app/core/components/Accordion";
 import { useHapticFeedback } from "@app/core/hooks/useHapticFeedback";
 import { useCloudBackup } from "@app/core/providers/CloudBackupContextProvider";
 import { CloudBackupProvider } from "@app/domain/cloudBackup";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Button, Column } from "@madeja-studio/telar";
 import { useCallback, useRef, useState } from "react";
 import { Platform, Text } from "react-native";
@@ -12,6 +12,7 @@ export const CloudBackupOption = () => {
   const { provider, setProvider } = useCloudBackup();
   const [isLoading, setIsLoading] = useState(false);
   const { isHapticFeedbackEnabled } = useHapticFeedback();
+  const { t } = useLingui();
 
   const onOptionPress = useCallback(
     async (value: CloudBackupProvider) => {

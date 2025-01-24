@@ -6,7 +6,7 @@ import { derivedAtoms } from "@app/core/storage/state";
 import { ExportThemeId } from "@app/domain/project/export";
 import { Picker } from "@app/features/tools/components/picker";
 import { usePdfExporter } from "@app/features/tools/hooks/pdf/usePdfExporter";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 import { Column, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { useAtomValue } from "jotai";
 import { useState } from "react";
@@ -25,6 +25,7 @@ export const ExportManualScreen = ({
     useState<ExportThemeId>("dim");
   const { sharePdf } = usePdfExporter();
   const { bottom } = useSafeAreaInsets();
+  const { t } = useLingui();
 
   return (
     <SafeArea edges={SafeAreaViewEdges.NoVertical}>

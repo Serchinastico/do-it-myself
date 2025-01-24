@@ -8,7 +8,8 @@ import {
 import { CloudBackupProvider as Provider } from "@app/domain/cloudBackup";
 import { CloudBackupFileAlreadyExistsDialog } from "@app/features/settings/components/CloudBackupFileAlreadyExistsDialog";
 import { CorruptedCloudBackupFileDialog } from "@app/features/settings/components/CorruptedCloudBackupFileDialog";
-import { t } from "@lingui/core/macro";
+import { i18n } from "@lingui/core";
+import { useLingui } from "@lingui/react/macro";
 import { useToast } from "@madeja-studio/telar";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useAtom } from "jotai";
@@ -31,8 +32,10 @@ const CloudBackupContext = createContext<ContextProps>({} as ContextProps);
 
 const getCloudStorageErrorToastProps = () =>
   ({
-    subtitle: t`There is a problem with your cloud storage provider. Cloud backups have been disabled.`,
-    title: t`Unable to store backup`,
+    subtitle: i18n._(
+      `There is a problem with your cloud storage provider. Cloud backups have been disabled.`
+    ),
+    title: i18n._(`Unable to store backup`),
     variant: "error",
   }) as const;
 
@@ -44,6 +47,7 @@ export const CloudBackupContextProvider = ({ children }: PropsWithChildren) => {
   );
   const [selectedProvider, setSelectedProvider] = useState(provider);
   const { showToast } = useToast();
+  const { t } = useLingui();
   const [cloudStorage, setCloudStorage] = useState<CloudStorage>(
     CloudStorage.getDefaultInstance()
   );

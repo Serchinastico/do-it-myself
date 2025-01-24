@@ -1,7 +1,9 @@
 import { BaseOnboardingPage } from "@app/features/onboarding/components/pages/BaseOnboardingPage";
-import { t } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react/macro";
 
 const OnboardingPage3 = () => {
+  const { t } = useLingui();
+
   return (
     <BaseOnboardingPage
       description={t`Your data is yours: store your backups securely with iCloud or Google Drive.`}
