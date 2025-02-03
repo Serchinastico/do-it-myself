@@ -7,7 +7,6 @@ import {
 } from "@app/features/tools/hooks/pdf/processing";
 import { TransformImageSourcesToBase64 } from "@app/features/tools/hooks/pdf/processing/transformImageSourcesToBase64";
 import { i18n } from "@lingui/core";
-import { t } from "@lingui/core/macro";
 import { Asset } from "expo-asset";
 import {
   cacheDirectory,
@@ -60,12 +59,12 @@ export const usePdfExporter = () => {
         width: 595,
       });
 
-      const uri = `${exportDirectory}/${t(i18n)`${project.name} - Manual`}.pdf`;
+      const uri = `${exportDirectory}/${i18n._(`{projectName} - Manual`, { projectName: project.name })}.pdf`;
 
       await makeDirectoryAsync(exportDirectory, { intermediates: true });
       await moveAsync({ from: temporaryUri, to: uri });
       await shareAsync(uri, {
-        dialogTitle: t(i18n)`Save or share your project's manual`,
+        dialogTitle: i18n._(`Save or share your project's manual`),
         mimeType: "application/pdf",
         UTI: ".pdf",
       });

@@ -13,6 +13,25 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/features/tools/hooks/pdf/usePdfExporter.ts:62
+#. js-lingui-explicit-id
+msgid "{projectName} - Manual"
+msgstr "{projectName} - Manual"
+
+#: src/features/tools/hooks/pdf/usePdfExporter.ts:67
+#. js-lingui-explicit-id
+msgid "Save or share your project's manual"
+msgstr "Save or share your project's manual"
+
+#: src/features/tools/components/attachments/AddAttachmentButton.tsx:48
+msgid "Photo Library"
+msgstr "Photo Library"
+
+#: src/features/tools/components/editor/tools/image.ts:49
+#. js-lingui-explicit-id
+msgid "Take photo"
+msgstr "Take photo"
+
 #: src/features/tools/components/editor/tools/date.ts:17
 #: src/domain/project/tool.ts:49
 #: src/core/utils/date.ts:14
@@ -150,6 +169,26 @@ msgstr "paint"
 msgid "mixed medium"
 msgstr "mixed medium"
 
+#: src/domain/project/export.ts:6
+#. js-lingui-explicit-id
+msgid "Do It Myself"
+msgstr "Do It Myself"
+
+#: src/domain/project/export.ts:10
+#. js-lingui-explicit-id
+msgid "Do It Myself (Dark)"
+msgstr "Do It Myself (Dark)"
+
+#: src/domain/project/export.ts:14
+#. js-lingui-explicit-id
+msgid "Sweden"
+msgstr "Sweden"
+
+#: src/domain/project/export.ts:18
+#. js-lingui-explicit-id
+msgid "Sweden (Dark)"
+msgstr "Sweden (Dark)"
+
 #: src/domain/project/colors.ts:4
 #. js-lingui-explicit-id
 msgid "Wheat"
@@ -190,6 +229,21 @@ msgstr "Ocean"
 msgid "Fuchsia"
 msgstr "Fuchsia"
 
+#: src/core/utils/mediaAssetPicker.ts:41
+#. js-lingui-explicit-id
+msgid "Access to your camera or media library is required to pick a picture"
+msgstr "Access to your camera or media library is required to pick a picture"
+
+#: src/core/utils/mediaAssetPicker.ts:49
+#. js-lingui-explicit-id
+msgid "Canceled the selection of an image"
+msgstr "Canceled the selection of an image"
+
+#: src/core/utils/mediaAssetPicker.ts:55
+#. js-lingui-explicit-id
+msgid "Camera unavailable"
+msgstr "Camera unavailable"
+
 #: src/core/utils/date.ts:18
 #. js-lingui-explicit-id
 msgid "Yesterday"
@@ -213,11 +267,6 @@ msgstr "There is a problem with your cloud storage provider. Cloud backups have 
 msgid "Unable to store backup"
 msgstr "Unable to store backup"
 
-#: src/features/tools/hooks/pdf/usePdfExporter.ts:63
-#. placeholder {0}: project.name
-msgid "{0} - Manual"
-msgstr "{0} - Manual"
-
 #: src/features/asset-viewer/components/header/ImageViewerHeader.tsx:25
 #. placeholder {0}: page.current
 #. placeholder {1}: page.total
@@ -234,10 +283,6 @@ msgstr "<0><1>Support us in this project and get the app with no limitations </1
 #: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:38
 msgid "Accept"
 msgstr "Accept"
-
-#: src/core/utils/mediaAssetPicker.ts:42
-msgid "Access to your camera or media library is required to pick a picture"
-msgstr "Access to your camera or media library is required to pick a picture"
 
 #: src/features/tools/components/attachments/AddAttachmentButton.tsx:39
 msgid "Add attachment"
@@ -282,19 +327,11 @@ msgstr "Backup loaded"
 msgid "Buy the app to get unlimited projects"
 msgstr "Buy the app to get unlimited projects"
 
-#: src/core/utils/mediaAssetPicker.ts:56
-msgid "Camera unavailable"
-msgstr "Camera unavailable"
-
 #: src/features/projects/components/dialogs/ToolRemovalConfirmationDialog.tsx:35
 #: src/features/projects/components/dialogs/ProjectsLimitReachedDialog.tsx:38
 #: src/features/projects/components/dialogs/ProjectDeletionConfirmationDialog.tsx:35
 msgid "Cancel"
 msgstr "Cancel"
-
-#: src/core/utils/mediaAssetPicker.ts:50
-msgid "Canceled the selection of an image"
-msgstr "Canceled the selection of an image"
 
 #: src/features/settings/components/options/CloudBackupOption.tsx:31
 msgid "Cloud Backup"
@@ -339,14 +376,6 @@ msgstr "Description"
 #: src/features/settings/components/options/CloudBackupOption.tsx:51
 msgid "Disabled"
 msgstr "Disabled"
-
-#: src/domain/project/export.ts:7
-msgid "Do It Myself"
-msgstr "Do It Myself"
-
-#: src/domain/project/export.ts:11
-msgid "Do It Myself (Dark)"
-msgstr "Do It Myself (Dark)"
 
 #: src/features/projects/components/ProjectDetails.tsx:146
 msgid "e.g. Hand the new mirror in the bathroom"
@@ -477,11 +506,6 @@ msgstr "Overwrite"
 msgid "Permissions for recording were not granted. Change the option from your device settings to record voice memos"
 msgstr "Permissions for recording were not granted. Change the option from your device settings to record voice memos"
 
-#: src/features/tools/components/editor/tools/image.ts:43
-#: src/features/tools/components/attachments/AddAttachmentButton.tsx:48
-msgid "Photo Library"
-msgstr "Photo Library"
-
 #: src/features/projects/components/headers/ProjectsHeader.tsx:32
 msgid "Projects"
 msgstr "Projects"
@@ -516,10 +540,6 @@ msgstr "Save"
 msgid "Save images and videos for future reference."
 msgstr "Save images and videos for future reference."
 
-#: src/features/tools/hooks/pdf/usePdfExporter.ts:68
-msgid "Save or share your project's manual"
-msgstr "Save or share your project's manual"
-
 #: src/features/projects/components/SearchBar.tsx:77
 msgid "Search project..."
 msgstr "Search project..."
@@ -536,14 +556,6 @@ msgstr "Something went wrong"
 msgid "Styles for your manuals."
 msgstr "Styles for your manuals."
 
-#: src/domain/project/export.ts:15
-msgid "Sweden"
-msgstr "Sweden"
-
-#: src/domain/project/export.ts:19
-msgid "Sweden (Dark)"
-msgstr "Sweden (Dark)"
-
 #: src/features/projects/components/TagsPicker.tsx:20
 msgid "Tags"
 msgstr "Tags"
@@ -551,10 +563,6 @@ msgstr "Tags"
 #: src/features/projects/screens/AddTagsScreen.tsx:62
 msgid "Tags allow you to easily search for projects by their characteristics."
 msgstr "Tags allow you to easily search for projects by their characteristics."
-
-#: src/features/tools/components/editor/tools/image.ts:50
-msgid "Take photo"
-msgstr "Take photo"
 
 #: src/features/tools/components/attachments/AddAttachmentButton.tsx:55
 msgid "Take Photo"
@@ -702,6 +710,10 @@ msgstr "Your remote projects have been deleted."
 msgid "Your remote projects have been loaded and are ready to use."
 msgstr "Your remote projects have been loaded and are ready to use."
 
+#: src/features/tools/hooks/pdf/usePdfExporter.ts:63
+#~ msgid "{0} - Manual"
+#~ msgstr "{0} - Manual"
+
 #: src/domain/project/tags.ts:32
 #~ msgid "3d printing"
 #~ msgstr "3d printing"
@@ -710,9 +722,21 @@ msgstr "Your remote projects have been loaded and are ready to use."
 #~ msgid "6.99€"
 #~ msgstr "6.99€"
 
+#: src/core/utils/mediaAssetPicker.ts:42
+#~ msgid "Access to your camera or media library is required to pick a picture"
+#~ msgstr "Access to your camera or media library is required to pick a picture"
+
 #: src/domain/project/tags.ts:6
 #~ msgid "build"
 #~ msgstr "build"
+
+#: src/core/utils/mediaAssetPicker.ts:56
+#~ msgid "Camera unavailable"
+#~ msgstr "Camera unavailable"
+
+#: src/core/utils/mediaAssetPicker.ts:50
+#~ msgid "Canceled the selection of an image"
+#~ msgstr "Canceled the selection of an image"
 
 #: src/domain/project/tags.ts:10
 #~ msgid "chore"
@@ -745,6 +769,14 @@ msgstr "Your remote projects have been loaded and are ready to use."
 #: src/domain/project/tags.ts:7
 #~ msgid "design"
 #~ msgstr "design"
+
+#: src/domain/project/export.ts:7
+#~ msgid "Do It Myself"
+#~ msgstr "Do It Myself"
+
+#: src/domain/project/export.ts:11
+#~ msgid "Do It Myself (Dark)"
+#~ msgstr "Do It Myself (Dark)"
 
 #: src/domain/project/tags.ts:24
 #~ msgid "duration:long"
@@ -847,6 +879,10 @@ msgstr "Your remote projects have been loaded and are ready to use."
 #~ msgid "paper"
 #~ msgstr "paper"
 
+#: src/features/tools/hooks/pdf/usePdfExporter.ts:68
+#~ msgid "Save or share your project's manual"
+#~ msgstr "Save or share your project's manual"
+
 #: src/domain/project/tags.ts:34
 #~ msgid "sewing"
 #~ msgstr "sewing"
@@ -870,6 +906,18 @@ msgstr "Your remote projects have been loaded and are ready to use."
 #: src/domain/project/tool.ts:40
 #~ msgid "Steps"
 #~ msgstr "Steps"
+
+#: src/domain/project/export.ts:15
+#~ msgid "Sweden"
+#~ msgstr "Sweden"
+
+#: src/domain/project/export.ts:19
+#~ msgid "Sweden (Dark)"
+#~ msgstr "Sweden (Dark)"
+
+#: src/features/tools/components/editor/tools/image.ts:50
+#~ msgid "Take photo"
+#~ msgstr "Take photo"
 
 #: src/core/providers/CloudBackupContextProvider.tsx:29
 #~ msgid "There is a problem with your cloud storage provider. Cloud backups have been disabled."

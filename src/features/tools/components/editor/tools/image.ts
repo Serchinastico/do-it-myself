@@ -3,7 +3,6 @@ import {
   ImageSource,
 } from "@app/core/utils/mediaAssetPicker";
 import { i18n } from "@lingui/core";
-import { t } from "@lingui/core/macro";
 import { randomId } from "@madeja-studio/cepillo";
 import { MediaTypeOptions } from "expo-image-picker/src/ImagePicker.types";
 
@@ -40,14 +39,14 @@ export const ImageTool: EditorTool = {
       onPress: async (args) => {
         await addImageToEditor({ ...args, source: "media_library" });
       },
-      text: t(i18n)`Photo Library`,
+      text: i18n._(`Photo Library`),
     },
     {
       key: "camera",
       onPress: async (args) => {
         await addImageToEditor({ ...args, source: "camera" });
       },
-      text: t(i18n)`Take photo`,
+      text: i18n._(`Take photo`),
     },
   ],
   tag: "icon",
