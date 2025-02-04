@@ -27,7 +27,7 @@
   },
   "main": "./src/index.ts",
   "name": "do-it-myself",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "@10play/tentap-editor": "^0.6.0",
     "@likashefqet/react-native-image-zoom": "^4.3.0",
