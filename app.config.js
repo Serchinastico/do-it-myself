@@ -32,7 +32,7 @@ export default {
       en: "./src/locales/en/metadata.json",
       es: "./src/locales/en/metadata.json",
     },
-    name: IS_DEV ? "do-it-myself (DEV)" : "do-it-myself",
+    name: IS_DEV ? "Do It Myself (DEV)" : "Do It Myself",
     orientation: "portrait",
     plugins: [
       [
